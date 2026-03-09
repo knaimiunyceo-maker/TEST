@@ -6,7 +6,8 @@ import {
   Waves, Mountain, Sun, Users, MapPin, Calendar, 
   ArrowRight, Menu, X, Mail, User, MessageSquare,
   ChevronRight, Instagram, Linkedin, Play, Pause,
-  Globe, ChevronDown, Check, Plus
+  Globe, ChevronDown, Check, Plus, Plane, Zap, Sparkles,
+  Car, UtensilsCrossed, MapPinned, Heart, Shield, HandHeart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
