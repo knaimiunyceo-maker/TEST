@@ -354,19 +354,34 @@ async def get_status_checks():
     return status_checks
 
 
-@api_router.get("/experiences", response_model=List[Experience])
-async def get_experiences():
-    """Get all travel experiences"""
-    return EXPERIENCES
+@api_router.get("/packages", response_model=List[Package])
+async def get_packages():
+    """Get all travel packages"""
+    return PACKAGES
 
 
-@api_router.get("/experiences/{experience_id}", response_model=Experience)
-async def get_experience(experience_id: str):
-    """Get a specific experience by ID"""
-    for exp in EXPERIENCES:
-        if exp["id"] == experience_id:
-            return exp
-    raise HTTPException(status_code=404, detail="Experience not found")
+@api_router.get("/packages/{package_id}", response_model=Package)
+async def get_package(package_id: str):
+    """Get a specific package by ID"""
+    for pkg in PACKAGES:
+        if pkg["id"] == package_id:
+            return pkg
+    raise HTTPException(status_code=404, detail="Package not found")
+
+
+@api_router.get("/activities", response_model=List[Activity])
+async def get_activities():
+    """Get all optional activities"""
+    return ACTIVITIES
+
+
+@api_router.get("/activities/{activity_id}", response_model=Activity)
+async def get_activity(activity_id: str):
+    """Get a specific activity by ID"""
+    for act in ACTIVITIES:
+        if act["id"] == activity_id:
+            return act
+    raise HTTPException(status_code=404, detail="Activity not found")
 
 
 @api_router.get("/trips", response_model=List[Trip])
