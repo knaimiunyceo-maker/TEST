@@ -344,7 +344,7 @@ const ConceptSection = () => {
   return (
     <section 
       id="concept" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-warmwhite"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite"
       data-testid="concept-section"
     >
       <div className="max-w-6xl mx-auto">
@@ -353,12 +353,12 @@ const ConceptSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="section-title font-syne font-bold text-ocean mb-6">
+          <h2 className="font-syne font-bold text-ocean mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
             {t.concept.title}
           </h2>
-          <p className="font-dm text-ocean/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="font-dm text-ocean/80 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2">
             {t.concept.description} <span className="text-sunset font-semibold">{t.concept.people}</span>, 
             <span className="text-sunset font-semibold"> {t.concept.connections}</span> {' '}
             <span className="text-sunset font-semibold">{t.concept.sharedExperiences}</span>. 
@@ -366,20 +366,20 @@ const ConceptSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {[
             {
-              icon: <Users className="text-sunset" size={40} />,
+              icon: <Users className="text-sunset" size={32} />,
               title: t.concept.meetPeople,
               description: t.concept.meetPeopleDesc
             },
             {
-              icon: <Mountain className="text-sunset" size={40} />,
+              icon: <Mountain className="text-sunset" size={32} />,
               title: t.concept.liveAdventures,
               description: t.concept.liveAdventuresDesc
             },
             {
-              icon: <Sun className="text-sunset" size={40} />,
+              icon: <Sun className="text-sunset" size={32} />,
               title: t.concept.discoverCulture,
               description: t.concept.discoverCultureDesc
             }
@@ -392,14 +392,14 @@ const ConceptSection = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
               <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-shadow h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-sand/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CardContent className="p-5 sm:p-6 md:p-8 text-center">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-sand/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                     {item.icon}
                   </div>
-                  <h3 className="font-syne font-bold text-xl text-ocean mb-3">
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean mb-2 sm:mb-3">
                     {item.title}
                   </h3>
-                  <p className="font-dm text-ocean/70">
+                  <p className="font-dm text-ocean/70 text-sm sm:text-base">
                     {item.description}
                   </p>
                 </CardContent>
@@ -432,7 +432,7 @@ const ExperiencesSection = ({ experiences }) => {
   return (
     <section 
       id="experiences" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-ocean"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-ocean"
       data-testid="experiences-section"
     >
       <div className="max-w-7xl mx-auto">
@@ -441,17 +441,17 @@ const ExperiencesSection = ({ experiences }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="section-title font-syne font-bold text-white mb-4">
+          <h2 className="font-syne font-bold text-white mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
             {t.experiences.title}
           </h2>
-          <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
             {t.experiences.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {experiences.map((exp, index) => {
             const localizedExp = getLocalizedExperience(exp);
             return (
@@ -466,31 +466,31 @@ const ExperiencesSection = ({ experiences }) => {
                   className="experience-card bg-white border-none overflow-hidden cursor-pointer group h-full"
                   data-testid={`experience-card-${exp.id}`}
                 >
-                  <div className="aspect-[4/5] overflow-hidden">
+                  <div className="aspect-[4/3] sm:aspect-[4/5] overflow-hidden">
                     <img 
                       src={exp.image} 
                       alt={localizedExp.title}
                       className="card-image w-full h-full object-cover"
                     />
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-5 md:p-6">
                     <div className="flex items-center gap-2 text-sunset mb-2">
-                      <MapPin size={16} />
-                      <span className="font-dm text-sm">{localizedExp.location}</span>
+                      <MapPin size={14} className="flex-shrink-0" />
+                      <span className="font-dm text-xs sm:text-sm">{localizedExp.location}</span>
                     </div>
-                    <h3 className="font-syne font-bold text-lg text-ocean mb-2 group-hover:text-sunset transition-colors">
+                    <h3 className="font-syne font-bold text-base sm:text-lg text-ocean mb-2 group-hover:text-sunset transition-colors line-clamp-1">
                       {localizedExp.title}
                     </h3>
-                    <p className="font-dm text-ocean/70 text-sm mb-4 line-clamp-2">
+                    <p className="font-dm text-ocean/70 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                       {localizedExp.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <span className="font-syne font-bold text-ocean">{exp.price}</span>
-                      <span className="font-dm text-sm text-ocean/60">{exp.duration}</span>
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                      <span className="font-syne font-bold text-ocean text-sm sm:text-base">{exp.price}</span>
+                      <span className="font-dm text-xs sm:text-sm text-ocean/60">{exp.duration}</span>
                     </div>
                     <Button 
                       asChild
-                      className="w-full mt-4 bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm"
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm text-sm"
                       data-testid={`view-experience-${exp.id}`}
                     >
                       <a href="#contact">{t.experiences.viewExperience}</a>
