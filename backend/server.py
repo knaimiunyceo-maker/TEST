@@ -111,47 +111,125 @@ class Testimonial(BaseModel):
     avatar: str
 
 
-# Static data for experiences
-EXPERIENCES = [
+# Static data for travel packages
+PACKAGES = [
     {
-        "id": "surf-taghazout",
-        "title": "Surf & Beach Experience",
-        "location": "Taghazout",
-        "description": "Surf, sunsets and beach community. Learn to ride waves with our experienced instructors while living the ultimate beach lifestyle.",
-        "price": "From £599",
-        "duration": "7 days",
-        "image": "https://images.unsplash.com/photo-1706007473759-981e986014d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxNb3JvY2NvJTIwc3VyZiUyMGJlYWNoJTIwd2F2ZXMlMjBvY2VhbnxlbnwwfHx8fDE3NzMwNjIzNjZ8MA&ixlib=rb-4.1.0&q=85&w=800",
-        "highlights": ["Surf lessons daily", "Beach bonfires", "Yoga sessions", "Local food tours"]
+        "id": "weekend-experience",
+        "title": "Weekend Experience",
+        "price": "250",
+        "currency": "€",
+        "duration": "2 nights",
+        "description": "The entry-level experience designed to make the trip accessible. Perfect for a first taste of Morocco.",
+        "image": "https://images.unsplash.com/photo-1762380831396-9ada049cd507?crop=entropy&cs=srgb&fm=jpg&w=800",
+        "inclusions": [
+            "2 nights accommodation",
+            "1 included group activity",
+            "Social events with other travelers",
+            "Community atmosphere",
+            "Local host and experience coordination"
+        ]
     },
     {
-        "id": "sahara-adventure",
-        "title": "Sahara Desert Adventure",
-        "location": "Merzouga",
-        "description": "Camel rides, desert camps and starry nights. Experience the magic of the Sahara with unforgettable desert camping.",
-        "price": "From £699",
-        "duration": "5 days",
-        "image": "https://images.unsplash.com/photo-1662009833223-75d3301290bd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxNb3JvY2NvJTIwZGVzZXJ0JTIwY2FtZWwlMjBzdW5zZXQlMjB0cmF2ZWx8ZW58MHx8fHwxNzczMDYyMzYzfDA&ixlib=rb-4.1.0&q=85&w=800",
-        "highlights": ["Camel trekking", "Desert camping", "Stargazing", "Traditional music"]
+        "id": "premium-weekend",
+        "title": "Premium Weekend",
+        "price": "350",
+        "currency": "€",
+        "duration": "2 nights",
+        "description": "A more complete weekend experience with additional activities and curated local experiences.",
+        "image": "https://images.unsplash.com/photo-1706007473759-981e986014d8?crop=entropy&cs=srgb&fm=jpg&w=800",
+        "inclusions": [
+            "2 nights accommodation",
+            "2 included activities",
+            "Social events",
+            "Curated local experiences",
+            "Community travel atmosphere",
+            "Local host and coordination"
+        ]
     },
     {
-        "id": "marrakech-weekend",
-        "title": "Marrakech Social Weekend",
-        "location": "Marrakech",
-        "description": "Culture, street food, rooftops and nightlife. Discover the vibrant heart of Morocco with fellow travelers.",
-        "price": "From £399",
-        "duration": "4 days",
-        "image": "https://images.unsplash.com/photo-1762380831396-9ada049cd507?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwxfHxNb3JvY2NvJTIwTWFycmFrZWNoJTIwbWVkaW5hJTIwY3VsdHVyZSUyMG1hcmtldHxlbnwwfHx8fDE3NzMwNjIzNzF8MA&ixlib=rb-4.1.0&q=85&w=800",
-        "highlights": ["Medina tours", "Rooftop dinners", "Hammam experience", "Souk shopping"]
+        "id": "explorer-experience",
+        "title": "Explorer Experience",
+        "price": "500",
+        "currency": "€",
+        "duration": "5 days / 4 nights",
+        "description": "A longer travel experience to fully immerse yourself in Morocco's culture, adventures and community.",
+        "image": "https://images.unsplash.com/photo-1662009833223-75d3301290bd?crop=entropy&cs=srgb&fm=jpg&w=800",
+        "inclusions": [
+            "5 days / 4 nights accommodation",
+            "Multiple group activities",
+            "Cultural experiences",
+            "Social events with other travelers",
+            "Local host support",
+            "Curated travel itinerary"
+        ]
+    }
+]
+
+# Static data for optional activities
+ACTIVITIES = [
+    {
+        "id": "surf-lessons",
+        "title": "Surf Lessons",
+        "price": "45",
+        "currency": "€",
+        "description": "Learn to ride the waves with experienced local instructors on Morocco's best surf beaches.",
+        "image": "https://images.unsplash.com/photo-1706007473923-012a8f7a1da9?crop=entropy&cs=srgb&fm=jpg&w=400"
     },
     {
-        "id": "coastal-explorer",
-        "title": "Coastal Explorer",
-        "location": "Essaouira & Agadir",
-        "description": "Wind, waves and coastal charm. Explore Morocco's stunning Atlantic coast and its unique blend of cultures.",
-        "price": "From £549",
-        "duration": "6 days",
-        "image": "https://images.unsplash.com/photo-1706007473923-012a8f7a1da9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwyfHxNb3JvY2NvJTIwc3VyZiUyMGJlYWNoJTIwd2F2ZXMlMjBvY2VhbnxlbnwwfHx8fDE3NzMwNjIzNjZ8MA&ixlib=rb-4.1.0&q=85&w=800",
-        "highlights": ["Coastal drives", "Fresh seafood", "Water sports", "Historic medinas"]
+        "id": "desert-excursion",
+        "title": "Desert Excursion",
+        "price": "120",
+        "currency": "€",
+        "description": "Camel ride through golden dunes, traditional camp dinner and stargazing in the Sahara.",
+        "image": "https://images.unsplash.com/photo-1662009867642-933d25d401fe?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "quad-adventure",
+        "title": "Quad & Buggy Adventure",
+        "price": "75",
+        "currency": "€",
+        "description": "Adrenaline-pumping quad or buggy ride through desert landscapes and palm groves.",
+        "image": "https://images.unsplash.com/photo-1760681554259-a8e4b1478e9f?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "cooking-class",
+        "title": "Moroccan Cooking Class",
+        "price": "55",
+        "currency": "€",
+        "description": "Learn to prepare traditional tagine, couscous and Moroccan pastries with local chefs.",
+        "image": "https://images.unsplash.com/photo-1762380831564-82c895083889?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "city-tour",
+        "title": "Guided City Tour",
+        "price": "35",
+        "currency": "€",
+        "description": "Explore the medina, souks and hidden gems with a knowledgeable local guide.",
+        "image": "https://images.unsplash.com/photo-1760727466827-f11ca401116e?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "hammam-spa",
+        "title": "Hammam & Spa Experience",
+        "price": "65",
+        "currency": "€",
+        "description": "Traditional Moroccan hammam with steam bath, scrub and relaxing massage.",
+        "image": "https://images.unsplash.com/photo-1600334129128-685c5582fd35?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "nightlife-events",
+        "title": "Nightlife Events",
+        "price": "40",
+        "currency": "€",
+        "description": "Rooftop parties, live music and the best nightlife spots with your travel group.",
+        "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?crop=entropy&cs=srgb&fm=jpg&w=400"
+    },
+    {
+        "id": "cultural-workshop",
+        "title": "Cultural Workshop",
+        "price": "50",
+        "currency": "€",
+        "description": "Hands-on experiences: pottery, henna art, traditional music or leather crafting.",
+        "image": "https://images.unsplash.com/photo-1677837488142-a85ffbffe408?crop=entropy&cs=srgb&fm=jpg&w=400"
     }
 ]
 
@@ -165,7 +243,8 @@ TRIPS = [
         "end_date": "2026-02-18",
         "spots_left": 8,
         "total_spots": 12,
-        "price": "£599",
+        "price": "500",
+        "currency": "€",
         "image": "https://images.unsplash.com/photo-1706007473759-981e986014d8?crop=entropy&cs=srgb&fm=jpg&w=400"
     },
     {
@@ -176,7 +255,8 @@ TRIPS = [
         "end_date": "2026-02-24",
         "spots_left": 5,
         "total_spots": 10,
-        "price": "£699",
+        "price": "500",
+        "currency": "€",
         "image": "https://images.unsplash.com/photo-1662009833223-75d3301290bd?crop=entropy&cs=srgb&fm=jpg&w=400"
     },
     {
@@ -187,7 +267,8 @@ TRIPS = [
         "end_date": "2026-03-08",
         "spots_left": 10,
         "total_spots": 15,
-        "price": "£399",
+        "price": "350",
+        "currency": "€",
         "image": "https://images.unsplash.com/photo-1762380831396-9ada049cd507?crop=entropy&cs=srgb&fm=jpg&w=400"
     },
     {
@@ -198,44 +279,9 @@ TRIPS = [
         "end_date": "2026-03-20",
         "spots_left": 6,
         "total_spots": 12,
-        "price": "£549",
+        "price": "500",
+        "currency": "€",
         "image": "https://images.unsplash.com/photo-1706007473923-012a8f7a1da9?crop=entropy&cs=srgb&fm=jpg&w=400"
-    }
-]
-
-# Static data for testimonials
-TESTIMONIALS = [
-    {
-        "id": "test-1",
-        "name": "Sophie Williams",
-        "country": "United Kingdom",
-        "quote": "Best trip of my life! I met amazing people from all over the world and the surfing was incredible. Can't wait to come back!",
-        "trip": "Surf Week - Taghazout",
-        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
-    },
-    {
-        "id": "test-2",
-        "name": "James Miller",
-        "country": "Australia",
-        "quote": "The desert experience was magical. Sleeping under the stars in the Sahara is something I'll never forget.",
-        "trip": "Sahara Desert Adventure",
-        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
-    },
-    {
-        "id": "test-3",
-        "name": "Emma Schmidt",
-        "country": "Germany",
-        "quote": "I came alone but left with friends for life. THE BRIDGE creates such a welcoming community atmosphere.",
-        "trip": "Marrakech Social Weekend",
-        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
-    },
-    {
-        "id": "test-4",
-        "name": "Lucas Dubois",
-        "country": "France",
-        "quote": "Morocco was unforgettable. The culture, the food, the people - everything exceeded my expectations!",
-        "trip": "Coastal Explorer",
-        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100"
     }
 ]
 
