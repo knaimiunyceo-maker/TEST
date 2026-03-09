@@ -134,9 +134,10 @@ class BridgeAPITester:
 
     def test_nonexistent_endpoints(self):
         """Test 404 responses for non-existent resources"""
-        success1, _ = self.run_test("Non-existent Experience", "GET", "experiences/nonexistent", 404)
-        success2, _ = self.run_test("Non-existent Trip", "GET", "trips/nonexistent", 404)
-        return success1 and success2
+        success1, _ = self.run_test("Non-existent Package", "GET", "packages/nonexistent", 404)
+        success2, _ = self.run_test("Non-existent Activity", "GET", "activities/nonexistent", 404)
+        success3, _ = self.run_test("Non-existent Trip", "GET", "trips/nonexistent", 404)
+        return success1 and success2 and success3
 
 def main():
     print("🚀 Starting THE BRIDGE API Testing...")
