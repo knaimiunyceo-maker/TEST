@@ -148,16 +148,17 @@ def main():
     # Test all endpoints
     print("\n📡 Testing Core API Endpoints...")
     tester.test_root_endpoint()
-    tester.test_experiences_endpoint()
+    tester.test_packages_endpoint()
+    tester.test_activities_endpoint()
     tester.test_trips_endpoint()
-    tester.test_testimonials_endpoint()
     
     print("\n📝 Testing Contact Form...")
     contact_success, contact_id = tester.test_contact_submission()
     tester.test_get_contact_submissions()
     
     print("\n🔍 Testing Individual Resource Endpoints...")
-    tester.test_individual_experience()
+    tester.test_individual_package()
+    tester.test_individual_activity()
     tester.test_individual_trip()
     
     print("\n❌ Testing Error Handling...")
