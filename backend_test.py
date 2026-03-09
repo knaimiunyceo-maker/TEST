@@ -120,9 +120,13 @@ class BridgeAPITester:
         """Test getting contact submissions (admin endpoint)"""
         return self.run_test("Get Contact Submissions", "GET", "contact", 200)
 
-    def test_individual_experience(self):
-        """Test getting individual experience"""
-        return self.run_test("Get Individual Experience", "GET", "experiences/surf-taghazout", 200)
+    def test_individual_package(self):
+        """Test getting individual package"""
+        return self.run_test("Get Individual Package", "GET", "packages/weekend-experience", 200)
+
+    def test_individual_activity(self):
+        """Test getting individual activity"""
+        return self.run_test("Get Individual Activity", "GET", "activities/surf-lessons", 200)
 
     def test_individual_trip(self):
         """Test getting individual trip"""
