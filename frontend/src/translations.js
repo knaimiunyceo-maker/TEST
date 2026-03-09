@@ -15,8 +15,9 @@ export const translations = {
     hero: {
       welcome: "Welcome to",
       title: "THE BRIDGE",
-      subtitle: "Connecting travelers, cultures and unforgettable experiences in Morocco.",
-      exploreBtn: "Explore Experiences",
+      subtitle: "Accessible travel + customizable experiences in Morocco.",
+      tagline: "Travel solo, experience together.",
+      exploreBtn: "Explore Packages",
       viewTrips: "View Trips"
     },
     concept: {
@@ -33,13 +34,20 @@ export const translations = {
       discoverCulture: "Discover Culture",
       discoverCultureDesc: "Immerse yourself in Morocco's rich traditions and history."
     },
-    experiences: {
-      title: "Our Experiences",
-      subtitle: "Choose your adventure and create memories that last a lifetime.",
-      viewExperience: "View Experience"
+    packages: {
+      title: "Travel Experiences",
+      subtitle: "Choose your perfect package. Simple, transparent, flexible pricing.",
+      from: "From",
+      inclusions: "What's included:",
+      reserveSpot: "Reserve Your Spot"
+    },
+    activities: {
+      title: "Customize Your Experience",
+      subtitle: "Add optional activities to enhance your trip and create your perfect adventure.",
+      addToExperience: "Add to Experience"
     },
     community: {
-      title: "Travel Solo, Never Alone",
+      title: "Travel Solo, Experience Together",
       description: "Join a community of adventurous souls from around the world. Our group trips bring together travelers who share a passion for exploration, culture, and making genuine connections.",
       features: [
         "Meet international travelers",
@@ -54,10 +62,6 @@ export const translations = {
       subtitle: "Secure your spot on our next adventure. Limited spaces available.",
       spotsLeft: "spots left",
       bookSpot: "Book Your Spot"
-    },
-    testimonials: {
-      title: "What Travelers Say",
-      subtitle: "Real stories from our community of adventurers."
     },
     about: {
       title: "Our Mission",
@@ -74,7 +78,7 @@ export const translations = {
       email: "Email Address",
       emailPlaceholder: "your@email.com",
       interested: "Interested In",
-      selectExperience: "Select an experience",
+      selectExperience: "Select a package",
       generalInquiry: "General Inquiry",
       message: "Your Message",
       messagePlaceholder: "Tell us about your travel plans, questions, or anything else...",
@@ -87,7 +91,7 @@ export const translations = {
     },
     footer: {
       description: "Connecting people through travel. Experience Morocco with a community of adventurous souls from around the world.",
-      experiencesTitle: "Experiences",
+      packagesTitle: "Packages",
       contactTitle: "Contact",
       companyInfo: "Company Info",
       getInTouch: "Get in Touch",
@@ -110,8 +114,9 @@ export const translations = {
     hero: {
       welcome: "Bienvenue à",
       title: "THE BRIDGE",
-      subtitle: "Connecter les voyageurs, les cultures et des expériences inoubliables au Maroc.",
-      exploreBtn: "Explorer les Expériences",
+      subtitle: "Voyage accessible + expériences personnalisables au Maroc.",
+      tagline: "Voyagez seul, vivez ensemble.",
+      exploreBtn: "Découvrir les Forfaits",
       viewTrips: "Voir les Voyages"
     },
     concept: {
@@ -128,13 +133,20 @@ export const translations = {
       discoverCulture: "Découvrir la Culture",
       discoverCultureDesc: "Immergez-vous dans les riches traditions et l'histoire du Maroc."
     },
-    experiences: {
-      title: "Nos Expériences",
-      subtitle: "Choisissez votre aventure et créez des souvenirs qui durent toute une vie.",
-      viewExperience: "Voir l'Expérience"
+    packages: {
+      title: "Expériences de Voyage",
+      subtitle: "Choisissez votre forfait idéal. Tarification simple, transparente et flexible.",
+      from: "À partir de",
+      inclusions: "Ce qui est inclus :",
+      reserveSpot: "Réserver Votre Place"
+    },
+    activities: {
+      title: "Personnalisez Votre Expérience",
+      subtitle: "Ajoutez des activités optionnelles pour enrichir votre voyage et créer votre aventure parfaite.",
+      addToExperience: "Ajouter à l'Expérience"
     },
     community: {
-      title: "Voyagez Seul, Jamais Isolé",
+      title: "Voyagez Seul, Vivez Ensemble",
       description: "Rejoignez une communauté d'âmes aventurières du monde entier. Nos voyages en groupe rassemblent des voyageurs qui partagent une passion pour l'exploration, la culture et les vraies connexions.",
       features: [
         "Rencontrez des voyageurs internationaux",
@@ -149,10 +161,6 @@ export const translations = {
       subtitle: "Réservez votre place pour notre prochaine aventure. Places limitées.",
       spotsLeft: "places restantes",
       bookSpot: "Réserver Votre Place"
-    },
-    testimonials: {
-      title: "Ce Que Disent les Voyageurs",
-      subtitle: "Vraies histoires de notre communauté d'aventuriers."
     },
     about: {
       title: "Notre Mission",
@@ -169,7 +177,7 @@ export const translations = {
       email: "Adresse Email",
       emailPlaceholder: "votre@email.com",
       interested: "Intéressé Par",
-      selectExperience: "Sélectionnez une expérience",
+      selectExperience: "Sélectionnez un forfait",
       generalInquiry: "Demande Générale",
       message: "Votre Message",
       messagePlaceholder: "Parlez-nous de vos projets de voyage, questions ou autre...",
@@ -182,7 +190,7 @@ export const translations = {
     },
     footer: {
       description: "Connecter les gens à travers le voyage. Découvrez le Maroc avec une communauté d'âmes aventurières du monde entier.",
-      experiencesTitle: "Expériences",
+      packagesTitle: "Forfaits",
       contactTitle: "Contact",
       companyInfo: "Info Entreprise",
       getInTouch: "Nous Contacter",
@@ -205,8 +213,9 @@ export const translations = {
     hero: {
       welcome: "Bienvenido a",
       title: "THE BRIDGE",
-      subtitle: "Conectando viajeros, culturas y experiencias inolvidables en Marruecos.",
-      exploreBtn: "Explorar Experiencias",
+      subtitle: "Viaje accesible + experiencias personalizables en Marruecos.",
+      tagline: "Viaja solo, vive en grupo.",
+      exploreBtn: "Explorar Paquetes",
       viewTrips: "Ver Viajes"
     },
     concept: {
@@ -223,13 +232,20 @@ export const translations = {
       discoverCulture: "Descubrir Cultura",
       discoverCultureDesc: "Sumérgete en las ricas tradiciones e historia de Marruecos."
     },
-    experiences: {
-      title: "Nuestras Experiencias",
-      subtitle: "Elige tu aventura y crea recuerdos que duran toda la vida.",
-      viewExperience: "Ver Experiencia"
+    packages: {
+      title: "Experiencias de Viaje",
+      subtitle: "Elige tu paquete perfecto. Precios simples, transparentes y flexibles.",
+      from: "Desde",
+      inclusions: "Qué incluye:",
+      reserveSpot: "Reservar Tu Plaza"
+    },
+    activities: {
+      title: "Personaliza Tu Experiencia",
+      subtitle: "Añade actividades opcionales para mejorar tu viaje y crear tu aventura perfecta.",
+      addToExperience: "Añadir a la Experiencia"
     },
     community: {
-      title: "Viaja Solo, Nunca Aislado",
+      title: "Viaja Solo, Vive en Grupo",
       description: "Únete a una comunidad de almas aventureras de todo el mundo. Nuestros viajes grupales reúnen a viajeros que comparten una pasión por la exploración, la cultura y las conexiones genuinas.",
       features: [
         "Conoce viajeros internacionales",
@@ -244,10 +260,6 @@ export const translations = {
       subtitle: "Asegura tu lugar en nuestra próxima aventura. Plazas limitadas.",
       spotsLeft: "plazas disponibles",
       bookSpot: "Reservar Tu Plaza"
-    },
-    testimonials: {
-      title: "Lo Que Dicen los Viajeros",
-      subtitle: "Historias reales de nuestra comunidad de aventureros."
     },
     about: {
       title: "Nuestra Misión",
@@ -264,7 +276,7 @@ export const translations = {
       email: "Correo Electrónico",
       emailPlaceholder: "tu@email.com",
       interested: "Interesado En",
-      selectExperience: "Selecciona una experiencia",
+      selectExperience: "Selecciona un paquete",
       generalInquiry: "Consulta General",
       message: "Tu Mensaje",
       messagePlaceholder: "Cuéntanos sobre tus planes de viaje, preguntas o cualquier otra cosa...",
@@ -277,7 +289,7 @@ export const translations = {
     },
     footer: {
       description: "Conectando personas a través del viaje. Experimenta Marruecos con una comunidad de almas aventureras de todo el mundo.",
-      experiencesTitle: "Experiencias",
+      packagesTitle: "Paquetes",
       contactTitle: "Contacto",
       companyInfo: "Info Empresa",
       getInTouch: "Contáctanos",
@@ -300,8 +312,9 @@ export const translations = {
     hero: {
       welcome: "Willkommen bei",
       title: "THE BRIDGE",
-      subtitle: "Verbindung von Reisenden, Kulturen und unvergesslichen Erlebnissen in Marokko.",
-      exploreBtn: "Erlebnisse Entdecken",
+      subtitle: "Zugängliches Reisen + anpassbare Erlebnisse in Marokko.",
+      tagline: "Alleine reisen, gemeinsam erleben.",
+      exploreBtn: "Pakete Entdecken",
       viewTrips: "Reisen Ansehen"
     },
     concept: {
@@ -318,13 +331,20 @@ export const translations = {
       discoverCulture: "Kultur Entdecken",
       discoverCultureDesc: "Tauche ein in Marokkos reiche Traditionen und Geschichte."
     },
-    experiences: {
-      title: "Unsere Erlebnisse",
-      subtitle: "Wähle dein Abenteuer und schaffe Erinnerungen, die ein Leben lang halten.",
-      viewExperience: "Erlebnis Ansehen"
+    packages: {
+      title: "Reiseerlebnisse",
+      subtitle: "Wähle dein perfektes Paket. Einfache, transparente, flexible Preise.",
+      from: "Ab",
+      inclusions: "Was enthalten ist:",
+      reserveSpot: "Platz Reservieren"
+    },
+    activities: {
+      title: "Gestalte Dein Erlebnis",
+      subtitle: "Füge optionale Aktivitäten hinzu, um deine Reise zu bereichern und dein perfektes Abenteuer zu gestalten.",
+      addToExperience: "Zum Erlebnis Hinzufügen"
     },
     community: {
-      title: "Alleine Reisen, Nie Einsam",
+      title: "Alleine Reisen, Gemeinsam Erleben",
       description: "Tritt einer Gemeinschaft abenteuerlustiger Seelen aus aller Welt bei. Unsere Gruppenreisen bringen Reisende zusammen, die eine Leidenschaft für Erkundung, Kultur und echte Verbindungen teilen.",
       features: [
         "Internationale Reisende treffen",
@@ -339,10 +359,6 @@ export const translations = {
       subtitle: "Sichere dir deinen Platz für unser nächstes Abenteuer. Begrenzte Plätze.",
       spotsLeft: "Plätze frei",
       bookSpot: "Platz Buchen"
-    },
-    testimonials: {
-      title: "Was Reisende Sagen",
-      subtitle: "Echte Geschichten aus unserer Abenteurer-Gemeinschaft."
     },
     about: {
       title: "Unsere Mission",
@@ -359,7 +375,7 @@ export const translations = {
       email: "E-Mail-Adresse",
       emailPlaceholder: "deine@email.com",
       interested: "Interessiert An",
-      selectExperience: "Erlebnis auswählen",
+      selectExperience: "Paket auswählen",
       generalInquiry: "Allgemeine Anfrage",
       message: "Deine Nachricht",
       messagePlaceholder: "Erzähl uns von deinen Reiseplänen, Fragen oder anderem...",
@@ -372,7 +388,7 @@ export const translations = {
     },
     footer: {
       description: "Menschen durch Reisen verbinden. Erlebe Marokko mit einer Gemeinschaft abenteuerlustiger Seelen aus der ganzen Welt.",
-      experiencesTitle: "Erlebnisse",
+      packagesTitle: "Pakete",
       contactTitle: "Kontakt",
       companyInfo: "Firmeninfo",
       getInTouch: "Kontaktiere Uns",
@@ -395,8 +411,9 @@ export const translations = {
     hero: {
       welcome: "Bem-vindo ao",
       title: "THE BRIDGE",
-      subtitle: "Conectando viajantes, culturas e experiências inesquecíveis em Marrocos.",
-      exploreBtn: "Explorar Experiências",
+      subtitle: "Viagem acessível + experiências personalizáveis em Marrocos.",
+      tagline: "Viaje sozinho, viva em grupo.",
+      exploreBtn: "Explorar Pacotes",
       viewTrips: "Ver Viagens"
     },
     concept: {
@@ -413,13 +430,20 @@ export const translations = {
       discoverCulture: "Descobrir Cultura",
       discoverCultureDesc: "Mergulhe nas ricas tradições e história de Marrocos."
     },
-    experiences: {
-      title: "Nossas Experiências",
-      subtitle: "Escolha sua aventura e crie memórias que duram a vida toda.",
-      viewExperience: "Ver Experiência"
+    packages: {
+      title: "Experiências de Viagem",
+      subtitle: "Escolha seu pacote perfeito. Preços simples, transparentes e flexíveis.",
+      from: "A partir de",
+      inclusions: "O que está incluído:",
+      reserveSpot: "Reservar Seu Lugar"
+    },
+    activities: {
+      title: "Personalize Sua Experiência",
+      subtitle: "Adicione atividades opcionais para enriquecer sua viagem e criar sua aventura perfeita.",
+      addToExperience: "Adicionar à Experiência"
     },
     community: {
-      title: "Viaje Sozinho, Nunca Isolado",
+      title: "Viaje Sozinho, Viva em Grupo",
       description: "Junte-se a uma comunidade de almas aventureiras de todo o mundo. Nossas viagens em grupo reúnem viajantes que compartilham uma paixão por exploração, cultura e conexões genuínas.",
       features: [
         "Conheça viajantes internacionais",
@@ -434,10 +458,6 @@ export const translations = {
       subtitle: "Garanta seu lugar em nossa próxima aventura. Vagas limitadas.",
       spotsLeft: "vagas restantes",
       bookSpot: "Reservar Seu Lugar"
-    },
-    testimonials: {
-      title: "O Que os Viajantes Dizem",
-      subtitle: "Histórias reais da nossa comunidade de aventureiros."
     },
     about: {
       title: "Nossa Missão",
@@ -454,7 +474,7 @@ export const translations = {
       email: "Endereço de Email",
       emailPlaceholder: "seu@email.com",
       interested: "Interessado Em",
-      selectExperience: "Selecione uma experiência",
+      selectExperience: "Selecione um pacote",
       generalInquiry: "Consulta Geral",
       message: "Sua Mensagem",
       messagePlaceholder: "Conte-nos sobre seus planos de viagem, perguntas ou qualquer outra coisa...",
@@ -467,7 +487,7 @@ export const translations = {
     },
     footer: {
       description: "Conectando pessoas através de viagens. Experimente Marrocos com uma comunidade de almas aventureiras de todo o mundo.",
-      experiencesTitle: "Experiências",
+      packagesTitle: "Pacotes",
       contactTitle: "Contato",
       companyInfo: "Info da Empresa",
       getInTouch: "Entre em Contato",
@@ -477,116 +497,244 @@ export const translations = {
   }
 };
 
-export const experienceTranslations = {
+export const packageTranslations = {
   en: {
-    "surf-taghazout": {
-      title: "Surf & Beach Experience",
-      location: "Taghazout",
-      description: "Surf, sunsets and beach community. Learn to ride waves with our experienced instructors while living the ultimate beach lifestyle."
+    "weekend-experience": {
+      title: "Weekend Experience",
+      description: "The entry-level experience designed to make the trip accessible. Perfect for a first taste of Morocco.",
+      inclusions: [
+        "2 nights accommodation",
+        "1 included group activity",
+        "Social events with other travelers",
+        "Community atmosphere",
+        "Local host and experience coordination"
+      ]
     },
-    "sahara-adventure": {
-      title: "Sahara Desert Adventure",
-      location: "Merzouga",
-      description: "Camel rides, desert camps and starry nights. Experience the magic of the Sahara with unforgettable desert camping."
+    "premium-weekend": {
+      title: "Premium Weekend",
+      description: "A more complete weekend experience with additional activities and curated local experiences.",
+      inclusions: [
+        "2 nights accommodation",
+        "2 included activities",
+        "Social events",
+        "Curated local experiences",
+        "Community travel atmosphere",
+        "Local host and coordination"
+      ]
     },
-    "marrakech-weekend": {
-      title: "Marrakech Social Weekend",
-      location: "Marrakech",
-      description: "Culture, street food, rooftops and nightlife. Discover the vibrant heart of Morocco with fellow travelers."
-    },
-    "coastal-explorer": {
-      title: "Coastal Explorer",
-      location: "Essaouira & Agadir",
-      description: "Wind, waves and coastal charm. Explore Morocco's stunning Atlantic coast and its unique blend of cultures."
+    "explorer-experience": {
+      title: "Explorer Experience",
+      description: "A longer travel experience to fully immerse yourself in Morocco's culture, adventures and community.",
+      inclusions: [
+        "5 days / 4 nights accommodation",
+        "Multiple group activities",
+        "Cultural experiences",
+        "Social events with other travelers",
+        "Local host support",
+        "Curated travel itinerary"
+      ]
     }
   },
   fr: {
-    "surf-taghazout": {
-      title: "Expérience Surf & Plage",
-      location: "Taghazout",
-      description: "Surf, couchers de soleil et communauté de plage. Apprenez à surfer avec nos instructeurs expérimentés tout en vivant le style de vie ultime de la plage."
+    "weekend-experience": {
+      title: "Expérience Week-end",
+      description: "L'expérience d'entrée de gamme conçue pour rendre le voyage accessible. Parfait pour une première découverte du Maroc.",
+      inclusions: [
+        "2 nuits d'hébergement",
+        "1 activité de groupe incluse",
+        "Événements sociaux avec d'autres voyageurs",
+        "Ambiance communautaire",
+        "Hôte local et coordination"
+      ]
     },
-    "sahara-adventure": {
-      title: "Aventure Désert du Sahara",
-      location: "Merzouga",
-      description: "Promenades à dos de chameau, camps du désert et nuits étoilées. Vivez la magie du Sahara avec un camping désertique inoubliable."
+    "premium-weekend": {
+      title: "Week-end Premium",
+      description: "Une expérience week-end plus complète avec des activités supplémentaires et des expériences locales sélectionnées.",
+      inclusions: [
+        "2 nuits d'hébergement",
+        "2 activités incluses",
+        "Événements sociaux",
+        "Expériences locales sélectionnées",
+        "Ambiance voyage communautaire",
+        "Hôte local et coordination"
+      ]
     },
-    "marrakech-weekend": {
-      title: "Week-end Social à Marrakech",
-      location: "Marrakech",
-      description: "Culture, street food, rooftops et vie nocturne. Découvrez le cœur vibrant du Maroc avec d'autres voyageurs."
-    },
-    "coastal-explorer": {
-      title: "Explorateur Côtier",
-      location: "Essaouira & Agadir",
-      description: "Vent, vagues et charme côtier. Explorez la magnifique côte atlantique du Maroc et son mélange unique de cultures."
+    "explorer-experience": {
+      title: "Expérience Explorateur",
+      description: "Une expérience de voyage plus longue pour vous immerger pleinement dans la culture, les aventures et la communauté du Maroc.",
+      inclusions: [
+        "5 jours / 4 nuits d'hébergement",
+        "Multiples activités de groupe",
+        "Expériences culturelles",
+        "Événements sociaux avec d'autres voyageurs",
+        "Support hôte local",
+        "Itinéraire de voyage organisé"
+      ]
     }
   },
   es: {
-    "surf-taghazout": {
-      title: "Experiencia Surf & Playa",
-      location: "Taghazout",
-      description: "Surf, atardeceres y comunidad de playa. Aprende a surfear con nuestros instructores experimentados mientras vives el estilo de vida playero definitivo."
+    "weekend-experience": {
+      title: "Experiencia Fin de Semana",
+      description: "La experiencia de nivel inicial diseñada para hacer el viaje accesible. Perfecto para una primera prueba de Marruecos.",
+      inclusions: [
+        "2 noches de alojamiento",
+        "1 actividad grupal incluida",
+        "Eventos sociales con otros viajeros",
+        "Ambiente comunitario",
+        "Anfitrión local y coordinación"
+      ]
     },
-    "sahara-adventure": {
-      title: "Aventura Desierto del Sahara",
-      location: "Merzouga",
-      description: "Paseos en camello, campamentos en el desierto y noches estrelladas. Experimenta la magia del Sahara con un camping inolvidable."
+    "premium-weekend": {
+      title: "Fin de Semana Premium",
+      description: "Una experiencia de fin de semana más completa con actividades adicionales y experiencias locales seleccionadas.",
+      inclusions: [
+        "2 noches de alojamiento",
+        "2 actividades incluidas",
+        "Eventos sociales",
+        "Experiencias locales seleccionadas",
+        "Ambiente de viaje comunitario",
+        "Anfitrión local y coordinación"
+      ]
     },
-    "marrakech-weekend": {
-      title: "Fin de Semana Social en Marrakech",
-      location: "Marrakech",
-      description: "Cultura, comida callejera, terrazas y vida nocturna. Descubre el vibrante corazón de Marruecos con otros viajeros."
-    },
-    "coastal-explorer": {
-      title: "Explorador Costero",
-      location: "Essaouira & Agadir",
-      description: "Viento, olas y encanto costero. Explora la impresionante costa atlántica de Marruecos y su mezcla única de culturas."
+    "explorer-experience": {
+      title: "Experiencia Explorador",
+      description: "Una experiencia de viaje más larga para sumergirte completamente en la cultura, aventuras y comunidad de Marruecos.",
+      inclusions: [
+        "5 días / 4 noches de alojamiento",
+        "Múltiples actividades grupales",
+        "Experiencias culturales",
+        "Eventos sociales con otros viajeros",
+        "Apoyo de anfitrión local",
+        "Itinerario de viaje organizado"
+      ]
     }
   },
   de: {
-    "surf-taghazout": {
-      title: "Surf & Strand Erlebnis",
-      location: "Taghazout",
-      description: "Surfen, Sonnenuntergänge und Strand-Community. Lerne mit unseren erfahrenen Lehrern Wellen zu reiten und erlebe den ultimativen Strand-Lifestyle."
+    "weekend-experience": {
+      title: "Wochenend-Erlebnis",
+      description: "Das Einstiegserlebnis, das die Reise zugänglich macht. Perfekt für einen ersten Vorgeschmack auf Marokko.",
+      inclusions: [
+        "2 Übernachtungen",
+        "1 Gruppenaktivität inklusive",
+        "Soziale Events mit anderen Reisenden",
+        "Gemeinschaftsatmosphäre",
+        "Lokaler Gastgeber und Koordination"
+      ]
     },
-    "sahara-adventure": {
-      title: "Sahara Wüsten Abenteuer",
-      location: "Merzouga",
-      description: "Kamelreiten, Wüstencamps und sternenklare Nächte. Erlebe die Magie der Sahara mit unvergesslichem Wüsten-Camping."
+    "premium-weekend": {
+      title: "Premium-Wochenende",
+      description: "Ein vollständigeres Wochenenderlebnis mit zusätzlichen Aktivitäten und kuratierten lokalen Erlebnissen.",
+      inclusions: [
+        "2 Übernachtungen",
+        "2 Aktivitäten inklusive",
+        "Soziale Events",
+        "Kuratierte lokale Erlebnisse",
+        "Gemeinschafts-Reiseatmosphäre",
+        "Lokaler Gastgeber und Koordination"
+      ]
     },
-    "marrakech-weekend": {
-      title: "Marrakesch Social Wochenende",
-      location: "Marrakesch",
-      description: "Kultur, Street Food, Dachterrassen und Nachtleben. Entdecke das pulsierende Herz Marokkos mit anderen Reisenden."
-    },
-    "coastal-explorer": {
-      title: "Küsten-Entdecker",
-      location: "Essaouira & Agadir",
-      description: "Wind, Wellen und Küstencharme. Erkunde Marokkos atemberaubende Atlantikküste und ihre einzigartige Kulturmischung."
+    "explorer-experience": {
+      title: "Entdecker-Erlebnis",
+      description: "Ein längeres Reiseerlebnis, um vollständig in Marokkos Kultur, Abenteuer und Gemeinschaft einzutauchen.",
+      inclusions: [
+        "5 Tage / 4 Nächte Unterkunft",
+        "Mehrere Gruppenaktivitäten",
+        "Kulturelle Erlebnisse",
+        "Soziale Events mit anderen Reisenden",
+        "Lokale Gastgeberunterstützung",
+        "Kuratierte Reiseroute"
+      ]
     }
   },
   pt: {
-    "surf-taghazout": {
-      title: "Experiência Surf & Praia",
-      location: "Taghazout",
-      description: "Surf, pôr do sol e comunidade de praia. Aprenda a surfar com nossos instrutores experientes enquanto vive o estilo de vida praiano definitivo."
+    "weekend-experience": {
+      title: "Experiência de Fim de Semana",
+      description: "A experiência de nível inicial projetada para tornar a viagem acessível. Perfeito para um primeiro gosto de Marrocos.",
+      inclusions: [
+        "2 noites de hospedagem",
+        "1 atividade em grupo incluída",
+        "Eventos sociais com outros viajantes",
+        "Atmosfera comunitária",
+        "Anfitrião local e coordenação"
+      ]
     },
-    "sahara-adventure": {
-      title: "Aventura Deserto do Saara",
-      location: "Merzouga",
-      description: "Passeios de camelo, acampamentos no deserto e noites estreladas. Experimente a magia do Saara com um camping inesquecível."
+    "premium-weekend": {
+      title: "Fim de Semana Premium",
+      description: "Uma experiência de fim de semana mais completa com atividades adicionais e experiências locais selecionadas.",
+      inclusions: [
+        "2 noites de hospedagem",
+        "2 atividades incluídas",
+        "Eventos sociais",
+        "Experiências locais selecionadas",
+        "Atmosfera de viagem comunitária",
+        "Anfitrião local e coordenação"
+      ]
     },
-    "marrakech-weekend": {
-      title: "Fim de Semana Social em Marraquexe",
-      location: "Marraquexe",
-      description: "Cultura, comida de rua, rooftops e vida noturna. Descubra o coração vibrante de Marrocos com outros viajantes."
-    },
-    "coastal-explorer": {
-      title: "Explorador Costeiro",
-      location: "Essaouira & Agadir",
-      description: "Vento, ondas e charme costeiro. Explore a deslumbrante costa atlântica de Marrocos e sua mistura única de culturas."
+    "explorer-experience": {
+      title: "Experiência Explorador",
+      description: "Uma experiência de viagem mais longa para mergulhar completamente na cultura, aventuras e comunidade de Marrocos.",
+      inclusions: [
+        "5 dias / 4 noites de hospedagem",
+        "Múltiplas atividades em grupo",
+        "Experiências culturais",
+        "Eventos sociais com outros viajantes",
+        "Suporte de anfitrião local",
+        "Itinerário de viagem organizado"
+      ]
     }
+  }
+};
+
+export const activityTranslations = {
+  en: {
+    "surf-lessons": { title: "Surf Lessons", description: "Learn to ride the waves with experienced local instructors on Morocco's best surf beaches." },
+    "desert-excursion": { title: "Desert Excursion", description: "Camel ride through golden dunes, traditional camp dinner and stargazing in the Sahara." },
+    "quad-adventure": { title: "Quad & Buggy Adventure", description: "Adrenaline-pumping quad or buggy ride through desert landscapes and palm groves." },
+    "cooking-class": { title: "Moroccan Cooking Class", description: "Learn to prepare traditional tagine, couscous and Moroccan pastries with local chefs." },
+    "city-tour": { title: "Guided City Tour", description: "Explore the medina, souks and hidden gems with a knowledgeable local guide." },
+    "hammam-spa": { title: "Hammam & Spa Experience", description: "Traditional Moroccan hammam with steam bath, scrub and relaxing massage." },
+    "nightlife-events": { title: "Nightlife Events", description: "Rooftop parties, live music and the best nightlife spots with your travel group." },
+    "cultural-workshop": { title: "Cultural Workshop", description: "Hands-on experiences: pottery, henna art, traditional music or leather crafting." }
+  },
+  fr: {
+    "surf-lessons": { title: "Cours de Surf", description: "Apprenez à surfer avec des instructeurs locaux expérimentés sur les meilleures plages du Maroc." },
+    "desert-excursion": { title: "Excursion Désert", description: "Balade à dos de chameau, dîner traditionnel au camp et observation des étoiles dans le Sahara." },
+    "quad-adventure": { title: "Aventure Quad & Buggy", description: "Balade en quad ou buggy à travers les paysages désertiques et les palmeraies." },
+    "cooking-class": { title: "Cours de Cuisine Marocaine", description: "Apprenez à préparer tajine, couscous et pâtisseries marocaines avec des chefs locaux." },
+    "city-tour": { title: "Visite Guidée de la Ville", description: "Explorez la médina, les souks et les trésors cachés avec un guide local." },
+    "hammam-spa": { title: "Expérience Hammam & Spa", description: "Hammam marocain traditionnel avec bain de vapeur, gommage et massage relaxant." },
+    "nightlife-events": { title: "Soirées & Vie Nocturne", description: "Fêtes sur les toits, musique live et les meilleurs spots nocturnes avec votre groupe." },
+    "cultural-workshop": { title: "Atelier Culturel", description: "Expériences pratiques : poterie, art du henné, musique traditionnelle ou artisanat du cuir." }
+  },
+  es: {
+    "surf-lessons": { title: "Clases de Surf", description: "Aprende a surfear con instructores locales experimentados en las mejores playas de Marruecos." },
+    "desert-excursion": { title: "Excursión al Desierto", description: "Paseo en camello por dunas doradas, cena tradicional y observación de estrellas en el Sahara." },
+    "quad-adventure": { title: "Aventura en Quad & Buggy", description: "Paseo lleno de adrenalina en quad o buggy por paisajes desérticos y palmeras." },
+    "cooking-class": { title: "Clase de Cocina Marroquí", description: "Aprende a preparar tajine, cuscús y pasteles marroquíes con chefs locales." },
+    "city-tour": { title: "Tour Guiado por la Ciudad", description: "Explora la medina, zocos y tesoros ocultos con un guía local experto." },
+    "hammam-spa": { title: "Experiencia Hammam & Spa", description: "Hammam marroquí tradicional con baño de vapor, exfoliación y masaje relajante." },
+    "nightlife-events": { title: "Eventos Nocturnos", description: "Fiestas en terrazas, música en vivo y los mejores lugares nocturnos con tu grupo." },
+    "cultural-workshop": { title: "Taller Cultural", description: "Experiencias prácticas: cerámica, arte del henna, música tradicional o artesanía del cuero." }
+  },
+  de: {
+    "surf-lessons": { title: "Surfkurse", description: "Lerne mit erfahrenen lokalen Instruktoren an Marokkos besten Surfstränden Wellen zu reiten." },
+    "desert-excursion": { title: "Wüstenexkursion", description: "Kamelritt durch goldene Dünen, traditionelles Abendessen im Camp und Sternenbeobachtung." },
+    "quad-adventure": { title: "Quad & Buggy Abenteuer", description: "Adrenalinfördernde Quad- oder Buggyfahrt durch Wüstenlandschaften und Palmenhaine." },
+    "cooking-class": { title: "Marokkanischer Kochkurs", description: "Lerne Tajine, Couscous und marokkanische Gebäck mit lokalen Köchen zuzubereiten." },
+    "city-tour": { title: "Geführte Stadttour", description: "Erkunde die Medina, Souks und versteckte Schätze mit einem lokalen Guide." },
+    "hammam-spa": { title: "Hammam & Spa Erlebnis", description: "Traditionelles marokkanisches Hammam mit Dampfbad, Peeling und entspannender Massage." },
+    "nightlife-events": { title: "Nachtleben Events", description: "Dachterrassenpartys, Live-Musik und die besten Nachtclubs mit deiner Reisegruppe." },
+    "cultural-workshop": { title: "Kultureller Workshop", description: "Praktische Erfahrungen: Töpferei, Henna-Kunst, traditionelle Musik oder Lederhandwerk." }
+  },
+  pt: {
+    "surf-lessons": { title: "Aulas de Surf", description: "Aprenda a surfar com instrutores locais experientes nas melhores praias de Marrocos." },
+    "desert-excursion": { title: "Excursão ao Deserto", description: "Passeio de camelo pelas dunas douradas, jantar tradicional e observação de estrelas no Saara." },
+    "quad-adventure": { title: "Aventura de Quad & Buggy", description: "Passeio cheio de adrenalina em quad ou buggy por paisagens desérticas e palmeirais." },
+    "cooking-class": { title: "Aula de Culinária Marroquina", description: "Aprenda a preparar tajine, cuscuz e doces marroquinos com chefs locais." },
+    "city-tour": { title: "Tour Guiado pela Cidade", description: "Explore a medina, souks e tesouros escondidos com um guia local conhecedor." },
+    "hammam-spa": { title: "Experiência Hammam & Spa", description: "Hammam marroquino tradicional com banho de vapor, esfoliação e massagem relaxante." },
+    "nightlife-events": { title: "Eventos Noturnos", description: "Festas em terraços, música ao vivo e os melhores pontos noturnos com seu grupo." },
+    "cultural-workshop": { title: "Workshop Cultural", description: "Experiências práticas: cerâmica, arte de henna, música tradicional ou artesanato em couro." }
   }
 };
 
