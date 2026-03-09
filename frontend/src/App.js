@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Toaster, toast } from "sonner";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
-import { packageTranslations, activityTranslations, tripTranslations } from "./translations";
+import { packageTranslations, activityTranslations, tripTranslations, catalogueTranslations } from "./translations";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
