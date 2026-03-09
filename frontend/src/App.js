@@ -119,10 +119,10 @@ const Navigation = ({ scrolled }) => {
       }`}
       data-testid="navigation"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-4 flex items-center justify-between">
         <a 
           href="#hero" 
-          className={`font-syne font-bold text-2xl tracking-tight ${
+          className={`font-syne font-bold text-xl sm:text-2xl tracking-tight whitespace-nowrap ${
             scrolled ? "text-ocean" : "text-white"
           }`}
           data-testid="logo-link"
@@ -131,12 +131,12 @@ const Navigation = ({ scrolled }) => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`nav-link font-dm font-medium text-sm ${
+              className={`nav-link font-dm font-medium text-sm whitespace-nowrap ${
                 scrolled ? "text-ocean" : "text-white"
               } hover:text-sunset transition-colors`}
               data-testid={`nav-${link.href.slice(1)}`}
@@ -147,16 +147,16 @@ const Navigation = ({ scrolled }) => {
           <LanguageSelector scrolled={scrolled} />
           <Button
             asChild
-            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 font-dm font-semibold"
+            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-4 xl:px-6 font-dm font-semibold text-sm"
             data-testid="nav-book-btn"
           >
             <a href="#contact">{t.nav.bookNow}</a>
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile/Tablet Menu Button */}
         <button
-          className="md:hidden"
+          className="lg:hidden p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           data-testid="mobile-menu-btn"
         >
@@ -168,19 +168,19 @@ const Navigation = ({ scrolled }) => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile/Tablet Menu */}
       {mobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-warmwhite border-t border-border"
+          className="lg:hidden bg-warmwhite border-t border-border"
         >
-          <div className="px-6 py-6 flex flex-col gap-4">
+          <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="font-dm font-medium text-ocean py-2"
+                className="font-dm font-medium text-ocean py-3 text-lg border-b border-border/50 last:border-0"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
@@ -188,7 +188,7 @@ const Navigation = ({ scrolled }) => {
             ))}
             <Button
               asChild
-              className="bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm font-semibold mt-2"
+              className="bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm font-semibold mt-4 py-6 text-lg"
             >
               <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
                 {t.nav.bookNow}
@@ -222,7 +222,7 @@ const HeroSection = () => {
   return (
     <section 
       id="hero" 
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-0"
       data-testid="hero-section"
     >
       {/* Video Background */}
@@ -245,12 +245,12 @@ const HeroSection = () => {
       <div className="absolute inset-0 video-overlay" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl w-full">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="font-caveat text-sand text-2xl md:text-3xl mb-4"
+          className="font-caveat text-sand text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-4"
         >
           {t.hero.welcome}
         </motion.p>
@@ -259,7 +259,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="hero-title font-syne font-extrabold text-white mb-6 leading-none"
+          className="font-syne font-extrabold text-white mb-4 sm:mb-6 leading-none text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
           data-testid="hero-title"
         >
           {t.hero.title}
@@ -269,7 +269,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="font-dm text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+          className="font-dm text-white/90 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 max-w-2xl mx-auto px-2"
           data-testid="hero-subtitle"
         >
           {t.hero.subtitle}
@@ -279,12 +279,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
           <Button
             asChild
             size="lg"
-            className="btn-primary bg-sunset hover:bg-sunset/90 text-white rounded-full px-8 py-6 text-lg font-syne font-bold"
+            className="btn-primary bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-syne font-bold w-full sm:w-auto"
             data-testid="hero-cta"
           >
             <a href="#experiences">
@@ -297,7 +297,7 @@ const HeroSection = () => {
             asChild
             variant="outline"
             size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-8 py-6 text-lg font-syne font-bold bg-transparent"
+            className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-syne font-bold bg-transparent w-full sm:w-auto"
             data-testid="hero-secondary-cta"
           >
             <a href="#trips">{t.hero.viewTrips}</a>
@@ -308,22 +308,22 @@ const HeroSection = () => {
       {/* Video Control */}
       <button
         onClick={toggleVideo}
-        className="absolute bottom-8 right-8 glass-dark p-3 rounded-full hover:bg-white/20 transition-colors"
+        className="absolute bottom-20 sm:bottom-8 right-4 sm:right-8 glass-dark p-2 sm:p-3 rounded-full hover:bg-white/20 transition-colors"
         data-testid="video-toggle"
       >
         {isPlaying ? (
-          <Pause className="text-white" size={24} />
+          <Pause className="text-white" size={20} />
         ) : (
-          <Play className="text-white" size={24} />
+          <Play className="text-white" size={20} />
         )}
       </button>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
