@@ -88,17 +88,17 @@ class BridgeAPITester:
         """Test API root endpoint"""
         return self.run_test("API Root", "GET", "", 200)
 
-    def test_experiences_endpoint(self):
-        """Test experiences endpoint - should return 4 experiences"""
-        return self.run_test("Get Experiences", "GET", "experiences", 200, expected_count=4)
+    def test_packages_endpoint(self):
+        """Test packages endpoint - should return 3 packages"""
+        return self.run_test("Get Packages", "GET", "packages", 200, expected_count=3)
+
+    def test_activities_endpoint(self):
+        """Test activities endpoint - should return 8 activities"""
+        return self.run_test("Get Activities", "GET", "activities", 200, expected_count=8)
 
     def test_trips_endpoint(self):
         """Test trips endpoint - should return 4 trips"""
         return self.run_test("Get Trips", "GET", "trips", 200, expected_count=4)
-
-    def test_testimonials_endpoint(self):
-        """Test testimonials endpoint - should return 4 testimonials"""
-        return self.run_test("Get Testimonials", "GET", "testimonials", 200, expected_count=4)
 
     def test_contact_submission(self):
         """Test contact form submission"""
