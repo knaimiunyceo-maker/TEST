@@ -79,6 +79,15 @@ class ContactSubmissionCreate(BaseModel):
     trip_interest: Optional[str] = None
 
 
+class CatalogueItem(BaseModel):
+    id: str
+    activity: str
+    price_eur: str
+    price_mad: str
+    reason: str
+    icon: str
+
+
 class Package(BaseModel):
     id: str
     title: str
