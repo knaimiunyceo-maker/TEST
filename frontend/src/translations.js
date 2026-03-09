@@ -234,6 +234,44 @@ export const translations = {
       getInTouch: "Nous Contacter",
       rights: "Tous droits réservés.",
       foundedBy: "Fondé par"
+    },
+    faq: {
+      title: "Questions Fréquentes",
+      subtitle: "Tout ce que vous devez savoir sur l'expérience THE BRIDGE.",
+      items: [
+        {
+          question: "Qu'est-ce que THE BRIDGE ?",
+          answer: "THE BRIDGE est une communauté de voyage social qui connecte les jeunes voyageurs internationaux avec des expériences authentiques au Maroc. Nous ne sommes pas une agence de voyage traditionnelle — nous agissons comme un pont entre les voyageurs et les prestataires locaux de confiance, garantissant des prix justes et des expériences authentiques."
+        },
+        {
+          question: "Pour qui sont conçus les voyages ?",
+          answer: "Nos expériences sont conçues pour les voyageurs de 18 à 35 ans qui veulent plus que du simple tourisme. Si vous cherchez à rencontrer des personnes partageant les mêmes idées, explorer la culture marocaine de manière authentique et créer des souvenirs durables avec une communauté d'aventuriers, THE BRIDGE est fait pour vous."
+        },
+        {
+          question: "Puis-je voyager seul(e) ?",
+          answer: "Absolument ! La plupart de nos voyageurs viennent seuls mais repartent avec des amis pour la vie. Nos voyages sont conçus pour les voyageurs solo — vous rejoindrez un groupe de voyageurs internationaux et partagerez des expériences ensemble. Voyagez seul, vivez ensemble."
+        },
+        {
+          question: "Comment fonctionnent les prix ?",
+          answer: "Nous croyons en la transparence totale. Nos forfaits de base incluent l'hébergement, les activités et la coordination locale. Les prix que vous voyez sont les vrais prix — nous n'ajoutons pas de commissions cachées. Les activités optionnelles sont au prix local direct."
+        },
+        {
+          question: "Qu'est-ce qui est inclus dans un voyage ?",
+          answer: "Chaque forfait comprend l'hébergement, les activités de groupe, les événements sociaux et le support d'un hôte local. Les inclusions exactes varient selon le forfait — Expérience Week-end, Week-end Premium ou Expérience Explorateur. Consultez notre section forfaits pour les détails."
+        },
+        {
+          question: "Comment réserver un voyage ?",
+          answer: "Remplissez simplement notre formulaire de contact avec vos dates et forfait préférés. Notre équipe vous répondra dans les 24 heures pour confirmer la disponibilité et vous guider dans le processus de réservation. Un acompte garantit votre place."
+        },
+        {
+          question: "Qu'est-ce qui différencie THE BRIDGE ?",
+          answer: "Contrairement aux agences traditionnelles, nous nous concentrons sur la communauté et l'authenticité. Nous travaillons directement avec les prestataires locaux marocains, garantissant des prix justes pour les voyageurs et une rémunération équitable pour les locaux."
+        },
+        {
+          question: "Le Maroc est-il sûr pour les voyageurs ?",
+          answer: "Oui ! Le Maroc est l'une des destinations les plus sûres d'Afrique et accueille des millions de touristes chaque année. Nos hôtes locaux connaissent le pays parfaitement et veillent à ce que vous ayez une expérience sûre et confortable."
+        }
+      ]
     }
   },
   es: {
