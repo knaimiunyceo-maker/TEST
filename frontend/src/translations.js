@@ -97,6 +97,44 @@ export const translations = {
       getInTouch: "Get in Touch",
       rights: "All rights reserved.",
       foundedBy: "Founded by"
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      subtitle: "Everything you need to know about THE BRIDGE experience.",
+      items: [
+        {
+          question: "What is THE BRIDGE?",
+          answer: "THE BRIDGE is a social travel community that connects young international travelers with authentic experiences in Morocco. We're not a traditional travel agency — we act as a bridge between travelers and trusted local providers, ensuring fair prices and genuine experiences."
+        },
+        {
+          question: "Who are the trips designed for?",
+          answer: "Our experiences are designed for travelers aged 18-35 who want more than just tourism. If you're looking to meet like-minded people, explore Moroccan culture authentically, and create lasting memories with a community of adventurers, THE BRIDGE is for you."
+        },
+        {
+          question: "Can I travel solo?",
+          answer: "Absolutely! Most of our travelers come alone but leave with friends for life. Our trips are designed with solo travelers in mind — you'll join a group of international travelers and share experiences together. Travel solo, experience together."
+        },
+        {
+          question: "How does the pricing work?",
+          answer: "We believe in total transparency. Our base packages include accommodation, activities, and local coordination. The prices you see are the real prices — we don't add hidden commissions. Optional activities are priced at direct local rates."
+        },
+        {
+          question: "What's included in a trip?",
+          answer: "Each package includes accommodation, group activities, social events, and local host support. The exact inclusions vary by package — Weekend Experience, Premium Weekend, or Explorer Experience. Check our packages section for detailed inclusions."
+        },
+        {
+          question: "How do I book a trip?",
+          answer: "Simply fill out our contact form with your preferred dates and package. Our team will get back to you within 24 hours to confirm availability and guide you through the booking process. A deposit secures your spot."
+        },
+        {
+          question: "What makes THE BRIDGE different?",
+          answer: "Unlike traditional agencies, we focus on community and authenticity. We work directly with local Moroccan providers, ensuring fair prices for travelers and fair compensation for locals. Every euro goes directly to the people making your experience possible."
+        },
+        {
+          question: "Is Morocco safe for travelers?",
+          answer: "Yes! Morocco is one of the safest destinations in Africa and welcomes millions of tourists yearly. Our local hosts know the country inside out and ensure you have a safe, comfortable experience while exploring authentic Morocco."
+        }
+      ]
     }
   },
   fr: {
