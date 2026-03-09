@@ -508,6 +508,44 @@ export const translations = {
       getInTouch: "Kontaktiere Uns",
       rights: "Alle Rechte vorbehalten.",
       foundedBy: "Gegründet von"
+    },
+    faq: {
+      title: "Häufig Gestellte Fragen",
+      subtitle: "Alles was du über das THE BRIDGE Erlebnis wissen musst.",
+      items: [
+        {
+          question: "Was ist THE BRIDGE?",
+          answer: "THE BRIDGE ist eine soziale Reisegemeinschaft, die junge internationale Reisende mit authentischen Erlebnissen in Marokko verbindet. Wir sind keine traditionelle Reiseagentur — wir fungieren als Brücke zwischen Reisenden und vertrauenswürdigen lokalen Anbietern und garantieren faire Preise und echte Erlebnisse."
+        },
+        {
+          question: "Für wen sind die Reisen konzipiert?",
+          answer: "Unsere Erlebnisse sind für Reisende im Alter von 18-35 Jahren konzipiert, die mehr als nur Tourismus wollen. Wenn du Gleichgesinnte treffen, die marokkanische Kultur authentisch erkunden und bleibende Erinnerungen mit einer Gemeinschaft von Abenteurern schaffen möchtest, ist THE BRIDGE für dich."
+        },
+        {
+          question: "Kann ich alleine reisen?",
+          answer: "Absolut! Die meisten unserer Reisenden kommen alleine, gehen aber mit Freunden fürs Leben. Unsere Reisen sind für Alleinreisende konzipiert — du schließt dich einer Gruppe internationaler Reisender an und teilst gemeinsam Erlebnisse. Alleine reisen, gemeinsam erleben."
+        },
+        {
+          question: "Wie funktionieren die Preise?",
+          answer: "Wir glauben an totale Transparenz. Unsere Basispakete beinhalten Unterkunft, Aktivitäten und lokale Koordination. Die Preise, die du siehst, sind die echten Preise — wir fügen keine versteckten Provisionen hinzu. Optionale Aktivitäten haben direkte lokale Preise."
+        },
+        {
+          question: "Was ist in einer Reise enthalten?",
+          answer: "Jedes Paket beinhaltet Unterkunft, Gruppenaktivitäten, soziale Events und lokale Gastgeberunterstützung. Die genauen Leistungen variieren je nach Paket — Wochenend-Erlebnis, Premium-Wochenende oder Entdecker-Erlebnis."
+        },
+        {
+          question: "Wie buche ich eine Reise?",
+          answer: "Fülle einfach unser Kontaktformular mit deinen bevorzugten Daten und Paket aus. Unser Team meldet sich innerhalb von 24 Stunden, um die Verfügbarkeit zu bestätigen und dich durch den Buchungsprozess zu führen. Eine Anzahlung sichert deinen Platz."
+        },
+        {
+          question: "Was macht THE BRIDGE anders?",
+          answer: "Im Gegensatz zu traditionellen Agenturen konzentrieren wir uns auf Gemeinschaft und Authentizität. Wir arbeiten direkt mit lokalen marokkanischen Anbietern zusammen und garantieren faire Preise für Reisende und faire Vergütung für die Einheimischen."
+        },
+        {
+          question: "Ist Marokko sicher für Reisende?",
+          answer: "Ja! Marokko ist eines der sichersten Reiseziele in Afrika und begrüßt jährlich Millionen von Touristen. Unsere lokalen Gastgeber kennen das Land bestens und sorgen für ein sicheres, komfortables Erlebnis."
+        }
+      ]
     }
   },
   pt: {
