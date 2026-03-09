@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { 
   Waves, Mountain, Sun, Users, MapPin, Calendar, 
   ArrowRight, Menu, X, Mail, User, MessageSquare,
-  Star, ChevronRight, Instagram, Linkedin, Play, Pause
+  Star, ChevronRight, Instagram, Linkedin, Play, Pause,
+  Globe, ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,21 +19,93 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Toaster, toast } from "sonner";
+import { LanguageProvider, useLanguage } from "./LanguageContext";
+import { experienceTranslations, tripTranslations } from "./translations";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Language Selector Component
+const LanguageSelector = ({ scrolled, isMobile = false }) => {
+  const { language, t, changeLanguage, translations } = useLanguage();
+  const languages = Object.values(translations);
+  const currentLang = translations[language];
+
+  if (isMobile) {
+    return (
+      <div className="border-t border-border pt-4 mt-4">
+        <p className="font-dm text-ocean/60 text-sm mb-2">Language</p>
+        <div className="flex flex-wrap gap-2">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => changeLanguage(lang.code)}
+              className={`px-3 py-2 rounded-lg text-sm font-dm transition-colors ${
+                language === lang.code
+                  ? "bg-sunset text-white"
+                  : "bg-warmwhite text-ocean hover:bg-sand/30"
+              }`}
+              data-testid={`mobile-lang-${lang.code}`}
+            >
+              {lang.flag} {lang.name}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className={`flex items-center gap-2 px-3 py-2 rounded-full transition-colors ${
+            scrolled 
+              ? "text-ocean hover:bg-sand/30" 
+              : "text-white hover:bg-white/10"
+          }`}
+          data-testid="language-selector"
+        >
+          <Globe size={18} />
+          <span className="font-dm text-sm">{currentLang.flag}</span>
+          <ChevronDown size={14} />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="bg-white border border-border shadow-lg">
+        {languages.map((lang) => (
+          <DropdownMenuItem
+            key={lang.code}
+            onClick={() => changeLanguage(lang.code)}
+            className={`cursor-pointer ${language === lang.code ? "bg-sand/30" : ""}`}
+            data-testid={`lang-${lang.code}`}
+          >
+            <span className="mr-2">{lang.flag}</span>
+            <span className="font-dm">{lang.name}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 // Navigation Component
 const Navigation = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navLinks = [
-    { href: "#experiences", label: "Experiences" },
-    { href: "#trips", label: "Upcoming Trips" },
-    { href: "#community", label: "Community" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "#experiences", label: t.nav.experiences },
+    { href: "#trips", label: t.nav.upcomingTrips },
+    { href: "#community", label: t.nav.community },
+    { href: "#about", label: t.nav.about },
+    { href: "#contact", label: t.nav.contact },
   ];
 
   return (
@@ -58,7 +131,7 @@ const Navigation = ({ scrolled }) => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -66,17 +139,18 @@ const Navigation = ({ scrolled }) => {
               className={`nav-link font-dm font-medium text-sm ${
                 scrolled ? "text-ocean" : "text-white"
               } hover:text-sunset transition-colors`}
-              data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
+              data-testid={`nav-${link.href.slice(1)}`}
             >
               {link.label}
             </a>
           ))}
+          <LanguageSelector scrolled={scrolled} />
           <Button
             asChild
             className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 font-dm font-semibold"
             data-testid="nav-book-btn"
           >
-            <a href="#contact">Book Now</a>
+            <a href="#contact">{t.nav.bookNow}</a>
           </Button>
         </div>
 
@@ -117,9 +191,10 @@ const Navigation = ({ scrolled }) => {
               className="bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm font-semibold mt-2"
             >
               <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                Book Now
+                {t.nav.bookNow}
               </a>
             </Button>
+            <LanguageSelector isMobile={true} />
           </div>
         </motion.div>
       )}
@@ -130,6 +205,7 @@ const Navigation = ({ scrolled }) => {
 // Hero Section with Video Background
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+  const { t } = useLanguage();
 
   const toggleVideo = () => {
     const video = document.getElementById('hero-video');
@@ -176,7 +252,7 @@ const HeroSection = () => {
           transition={{ delay: 0.2 }}
           className="font-caveat text-sand text-2xl md:text-3xl mb-4"
         >
-          Welcome to
+          {t.hero.welcome}
         </motion.p>
         
         <motion.h1
@@ -186,7 +262,7 @@ const HeroSection = () => {
           className="hero-title font-syne font-extrabold text-white mb-6 leading-none"
           data-testid="hero-title"
         >
-          THE BRIDGE
+          {t.hero.title}
         </motion.h1>
         
         <motion.p
@@ -196,7 +272,7 @@ const HeroSection = () => {
           className="font-dm text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
           data-testid="hero-subtitle"
         >
-          Connecting travelers, cultures and unforgettable experiences in Morocco.
+          {t.hero.subtitle}
         </motion.p>
         
         <motion.div
@@ -212,7 +288,7 @@ const HeroSection = () => {
             data-testid="hero-cta"
           >
             <a href="#experiences">
-              Explore Experiences
+              {t.hero.exploreBtn}
               <ArrowRight className="ml-2" size={20} />
             </a>
           </Button>
@@ -224,7 +300,7 @@ const HeroSection = () => {
             className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-8 py-6 text-lg font-syne font-bold bg-transparent"
             data-testid="hero-secondary-cta"
           >
-            <a href="#trips">View Trips</a>
+            <a href="#trips">{t.hero.viewTrips}</a>
           </Button>
         </motion.div>
       </div>
@@ -263,6 +339,8 @@ const HeroSection = () => {
 
 // Concept Section
 const ConceptSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="concept" 
@@ -278,13 +356,13 @@ const ConceptSection = () => {
           className="text-center mb-16"
         >
           <h2 className="section-title font-syne font-bold text-ocean mb-6">
-            More Than Just Travel
+            {t.concept.title}
           </h2>
           <p className="font-dm text-ocean/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Travel is not just about places. It's about <span className="text-sunset font-semibold">people</span>, 
-            <span className="text-sunset font-semibold"> connections</span> and 
-            <span className="text-sunset font-semibold"> shared experiences</span>. 
-            THE BRIDGE creates social travel experiences where travelers can explore Morocco together.
+            {t.concept.description} <span className="text-sunset font-semibold">{t.concept.people}</span>, 
+            <span className="text-sunset font-semibold"> {t.concept.connections}</span> {' '}
+            <span className="text-sunset font-semibold">{t.concept.sharedExperiences}</span>. 
+            {' '}{t.concept.descriptionEnd}
           </p>
         </motion.div>
 
@@ -292,18 +370,18 @@ const ConceptSection = () => {
           {[
             {
               icon: <Users className="text-sunset" size={40} />,
-              title: "Meet People",
-              description: "Connect with like-minded travelers from around the world."
+              title: t.concept.meetPeople,
+              description: t.concept.meetPeopleDesc
             },
             {
               icon: <Mountain className="text-sunset" size={40} />,
-              title: "Live Adventures",
-              description: "Experience thrilling activities from surfing to desert camping."
+              title: t.concept.liveAdventures,
+              description: t.concept.liveAdventuresDesc
             },
             {
               icon: <Sun className="text-sunset" size={40} />,
-              title: "Discover Culture",
-              description: "Immerse yourself in Morocco's rich traditions and history."
+              title: t.concept.discoverCulture,
+              description: t.concept.discoverCultureDesc
             }
           ].map((item, index) => (
             <motion.div
@@ -336,6 +414,21 @@ const ConceptSection = () => {
 
 // Experiences Section
 const ExperiencesSection = ({ experiences }) => {
+  const { t, language } = useLanguage();
+  
+  const getLocalizedExperience = (exp) => {
+    const localizedData = experienceTranslations[language]?.[exp.id];
+    if (localizedData) {
+      return {
+        ...exp,
+        title: localizedData.title,
+        location: localizedData.location,
+        description: localizedData.description
+      };
+    }
+    return exp;
+  };
+
   return (
     <section 
       id="experiences" 
@@ -351,59 +444,62 @@ const ExperiencesSection = ({ experiences }) => {
           className="text-center mb-16"
         >
           <h2 className="section-title font-syne font-bold text-white mb-4">
-            Our Experiences
+            {t.experiences.title}
           </h2>
           <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto">
-            Choose your adventure and create memories that last a lifetime.
+            {t.experiences.subtitle}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Card 
-                className="experience-card bg-white border-none overflow-hidden cursor-pointer group h-full"
-                data-testid={`experience-card-${exp.id}`}
+          {experiences.map((exp, index) => {
+            const localizedExp = getLocalizedExperience(exp);
+            return (
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img 
-                    src={exp.image} 
-                    alt={exp.title}
-                    className="card-image w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 text-sunset mb-2">
-                    <MapPin size={16} />
-                    <span className="font-dm text-sm">{exp.location}</span>
+                <Card 
+                  className="experience-card bg-white border-none overflow-hidden cursor-pointer group h-full"
+                  data-testid={`experience-card-${exp.id}`}
+                >
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img 
+                      src={exp.image} 
+                      alt={localizedExp.title}
+                      className="card-image w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="font-syne font-bold text-lg text-ocean mb-2 group-hover:text-sunset transition-colors">
-                    {exp.title}
-                  </h3>
-                  <p className="font-dm text-ocean/70 text-sm mb-4 line-clamp-2">
-                    {exp.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-syne font-bold text-ocean">{exp.price}</span>
-                    <span className="font-dm text-sm text-ocean/60">{exp.duration}</span>
-                  </div>
-                  <Button 
-                    asChild
-                    className="w-full mt-4 bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm"
-                    data-testid={`view-experience-${exp.id}`}
-                  >
-                    <a href="#contact">View Experience</a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 text-sunset mb-2">
+                      <MapPin size={16} />
+                      <span className="font-dm text-sm">{localizedExp.location}</span>
+                    </div>
+                    <h3 className="font-syne font-bold text-lg text-ocean mb-2 group-hover:text-sunset transition-colors">
+                      {localizedExp.title}
+                    </h3>
+                    <p className="font-dm text-ocean/70 text-sm mb-4 line-clamp-2">
+                      {localizedExp.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-syne font-bold text-ocean">{exp.price}</span>
+                      <span className="font-dm text-sm text-ocean/60">{exp.duration}</span>
+                    </div>
+                    <Button 
+                      asChild
+                      className="w-full mt-4 bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm"
+                      data-testid={`view-experience-${exp.id}`}
+                    >
+                      <a href="#contact">{t.experiences.viewExperience}</a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -412,6 +508,7 @@ const ExperiencesSection = ({ experiences }) => {
 
 // Community Section
 const CommunitySection = () => {
+  const { t } = useLanguage();
   const values = ["Connect", "Explore", "Adventure", "Share", "Discover", "Live"];
   
   return (
@@ -443,21 +540,14 @@ const CommunitySection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="section-title font-syne font-bold text-ocean mb-6">
-              Travel Solo, Never Alone
+              {t.community.title}
             </h2>
             <p className="font-dm text-ocean/80 text-lg mb-8 leading-relaxed">
-              Join a community of adventurous souls from around the world. Our group trips 
-              bring together travelers who share a passion for exploration, culture, and 
-              making genuine connections.
+              {t.community.description}
             </p>
             
             <div className="space-y-4">
-              {[
-                "Meet international travelers",
-                "Group adventures & activities",
-                "Social events & gatherings",
-                "Shared unforgettable experiences"
-              ].map((item, index) => (
+              {t.community.features.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-6 h-6 bg-sunset rounded-full flex items-center justify-center">
                     <ChevronRight className="text-white" size={16} />
@@ -488,7 +578,7 @@ const CommunitySection = () => {
               />
             </div>
             <div className="absolute -bottom-4 -left-4 bg-sunset text-white p-6 rounded-2xl shadow-xl">
-              <p className="font-caveat text-2xl">Join 500+ travelers</p>
+              <p className="font-caveat text-2xl">{t.community.joinTravelers}</p>
             </div>
           </motion.div>
         </div>
@@ -499,9 +589,30 @@ const CommunitySection = () => {
 
 // Upcoming Trips Section
 const TripsSection = ({ trips }) => {
+  const { t, language } = useLanguage();
+
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+    const localeMap = {
+      en: 'en-GB',
+      fr: 'fr-FR',
+      es: 'es-ES',
+      de: 'de-DE',
+      pt: 'pt-PT'
+    };
+    return date.toLocaleDateString(localeMap[language] || 'en-GB', { month: 'short', day: 'numeric' });
+  };
+
+  const getLocalizedTrip = (trip) => {
+    const localizedData = tripTranslations[language]?.[trip.id];
+    if (localizedData) {
+      return {
+        ...trip,
+        title: localizedData.title,
+        location: localizedData.location
+      };
+    }
+    return trip;
   };
 
   return (
@@ -519,75 +630,78 @@ const TripsSection = ({ trips }) => {
           className="text-center mb-16"
         >
           <h2 className="section-title font-syne font-bold text-ocean mb-4">
-            Upcoming Trips
+            {t.trips.title}
           </h2>
           <p className="font-dm text-ocean/80 text-lg max-w-2xl mx-auto">
-            Secure your spot on our next adventure. Limited spaces available.
+            {t.trips.subtitle}
           </p>
         </motion.div>
 
         <div className="space-y-4">
-          {trips.map((trip, index) => (
-            <motion.div
-              key={trip.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <Card 
-                className="trip-card bg-warmwhite border-none overflow-hidden"
-                data-testid={`trip-card-${trip.id}`}
+          {trips.map((trip, index) => {
+            const localizedTrip = getLocalizedTrip(trip);
+            return (
+              <motion.div
+                key={trip.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="w-full md:w-48 h-32 md:h-full flex-shrink-0">
-                      <img 
-                        src={trip.image} 
-                        alt={trip.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    
-                    <div className="flex-1 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
-                      <div>
-                        <h3 className="font-syne font-bold text-xl text-ocean mb-1">
-                          {trip.title}
-                        </h3>
-                        <div className="flex items-center gap-4 text-ocean/70 font-dm text-sm">
-                          <span className="flex items-center gap-1">
-                            <MapPin size={14} />
-                            {trip.location}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar size={14} />
-                            {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
-                          </span>
-                        </div>
+                <Card 
+                  className="trip-card bg-warmwhite border-none overflow-hidden"
+                  data-testid={`trip-card-${trip.id}`}
+                >
+                  <CardContent className="p-0">
+                    <div className="flex flex-col md:flex-row items-center">
+                      <div className="w-full md:w-48 h-32 md:h-full flex-shrink-0">
+                        <img 
+                          src={trip.image} 
+                          alt={localizedTrip.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
+                      
+                      <div className="flex-1 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
+                        <div>
+                          <h3 className="font-syne font-bold text-xl text-ocean mb-1">
+                            {localizedTrip.title}
+                          </h3>
+                          <div className="flex items-center gap-4 text-ocean/70 font-dm text-sm">
+                            <span className="flex items-center gap-1">
+                              <MapPin size={14} />
+                              {localizedTrip.location}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Calendar size={14} />
+                              {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
+                            </span>
+                          </div>
+                        </div>
 
-                      <div className="flex items-center gap-6">
-                        <div className="text-center">
-                          <p className="font-syne font-bold text-xl text-ocean">{trip.price}</p>
-                          <p className="font-dm text-sm text-sunset font-medium">
-                            {trip.spots_left} spots left
-                          </p>
+                        <div className="flex items-center gap-6">
+                          <div className="text-center">
+                            <p className="font-syne font-bold text-xl text-ocean">{trip.price}</p>
+                            <p className="font-dm text-sm text-sunset font-medium">
+                              {trip.spots_left} {t.trips.spotsLeft}
+                            </p>
+                          </div>
+                          
+                          <Button 
+                            asChild
+                            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 font-dm"
+                            data-testid={`book-trip-${trip.id}`}
+                          >
+                            <a href="#contact">{t.trips.bookSpot}</a>
+                          </Button>
                         </div>
-                        
-                        <Button 
-                          asChild
-                          className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 font-dm"
-                          data-testid={`book-trip-${trip.id}`}
-                        >
-                          <a href="#contact">Book Your Spot</a>
-                        </Button>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -596,6 +710,8 @@ const TripsSection = ({ trips }) => {
 
 // Testimonials Section
 const TestimonialsSection = ({ testimonials }) => {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="testimonials" 
@@ -611,10 +727,10 @@ const TestimonialsSection = ({ testimonials }) => {
           className="text-center mb-16"
         >
           <h2 className="section-title font-syne font-bold text-white mb-4">
-            What Travelers Say
+            {t.testimonials.title}
           </h2>
           <p className="font-dm text-white/80 text-lg">
-            Real stories from our community of adventurers.
+            {t.testimonials.subtitle}
           </p>
         </motion.div>
 
@@ -667,6 +783,8 @@ const TestimonialsSection = ({ testimonials }) => {
 
 // About Section
 const AboutSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="about" 
@@ -695,21 +813,18 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="section-title font-syne font-bold text-ocean mb-6">
-              Our Mission
+              {t.about.title}
             </h2>
             <p className="font-dm text-ocean/80 text-lg mb-6 leading-relaxed">
-              THE BRIDGE connects people through travel experiences in Morocco. 
-              We create adventures that combine culture, community and unforgettable moments.
+              {t.about.description1}
             </p>
             <p className="font-dm text-ocean/80 text-lg mb-8 leading-relaxed">
-              Founded with a passion for bringing travelers together, we believe that 
-              the best journeys are shared. Our carefully curated experiences introduce 
-              you to the real Morocco – its people, traditions, and hidden gems.
+              {t.about.description2}
             </p>
             
             <div className="bg-white p-6 rounded-2xl shadow-lg">
               <p className="font-caveat text-xl text-sunset mb-2">
-                "Building bridges between cultures, one trip at a time."
+                "{t.about.quote}"
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-ocean rounded-full flex items-center justify-center">
@@ -717,7 +832,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <p className="font-syne font-bold text-ocean">Naimi Mohamed Karim</p>
-                  <p className="font-dm text-sm text-ocean/60">Founder</p>
+                  <p className="font-dm text-sm text-ocean/60">{t.about.founder}</p>
                 </div>
               </div>
             </div>
@@ -730,6 +845,7 @@ const AboutSection = () => {
 
 // Contact Section
 const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -749,6 +865,14 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
     }));
   };
 
+  const getLocalizedExperience = (exp) => {
+    const localizedData = experienceTranslations[language]?.[exp.id];
+    if (localizedData) {
+      return localizedData.title;
+    }
+    return exp.title;
+  };
+
   return (
     <section 
       id="contact" 
@@ -764,10 +888,10 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
           className="text-center mb-12"
         >
           <h2 className="section-title font-syne font-bold text-white mb-4">
-            Start Your Adventure
+            {t.contact.title}
           </h2>
           <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto">
-            Ready to explore Morocco? Get in touch and we'll help you plan the perfect trip.
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -784,13 +908,13 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                   <div className="space-y-2">
                     <label className="font-dm font-medium text-ocean flex items-center gap-2">
                       <User size={18} />
-                      Your Name
+                      {t.contact.name}
                     </label>
                     <Input 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Enter your name"
+                      placeholder={t.contact.namePlaceholder}
                       required
                       className="form-input border-border focus:border-sunset rounded-xl py-6"
                       data-testid="contact-name"
@@ -800,14 +924,14 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                   <div className="space-y-2">
                     <label className="font-dm font-medium text-ocean flex items-center gap-2">
                       <Mail size={18} />
-                      Email Address
+                      {t.contact.email}
                     </label>
                     <Input 
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="your@email.com"
+                      placeholder={t.contact.emailPlaceholder}
                       required
                       className="form-input border-border focus:border-sunset rounded-xl py-6"
                       data-testid="contact-email"
@@ -818,7 +942,7 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                 <div className="space-y-2">
                   <label className="font-dm font-medium text-ocean flex items-center gap-2">
                     <Waves size={18} />
-                    Interested In
+                    {t.contact.interested}
                   </label>
                   <Select 
                     value={formData.trip_interest} 
@@ -828,15 +952,15 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                       className="border-border focus:border-sunset rounded-xl py-6"
                       data-testid="contact-trip-select"
                     >
-                      <SelectValue placeholder="Select an experience" />
+                      <SelectValue placeholder={t.contact.selectExperience} />
                     </SelectTrigger>
                     <SelectContent>
                       {experiences.map(exp => (
                         <SelectItem key={exp.id} value={exp.title}>
-                          {exp.title}
+                          {getLocalizedExperience(exp)}
                         </SelectItem>
                       ))}
-                      <SelectItem value="general">General Inquiry</SelectItem>
+                      <SelectItem value="general">{t.contact.generalInquiry}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -844,13 +968,13 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                 <div className="space-y-2">
                   <label className="font-dm font-medium text-ocean flex items-center gap-2">
                     <MessageSquare size={18} />
-                    Your Message
+                    {t.contact.message}
                   </label>
                   <Textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your travel plans, questions, or anything else..."
+                    placeholder={t.contact.messagePlaceholder}
                     rows={5}
                     required
                     className="form-input border-border focus:border-sunset rounded-xl resize-none"
@@ -865,7 +989,7 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                   className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 text-lg font-syne font-bold"
                   data-testid="contact-submit"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? t.contact.sending : t.contact.sendMessage}
                   <ArrowRight className="ml-2" size={20} />
                 </Button>
               </form>
@@ -879,6 +1003,18 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
 
 // Footer
 const Footer = () => {
+  const { t, language } = useLanguage();
+  
+  const getLocalizedExperienceTitle = (id) => {
+    const titles = {
+      "surf-taghazout": experienceTranslations[language]?.["surf-taghazout"]?.title || "Surf & Beach",
+      "sahara-adventure": experienceTranslations[language]?.["sahara-adventure"]?.title || "Sahara Desert",
+      "marrakech-weekend": experienceTranslations[language]?.["marrakech-weekend"]?.title || "Marrakech",
+      "coastal-explorer": experienceTranslations[language]?.["coastal-explorer"]?.title || "Coastal Explorer"
+    };
+    return titles[id];
+  };
+
   return (
     <footer className="bg-warmwhite py-12 px-6 md:px-12" data-testid="footer">
       <div className="max-w-6xl mx-auto">
@@ -886,8 +1022,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-syne font-bold text-2xl text-ocean mb-4">THE BRIDGE</h3>
             <p className="font-dm text-ocean/70 mb-6 max-w-md">
-              Connecting people through travel. Experience Morocco with a community 
-              of adventurous souls from around the world.
+              {t.footer.description}
             </p>
             <div className="flex gap-4">
               <a 
@@ -910,17 +1045,17 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-ocean mb-4">Experiences</h4>
+            <h4 className="font-syne font-bold text-ocean mb-4">{t.footer.experiencesTitle}</h4>
             <ul className="space-y-2 font-dm text-ocean/70">
-              <li><a href="#experiences" className="hover:text-sunset transition-colors">Surf & Beach</a></li>
-              <li><a href="#experiences" className="hover:text-sunset transition-colors">Sahara Desert</a></li>
-              <li><a href="#experiences" className="hover:text-sunset transition-colors">Marrakech</a></li>
-              <li><a href="#experiences" className="hover:text-sunset transition-colors">Coastal Explorer</a></li>
+              <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("surf-taghazout")}</a></li>
+              <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("sahara-adventure")}</a></li>
+              <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("marrakech-weekend")}</a></li>
+              <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("coastal-explorer")}</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-ocean mb-4">Contact</h4>
+            <h4 className="font-syne font-bold text-ocean mb-4">{t.footer.contactTitle}</h4>
             <ul className="space-y-2 font-dm text-ocean/70">
               <li>
                 <a 
@@ -929,21 +1064,21 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-sunset transition-colors"
                 >
-                  Company Info
+                  {t.footer.companyInfo}
                 </a>
               </li>
-              <li><a href="#contact" className="hover:text-sunset transition-colors">Get in Touch</a></li>
-              <li><a href="#trips" className="hover:text-sunset transition-colors">Upcoming Trips</a></li>
+              <li><a href="#contact" className="hover:text-sunset transition-colors">{t.footer.getInTouch}</a></li>
+              <li><a href="#trips" className="hover:text-sunset transition-colors">{t.nav.upcomingTrips}</a></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-dm text-ocean/60 text-sm">
-            © {new Date().getFullYear()} THE BRIDGE. All rights reserved.
+            © {new Date().getFullYear()} THE BRIDGE. {t.footer.rights}
           </p>
           <p className="font-dm text-ocean/60 text-sm">
-            Founded by <span className="text-sunset">Naimi Mohamed Karim</span>
+            {t.footer.foundedBy} <span className="text-sunset">Naimi Mohamed Karim</span>
           </p>
         </div>
       </div>
@@ -951,13 +1086,14 @@ const Footer = () => {
   );
 };
 
-// Main App Component
-function App() {
+// Main App Content (with language context)
+const AppContent = () => {
   const [scrolled, setScrolled] = useState(false);
   const [experiences, setExperiences] = useState([]);
   const [trips, setTrips] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -993,14 +1129,13 @@ function App() {
     setIsSubmitting(true);
     try {
       await axios.post(`${API}/contact`, formData);
-      toast.success("Message sent successfully!", {
-        description: "We'll get back to you soon about your Morocco adventure!"
+      toast.success(t.contact.successTitle, {
+        description: t.contact.successDesc
       });
-      // Reset form would happen here if we controlled the form state in parent
     } catch (error) {
       console.error("Error submitting contact:", error);
-      toast.error("Failed to send message", {
-        description: "Please try again or email us directly."
+      toast.error(t.contact.errorTitle, {
+        description: t.contact.errorDesc
       });
     } finally {
       setIsSubmitting(false);
@@ -1008,7 +1143,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <>
       <Toaster position="top-right" richColors />
       <Navigation scrolled={scrolled} />
       <HeroSection />
@@ -1024,6 +1159,17 @@ function App() {
         isSubmitting={isSubmitting}
       />
       <Footer />
+    </>
+  );
+};
+
+// Main App Component with Provider
+function App() {
+  return (
+    <div className="App">
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
     </div>
   );
 }
