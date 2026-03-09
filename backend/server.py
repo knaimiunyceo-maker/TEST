@@ -399,12 +399,6 @@ async def get_trip(trip_id: str):
     raise HTTPException(status_code=404, detail="Trip not found")
 
 
-@api_router.get("/testimonials", response_model=List[Testimonial])
-async def get_testimonials():
-    """Get all testimonials"""
-    return TESTIMONIALS
-
-
 @api_router.post("/contact", response_model=ContactSubmission)
 async def submit_contact(input: ContactSubmissionCreate):
     """Submit a contact form / booking inquiry"""
