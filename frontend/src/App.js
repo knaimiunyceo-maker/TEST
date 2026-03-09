@@ -99,7 +99,7 @@ const LanguageSelector = ({ scrolled, isMobile = false }) => {
 // Navigation Component
 const Navigation = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const navLinks = [
     { href: "#packages", label: t.nav.experiences },
