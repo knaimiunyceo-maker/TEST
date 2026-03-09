@@ -771,4 +771,167 @@ export const tripTranslations = {
   }
 };
 
+export const catalogueTranslations = {
+  en: {
+    title: "The Fair Price Experience Catalogue (2026)",
+    subtitle: "Authentic experiences. Real local prices.",
+    disclaimer: "*Prices are indicative and subject to change depending on season, availability, and local partner conditions.",
+    columns: {
+      activity: "Activity / Service",
+      priceEur: "Your Price (€)",
+      priceMad: "Price in Dirhams (MAD)",
+      reason: "Why choose this experience"
+    },
+    items: {
+      "airport-transfer": { activity: "Airport Transfer", reason: "Direct local price. No unnecessary extras." },
+      "surf-lesson": { activity: "Surf Lesson (2h)", reason: "Lesson + equipment included. Directly with the instructor." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Pure adrenaline at the official water sports base price." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Full relaxation experience including scrub and massage." },
+      "quad-adventure": { activity: "Quad Adventure (2h)", reason: "Explore off-road tracks at the real local price." },
+      "cooking-class": { activity: "Cooking Class", reason: "Authentic experience cooking with locals." },
+      "desert-experience": { activity: "Desert Experience (3 days / 2 nights)", reason: "Authentic desert trip with respected local drivers." },
+      "city-tour": { activity: "Guided City Tour", reason: "Discover the Medina through the eyes of a local guide." }
+    },
+    commitment: {
+      title: "Zero Margin, 100% Experience",
+      intro: "We are not a traditional travel agency.",
+      description: "THE BRIDGE acts as a neutral connection between travelers and trusted local providers.",
+      noCommission: "No commission:",
+      noCommissionText: "The prices displayed are the real local prices.",
+      transparency: "Total transparency:",
+      transparencyText: "Every euro goes directly to the people who make the experience possible — the instructor, the driver, the guide, or the artisan.",
+      mission: "Our mission:",
+      missionText: "To give travelers the best possible experience at the fairest price, while supporting the local Moroccan economy in a fair and respectful way."
+    }
+  },
+  fr: {
+    title: "Le Catalogue des Prix Justes (2026)",
+    subtitle: "Expériences authentiques. Prix locaux réels.",
+    disclaimer: "*Les prix sont indicatifs et peuvent varier selon la saison, la disponibilité et les conditions des partenaires locaux.",
+    columns: {
+      activity: "Activité / Service",
+      priceEur: "Votre Prix (€)",
+      priceMad: "Prix en Dirhams (MAD)",
+      reason: "Pourquoi choisir cette expérience"
+    },
+    items: {
+      "airport-transfer": { activity: "Transfert Aéroport", reason: "Prix local direct. Pas d'extras inutiles." },
+      "surf-lesson": { activity: "Cours de Surf (2h)", reason: "Cours + équipement inclus. Directement avec l'instructeur." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Adrénaline pure au prix officiel de la base nautique." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Expérience relaxation complète avec gommage et massage." },
+      "quad-adventure": { activity: "Aventure Quad (2h)", reason: "Explorez les pistes hors-route au vrai prix local." },
+      "cooking-class": { activity: "Cours de Cuisine", reason: "Expérience authentique de cuisine avec les locaux." },
+      "desert-experience": { activity: "Expérience Désert (3 jours / 2 nuits)", reason: "Voyage désertique authentique avec des chauffeurs locaux respectés." },
+      "city-tour": { activity: "Visite Guidée de la Ville", reason: "Découvrez la Médina à travers les yeux d'un guide local." }
+    },
+    commitment: {
+      title: "Zéro Marge, 100% Expérience",
+      intro: "Nous ne sommes pas une agence de voyage traditionnelle.",
+      description: "THE BRIDGE agit comme une connexion neutre entre les voyageurs et les prestataires locaux de confiance.",
+      noCommission: "Aucune commission :",
+      noCommissionText: "Les prix affichés sont les vrais prix locaux.",
+      transparency: "Transparence totale :",
+      transparencyText: "Chaque euro va directement aux personnes qui rendent l'expérience possible — l'instructeur, le chauffeur, le guide ou l'artisan.",
+      mission: "Notre mission :",
+      missionText: "Offrir aux voyageurs la meilleure expérience possible au prix le plus juste, tout en soutenant l'économie locale marocaine de manière équitable et respectueuse."
+    }
+  },
+  es: {
+    title: "El Catálogo de Precios Justos (2026)",
+    subtitle: "Experiencias auténticas. Precios locales reales.",
+    disclaimer: "*Los precios son indicativos y pueden variar según la temporada, disponibilidad y condiciones de los socios locales.",
+    columns: {
+      activity: "Actividad / Servicio",
+      priceEur: "Tu Precio (€)",
+      priceMad: "Precio en Dirhams (MAD)",
+      reason: "Por qué elegir esta experiencia"
+    },
+    items: {
+      "airport-transfer": { activity: "Traslado Aeropuerto", reason: "Precio local directo. Sin extras innecesarios." },
+      "surf-lesson": { activity: "Clase de Surf (2h)", reason: "Clase + equipo incluido. Directamente con el instructor." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Pura adrenalina al precio oficial de la base de deportes acuáticos." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Experiencia de relajación completa con exfoliación y masaje." },
+      "quad-adventure": { activity: "Aventura en Quad (2h)", reason: "Explora pistas todoterreno al precio local real." },
+      "cooking-class": { activity: "Clase de Cocina", reason: "Experiencia auténtica cocinando con locales." },
+      "desert-experience": { activity: "Experiencia Desierto (3 días / 2 noches)", reason: "Viaje auténtico al desierto con conductores locales respetados." },
+      "city-tour": { activity: "Tour Guiado por la Ciudad", reason: "Descubre la Medina a través de los ojos de un guía local." }
+    },
+    commitment: {
+      title: "Cero Margen, 100% Experiencia",
+      intro: "No somos una agencia de viajes tradicional.",
+      description: "THE BRIDGE actúa como una conexión neutral entre viajeros y proveedores locales de confianza.",
+      noCommission: "Sin comisión:",
+      noCommissionText: "Los precios mostrados son los precios locales reales.",
+      transparency: "Transparencia total:",
+      transparencyText: "Cada euro va directamente a las personas que hacen posible la experiencia — el instructor, el conductor, el guía o el artesano.",
+      mission: "Nuestra misión:",
+      missionText: "Dar a los viajeros la mejor experiencia posible al precio más justo, mientras apoyamos la economía local marroquí de manera justa y respetuosa."
+    }
+  },
+  de: {
+    title: "Der Fair-Preis-Erlebniskatalog (2026)",
+    subtitle: "Authentische Erlebnisse. Echte lokale Preise.",
+    disclaimer: "*Preise sind Richtwerte und können je nach Saison, Verfügbarkeit und Bedingungen der lokalen Partner variieren.",
+    columns: {
+      activity: "Aktivität / Service",
+      priceEur: "Dein Preis (€)",
+      priceMad: "Preis in Dirham (MAD)",
+      reason: "Warum dieses Erlebnis wählen"
+    },
+    items: {
+      "airport-transfer": { activity: "Flughafentransfer", reason: "Direkter lokaler Preis. Keine unnötigen Extras." },
+      "surf-lesson": { activity: "Surfkurs (2h)", reason: "Kurs + Ausrüstung inklusive. Direkt mit dem Instruktor." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Pures Adrenalin zum offiziellen Wassersport-Basispreis." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Vollständiges Entspannungserlebnis mit Peeling und Massage." },
+      "quad-adventure": { activity: "Quad-Abenteuer (2h)", reason: "Erkunde Offroad-Strecken zum echten lokalen Preis." },
+      "cooking-class": { activity: "Kochkurs", reason: "Authentisches Kocherlebnis mit Einheimischen." },
+      "desert-experience": { activity: "Wüstenerlebnis (3 Tage / 2 Nächte)", reason: "Authentische Wüstenreise mit respektierten lokalen Fahrern." },
+      "city-tour": { activity: "Geführte Stadttour", reason: "Entdecke die Medina durch die Augen eines lokalen Guides." }
+    },
+    commitment: {
+      title: "Null Marge, 100% Erlebnis",
+      intro: "Wir sind keine traditionelle Reiseagentur.",
+      description: "THE BRIDGE fungiert als neutrale Verbindung zwischen Reisenden und vertrauenswürdigen lokalen Anbietern.",
+      noCommission: "Keine Provision:",
+      noCommissionText: "Die angezeigten Preise sind die echten lokalen Preise.",
+      transparency: "Volle Transparenz:",
+      transparencyText: "Jeder Euro geht direkt an die Menschen, die das Erlebnis möglich machen — den Instruktor, den Fahrer, den Guide oder den Handwerker.",
+      mission: "Unsere Mission:",
+      missionText: "Reisenden das bestmögliche Erlebnis zum fairsten Preis zu bieten und gleichzeitig die lokale marokkanische Wirtschaft fair und respektvoll zu unterstützen."
+    }
+  },
+  pt: {
+    title: "O Catálogo de Preços Justos (2026)",
+    subtitle: "Experiências autênticas. Preços locais reais.",
+    disclaimer: "*Os preços são indicativos e podem variar conforme a temporada, disponibilidade e condições dos parceiros locais.",
+    columns: {
+      activity: "Atividade / Serviço",
+      priceEur: "Seu Preço (€)",
+      priceMad: "Preço em Dirhams (MAD)",
+      reason: "Por que escolher esta experiência"
+    },
+    items: {
+      "airport-transfer": { activity: "Transfer Aeroporto", reason: "Preço local direto. Sem extras desnecessários." },
+      "surf-lesson": { activity: "Aula de Surf (2h)", reason: "Aula + equipamento incluído. Diretamente com o instrutor." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Pura adrenalina ao preço oficial da base de esportes aquáticos." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Experiência completa de relaxamento com esfoliação e massagem." },
+      "quad-adventure": { activity: "Aventura de Quad (2h)", reason: "Explore trilhas off-road ao preço local real." },
+      "cooking-class": { activity: "Aula de Culinária", reason: "Experiência autêntica cozinhando com locais." },
+      "desert-experience": { activity: "Experiência no Deserto (3 dias / 2 noites)", reason: "Viagem autêntica ao deserto com motoristas locais respeitados." },
+      "city-tour": { activity: "Tour Guiado pela Cidade", reason: "Descubra a Medina através dos olhos de um guia local." }
+    },
+    commitment: {
+      title: "Zero Margem, 100% Experiência",
+      intro: "Não somos uma agência de viagens tradicional.",
+      description: "THE BRIDGE atua como uma conexão neutra entre viajantes e fornecedores locais de confiança.",
+      noCommission: "Sem comissão:",
+      noCommissionText: "Os preços exibidos são os preços locais reais.",
+      transparency: "Transparência total:",
+      transparencyText: "Cada euro vai diretamente para as pessoas que tornam a experiência possível — o instrutor, o motorista, o guia ou o artesão.",
+      mission: "Nossa missão:",
+      missionText: "Dar aos viajantes a melhor experiência possível ao preço mais justo, enquanto apoiamos a economia local marroquina de forma justa e respeitosa."
+    }
+  }
+};
+
 export default translations;
