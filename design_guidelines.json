@@ -1,0 +1,150 @@
+{
+  "brand_identity": {
+    "name": "THE BRIDGE",
+    "tagline": "Connecting People Through Travel",
+    "mission": "To build a bridge between cultures, people, and experiences for young travelers.",
+    "target_audience": "Young travelers (18-30), UK & Europe, Gen Z/Millennials.",
+    "vibe": "Adventurous, Social, Authentic, Warm, Kinetic.",
+    "archetype": "The Explorer x The Jester (Fun, Social, Discovery)."
+  },
+  "design_system": {
+    "theme": "light",
+    "typography": {
+      "headings": {
+        "font_family": "Syne, sans-serif",
+        "weights": ["700", "800"],
+        "description": "Use Syne for all major headings. It is quirky, modern, and memorable. Use tight tracking (-0.02em).",
+        "import_url": "https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap"
+      },
+      "body": {
+        "font_family": "DM Sans, sans-serif",
+        "weights": ["400", "500", "700"],
+        "description": "Clean, geometric, highly readable for long text and UI elements.",
+        "import_url": "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap"
+      },
+      "accent": {
+        "font_family": "Caveat, cursive",
+        "weights": ["400"],
+        "description": "Use sparingly for 'handwritten' notes, arrows, or emphasis to add a human touch.",
+        "import_url": "https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+      }
+    },
+    "colors": {
+      "palette": {
+        "primary": "#E76F51",
+        "primary_foreground": "#FFFFFF",
+        "secondary": "#264653",
+        "secondary_foreground": "#FFFFFF",
+        "accent": "#E9C46A",
+        "accent_foreground": "#1A1A1A",
+        "background": "#F4F1DE",
+        "foreground": "#264653",
+        "muted": "#FDFCF6",
+        "muted_foreground": "#8D99AE",
+        "border": "#E0D8C3"
+      },
+      "usage": {
+        "background": "Use #F4F1DE (Warm Off-White) as the main page background. Avoid sterile #FFFFFF.",
+        "text": "Use #264653 (Deep Teal) for text instead of black. It's softer and fits the ocean/travel theme.",
+        "cta": "Use #E76F51 (Burnt Sienna) for primary actions (Book Now).",
+        "highlight": "Use #E9C46A (Sand Gold) for decorative elements, stars, or highlights."
+      }
+    },
+    "spacing": {
+      "container_padding": "px-6 md:px-12 lg:px-24",
+      "section_spacing": "py-20 md:py-32",
+      "element_spacing": "gap-6 md:gap-12"
+    },
+    "border_radius": {
+      "default": "rounded-2xl",
+      "buttons": "rounded-full",
+      "cards": "rounded-3xl"
+    },
+    "shadows": {
+      "card": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "hover": "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+      "text_shadow": "text-shadow-sm"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": "https://images.unsplash.com/photo-1674227055590-85b99a24b69b?q=85&w=1920&auto=format&fit=crop",
+      "hero_video_poster": "https://images.unsplash.com/photo-1738084766236-16ce5bb14305?q=85&w=1920&auto=format&fit=crop",
+      "concept_collage": [
+        "https://images.unsplash.com/photo-1743842532824-41d5ab5351cd?q=85&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1692089265012-b3618e99d307?q=85&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1739460904875-813384921d33?q=85&w=800&auto=format&fit=crop"
+      ],
+      "experiences": {
+        "surf": "https://images.unsplash.com/photo-1738084766236-16ce5bb14305?q=85&w=800&auto=format&fit=crop",
+        "desert": "https://images.unsplash.com/photo-1689742855019-a09e208930e8?q=85&w=800&auto=format&fit=crop",
+        "culture": "https://images.unsplash.com/photo-1677837488142-a85ffbffe408?q=85&w=800&auto=format&fit=crop",
+        "social": "https://images.unsplash.com/photo-1699210260186-25758f6bc594?q=85&w=800&auto=format&fit=crop"
+      },
+      "community": [
+        "https://images.unsplash.com/photo-1734640558836-50b5d195dfec?q=85&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1741692293604-698a8943e862?q=85&w=800&auto=format&fit=crop"
+      ]
+    },
+    "video": {
+      "hero_background": "https://player.vimeo.com/external/451687609.sd.mp4?s=562556876565656&profile_id=164&oauth2_token_id=57447761" 
+    }
+  },
+  "layout_strategies": {
+    "hero_section": {
+      "type": "immersive_video",
+      "structure": "Full viewport height (h-screen). Video background with dark overlay (bg-black/30). Centered or bottom-left aligned massive typography.",
+      "elements": [
+        "Video Background (muted, loop, playsinline)",
+        "Headline: 'THE BRIDGE' (Huge, 10vw+)",
+        "Subheadline: 'Connecting People Through Travel'",
+        "CTA: 'Join the Adventure' (Pill shape, blur effect)"
+      ]
+    },
+    "concept_section": {
+      "type": "bento_grid",
+      "structure": "Asymmetric grid showing different facets of the trip (Surf, Sand, Souks).",
+      "interaction": "Hover reveals details. Parallax scroll effect on images."
+    },
+    "experience_cards": {
+      "type": "carousel_or_grid",
+      "style": "Polaroid-style cards with tilted angles on hover. Large image area, minimal text.",
+      "details": "Title, Duration, Price, 'Book' button."
+    },
+    "community_section": {
+      "type": "marquee_and_masonry",
+      "structure": "Horizontal scrolling marquee of values (Connect • Explore • Live). Below it, a masonry grid of 'traveler moments'."
+    }
+  },
+  "component_instructions": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-lg font-bold transition-transform hover:scale-105",
+      "secondary": "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full px-8 py-6 text-lg font-bold"
+    },
+    "cards": {
+      "base": "bg-white rounded-3xl overflow-hidden border border-border/50 hover:shadow-xl transition-all duration-300 group",
+      "image": "aspect-[4/5] object-cover w-full transition-transform duration-700 group-hover:scale-110"
+    },
+    "navigation": {
+      "style": "Floating glassmorphism header. backdrop-blur-md bg-white/10 border-b border-white/10."
+    }
+  },
+  "motion_guidelines": {
+    "library": "framer-motion",
+    "preferences": {
+      "scroll": "Use 'whileInView' for section reveals.",
+      "hero": "Text should stagger in from bottom.",
+      "hover": "Images should zoom slightly (scale 1.05). Buttons should lift (-y-1).",
+      "transition": "Use spring physics for natural feel (stiffness: 100, damping: 20)."
+    }
+  },
+  "universal_guidelines": [
+    "Do NOT use generic 'Inter' font. Use 'Syne' and 'DM Sans'.",
+    "Do NOT use pure black (#000000). Use Deep Teal (#264653).",
+    "Ensure all images have alt text for accessibility.",
+    "Use 'data-testid' on all interactive elements.",
+    "Mobile-first: Ensure touch targets are at least 44px.",
+    "Use 'lucide-react' for icons (Sun, Waves, MapPin, Users).",
+    "Implement smooth scrolling (lenis recommended if possible, otherwise CSS scroll-behavior: smooth)."
+  ]
+}
