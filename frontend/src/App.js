@@ -514,16 +514,16 @@ const CommunitySection = () => {
   return (
     <section 
       id="community" 
-      className="py-20 md:py-32 bg-warmwhite overflow-hidden"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 bg-warmwhite overflow-hidden"
       data-testid="community-section"
     >
       {/* Marquee */}
-      <div className="marquee-container mb-16">
+      <div className="marquee-container mb-8 sm:mb-12 md:mb-16">
         <div className="marquee-content">
           {[...values, ...values, ...values, ...values].map((value, index) => (
             <span 
               key={index} 
-              className="font-syne font-bold text-6xl md:text-8xl text-ocean/10 mx-8"
+              className="font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-ocean/10 mx-4 sm:mx-6 md:mx-8"
             >
               {value} •
             </span>
@@ -531,28 +531,29 @@ const CommunitySection = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="order-2 md:order-1"
           >
-            <h2 className="section-title font-syne font-bold text-ocean mb-6">
+            <h2 className="font-syne font-bold text-ocean mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
               {t.community.title}
             </h2>
-            <p className="font-dm text-ocean/80 text-lg mb-8 leading-relaxed">
+            <p className="font-dm text-ocean/80 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t.community.description}
             </p>
             
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {t.community.features.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-sunset rounded-full flex items-center justify-center">
-                    <ChevronRight className="text-white" size={16} />
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-sunset rounded-full flex items-center justify-center flex-shrink-0">
+                    <ChevronRight className="text-white" size={14} />
                   </div>
-                  <span className="font-dm text-ocean">{item}</span>
+                  <span className="font-dm text-ocean text-sm sm:text-base">{item}</span>
                 </div>
               ))}
             </div>
@@ -563,22 +564,22 @@ const CommunitySection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative order-1 md:order-2"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <img 
                 src="https://images.unsplash.com/photo-1758599669009-5a9002c09487?crop=entropy&cs=srgb&fm=jpg&w=400" 
                 alt="Travelers hiking together"
-                className="rounded-3xl aspect-[3/4] object-cover"
+                className="rounded-2xl sm:rounded-3xl aspect-[3/4] object-cover w-full"
               />
               <img 
                 src="https://images.unsplash.com/photo-1758272959063-ef8a2114f807?crop=entropy&cs=srgb&fm=jpg&w=400" 
                 alt="Friends taking selfie"
-                className="rounded-3xl aspect-[3/4] object-cover mt-8"
+                className="rounded-2xl sm:rounded-3xl aspect-[3/4] object-cover mt-6 sm:mt-8 w-full"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-sunset text-white p-6 rounded-2xl shadow-xl">
-              <p className="font-caveat text-2xl">{t.community.joinTravelers}</p>
+            <div className="absolute -bottom-2 sm:-bottom-4 left-0 sm:-left-4 bg-sunset text-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl">
+              <p className="font-caveat text-lg sm:text-xl md:text-2xl">{t.community.joinTravelers}</p>
             </div>
           </motion.div>
         </div>
@@ -618,7 +619,7 @@ const TripsSection = ({ trips }) => {
   return (
     <section 
       id="trips" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-white"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-white"
       data-testid="trips-section"
     >
       <div className="max-w-6xl mx-auto">
@@ -627,17 +628,17 @@ const TripsSection = ({ trips }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="section-title font-syne font-bold text-ocean mb-4">
+          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
             {t.trips.title}
           </h2>
-          <p className="font-dm text-ocean/80 text-lg max-w-2xl mx-auto">
+          <p className="font-dm text-ocean/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
             {t.trips.subtitle}
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {trips.map((trip, index) => {
             const localizedTrip = getLocalizedTrip(trip);
             return (
@@ -653,8 +654,8 @@ const TripsSection = ({ trips }) => {
                   data-testid={`trip-card-${trip.id}`}
                 >
                   <CardContent className="p-0">
-                    <div className="flex flex-col md:flex-row items-center">
-                      <div className="w-full md:w-48 h-32 md:h-full flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row items-stretch">
+                      <div className="w-full sm:w-32 md:w-48 h-40 sm:h-auto flex-shrink-0">
                         <img 
                           src={trip.image} 
                           alt={localizedTrip.title}
@@ -662,34 +663,34 @@ const TripsSection = ({ trips }) => {
                         />
                       </div>
                       
-                      <div className="flex-1 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
-                        <div>
-                          <h3 className="font-syne font-bold text-xl text-ocean mb-1">
+                      <div className="flex-1 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 w-full">
+                        <div className="flex-1">
+                          <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean mb-1">
                             {localizedTrip.title}
                           </h3>
-                          <div className="flex items-center gap-4 text-ocean/70 font-dm text-sm">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-ocean/70 font-dm text-xs sm:text-sm">
                             <span className="flex items-center gap-1">
-                              <MapPin size={14} />
+                              <MapPin size={12} className="flex-shrink-0" />
                               {localizedTrip.location}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Calendar size={14} />
+                              <Calendar size={12} className="flex-shrink-0" />
                               {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-6">
-                          <div className="text-center">
-                            <p className="font-syne font-bold text-xl text-ocean">{trip.price}</p>
-                            <p className="font-dm text-sm text-sunset font-medium">
+                        <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto">
+                          <div className="text-left sm:text-center">
+                            <p className="font-syne font-bold text-lg sm:text-xl text-ocean">{trip.price}</p>
+                            <p className="font-dm text-xs sm:text-sm text-sunset font-medium">
                               {trip.spots_left} {t.trips.spotsLeft}
                             </p>
                           </div>
                           
                           <Button 
                             asChild
-                            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 font-dm"
+                            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-4 sm:px-6 font-dm text-sm flex-shrink-0"
                             data-testid={`book-trip-${trip.id}`}
                           >
                             <a href="#contact">{t.trips.bookSpot}</a>
