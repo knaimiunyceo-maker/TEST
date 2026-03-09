@@ -79,15 +79,24 @@ class ContactSubmissionCreate(BaseModel):
     trip_interest: Optional[str] = None
 
 
-class Experience(BaseModel):
+class Package(BaseModel):
     id: str
     title: str
-    location: str
-    description: str
     price: str
+    currency: str
     duration: str
+    description: str
     image: str
-    highlights: List[str]
+    inclusions: List[str]
+
+
+class Activity(BaseModel):
+    id: str
+    title: str
+    price: str
+    currency: str
+    description: str
+    image: str
 
 
 class Trip(BaseModel):
@@ -99,16 +108,8 @@ class Trip(BaseModel):
     spots_left: int
     total_spots: int
     price: str
+    currency: str
     image: str
-
-
-class Testimonial(BaseModel):
-    id: str
-    name: str
-    country: str
-    quote: str
-    trip: str
-    avatar: str
 
 
 # Static data for travel packages
