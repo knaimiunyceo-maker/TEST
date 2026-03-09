@@ -371,6 +371,44 @@ export const translations = {
       getInTouch: "Contáctanos",
       rights: "Todos los derechos reservados.",
       foundedBy: "Fundado por"
+    },
+    faq: {
+      title: "Preguntas Frecuentes",
+      subtitle: "Todo lo que necesitas saber sobre la experiencia THE BRIDGE.",
+      items: [
+        {
+          question: "¿Qué es THE BRIDGE?",
+          answer: "THE BRIDGE es una comunidad de viaje social que conecta a jóvenes viajeros internacionales con experiencias auténticas en Marruecos. No somos una agencia de viajes tradicional — actuamos como un puente entre viajeros y proveedores locales de confianza, garantizando precios justos y experiencias genuinas."
+        },
+        {
+          question: "¿Para quién están diseñados los viajes?",
+          answer: "Nuestras experiencias están diseñadas para viajeros de 18 a 35 años que quieren más que simple turismo. Si buscas conocer personas con ideas afines, explorar la cultura marroquí de forma auténtica y crear recuerdos duraderos con una comunidad de aventureros, THE BRIDGE es para ti."
+        },
+        {
+          question: "¿Puedo viajar solo/a?",
+          answer: "¡Absolutamente! La mayoría de nuestros viajeros vienen solos pero se van con amigos para toda la vida. Nuestros viajes están diseñados pensando en viajeros solitarios — te unirás a un grupo de viajeros internacionales y compartirás experiencias juntos. Viaja solo, vive en grupo."
+        },
+        {
+          question: "¿Cómo funcionan los precios?",
+          answer: "Creemos en la transparencia total. Nuestros paquetes base incluyen alojamiento, actividades y coordinación local. Los precios que ves son los precios reales — no añadimos comisiones ocultas. Las actividades opcionales tienen precios locales directos."
+        },
+        {
+          question: "¿Qué incluye un viaje?",
+          answer: "Cada paquete incluye alojamiento, actividades grupales, eventos sociales y apoyo de un anfitrión local. Las inclusiones exactas varían según el paquete — Experiencia Fin de Semana, Fin de Semana Premium o Experiencia Explorador."
+        },
+        {
+          question: "¿Cómo reservo un viaje?",
+          answer: "Simplemente completa nuestro formulario de contacto con tus fechas y paquete preferidos. Nuestro equipo te responderá en 24 horas para confirmar disponibilidad y guiarte en el proceso de reserva. Un depósito asegura tu lugar."
+        },
+        {
+          question: "¿Qué hace diferente a THE BRIDGE?",
+          answer: "A diferencia de las agencias tradicionales, nos enfocamos en la comunidad y autenticidad. Trabajamos directamente con proveedores locales marroquíes, garantizando precios justos para viajeros y compensación justa para los locales."
+        },
+        {
+          question: "¿Es Marruecos seguro para viajeros?",
+          answer: "¡Sí! Marruecos es uno de los destinos más seguros de África y recibe millones de turistas cada año. Nuestros anfitriones locales conocen el país a la perfección y aseguran que tengas una experiencia segura y cómoda."
+        }
+      ]
     }
   },
   de: {
