@@ -106,7 +106,7 @@ class BridgeAPITester:
             "name": f"Test User {datetime.now().strftime('%H%M%S')}",
             "email": "test@example.com",
             "message": "This is a test message for THE BRIDGE travel website",
-            "trip_interest": "Surf & Beach Experience"
+            "trip_interest": "Weekend Experience"
         }
         
         success, response = self.run_test("Contact Submission", "POST", "contact", 200, data=test_data)
