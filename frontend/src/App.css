@@ -1,34 +1,200 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* THE BRIDGE - Travel Website Styles */
+
+/* Hero video background */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+/* Glass morphism effect */
+.glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Experience card hover effects */
+.experience-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+}
+
+.experience-card:hover .card-image {
+    transform: scale(1.08);
+}
+
+.card-image {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Trip card styles */
+.trip-card {
+    transition: all 0.3s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(38, 70, 83, 0.15);
+}
+
+/* Testimonial card */
+.testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.02);
+}
+
+/* Button animations */
+.btn-primary {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(231, 111, 81, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Navigation styles */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #E76F51;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Section reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Marquee styles */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
     }
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Form focus styles */
+.form-input:focus {
+    outline: none;
+    border-color: #E76F51;
+    box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.2);
 }
 
-.App-link {
-    color: #61dafb;
+/* Image loading placeholder */
+.image-placeholder {
+    background: linear-gradient(90deg, #F4F1DE 0%, #E9C46A 50%, #F4F1DE 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
     }
-    to {
-        transform: rotate(360deg);
+    100% {
+        background-position: -200% 0;
     }
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero-title {
+        font-size: 6rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for marquee */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
