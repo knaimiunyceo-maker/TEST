@@ -879,7 +879,7 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
   return (
     <section 
       id="contact" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-ocean"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-ocean"
       data-testid="contact-section"
     >
       <div className="max-w-4xl mx-auto">
@@ -888,12 +888,12 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="section-title font-syne font-bold text-white mb-4">
+          <h2 className="font-syne font-bold text-white mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
             {t.contact.title}
           </h2>
-          <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
             {t.contact.subtitle}
           </p>
         </motion.div>
@@ -905,12 +905,12 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Card className="bg-white border-none shadow-2xl">
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
-                <div className="grid md:grid-cols-2 gap-6">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" data-testid="contact-form">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-2">
-                    <label className="font-dm font-medium text-ocean flex items-center gap-2">
-                      <User size={18} />
+                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                      <User size={16} />
                       {t.contact.name}
                     </label>
                     <Input 
@@ -919,14 +919,14 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                       onChange={handleChange}
                       placeholder={t.contact.namePlaceholder}
                       required
-                      className="form-input border-border focus:border-sunset rounded-xl py-6"
+                      className="form-input border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base"
                       data-testid="contact-name"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="font-dm font-medium text-ocean flex items-center gap-2">
-                      <Mail size={18} />
+                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                      <Mail size={16} />
                       {t.contact.email}
                     </label>
                     <Input 
@@ -936,15 +936,15 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                       onChange={handleChange}
                       placeholder={t.contact.emailPlaceholder}
                       required
-                      className="form-input border-border focus:border-sunset rounded-xl py-6"
+                      className="form-input border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base"
                       data-testid="contact-email"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-dm font-medium text-ocean flex items-center gap-2">
-                    <Waves size={18} />
+                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                    <Waves size={16} />
                     {t.contact.interested}
                   </label>
                   <Select 
@@ -952,7 +952,7 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                     onValueChange={(value) => setFormData(prev => ({ ...prev, trip_interest: value }))}
                   >
                     <SelectTrigger 
-                      className="border-border focus:border-sunset rounded-xl py-6"
+                      className="border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base"
                       data-testid="contact-trip-select"
                     >
                       <SelectValue placeholder={t.contact.selectExperience} />
@@ -969,8 +969,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-dm font-medium text-ocean flex items-center gap-2">
-                    <MessageSquare size={18} />
+                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                    <MessageSquare size={16} />
                     {t.contact.message}
                   </label>
                   <Textarea 
@@ -978,9 +978,9 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder={t.contact.messagePlaceholder}
-                    rows={5}
+                    rows={4}
                     required
-                    className="form-input border-border focus:border-sunset rounded-xl resize-none"
+                    className="form-input border-border focus:border-sunset rounded-xl resize-none text-base"
                     data-testid="contact-message"
                   />
                 </div>
@@ -989,11 +989,11 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 text-lg font-syne font-bold"
+                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-5 sm:py-6 text-base sm:text-lg font-syne font-bold"
                   data-testid="contact-submit"
                 >
                   {isSubmitting ? t.contact.sending : t.contact.sendMessage}
-                  <ArrowRight className="ml-2" size={20} />
+                  <ArrowRight className="ml-2" size={18} />
                 </Button>
               </form>
             </CardContent>
@@ -1019,37 +1019,37 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-warmwhite py-12 px-6 md:px-12" data-testid="footer">
+    <footer className="bg-warmwhite py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-12" data-testid="footer">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          <div className="md:col-span-2">
-            <h3 className="font-syne font-bold text-2xl text-ocean mb-4">THE BRIDGE</h3>
-            <p className="font-dm text-ocean/70 mb-6 max-w-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 sm:mb-12">
+          <div className="sm:col-span-2">
+            <h3 className="font-syne font-bold text-xl sm:text-2xl text-ocean mb-3 sm:mb-4">THE BRIDGE</h3>
+            <p className="font-dm text-ocean/70 mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
               {t.footer.description}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               <a 
                 href="https://www.linkedin.com/in/karim-naimi-b1aa1139/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-ocean rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 bg-ocean rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
                 data-testid="footer-linkedin"
               >
-                <Linkedin className="text-white" size={20} />
+                <Linkedin className="text-white" size={18} />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-ocean rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 bg-ocean rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
                 data-testid="footer-instagram"
               >
-                <Instagram className="text-white" size={20} />
+                <Instagram className="text-white" size={18} />
               </a>
             </div>
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-ocean mb-4">{t.footer.experiencesTitle}</h4>
-            <ul className="space-y-2 font-dm text-ocean/70">
+            <h4 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-sm sm:text-base">{t.footer.experiencesTitle}</h4>
+            <ul className="space-y-2 font-dm text-ocean/70 text-sm">
               <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("surf-taghazout")}</a></li>
               <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("sahara-adventure")}</a></li>
               <li><a href="#experiences" className="hover:text-sunset transition-colors">{getLocalizedExperienceTitle("marrakech-weekend")}</a></li>
@@ -1058,8 +1058,8 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-ocean mb-4">{t.footer.contactTitle}</h4>
-            <ul className="space-y-2 font-dm text-ocean/70">
+            <h4 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-sm sm:text-base">{t.footer.contactTitle}</h4>
+            <ul className="space-y-2 font-dm text-ocean/70 text-sm">
               <li>
                 <a 
                   href="https://annuaire-entreprises.data.gouv.fr/entreprise/unyceo-fr-953646577" 
@@ -1076,11 +1076,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-dm text-ocean/60 text-sm">
+        <div className="border-t border-border pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+          <p className="font-dm text-ocean/60 text-xs sm:text-sm text-center sm:text-left">
             © {new Date().getFullYear()} THE BRIDGE. {t.footer.rights}
           </p>
-          <p className="font-dm text-ocean/60 text-sm">
+          <p className="font-dm text-ocean/60 text-xs sm:text-sm text-center sm:text-right">
             {t.footer.foundedBy} <span className="text-sunset">Naimi Mohamed Karim</span>
           </p>
         </div>
