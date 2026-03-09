@@ -431,6 +431,12 @@ async def get_status_checks():
     return status_checks
 
 
+@api_router.get("/catalogue", response_model=List[CatalogueItem])
+async def get_catalogue():
+    """Get the fair price catalogue"""
+    return CATALOGUE
+
+
 @api_router.get("/packages", response_model=List[Package])
 async def get_packages():
     """Get all travel packages"""
