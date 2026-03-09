@@ -103,9 +103,9 @@ const Navigation = ({ scrolled }) => {
 
   const navLinks = [
     { href: "#packages", label: t.nav.experiences },
+    { href: "#catalogue", label: language === 'fr' ? 'Prix Justes' : language === 'es' ? 'Precios Justos' : language === 'de' ? 'Faire Preise' : language === 'pt' ? 'Preços Justos' : 'Fair Prices' },
     { href: "#trips", label: t.nav.upcomingTrips },
     { href: "#community", label: t.nav.community },
-    { href: "#about", label: t.nav.about },
     { href: "#contact", label: t.nav.contact },
   ];
 
