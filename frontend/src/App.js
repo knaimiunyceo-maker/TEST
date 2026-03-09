@@ -775,6 +775,207 @@ const TripsSection = ({ trips }) => {
   );
 };
 
+// Fair Price Catalogue Section
+const CatalogueSection = ({ catalogue }) => {
+  const { language } = useLanguage();
+  const ct = catalogueTranslations[language] || catalogueTranslations.en;
+
+  const getIcon = (iconName) => {
+    const icons = {
+      plane: <Plane size={20} />,
+      waves: <Waves size={20} />,
+      zap: <Zap size={20} />,
+      sparkles: <Sparkles size={20} />,
+      car: <Car size={20} />,
+      chef: <UtensilsCrossed size={20} />,
+      sun: <Sun size={20} />,
+      map: <MapPinned size={20} />
+    };
+    return icons[iconName] || <MapPin size={20} />;
+  };
+
+  const getLocalizedItem = (item) => {
+    const localized = ct.items[item.id];
+    if (localized) {
+      return { ...item, activity: localized.activity, reason: localized.reason };
+    }
+    return item;
+  };
+
+  return (
+    <section 
+      id="catalogue" 
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-white"
+      data-testid="catalogue-section"
+    >
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8 sm:mb-12"
+        >
+          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
+            {ct.title}
+          </h2>
+          <p className="font-dm text-sunset text-lg sm:text-xl font-medium mb-4">
+            {ct.subtitle}
+          </p>
+          <p className="font-dm text-ocean/60 text-xs sm:text-sm italic max-w-2xl mx-auto">
+            {ct.disclaimer}
+          </p>
+        </motion.div>
+
+        {/* Desktop Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="hidden md:block overflow-hidden rounded-2xl border border-border shadow-lg"
+        >
+          <table className="w-full" data-testid="catalogue-table">
+            <thead className="bg-ocean text-white">
+              <tr>
+                <th className="py-4 px-6 text-left font-syne font-bold">{ct.columns.activity}</th>
+                <th className="py-4 px-6 text-center font-syne font-bold">{ct.columns.priceEur}</th>
+                <th className="py-4 px-6 text-center font-syne font-bold">{ct.columns.priceMad}</th>
+                <th className="py-4 px-6 text-left font-syne font-bold">{ct.columns.reason}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {catalogue.map((item, index) => {
+                const localizedItem = getLocalizedItem(item);
+                return (
+                  <tr 
+                    key={item.id} 
+                    className={`${index % 2 === 0 ? 'bg-warmwhite' : 'bg-white'} hover:bg-sand/20 transition-colors`}
+                    data-testid={`catalogue-row-${item.id}`}
+                  >
+                    <td className="py-4 px-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center text-sunset">
+                          {getIcon(item.icon)}
+                        </div>
+                        <span className="font-dm font-medium text-ocean">{localizedItem.activity}</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      <span className="font-syne font-bold text-lg text-ocean">{item.price_eur} €</span>
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      <span className="font-dm text-ocean/70">{item.price_mad} MAD</span>
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className="font-dm text-ocean/70 text-sm">{localizedItem.reason}</span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </motion.div>
+
+        {/* Mobile Cards */}
+        <div className="md:hidden space-y-3">
+          {catalogue.map((item, index) => {
+            const localizedItem = getLocalizedItem(item);
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+              >
+                <Card className="border-none shadow-md" data-testid={`catalogue-card-${item.id}`}>
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center text-sunset flex-shrink-0">
+                        {getIcon(item.icon)}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-dm font-semibold text-ocean text-sm">{localizedItem.activity}</h3>
+                        <p className="font-dm text-ocean/60 text-xs mt-1">{localizedItem.reason}</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center pt-3 border-t border-border">
+                      <div className="text-center">
+                        <p className="font-dm text-xs text-ocean/60">EUR</p>
+                        <p className="font-syne font-bold text-sunset">{item.price_eur} €</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-dm text-xs text-ocean/60">MAD</p>
+                        <p className="font-dm font-medium text-ocean">{item.price_mad}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Ethical Commitment Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 sm:mt-16"
+        >
+          <Card className="bg-gradient-to-br from-ocean to-ocean/90 border-none overflow-hidden" data-testid="ethical-commitment">
+            <CardContent className="p-6 sm:p-8 md:p-12">
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="text-sand" size={32} />
+                </div>
+                <h3 className="font-syne font-bold text-2xl sm:text-3xl text-white mb-2">
+                  {ct.commitment.title}
+                </h3>
+                <p className="font-dm text-white/80 text-lg">
+                  {ct.commitment.intro}
+                </p>
+              </div>
+
+              <p className="font-dm text-white/90 text-center text-base sm:text-lg mb-8 max-w-3xl mx-auto">
+                {ct.commitment.description}
+              </p>
+
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                  <div className="w-12 h-12 bg-sunset rounded-full flex items-center justify-center mb-4">
+                    <Shield className="text-white" size={24} />
+                  </div>
+                  <h4 className="font-syne font-bold text-white mb-2">{ct.commitment.noCommission}</h4>
+                  <p className="font-dm text-white/70 text-sm">{ct.commitment.noCommissionText}</p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                  <div className="w-12 h-12 bg-sand rounded-full flex items-center justify-center mb-4">
+                    <Check className="text-ocean" size={24} />
+                  </div>
+                  <h4 className="font-syne font-bold text-white mb-2">{ct.commitment.transparency}</h4>
+                  <p className="font-dm text-white/70 text-sm">{ct.commitment.transparencyText}</p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4">
+                    <HandHeart className="text-sunset" size={24} />
+                  </div>
+                  <h4 className="font-syne font-bold text-white mb-2">{ct.commitment.mission}</h4>
+                  <p className="font-dm text-white/70 text-sm">{ct.commitment.missionText}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 // About Section
 const AboutSection = () => {
   const { t } = useLanguage();
