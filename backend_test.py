@@ -214,6 +214,9 @@ def main():
     tester.test_activities_endpoint()
     tester.test_trips_endpoint()
     
+    print("\n💰 Testing Fair Price Catalogue...")
+    tester.test_catalogue_endpoint()
+    
     print("\n📝 Testing Contact Form...")
     contact_success, contact_id = tester.test_contact_submission()
     tester.test_get_contact_submissions()
