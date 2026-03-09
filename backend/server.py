@@ -112,6 +112,74 @@ class Trip(BaseModel):
     image: str
 
 
+# Static data for Fair Price Catalogue
+CATALOGUE = [
+    {
+        "id": "airport-transfer",
+        "activity": "Airport Transfer",
+        "price_eur": "5",
+        "price_mad": "50",
+        "reason": "Direct local price. No unnecessary extras.",
+        "icon": "plane"
+    },
+    {
+        "id": "surf-lesson",
+        "activity": "Surf Lesson (2h)",
+        "price_eur": "20",
+        "price_mad": "215",
+        "reason": "Lesson + equipment included. Directly with the instructor.",
+        "icon": "waves"
+    },
+    {
+        "id": "jet-ski",
+        "activity": "Jet Ski Agadir (30 min)",
+        "price_eur": "65",
+        "price_mad": "700",
+        "reason": "Pure adrenaline at the official water sports base price.",
+        "icon": "zap"
+    },
+    {
+        "id": "hammam-spa",
+        "activity": "Hammam & Spa",
+        "price_eur": "25",
+        "price_mad": "270",
+        "reason": "Full relaxation experience including scrub and massage.",
+        "icon": "sparkles"
+    },
+    {
+        "id": "quad-adventure",
+        "activity": "Quad Adventure (2h)",
+        "price_eur": "35",
+        "price_mad": "380",
+        "reason": "Explore off-road tracks at the real local price.",
+        "icon": "car"
+    },
+    {
+        "id": "cooking-class",
+        "activity": "Cooking Class",
+        "price_eur": "25",
+        "price_mad": "270",
+        "reason": "Authentic experience cooking with locals.",
+        "icon": "chef"
+    },
+    {
+        "id": "desert-experience",
+        "activity": "Desert Experience (3 days / 2 nights)",
+        "price_eur": "90",
+        "price_mad": "970",
+        "reason": "Authentic desert trip with respected local drivers.",
+        "icon": "sun"
+    },
+    {
+        "id": "city-tour",
+        "activity": "Guided City Tour",
+        "price_eur": "15",
+        "price_mad": "160",
+        "reason": "Discover the Medina through the eyes of a local guide.",
+        "icon": "map"
+    }
+]
+
 # Static data for travel packages
 PACKAGES = [
     {
