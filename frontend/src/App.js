@@ -1253,6 +1253,7 @@ const AppContent = () => {
   const [scrolled, setScrolled] = useState(false);
   const [packages, setPackages] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [catalogue, setCatalogue] = useState([]);
   const [trips, setTrips] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useLanguage();
@@ -1266,13 +1267,15 @@ const AppContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [pkgRes, actRes, tripsRes] = await Promise.all([
+        const [pkgRes, actRes, catRes, tripsRes] = await Promise.all([
           axios.get(`${API}/packages`),
           axios.get(`${API}/activities`),
+          axios.get(`${API}/catalogue`),
           axios.get(`${API}/trips`)
         ]);
         setPackages(pkgRes.data);
         setActivities(actRes.data);
+        setCatalogue(catRes.data);
         setTrips(tripsRes.data);
       } catch (error) {
         console.error("Error fetching data:", error);
