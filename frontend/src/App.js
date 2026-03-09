@@ -1305,6 +1305,7 @@ const AppContent = () => {
       <ConceptSection />
       <PackagesSection packages={packages} />
       <ActivitiesSection activities={activities} />
+      <CatalogueSection catalogue={catalogue} />
       <CommunitySection />
       <TripsSection trips={trips} />
       <AboutSection />
