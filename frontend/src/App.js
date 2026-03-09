@@ -716,7 +716,7 @@ const TestimonialsSection = ({ testimonials }) => {
   return (
     <section 
       id="testimonials" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-ocean"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-ocean"
       data-testid="testimonials-section"
     >
       <div className="max-w-6xl mx-auto">
@@ -725,17 +725,17 @@ const TestimonialsSection = ({ testimonials }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="section-title font-syne font-bold text-white mb-4">
+          <h2 className="font-syne font-bold text-white mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
             {t.testimonials.title}
           </h2>
-          <p className="font-dm text-white/80 text-lg">
+          <p className="font-dm text-white/80 text-base sm:text-lg px-2">
             {t.testimonials.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -748,26 +748,26 @@ const TestimonialsSection = ({ testimonials }) => {
                 className="testimonial-card bg-white border-none h-full"
                 data-testid={`testimonial-${testimonial.id}`}
               >
-                <CardContent className="p-6">
-                  <div className="flex gap-1 mb-4">
+                <CardContent className="p-4 sm:p-5 md:p-6">
+                  <div className="flex gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="text-sand fill-sand" size={18} />
+                      <Star key={i} className="text-sand fill-sand" size={16} />
                     ))}
                   </div>
-                  <p className="font-dm text-ocean/80 mb-6 leading-relaxed">
+                  <p className="font-dm text-ocean/80 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base line-clamp-4">
                     "{testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-3">
                     <img 
                       src={testimonial.avatar} 
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
                     />
-                    <div>
-                      <p className="font-syne font-bold text-ocean">
+                    <div className="min-w-0">
+                      <p className="font-syne font-bold text-ocean text-sm sm:text-base truncate">
                         {testimonial.name}
                       </p>
-                      <p className="font-dm text-sm text-ocean/60">
+                      <p className="font-dm text-xs sm:text-sm text-ocean/60 truncate">
                         {testimonial.country}
                       </p>
                     </div>
@@ -789,21 +789,22 @@ const AboutSection = () => {
   return (
     <section 
       id="about" 
-      className="py-20 md:py-32 px-6 md:px-12 bg-warmwhite"
+      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite"
       data-testid="about-section"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="order-2 md:order-1"
           >
             <img 
               src="https://images.unsplash.com/photo-1760727466827-f11ca401116e?crop=entropy&cs=srgb&fm=jpg&w=600" 
               alt="Morocco street scene"
-              className="rounded-3xl shadow-2xl"
+              className="rounded-2xl sm:rounded-3xl shadow-2xl w-full"
             />
           </motion.div>
 
@@ -812,28 +813,29 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="order-1 md:order-2"
           >
-            <h2 className="section-title font-syne font-bold text-ocean mb-6">
+            <h2 className="font-syne font-bold text-ocean mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
               {t.about.title}
             </h2>
-            <p className="font-dm text-ocean/80 text-lg mb-6 leading-relaxed">
+            <p className="font-dm text-ocean/80 text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
               {t.about.description1}
             </p>
-            <p className="font-dm text-ocean/80 text-lg mb-8 leading-relaxed">
+            <p className="font-dm text-ocean/80 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
               {t.about.description2}
             </p>
             
-            <div className="bg-white p-6 rounded-2xl shadow-lg">
-              <p className="font-caveat text-xl text-sunset mb-2">
+            <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg">
+              <p className="font-caveat text-lg sm:text-xl text-sunset mb-2">
                 "{t.about.quote}"
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-ocean rounded-full flex items-center justify-center">
-                  <span className="font-syne font-bold text-white">NK</span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-ocean rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="font-syne font-bold text-white text-sm sm:text-base">NK</span>
                 </div>
                 <div>
-                  <p className="font-syne font-bold text-ocean">Naimi Mohamed Karim</p>
-                  <p className="font-dm text-sm text-ocean/60">{t.about.founder}</p>
+                  <p className="font-syne font-bold text-ocean text-sm sm:text-base">Naimi Mohamed Karim</p>
+                  <p className="font-dm text-xs sm:text-sm text-ocean/60">{t.about.founder}</p>
                 </div>
               </div>
             </div>
