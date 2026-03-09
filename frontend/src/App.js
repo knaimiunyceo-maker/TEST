@@ -284,7 +284,7 @@ const HeroSection = () => {
           <Button
             asChild
             size="lg"
-            className="btn-primary bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-syne font-bold w-full sm:w-auto"
+            className="btn-primary bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 sm:px-8 py-6 text-base sm:text-lg font-syne font-bold w-full sm:w-auto min-h-[44px]"
             data-testid="hero-cta"
           >
             <a href="#experiences">
@@ -297,7 +297,7 @@ const HeroSection = () => {
             asChild
             variant="outline"
             size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-syne font-bold bg-transparent w-full sm:w-auto"
+            className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-6 sm:px-8 py-6 text-base sm:text-lg font-syne font-bold bg-transparent w-full sm:w-auto min-h-[44px]"
             data-testid="hero-secondary-cta"
           >
             <a href="#trips">{t.hero.viewTrips}</a>
@@ -989,7 +989,7 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-5 sm:py-6 text-base sm:text-lg font-syne font-bold"
+                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 text-base sm:text-lg font-syne font-bold min-h-[44px]"
                   data-testid="contact-submit"
                 >
                   {isSubmitting ? t.contact.sending : t.contact.sendMessage}
