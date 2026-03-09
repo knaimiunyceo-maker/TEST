@@ -100,6 +100,68 @@ class BridgeAPITester:
         """Test trips endpoint - should return 4 trips"""
         return self.run_test("Get Trips", "GET", "trips", 200, expected_count=4)
 
+    def test_catalogue_endpoint(self):
+        """Test catalogue endpoint - should return 8 catalogue items with EUR and MAD prices"""
+        success, response = self.run_test("Get Catalogue", "GET", "catalogue", 200, expected_count=8)
+        
+        if success and response:
+            # Verify structure of catalogue items
+            required_fields = ['id', 'activity', 'price_eur', 'price_mad', 'reason', 'icon']
+            sample_item = response[0] if response else {}
+            
+            structure_valid = all(field in sample_item for field in required_fields)
+            if structure_valid:
+                print("   ✅ Catalogue items have correct structure")
+                
+                # Check specific items mentioned in requirements
+                expected_activities = [
+                    "Airport Transfer", "Surf Lesson (2h)", "Jet Ski Agadir (30 min)",
+                    "Hammam & Spa", "Quad Adventure (2h)", "Cooking Class",
+                    "Desert Experience (3 days / 2 nights)", "Guided City Tour"
+                ]
+                
+                actual_activities = [item['activity'] for item in response]
+                activities_match = all(activity in actual_activities for activity in expected_activities)
+                
+                if activities_match:
+                    print("   ✅ All expected activities present in catalogue")
+                else:
+                    print(f"   ❌ Missing activities. Expected: {expected_activities}")
+                    print(f"      Actual: {actual_activities}")
+                    
+                # Check price formats and specific prices
+                price_formats_valid = True
+                expected_prices = {
+                    "Airport Transfer": ("5", "50"),
+                    "Surf Lesson (2h)": ("20", "215"),
+                    "Jet Ski Agadir (30 min)": ("65", "700"),
+                    "Hammam & Spa": ("25", "270"),
+                    "Quad Adventure (2h)": ("35", "380"),
+                    "Cooking Class": ("25", "270"),
+                    "Desert Experience (3 days / 2 nights)": ("90", "970"),
+                    "Guided City Tour": ("15", "160")
+                }
+                
+                for item in response:
+                    activity = item['activity']
+                    if activity in expected_prices:
+                        expected_eur, expected_mad = expected_prices[activity]
+                        if item['price_eur'] == expected_eur and item['price_mad'] == expected_mad:
+                            print(f"   ✅ {activity}: €{item['price_eur']} / {item['price_mad']} MAD")
+                        else:
+                            print(f"   ❌ {activity}: Expected €{expected_eur}/{expected_mad} MAD, got €{item['price_eur']}/{item['price_mad']} MAD")
+                            price_formats_valid = False
+                
+                if price_formats_valid:
+                    print("   ✅ All prices match expected values")
+                else:
+                    print("   ❌ Some prices don't match expected values")
+                    
+            else:
+                print(f"   ❌ Catalogue items missing required fields: {required_fields}")
+                
+        return success
+
     def test_contact_submission(self):
         """Test contact form submission"""
         test_data = {
