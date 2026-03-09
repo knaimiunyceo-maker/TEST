@@ -177,7 +177,8 @@ def main():
         if failed_tests:
             print("\n❌ Failed Tests:")
             for test in failed_tests:
-                print(f"   - {test['test']}: {test.get('error', f'Status {test[\"actual_status\"]}')}") 
+                error_msg = test.get('error', f'Status {test["actual_status"]}')
+                print(f"   - {test['test']}: {error_msg}") 
         
         return 1
 
