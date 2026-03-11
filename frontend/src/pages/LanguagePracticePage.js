@@ -367,7 +367,7 @@ const LanguagePracticePage = () => {
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
                   <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
-                    <Calendar className="text-sunset" size={22} />
+                    <Clock className="text-sunset" size={22} />
                     Duration
                   </h2>
                   
