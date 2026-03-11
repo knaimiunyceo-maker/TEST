@@ -63,101 +63,17 @@ const HowItWorksPage = () => {
           <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-6">The Concept</h2>
           <p className="font-caveat text-sunset text-2xl mb-4">Travel • Practice • Experience</p>
           <p className="font-dm text-ocean/80 text-lg max-w-2xl mx-auto mb-8">
-            THE BRIDGE combines skill-building with travel. Our unique alternating schedule 
-            keeps things fresh and engaging throughout your stay.
+            THE BRIDGE combines skill-building with travel. Practice and activities alternate 
+            throughout your stay for a balanced experience.
           </p>
-        </div>
-      </section>
-
-      {/* Alternating Days Schedule */}
-      <section id="schedule" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Programme Alternés</h2>
-          <div className="space-y-4">
-            {/* Day 1 */}
-            <Card className="border-none bg-ocean/5">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center text-white font-syne font-bold">
-                    J1
-                  </div>
-                  <h3 className="font-syne font-bold text-xl text-ocean">Jour 1</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-sunset text-sm mb-1">🌅 Matin</p>
-                    <p className="font-dm text-ocean">Pratique (Self-défense, Langue ou Storytelling)</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-ocean text-sm mb-1">🌴 Après-midi</p>
-                    <p className="font-dm text-ocean/80">Exploration du Maroc (plage, ville, culture)</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Day 2 */}
-            <Card className="border-none bg-sunset/5">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-ocean rounded-full flex items-center justify-center text-white font-syne font-bold">
-                    J2
-                  </div>
-                  <h3 className="font-syne font-bold text-xl text-ocean">Jour 2</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-ocean text-sm mb-1">🌅 Matin</p>
-                    <p className="font-dm text-ocean/80">Activité (surf, excursion, visite guidée...)</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-sunset text-sm mb-1">🌴 Après-midi</p>
-                    <p className="font-dm text-ocean">Pratique (Self-défense, Langue ou Storytelling)</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Day 3+ */}
-            <Card className="border-none bg-ocean/5">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-sand rounded-full flex items-center justify-center text-ocean font-syne font-bold">
-                    J3+
-                  </div>
-                  <h3 className="font-syne font-bold text-xl text-ocean">Jours suivants</h3>
-                </div>
-                <p className="font-dm text-ocean/80 mb-3">
-                  Le rythme alterne entre Jour 1 et Jour 2 jusqu'au dernier jour.
-                </p>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="bg-sunset/10 text-sunset px-3 py-1 rounded-full font-dm">J1 → J2 → J1 → J2...</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Last Day */}
-            <Card className="border-none bg-sunset/10">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center text-white font-syne font-bold">
-                    FIN
-                  </div>
-                  <h3 className="font-syne font-bold text-xl text-ocean">Dernier Jour</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-sunset text-sm mb-1">🌅 Matin</p>
-                    <p className="font-dm text-ocean">Pratique finale & au revoir au groupe</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-4">
-                    <p className="font-syne font-bold text-ocean/50 text-sm mb-1">✈️ Après-midi</p>
-                    <p className="font-dm text-ocean/60">Départ libre</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="border-none bg-white max-w-md mx-auto">
+            <CardContent className="p-6">
+              <p className="font-syne font-bold text-ocean mb-2">Programme Alterné</p>
+              <p className="font-dm text-ocean/70 text-sm">
+                Pratique ↔ Activité (matin/après-midi alternés)
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
