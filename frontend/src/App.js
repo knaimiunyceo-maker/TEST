@@ -117,11 +117,11 @@ const Navigation = ({ scrolled }) => {
   const { language } = useLanguage();
 
   const navLinks = [
-    { href: "#experiences", label: language === 'fr' ? 'Expériences' : language === 'es' ? 'Experiencias' : language === 'de' ? 'Erlebnisse' : language === 'pt' ? 'Experiências' : 'Experiences' },
-    { href: "#how-it-works", label: language === 'fr' ? 'Comment ça marche' : language === 'es' ? 'Cómo funciona' : language === 'de' ? 'So funktioniert\'s' : language === 'pt' ? 'Como funciona' : 'How It Works' },
-    { href: "#optional", label: language === 'fr' ? 'Activités' : language === 'es' ? 'Actividades' : language === 'de' ? 'Aktivitäten' : language === 'pt' ? 'Atividades' : 'Activities' },
-    { href: "#destination", label: language === 'fr' ? 'Destination' : language === 'es' ? 'Destino' : language === 'de' ? 'Reiseziel' : language === 'pt' ? 'Destino' : 'Destination' },
-    { href: "#contact", label: language === 'fr' ? 'Contact' : language === 'es' ? 'Contacto' : language === 'de' ? 'Kontakt' : language === 'pt' ? 'Contato' : 'Contact' },
+    { href: "/experiences", label: language === 'fr' ? 'Expériences' : language === 'es' ? 'Experiencias' : language === 'de' ? 'Erlebnisse' : language === 'pt' ? 'Experiências' : 'Experiences', isRoute: true },
+    { href: "/how-it-works", label: language === 'fr' ? 'Comment ça marche' : language === 'es' ? 'Cómo funciona' : language === 'de' ? 'So funktioniert\'s' : language === 'pt' ? 'Como funciona' : 'How It Works', isRoute: true },
+    { href: "/activities", label: language === 'fr' ? 'Activités' : language === 'es' ? 'Actividades' : language === 'de' ? 'Aktivitäten' : language === 'pt' ? 'Atividades' : 'Activities', isRoute: true },
+    { href: "/destinations", label: language === 'fr' ? 'Destinations' : language === 'es' ? 'Destinos' : language === 'de' ? 'Reiseziele' : language === 'pt' ? 'Destinos' : 'Destinations', isRoute: true },
+    { href: "/about", label: language === 'fr' ? 'À propos' : language === 'es' ? 'Acerca de' : language === 'de' ? 'Über uns' : language === 'pt' ? 'Sobre' : 'About', isRoute: true },
   ];
 
   const bookNowLabel = language === 'fr' ? 'Réserver' : language === 'es' ? 'Reservar' : language === 'de' ? 'Buchen' : language === 'pt' ? 'Reservar' : 'Book Now';
@@ -138,29 +138,29 @@ const Navigation = ({ scrolled }) => {
       data-testid="navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 sm:py-4 flex items-center justify-between">
-        <a 
-          href="#hero" 
+        <Link 
+          to="/" 
           className={`font-syne font-bold text-xl sm:text-2xl tracking-tight whitespace-nowrap ${
             scrolled ? "text-ocean" : "text-white"
           }`}
           data-testid="logo-link"
         >
           THE BRIDGE
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className={`nav-link font-dm font-medium text-sm whitespace-nowrap ${
                 scrolled ? "text-ocean" : "text-white"
               } hover:text-sunset transition-colors`}
               data-testid={`nav-${link.href.slice(1)}`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <LanguageSelector scrolled={scrolled} />
           <Button
