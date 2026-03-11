@@ -400,7 +400,7 @@ const HowItWorksSection = () => {
       title: "How It Works",
       subtitle: "Your journey in 4 simple steps",
       steps: [
-        { number: "01", title: "Choose Your Experience", description: "Combat, Language, or Visual Storytelling — pick what excites you most.", icon: <Target size={28} /> },
+        { number: "01", title: "Choose Your Experience", description: "Self-Defense, Language, or Visual Storytelling — pick what excites you most.", icon: <Target size={28} /> },
         { number: "02", title: "Select Your Dates", description: "Find a trip that fits your schedule. We run experiences year-round.", icon: <Calendar size={28} /> },
         { number: "03", title: "Add Optional Activities", description: "Customize your trip with desert excursions, cooking classes, spa days and more.", icon: <Plus size={28} /> },
         { number: "04", title: "Join the Adventure", description: "Meet your group, practice your passion, and create unforgettable memories.", icon: <Compass size={28} /> }
