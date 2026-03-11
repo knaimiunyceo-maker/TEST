@@ -168,7 +168,7 @@ const Navigation = ({ scrolled }) => {
             className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-4 xl:px-6 font-dm font-semibold text-sm"
             data-testid="nav-book-btn"
           >
-            <a href="#contact">{bookNowLabel}</a>
+            <Link to="/book">{bookNowLabel}</Link>
           </Button>
         </div>
 
@@ -195,22 +195,22 @@ const Navigation = ({ scrolled }) => {
         >
           <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="font-dm font-medium text-ocean py-3 text-lg border-b border-border/50 last:border-0"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Button
               asChild
               className="bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm font-semibold mt-4 py-6 text-lg"
             >
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/book" onClick={() => setMobileMenuOpen(false)}>
                 {bookNowLabel}
-              </a>
+              </Link>
             </Button>
             <LanguageSelector isMobile={true} />
           </div>
