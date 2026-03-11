@@ -21,8 +21,17 @@ const DESTINATIONS = [
     tagline: "Morocco's sunny beach paradise",
     description: "The premier beach destination with 300+ sunny days per year. Perfect for training and beach life.",
     image: "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=800",
-    experiences: ["Self-Defense"],
+    experiences: ["Self-Defense", "Visual Storytelling"],
     highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"]
+  },
+  {
+    id: "marrakech",
+    name: "Marrakech",
+    tagline: "The Red City",
+    description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
+    experiences: ["Visual Storytelling"],
+    highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"]
   }
 ];
 
