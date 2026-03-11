@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  ArrowLeft, Calendar as CalendarIcon, Clock, Users, Award, 
+  Calendar as CalendarIcon, Clock, Users, Award, 
   BookOpen, CheckCircle, Globe, GraduationCap, Languages,
-  Mail, User, Info, Star, Sun, Moon, X
+  Mail, User, Info, Star, Sun, Moon, X, ChevronDown, ChevronUp,
+  ArrowRight, MapPin, Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
-import { fr } from "date-fns/locale";
+import PageLayout from "./components/PageLayout";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
