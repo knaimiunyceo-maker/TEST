@@ -154,10 +154,10 @@ const AgadirPage = () => {
           <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Photos</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              "https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=400",
-              "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=400",
+              "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=400",
+              "https://images.unsplash.com/photo-1669542832433-2839fa8e8ab7?w=400",
               "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400",
-              "https://images.unsplash.com/photo-1476673160081-cf065607f449?w=400"
+              "https://images.unsplash.com/photo-1669542832357-6d4ab608ae84?w=400"
             ].map((img, i) => (
               <img key={i} src={img} alt={`Agadir ${i+1}`} className="rounded-xl aspect-square object-cover w-full" />
             ))}
