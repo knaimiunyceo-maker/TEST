@@ -241,7 +241,7 @@ EXPERIENCES = [
         "currency": "€",
         "practices": ["Self-defense techniques", "Conditioning", "Practical combat skills"],
         "experiences": ["Beach time", "Pool time", "Local exploration", "Group dinners"],
-        "destinations": ["Agadir"],
+        "destinations": ["Casablanca", "Marrakech", "Agadir"],
         "pricing": {
             "5_days": { "price": 450, "label": "5 days experience" },
             "7_days": { "price": 550, "label": "7 days / 6 nights experience" },
@@ -291,7 +291,7 @@ EXPERIENCES = [
         "currency": "€",
         "practices": ["Filmmaking", "Photography", "Drone content"],
         "experiences": ["City shooting", "Landscapes", "Desert", "Exploration"],
-        "destinations": ["Marrakech", "Essaouira", "Agadir"],
+        "destinations": ["Marrakech", "Agadir"],
         "pricing": {
             "5_days": { "price": 480, "label": "5 days experience" },
             "7_days": { "price": 580, "label": "7 days / 6 nights experience" },
