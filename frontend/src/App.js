@@ -1856,9 +1856,8 @@ function App() {
             
             {/* Experiences */}
             <Route path="/experiences" element={<ExperiencesPage />} />
-            <Route path="/experiences/combat-holiday" element={<CombatHolidayPage />} />
-            <Route path="/experiences/language-holiday" element={<LanguagePracticePage />} />
-            <Route path="/experiences/visual-storytelling" element={<VisualStorytellingPage />} />
+            <Route path="/experiences/self-defense" element={<SelfDefensePage />} />
+            <Route path="/experiences/language-practice" element={<LanguagePracticePage />} />
             
             {/* Legacy route for language practice */}
             <Route path="/language-practice" element={<LanguagePracticePage />} />
@@ -1866,7 +1865,7 @@ function App() {
             {/* Destinations */}
             <Route path="/destinations" element={<DestinationsPage />} />
             <Route path="/destinations/casablanca" element={<CasablancaPage />} />
-            <Route path="/destinations/marrakech" element={<MarrakechPage />} />
+            <Route path="/destinations/agadir" element={<AgadirPage />} />
             
             {/* Other pages */}
             <Route path="/activities" element={<ActivitiesPage />} />
