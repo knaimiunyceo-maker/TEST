@@ -7,7 +7,8 @@ import {
   ArrowRight, Menu, X, Mail, User, MessageSquare,
   ChevronRight, Instagram, Linkedin, Play, Pause,
   Globe, ChevronDown, Check, Plus, Plane, Zap, Sparkles,
-  Car, UtensilsCrossed, MapPinned, Heart, Shield, HandHeart
+  Car, UtensilsCrossed, MapPinned, Heart, Shield, HandHeart,
+  Dumbbell, Languages, Camera, Target, Compass, Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,7 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Toaster, toast } from "sonner";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
-import { packageTranslations, activityTranslations, tripTranslations, catalogueTranslations } from "./translations";
+import { catalogueTranslations } from "./translations";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -99,15 +100,17 @@ const LanguageSelector = ({ scrolled, isMobile = false }) => {
 // Navigation Component
 const Navigation = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   const navLinks = [
-    { href: "#packages", label: t.nav.experiences },
-    { href: "#catalogue", label: language === 'fr' ? 'Prix Justes' : language === 'es' ? 'Precios Justos' : language === 'de' ? 'Faire Preise' : language === 'pt' ? 'Preços Justos' : 'Fair Prices' },
-    { href: "#trips", label: t.nav.upcomingTrips },
-    { href: "#community", label: t.nav.community },
-    { href: "#contact", label: t.nav.contact },
+    { href: "#experiences", label: language === 'fr' ? 'Expériences' : language === 'es' ? 'Experiencias' : language === 'de' ? 'Erlebnisse' : language === 'pt' ? 'Experiências' : 'Experiences' },
+    { href: "#how-it-works", label: language === 'fr' ? 'Comment ça marche' : language === 'es' ? 'Cómo funciona' : language === 'de' ? 'So funktioniert\'s' : language === 'pt' ? 'Como funciona' : 'How It Works' },
+    { href: "#optional", label: language === 'fr' ? 'Activités' : language === 'es' ? 'Actividades' : language === 'de' ? 'Aktivitäten' : language === 'pt' ? 'Atividades' : 'Activities' },
+    { href: "#destination", label: language === 'fr' ? 'Destination' : language === 'es' ? 'Destino' : language === 'de' ? 'Reiseziel' : language === 'pt' ? 'Destino' : 'Destination' },
+    { href: "#contact", label: language === 'fr' ? 'Contact' : language === 'es' ? 'Contacto' : language === 'de' ? 'Kontakt' : language === 'pt' ? 'Contato' : 'Contact' },
   ];
+
+  const bookNowLabel = language === 'fr' ? 'Réserver' : language === 'es' ? 'Reservar' : language === 'de' ? 'Buchen' : language === 'pt' ? 'Reservar' : 'Book Now';
 
   return (
     <motion.nav
@@ -151,7 +154,7 @@ const Navigation = ({ scrolled }) => {
             className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-4 xl:px-6 font-dm font-semibold text-sm"
             data-testid="nav-book-btn"
           >
-            <a href="#contact">{t.nav.bookNow}</a>
+            <a href="#contact">{bookNowLabel}</a>
           </Button>
         </div>
 
@@ -192,7 +195,7 @@ const Navigation = ({ scrolled }) => {
               className="bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm font-semibold mt-4 py-6 text-lg"
             >
               <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                {t.nav.bookNow}
+                {bookNowLabel}
               </a>
             </Button>
             <LanguageSelector isMobile={true} />
@@ -203,10 +206,10 @@ const Navigation = ({ scrolled }) => {
   );
 };
 
-// Hero Section
+// Hero Section - NEW "Travel • Practice • Experience"
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
   const toggleVideo = () => {
     const video = document.getElementById('hero-video');
@@ -219,6 +222,46 @@ const HeroSection = () => {
       setIsPlaying(!isPlaying);
     }
   };
+
+  const content = {
+    en: {
+      headline: "Travel • Practice • Experience",
+      subtitle: "Choose your experience. Learn something new. Discover Morocco.",
+      tagline: "More than a trip. A transformation.",
+      cta: "Discover Experiences",
+      secondary: "How It Works"
+    },
+    fr: {
+      headline: "Voyage • Pratique • Expérience",
+      subtitle: "Choisissez votre expérience. Apprenez quelque chose de nouveau. Découvrez le Maroc.",
+      tagline: "Plus qu'un voyage. Une transformation.",
+      cta: "Découvrir les Expériences",
+      secondary: "Comment ça marche"
+    },
+    es: {
+      headline: "Viaja • Practica • Experimenta",
+      subtitle: "Elige tu experiencia. Aprende algo nuevo. Descubre Marruecos.",
+      tagline: "Más que un viaje. Una transformación.",
+      cta: "Descubrir Experiencias",
+      secondary: "Cómo Funciona"
+    },
+    de: {
+      headline: "Reisen • Üben • Erleben",
+      subtitle: "Wähle dein Erlebnis. Lerne etwas Neues. Entdecke Marokko.",
+      tagline: "Mehr als eine Reise. Eine Transformation.",
+      cta: "Erlebnisse Entdecken",
+      secondary: "So funktioniert's"
+    },
+    pt: {
+      headline: "Viaje • Pratique • Experimente",
+      subtitle: "Escolha sua experiência. Aprenda algo novo. Descubra Marrocos.",
+      tagline: "Mais que uma viagem. Uma transformação.",
+      cta: "Descobrir Experiências",
+      secondary: "Como Funciona"
+    }
+  };
+
+  const t = content[language] || content.en;
 
   return (
     <section 
@@ -244,48 +287,39 @@ const HeroSection = () => {
       <div className="absolute inset-0 video-overlay" />
 
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl w-full">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="font-caveat text-sand text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-4"
-        >
-          {t.hero.welcome}
-        </motion.p>
-        
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="font-syne font-extrabold text-white mb-4 sm:mb-6 leading-none text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+          transition={{ delay: 0.3 }}
+          className="font-syne font-extrabold text-white mb-4 sm:mb-6 leading-none text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
           data-testid="hero-title"
         >
-          {t.hero.title}
+          {t.headline}
         </motion.h1>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.5 }}
           className="font-dm text-white/90 text-base sm:text-lg md:text-xl mb-2 max-w-2xl mx-auto px-2"
           data-testid="hero-subtitle"
         >
-          {t.hero.subtitle}
+          {t.subtitle}
         </motion.p>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.6 }}
           className="font-caveat text-sand text-xl sm:text-2xl mb-6 sm:mb-10"
         >
-          {t.hero.tagline}
+          {t.tagline}
         </motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
           <Button
@@ -294,8 +328,8 @@ const HeroSection = () => {
             className="btn-primary bg-sunset hover:bg-sunset/90 text-white rounded-full px-6 sm:px-8 py-6 text-base sm:text-lg font-syne font-bold w-full sm:w-auto min-h-[44px]"
             data-testid="hero-cta"
           >
-            <a href="#packages">
-              {t.hero.exploreBtn}
+            <a href="#experiences">
+              {t.cta}
               <ArrowRight className="ml-2" size={20} />
             </a>
           </Button>
@@ -307,7 +341,7 @@ const HeroSection = () => {
             className="border-2 border-white text-white hover:bg-white hover:text-ocean rounded-full px-6 sm:px-8 py-6 text-base sm:text-lg font-syne font-bold bg-transparent w-full sm:w-auto min-h-[44px]"
             data-testid="hero-secondary-cta"
           >
-            <a href="#trips">{t.hero.viewTrips}</a>
+            <a href="#how-it-works">{t.secondary}</a>
           </Button>
         </motion.div>
       </div>
@@ -327,7 +361,7 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block"
       >
         <motion.div
@@ -342,15 +376,70 @@ const HeroSection = () => {
   );
 };
 
-// Concept Section
-const ConceptSection = () => {
-  const { t } = useLanguage();
-  
+// How It Works Section - 4 Steps
+const HowItWorksSection = () => {
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "How It Works",
+      subtitle: "Your journey in 4 simple steps",
+      steps: [
+        { number: "01", title: "Choose Your Experience", description: "Combat, Language, or Visual Storytelling — pick what excites you most.", icon: <Target size={28} /> },
+        { number: "02", title: "Select Your Dates", description: "Find a trip that fits your schedule. We run experiences year-round.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Add Optional Activities", description: "Customize your trip with desert excursions, cooking classes, spa days and more.", icon: <Plus size={28} /> },
+        { number: "04", title: "Join the Adventure", description: "Meet your group, practice your passion, and create unforgettable memories.", icon: <Compass size={28} /> }
+      ]
+    },
+    fr: {
+      title: "Comment ça marche",
+      subtitle: "Votre voyage en 4 étapes simples",
+      steps: [
+        { number: "01", title: "Choisissez votre expérience", description: "Combat, Langues ou Storytelling Visuel — choisissez ce qui vous passionne.", icon: <Target size={28} /> },
+        { number: "02", title: "Sélectionnez vos dates", description: "Trouvez un voyage qui correspond à votre planning. Nous proposons des expériences toute l'année.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Ajoutez des activités", description: "Personnalisez votre voyage avec excursions désert, cours de cuisine, spa et plus.", icon: <Plus size={28} /> },
+        { number: "04", title: "Rejoignez l'aventure", description: "Rencontrez votre groupe, pratiquez votre passion et créez des souvenirs inoubliables.", icon: <Compass size={28} /> }
+      ]
+    },
+    es: {
+      title: "Cómo Funciona",
+      subtitle: "Tu viaje en 4 simples pasos",
+      steps: [
+        { number: "01", title: "Elige tu experiencia", description: "Combate, Idiomas o Storytelling Visual — elige lo que más te emocione.", icon: <Target size={28} /> },
+        { number: "02", title: "Selecciona tus fechas", description: "Encuentra un viaje que se ajuste a tu horario. Ofrecemos experiencias todo el año.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Añade actividades", description: "Personaliza tu viaje con excursiones al desierto, clases de cocina, spa y más.", icon: <Plus size={28} /> },
+        { number: "04", title: "Únete a la aventura", description: "Conoce a tu grupo, practica tu pasión y crea recuerdos inolvidables.", icon: <Compass size={28} /> }
+      ]
+    },
+    de: {
+      title: "So funktioniert's",
+      subtitle: "Deine Reise in 4 einfachen Schritten",
+      steps: [
+        { number: "01", title: "Wähle dein Erlebnis", description: "Kampf, Sprachen oder Visual Storytelling — wähle was dich begeistert.", icon: <Target size={28} /> },
+        { number: "02", title: "Wähle deine Daten", description: "Finde eine Reise die zu deinem Zeitplan passt. Wir bieten Erlebnisse das ganze Jahr.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Füge Aktivitäten hinzu", description: "Personalisiere deine Reise mit Wüstenexkursionen, Kochkursen, Spa und mehr.", icon: <Plus size={28} /> },
+        { number: "04", title: "Starte das Abenteuer", description: "Triff deine Gruppe, übe deine Leidenschaft und schaffe unvergessliche Erinnerungen.", icon: <Compass size={28} /> }
+      ]
+    },
+    pt: {
+      title: "Como Funciona",
+      subtitle: "Sua jornada em 4 passos simples",
+      steps: [
+        { number: "01", title: "Escolha sua experiência", description: "Combate, Idiomas ou Storytelling Visual — escolha o que mais te empolga.", icon: <Target size={28} /> },
+        { number: "02", title: "Selecione suas datas", description: "Encontre uma viagem que se encaixe na sua agenda. Oferecemos experiências o ano todo.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Adicione atividades", description: "Personalize sua viagem com excursões ao deserto, aulas de culinária, spa e mais.", icon: <Plus size={28} /> },
+        { number: "04", title: "Junte-se à aventura", description: "Conheça seu grupo, pratique sua paixão e crie memórias inesquecíveis.", icon: <Compass size={28} /> }
+      ]
+    }
+  };
+
+  const t = content[language] || content.en;
+
   return (
     <section 
-      id="concept" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite"
-      data-testid="concept-section"
+      id="how-it-works" 
+      className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-warmwhite"
+      data-testid="how-it-works-section"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -358,39 +447,33 @@ const ConceptSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="font-syne font-bold text-ocean mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
-            {t.concept.title}
+          <h2 className="font-syne font-bold text-ocean mb-4 text-2xl sm:text-3xl md:text-4xl">
+            {t.title}
           </h2>
-          <p className="font-dm text-ocean/80 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2">
-            {t.concept.description} <span className="text-sunset font-semibold">{t.concept.people}</span>, 
-            <span className="text-sunset font-semibold"> {t.concept.connections}</span> {' '}
-            <span className="text-sunset font-semibold">{t.concept.sharedExperiences}</span>. 
-            {' '}{t.concept.descriptionEnd}
+          <p className="font-dm text-ocean/70 text-base sm:text-lg">
+            {t.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {[
-            { icon: <Users className="text-sunset" size={32} />, title: t.concept.meetPeople, description: t.concept.meetPeopleDesc },
-            { icon: <Mountain className="text-sunset" size={32} />, title: t.concept.liveAdventures, description: t.concept.liveAdventuresDesc },
-            { icon: <Sun className="text-sunset" size={32} />, title: t.concept.discoverCulture, description: t.concept.discoverCultureDesc }
-          ].map((item, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          {t.steps.map((step, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-shadow h-full">
-                <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-sand/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                    {item.icon}
+              <Card className="bg-white border-none shadow-lg hover:shadow-xl transition-all h-full group">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-sunset/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-sunset group-hover:text-white transition-colors text-sunset">
+                    {step.icon}
                   </div>
-                  <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean mb-2 sm:mb-3">{item.title}</h3>
-                  <p className="font-dm text-ocean/70 text-sm sm:text-base">{item.description}</p>
+                  <span className="font-syne font-bold text-sand text-3xl">{step.number}</span>
+                  <h3 className="font-syne font-bold text-ocean text-lg mt-2 mb-3">{step.title}</h3>
+                  <p className="font-dm text-ocean/70 text-sm">{step.description}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -401,23 +484,102 @@ const ConceptSection = () => {
   );
 };
 
-// Packages Section
-const PackagesSection = ({ packages }) => {
-  const { t, language } = useLanguage();
-  
-  const getLocalizedPackage = (pkg) => {
-    const localizedData = packageTranslations[language]?.[pkg.id];
-    if (localizedData) {
-      return { ...pkg, title: localizedData.title, description: localizedData.description, inclusions: localizedData.inclusions };
+// Our Experiences Section - 3 Categories
+const ExperiencesSection = ({ experiences }) => {
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "Our Experiences",
+      subtitle: "Three unique ways to travel, learn, and grow",
+      from: "From",
+      duration: "7 days",
+      whatYouPractice: "What you'll practice:",
+      whatYouExperience: "What you'll experience:",
+      bookNow: "Book This Experience"
+    },
+    fr: {
+      title: "Nos Expériences",
+      subtitle: "Trois façons uniques de voyager, apprendre et grandir",
+      from: "À partir de",
+      duration: "7 jours",
+      whatYouPractice: "Ce que vous pratiquerez :",
+      whatYouExperience: "Ce que vous vivrez :",
+      bookNow: "Réserver cette expérience"
+    },
+    es: {
+      title: "Nuestras Experiencias",
+      subtitle: "Tres formas únicas de viajar, aprender y crecer",
+      from: "Desde",
+      duration: "7 días",
+      whatYouPractice: "Lo que practicarás:",
+      whatYouExperience: "Lo que experimentarás:",
+      bookNow: "Reservar esta experiencia"
+    },
+    de: {
+      title: "Unsere Erlebnisse",
+      subtitle: "Drei einzigartige Wege zu reisen, lernen und wachsen",
+      from: "Ab",
+      duration: "7 Tage",
+      whatYouPractice: "Was du üben wirst:",
+      whatYouExperience: "Was du erleben wirst:",
+      bookNow: "Dieses Erlebnis buchen"
+    },
+    pt: {
+      title: "Nossas Experiências",
+      subtitle: "Três formas únicas de viajar, aprender e crescer",
+      from: "A partir de",
+      duration: "7 dias",
+      whatYouPractice: "O que você vai praticar:",
+      whatYouExperience: "O que você vai experimentar:",
+      bookNow: "Reservar esta experiência"
     }
-    return pkg;
+  };
+
+  const t = content[language] || content.en;
+
+  const getExperienceIcon = (icon) => {
+    switch(icon) {
+      case 'boxing': return <Dumbbell size={32} />;
+      case 'languages': return <Languages size={32} />;
+      case 'camera': return <Camera size={32} />;
+      default: return <Star size={32} />;
+    }
+  };
+
+  const localizedTitles = {
+    en: {
+      'combat-holiday': 'Combat & Self-Defense Holiday',
+      'language-holiday': 'Language Practice Holiday',
+      'visual-storytelling': 'Visual Storytelling Holiday'
+    },
+    fr: {
+      'combat-holiday': 'Séjour Combat & Self-Défense',
+      'language-holiday': 'Séjour Pratique Linguistique',
+      'visual-storytelling': 'Séjour Storytelling Visuel'
+    },
+    es: {
+      'combat-holiday': 'Vacaciones de Combate & Defensa Personal',
+      'language-holiday': 'Vacaciones de Práctica de Idiomas',
+      'visual-storytelling': 'Vacaciones de Storytelling Visual'
+    },
+    de: {
+      'combat-holiday': 'Kampf & Selbstverteidigung Urlaub',
+      'language-holiday': 'Sprachpraxis Urlaub',
+      'visual-storytelling': 'Visual Storytelling Urlaub'
+    },
+    pt: {
+      'combat-holiday': 'Férias de Combate & Defesa Pessoal',
+      'language-holiday': 'Férias de Prática de Idiomas',
+      'visual-storytelling': 'Férias de Storytelling Visual'
+    }
   };
 
   return (
     <section 
-      id="packages" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-ocean"
-      data-testid="packages-section"
+      id="experiences" 
+      className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-ocean"
+      data-testid="experiences-section"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -425,108 +587,180 @@ const PackagesSection = ({ packages }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="font-syne font-bold text-white mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
-            {t.packages.title}
+          <h2 className="font-syne font-bold text-white mb-4 text-2xl sm:text-3xl md:text-4xl">
+            {t.title}
           </h2>
-          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
-            {t.packages.subtitle}
+          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto">
+            {t.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {packages.map((pkg, index) => {
-            const localizedPkg = getLocalizedPackage(pkg);
-            return (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+            >
+              <Card 
+                className="experience-card bg-white border-none overflow-hidden h-full flex flex-col"
+                data-testid={`experience-card-${exp.id}`}
               >
-                <Card 
-                  className={`experience-card bg-white border-none overflow-hidden h-full flex flex-col ${
-                    index === 1 ? "ring-4 ring-sand md:scale-105" : ""
-                  }`}
-                  data-testid={`package-card-${pkg.id}`}
-                >
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img 
-                      src={pkg.image} 
-                      alt={localizedPkg.title}
-                      className="card-image w-full h-full object-cover"
-                    />
+                <div className="aspect-[16/10] overflow-hidden relative">
+                  <img 
+                    src={exp.image} 
+                    alt={localizedTitles[language]?.[exp.id] || exp.title}
+                    className="card-image w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-sunset">
+                    {getExperienceIcon(exp.icon)}
                   </div>
-                  <CardContent className="p-4 sm:p-6 flex flex-col flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean">
-                        {localizedPkg.title}
-                      </h3>
-                      <span className="font-dm text-xs sm:text-sm text-ocean/60 bg-sand/20 px-2 py-1 rounded-full">
-                        {pkg.duration}
-                      </span>
+                </div>
+                <CardContent className="p-5 sm:p-6 flex flex-col flex-1">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean leading-tight">
+                      {localizedTitles[language]?.[exp.id] || exp.title}
+                    </h3>
+                  </div>
+                  
+                  <p className="font-caveat text-sunset text-lg mb-2">{exp.tagline}</p>
+                  
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="font-dm text-sm text-ocean/60">{t.from}</span>
+                    <span className="font-syne font-bold text-2xl text-ocean">{exp.currency}{exp.price}</span>
+                    <span className="font-dm text-sm text-ocean/60">/ {exp.duration}</span>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <p className="font-dm font-semibold text-ocean text-sm mb-2">{t.whatYouPractice}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.practices.map((practice, i) => (
+                        <span key={i} className="bg-sunset/10 text-sunset px-3 py-1 rounded-full text-xs font-dm">
+                          {practice}
+                        </span>
+                      ))}
                     </div>
-                    
-                    <div className="mb-3">
-                      <span className="font-dm text-sm text-ocean/60">{t.packages.from}</span>
-                      <span className="font-syne font-bold text-2xl sm:text-3xl text-sunset ml-2">
-                        {pkg.currency}{pkg.price}
-                      </span>
+                  </div>
+                  
+                  <div className="mb-4 flex-1">
+                    <p className="font-dm font-semibold text-ocean text-sm mb-2">{t.whatYouExperience}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.experiences.map((item, i) => (
+                        <span key={i} className="bg-ocean/10 text-ocean px-3 py-1 rounded-full text-xs font-dm">
+                          {item}
+                        </span>
+                      ))}
                     </div>
-                    
-                    <p className="font-dm text-ocean/70 text-sm mb-4">
-                      {localizedPkg.description}
-                    </p>
-                    
-                    <div className="mb-4 flex-1">
-                      <p className="font-dm font-semibold text-ocean text-sm mb-2">{t.packages.inclusions}</p>
-                      <ul className="space-y-1.5">
-                        {localizedPkg.inclusions.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-ocean/70">
-                            <Check className="text-sunset flex-shrink-0 mt-0.5" size={14} />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <Button 
-                      asChild
-                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
-                      data-testid={`reserve-package-${pkg.id}`}
-                    >
-                      <a href="#contact">{t.packages.reserveSpot}</a>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+                  </div>
+                  
+                  <Button 
+                    asChild
+                    className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
+                    data-testid={`book-experience-${exp.id}`}
+                  >
+                    <a href="#contact">{t.bookNow}</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-// Activities Section
-const ActivitiesSection = ({ activities }) => {
-  const { t, language } = useLanguage();
-  
-  const getLocalizedActivity = (act) => {
-    const localizedData = activityTranslations[language]?.[act.id];
-    if (localizedData) {
-      return { ...act, title: localizedData.title, description: localizedData.description };
+// Optional Activities Section
+const OptionalActivitiesSection = ({ activities }) => {
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "Optional Experiences",
+      subtitle: "Enhance your trip with add-on activities. All at fair local prices."
+    },
+    fr: {
+      title: "Expériences Optionnelles",
+      subtitle: "Enrichissez votre voyage avec des activités supplémentaires. Tout aux prix locaux justes."
+    },
+    es: {
+      title: "Experiencias Opcionales",
+      subtitle: "Mejora tu viaje con actividades adicionales. Todo a precios locales justos."
+    },
+    de: {
+      title: "Optionale Erlebnisse",
+      subtitle: "Bereichere deine Reise mit Zusatzaktivitäten. Alles zu fairen lokalen Preisen."
+    },
+    pt: {
+      title: "Experiências Opcionais",
+      subtitle: "Melhore sua viagem com atividades adicionais. Tudo a preços locais justos."
     }
-    return act;
+  };
+
+  const t = content[language] || content.en;
+
+  const localizedActivities = {
+    en: {
+      "surf-lessons": { title: "Surf Lessons", desc: "Ride the waves with local instructors" },
+      "desert-excursion": { title: "Desert Excursion", desc: "Camels, dunes & stargazing" },
+      "quad-adventure": { title: "Quad Adventure", desc: "Off-road desert exploration" },
+      "cooking-class": { title: "Cooking Class", desc: "Traditional Moroccan cuisine" },
+      "city-tour": { title: "City Tour", desc: "Discover the medina & souks" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Authentic relaxation experience" },
+      "nightlife-events": { title: "Nightlife Events", desc: "Rooftops & live music" },
+      "cultural-workshop": { title: "Cultural Workshop", desc: "Pottery, henna, crafts" }
+    },
+    fr: {
+      "surf-lessons": { title: "Cours de Surf", desc: "Surfez avec des instructeurs locaux" },
+      "desert-excursion": { title: "Excursion Désert", desc: "Chameaux, dunes & étoiles" },
+      "quad-adventure": { title: "Aventure Quad", desc: "Exploration hors-piste" },
+      "cooking-class": { title: "Cours de Cuisine", desc: "Cuisine marocaine traditionnelle" },
+      "city-tour": { title: "Visite Guidée", desc: "Découvrez la médina & les souks" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Relaxation authentique" },
+      "nightlife-events": { title: "Soirées", desc: "Rooftops & musique live" },
+      "cultural-workshop": { title: "Atelier Culturel", desc: "Poterie, henné, artisanat" }
+    },
+    es: {
+      "surf-lessons": { title: "Clases de Surf", desc: "Surfea con instructores locales" },
+      "desert-excursion": { title: "Excursión Desierto", desc: "Camellos, dunas & estrellas" },
+      "quad-adventure": { title: "Aventura Quad", desc: "Exploración todoterreno" },
+      "cooking-class": { title: "Clase de Cocina", desc: "Cocina marroquí tradicional" },
+      "city-tour": { title: "Tour Guiado", desc: "Descubre la medina & zocos" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Relajación auténtica" },
+      "nightlife-events": { title: "Vida Nocturna", desc: "Terrazas & música en vivo" },
+      "cultural-workshop": { title: "Taller Cultural", desc: "Cerámica, henna, artesanía" }
+    },
+    de: {
+      "surf-lessons": { title: "Surfkurse", desc: "Surfe mit lokalen Instruktoren" },
+      "desert-excursion": { title: "Wüstenexkursion", desc: "Kamele, Dünen & Sterne" },
+      "quad-adventure": { title: "Quad Abenteuer", desc: "Offroad Wüstenerkundung" },
+      "cooking-class": { title: "Kochkurs", desc: "Traditionelle marokkanische Küche" },
+      "city-tour": { title: "Stadttour", desc: "Entdecke die Medina & Souks" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Authentische Entspannung" },
+      "nightlife-events": { title: "Nachtleben", desc: "Dachterrassen & Live-Musik" },
+      "cultural-workshop": { title: "Kultureller Workshop", desc: "Töpferei, Henna, Handwerk" }
+    },
+    pt: {
+      "surf-lessons": { title: "Aulas de Surf", desc: "Surfe com instrutores locais" },
+      "desert-excursion": { title: "Excursão Deserto", desc: "Camelos, dunas & estrelas" },
+      "quad-adventure": { title: "Aventura Quad", desc: "Exploração off-road" },
+      "cooking-class": { title: "Aula de Culinária", desc: "Culinária marroquina tradicional" },
+      "city-tour": { title: "Tour Guiado", desc: "Descubra a medina & souks" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Relaxamento autêntico" },
+      "nightlife-events": { title: "Vida Noturna", desc: "Terraços & música ao vivo" },
+      "cultural-workshop": { title: "Workshop Cultural", desc: "Cerâmica, henna, artesanato" }
+    }
   };
 
   return (
     <section 
-      id="activities" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite"
-      data-testid="activities-section"
+      id="optional" 
+      className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-warmwhite"
+      data-testid="optional-section"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -534,19 +768,19 @@ const ActivitiesSection = ({ activities }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
-            {t.activities.title}
+          <h2 className="font-syne font-bold text-ocean mb-4 text-2xl sm:text-3xl md:text-4xl">
+            {t.title}
           </h2>
-          <p className="font-dm text-ocean/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
-            {t.activities.subtitle}
+          <p className="font-dm text-ocean/70 text-base sm:text-lg max-w-2xl mx-auto">
+            {t.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {activities.map((act, index) => {
-            const localizedAct = getLocalizedActivity(act);
+            const localized = localizedActivities[language]?.[act.id] || { title: act.title, desc: act.description };
             return (
               <motion.div
                 key={act.id}
@@ -562,27 +796,24 @@ const ActivitiesSection = ({ activities }) => {
                   <div className="aspect-square overflow-hidden rounded-t-lg">
                     <img 
                       src={act.image} 
-                      alt={localizedAct.title}
+                      alt={localized.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <CardContent className="p-3 sm:p-4">
+                  <CardContent className="p-4">
                     <h3 className="font-syne font-bold text-sm sm:text-base text-ocean mb-1 line-clamp-1">
-                      {localizedAct.title}
+                      {localized.title}
                     </h3>
-                    <p className="font-dm text-ocean/60 text-xs sm:text-sm mb-2 line-clamp-2 hidden sm:block">
-                      {localizedAct.description}
+                    <p className="font-dm text-ocean/60 text-xs mb-2 line-clamp-1">
+                      {localized.desc}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="font-syne font-bold text-sunset text-sm sm:text-base">
+                      <span className="font-syne font-bold text-sunset text-base">
                         {act.currency}{act.price}
                       </span>
-                      <button 
-                        className="w-7 h-7 sm:w-8 sm:h-8 bg-sunset/10 hover:bg-sunset text-sunset hover:text-white rounded-full flex items-center justify-center transition-colors"
-                        data-testid={`add-activity-${act.id}`}
-                      >
+                      <div className="w-7 h-7 bg-sunset/10 text-sunset rounded-full flex items-center justify-center group-hover:bg-sunset group-hover:text-white transition-colors">
                         <Plus size={16} />
-                      </button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -595,27 +826,76 @@ const ActivitiesSection = ({ activities }) => {
   );
 };
 
-// Community Section
-const CommunitySection = () => {
-  const { t } = useLanguage();
-  const values = ["Connect", "Explore", "Adventure", "Share", "Discover", "Live"];
-  
+// Destination Section - Morocco
+const DestinationSection = () => {
+  const { language } = useLanguage();
+
+  const content = {
+    en: {
+      title: "Destination: Morocco",
+      subtitle: "Where ancient traditions meet modern adventure",
+      description: "From the Atlantic surf beaches of Taghazout to the golden dunes of the Sahara, from the vibrant medinas of Marrakech to the blue streets of Chefchaouen — Morocco offers an incredible backdrop for your transformation journey.",
+      highlights: [
+        "Year-round sunshine & perfect weather",
+        "Rich culture & friendly locals",
+        "Diverse landscapes in one country",
+        "Affordable & accessible from Europe"
+      ]
+    },
+    fr: {
+      title: "Destination : Maroc",
+      subtitle: "Où traditions anciennes rencontrent aventure moderne",
+      description: "Des plages de surf de Taghazout aux dunes dorées du Sahara, des médinas vibrantes de Marrakech aux rues bleues de Chefchaouen — le Maroc offre un cadre incroyable pour votre voyage de transformation.",
+      highlights: [
+        "Soleil toute l'année & météo parfaite",
+        "Culture riche & habitants accueillants",
+        "Paysages diversifiés en un seul pays",
+        "Accessible & abordable depuis l'Europe"
+      ]
+    },
+    es: {
+      title: "Destino: Marruecos",
+      subtitle: "Donde las tradiciones antiguas se encuentran con la aventura moderna",
+      description: "Desde las playas de surf de Taghazout hasta las dunas doradas del Sahara, desde las vibrantes medinas de Marrakech hasta las calles azules de Chefchaouen — Marruecos ofrece un increíble escenario para tu viaje de transformación.",
+      highlights: [
+        "Sol todo el año & clima perfecto",
+        "Rica cultura & gente amable",
+        "Paisajes diversos en un solo país",
+        "Asequible & accesible desde Europa"
+      ]
+    },
+    de: {
+      title: "Reiseziel: Marokko",
+      subtitle: "Wo alte Traditionen auf moderne Abenteuer treffen",
+      description: "Von den Surfstränden von Taghazout bis zu den goldenen Dünen der Sahara, von den lebhaften Medinas von Marrakesch bis zu den blauen Straßen von Chefchaouen — Marokko bietet eine unglaubliche Kulisse für deine Transformationsreise.",
+      highlights: [
+        "Ganzjährig Sonne & perfektes Wetter",
+        "Reiche Kultur & freundliche Einheimische",
+        "Vielfältige Landschaften in einem Land",
+        "Erschwinglich & erreichbar von Europa"
+      ]
+    },
+    pt: {
+      title: "Destino: Marrocos",
+      subtitle: "Onde tradições antigas encontram aventura moderna",
+      description: "Das praias de surf de Taghazout às dunas douradas do Saara, das vibrantes medinas de Marraquexe às ruas azuis de Chefchaouen — Marrocos oferece um cenário incrível para sua jornada de transformação.",
+      highlights: [
+        "Sol o ano todo & clima perfeito",
+        "Cultura rica & locais amigáveis",
+        "Paisagens diversas em um só país",
+        "Acessível & barato da Europa"
+      ]
+    }
+  };
+
+  const t = content[language] || content.en;
+
   return (
     <section 
-      id="community" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white overflow-hidden"
-      data-testid="community-section"
+      id="destination" 
+      className="py-16 sm:py-20 md:py-28 bg-white overflow-hidden"
+      data-testid="destination-section"
     >
-      <div className="marquee-container mb-8 sm:mb-12 md:mb-16">
-        <div className="marquee-content">
-          {[...values, ...values, ...values, ...values].map((value, index) => (
-            <span key={index} className="font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-ocean/10 mx-4 sm:mx-6 md:mx-8">
-              {value} •
-            </span>
-          ))}
-        </div>
-      </div>
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
@@ -623,20 +903,22 @@ const CommunitySection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="order-2 md:order-1"
           >
-            <h2 className="font-syne font-bold text-ocean mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
-              {t.community.title}
+            <h2 className="font-syne font-bold text-ocean mb-4 text-2xl sm:text-3xl md:text-4xl">
+              {t.title}
             </h2>
-            <p className="font-dm text-ocean/80 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-              {t.community.description}
+            <p className="font-caveat text-sunset text-xl mb-4">
+              {t.subtitle}
+            </p>
+            <p className="font-dm text-ocean/80 text-base sm:text-lg mb-6 leading-relaxed">
+              {t.description}
             </p>
             
-            <div className="space-y-3 sm:space-y-4">
-              {t.community.features.map((item, index) => (
+            <div className="space-y-3">
+              {t.highlights.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-sunset rounded-full flex items-center justify-center flex-shrink-0">
-                    <ChevronRight className="text-white" size={14} />
+                  <div className="w-6 h-6 bg-sunset rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="text-white" size={14} />
                   </div>
                   <span className="font-dm text-ocean text-sm sm:text-base">{item}</span>
                 </div>
@@ -649,22 +931,23 @@ const CommunitySection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative order-1 md:order-2"
+            className="relative"
           >
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1758599669009-5a9002c09487?crop=entropy&cs=srgb&fm=jpg&w=400" 
-                alt="Travelers hiking together"
-                className="rounded-2xl sm:rounded-3xl aspect-[3/4] object-cover w-full"
+                src="https://images.unsplash.com/photo-1760727466827-f11ca401116e?crop=entropy&cs=srgb&fm=jpg&w=400" 
+                alt="Morocco medina"
+                className="rounded-2xl aspect-[3/4] object-cover w-full shadow-lg"
               />
               <img 
-                src="https://images.unsplash.com/photo-1758272959063-ef8a2114f807?crop=entropy&cs=srgb&fm=jpg&w=400" 
-                alt="Friends taking selfie"
-                className="rounded-2xl sm:rounded-3xl aspect-[3/4] object-cover mt-6 sm:mt-8 w-full"
+                src="https://images.unsplash.com/photo-1662009833223-75d3301290bd?crop=entropy&cs=srgb&fm=jpg&w=400" 
+                alt="Morocco desert"
+                className="rounded-2xl aspect-[3/4] object-cover mt-8 w-full shadow-lg"
               />
             </div>
-            <div className="absolute -bottom-2 sm:-bottom-4 left-0 sm:-left-4 bg-sunset text-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl">
-              <p className="font-caveat text-lg sm:text-xl md:text-2xl">{t.community.joinTravelers}</p>
+            <div className="absolute -bottom-4 -left-4 bg-ocean text-white p-4 sm:p-5 rounded-xl shadow-xl">
+              <p className="font-syne font-bold text-sand text-lg">Morocco</p>
+              <p className="font-dm text-white/80 text-sm">North Africa</p>
             </div>
           </motion.div>
         </div>
@@ -673,102 +956,134 @@ const CommunitySection = () => {
   );
 };
 
-// Trips Section
-const TripsSection = ({ trips }) => {
-  const { t, language } = useLanguage();
-
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    const localeMap = { en: 'en-GB', fr: 'fr-FR', es: 'es-ES', de: 'de-DE', pt: 'pt-PT' };
-    return date.toLocaleDateString(localeMap[language] || 'en-GB', { month: 'short', day: 'numeric' });
-  };
-
-  const getLocalizedTrip = (trip) => {
-    const localizedData = tripTranslations[language]?.[trip.id];
-    if (localizedData) {
-      return { ...trip, title: localizedData.title, location: localizedData.location };
+// Community Section
+const CommunitySection = () => {
+  const { language } = useLanguage();
+  
+  const content = {
+    en: {
+      title: "Small Groups, Big Connections",
+      description: "Join a carefully curated group of 8-12 international travelers. Our experiences are designed for meaningful connections — you'll train together, explore together, and create memories that last a lifetime.",
+      features: [
+        "Max 12 people per experience",
+        "International & diverse groups",
+        "Shared meals & social events",
+        "Lifelong friendships"
+      ],
+      cta: "Join 500+ travelers"
+    },
+    fr: {
+      title: "Petits Groupes, Grandes Connexions",
+      description: "Rejoignez un groupe soigneusement sélectionné de 8-12 voyageurs internationaux. Nos expériences sont conçues pour des connexions significatives — vous vous entraînerez ensemble, explorerez ensemble et créerez des souvenirs qui dureront toute une vie.",
+      features: [
+        "Max 12 personnes par expérience",
+        "Groupes internationaux & diversifiés",
+        "Repas partagés & événements sociaux",
+        "Amitiés pour la vie"
+      ],
+      cta: "Rejoignez 500+ voyageurs"
+    },
+    es: {
+      title: "Grupos Pequeños, Grandes Conexiones",
+      description: "Únete a un grupo cuidadosamente seleccionado de 8-12 viajeros internacionales. Nuestras experiencias están diseñadas para conexiones significativas — entrenarás juntos, explorarás juntos y crearás recuerdos que durarán toda la vida.",
+      features: [
+        "Máx 12 personas por experiencia",
+        "Grupos internacionales y diversos",
+        "Comidas compartidas y eventos sociales",
+        "Amistades para toda la vida"
+      ],
+      cta: "Únete a 500+ viajeros"
+    },
+    de: {
+      title: "Kleine Gruppen, Große Verbindungen",
+      description: "Tritt einer sorgfältig ausgewählten Gruppe von 8-12 internationalen Reisenden bei. Unsere Erlebnisse sind für bedeutungsvolle Verbindungen konzipiert — ihr trainiert zusammen, erkundet zusammen und schafft Erinnerungen fürs Leben.",
+      features: [
+        "Max 12 Personen pro Erlebnis",
+        "Internationale & diverse Gruppen",
+        "Gemeinsame Mahlzeiten & Events",
+        "Freundschaften fürs Leben"
+      ],
+      cta: "Schließe dich 500+ Reisenden an"
+    },
+    pt: {
+      title: "Grupos Pequenos, Grandes Conexões",
+      description: "Junte-se a um grupo cuidadosamente selecionado de 8-12 viajantes internacionais. Nossas experiências são projetadas para conexões significativas — vocês treinarão juntos, explorarão juntos e criarão memórias para toda a vida.",
+      features: [
+        "Máx 12 pessoas por experiência",
+        "Grupos internacionais e diversos",
+        "Refeições compartilhadas e eventos sociais",
+        "Amizades para a vida toda"
+      ],
+      cta: "Junte-se a 500+ viajantes"
     }
-    return trip;
   };
 
+  const t = content[language] || content.en;
+  
   return (
     <section 
-      id="trips" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite"
-      data-testid="trips-section"
+      id="community" 
+      className="py-16 sm:py-20 md:py-28 bg-ocean"
+      data-testid="community-section"
     >
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
-        >
-          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
-            {t.trips.title}
-          </h2>
-          <p className="font-dm text-ocean/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
-            {t.trips.subtitle}
-          </p>
-        </motion.div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-syne font-bold text-white mb-4 text-2xl sm:text-3xl md:text-4xl">
+              {t.title}
+            </h2>
+            <p className="font-dm text-white/80 text-base sm:text-lg mb-6 leading-relaxed">
+              {t.description}
+            </p>
+            
+            <div className="space-y-3 mb-6">
+              {t.features.map((item, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-sunset rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="text-white" size={14} />
+                  </div>
+                  <span className="font-dm text-white text-sm sm:text-base">{item}</span>
+                </div>
+              ))}
+            </div>
 
-        <div className="space-y-3 sm:space-y-4">
-          {trips.map((trip, index) => {
-            const localizedTrip = getLocalizedTrip(trip);
-            return (
-              <motion.div
-                key={trip.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Card className="trip-card bg-white border-none overflow-hidden" data-testid={`trip-card-${trip.id}`}>
-                  <CardContent className="p-0">
-                    <div className="flex flex-col sm:flex-row items-stretch">
-                      <div className="w-full sm:w-32 md:w-48 h-40 sm:h-auto flex-shrink-0">
-                        <img src={trip.image} alt={localizedTrip.title} className="w-full h-full object-cover" />
-                      </div>
-                      
-                      <div className="flex-1 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 w-full">
-                        <div className="flex-1">
-                          <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean mb-1">{localizedTrip.title}</h3>
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-ocean/70 font-dm text-xs sm:text-sm">
-                            <span className="flex items-center gap-1">
-                              <MapPin size={12} className="flex-shrink-0" />
-                              {localizedTrip.location}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Calendar size={12} className="flex-shrink-0" />
-                              {formatDate(trip.start_date)} - {formatDate(trip.end_date)}
-                            </span>
-                          </div>
-                        </div>
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full">
+              <div className="flex -space-x-2">
+                {[1,2,3,4].map((i) => (
+                  <div key={i} className="w-8 h-8 bg-sand rounded-full border-2 border-ocean flex items-center justify-center">
+                    <User className="text-ocean" size={14} />
+                  </div>
+                ))}
+              </div>
+              <span className="font-caveat text-sand text-lg">{t.cta}</span>
+            </div>
+          </motion.div>
 
-                        <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto">
-                          <div className="text-left sm:text-center">
-                            <p className="font-syne font-bold text-lg sm:text-xl text-ocean">{trip.currency}{trip.price}</p>
-                            <p className="font-dm text-xs sm:text-sm text-sunset font-medium">
-                              {trip.spots_left} {t.trips.spotsLeft}
-                            </p>
-                          </div>
-                          
-                          <Button 
-                            asChild
-                            className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-4 sm:px-6 font-dm text-sm flex-shrink-0"
-                            data-testid={`book-trip-${trip.id}`}
-                          >
-                            <a href="#contact">{t.trips.bookSpot}</a>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <img 
+                src="https://images.unsplash.com/photo-1758599669009-5a9002c09487?crop=entropy&cs=srgb&fm=jpg&w=400" 
+                alt="Travelers hiking"
+                className="rounded-2xl aspect-[3/4] object-cover w-full"
+              />
+              <img 
+                src="https://images.unsplash.com/photo-1758272959063-ef8a2114f807?crop=entropy&cs=srgb&fm=jpg&w=400" 
+                alt="Friends together"
+                className="rounded-2xl aspect-[3/4] object-cover mt-8 w-full"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -789,7 +1104,10 @@ const CatalogueSection = ({ catalogue }) => {
       car: <Car size={20} />,
       chef: <UtensilsCrossed size={20} />,
       sun: <Sun size={20} />,
-      map: <MapPinned size={20} />
+      map: <MapPinned size={20} />,
+      heart: <Heart size={20} />,
+      sunset: <Sun size={20} />,
+      utensils: <UtensilsCrossed size={20} />
     };
     return icons[iconName] || <MapPin size={20} />;
   };
@@ -805,7 +1123,7 @@ const CatalogueSection = ({ catalogue }) => {
   return (
     <section 
       id="catalogue" 
-      className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-white"
+      className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-warmwhite"
       data-testid="catalogue-section"
     >
       <div className="max-w-6xl mx-auto">
@@ -814,12 +1132,12 @@ const CatalogueSection = ({ catalogue }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12"
+          className="text-center mb-10 sm:mb-12"
         >
-          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
+          <h2 className="font-syne font-bold text-ocean mb-3 text-2xl sm:text-3xl md:text-4xl">
             {ct.title}
           </h2>
-          <p className="font-dm text-sunset text-lg sm:text-xl font-medium mb-4">
+          <p className="font-dm text-sunset text-lg font-medium mb-3">
             {ct.subtitle}
           </p>
           <p className="font-dm text-ocean/60 text-xs sm:text-sm italic max-w-2xl mx-auto">
@@ -850,7 +1168,7 @@ const CatalogueSection = ({ catalogue }) => {
                 return (
                   <tr 
                     key={item.id} 
-                    className={`${index % 2 === 0 ? 'bg-warmwhite' : 'bg-white'} hover:bg-sand/20 transition-colors`}
+                    className={`${index % 2 === 0 ? 'bg-white' : 'bg-warmwhite'} hover:bg-sand/20 transition-colors`}
                     data-testid={`catalogue-row-${item.id}`}
                   >
                     <td className="py-4 px-6">
@@ -917,7 +1235,7 @@ const CatalogueSection = ({ catalogue }) => {
           })}
         </div>
 
-        {/* Ethical Commitment Section */}
+        {/* Ethical Commitment */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -944,7 +1262,7 @@ const CatalogueSection = ({ catalogue }) => {
               </p>
 
               <div className="grid sm:grid-cols-3 gap-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
                   <div className="w-12 h-12 bg-sunset rounded-full flex items-center justify-center mb-4">
                     <Shield className="text-white" size={24} />
                   </div>
@@ -952,7 +1270,7 @@ const CatalogueSection = ({ catalogue }) => {
                   <p className="font-dm text-white/70 text-sm">{ct.commitment.noCommissionText}</p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
                   <div className="w-12 h-12 bg-sand rounded-full flex items-center justify-center mb-4">
                     <Check className="text-ocean" size={24} />
                   </div>
@@ -960,7 +1278,7 @@ const CatalogueSection = ({ catalogue }) => {
                   <p className="font-dm text-white/70 text-sm">{ct.commitment.transparencyText}</p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4">
                     <HandHeart className="text-sunset" size={24} />
                   </div>
@@ -976,100 +1294,163 @@ const CatalogueSection = ({ catalogue }) => {
   );
 };
 
-// About Section
-const AboutSection = () => {
-  const { t } = useLanguage();
-  
-  return (
-    <section id="about" className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-ocean" data-testid="about-section">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="order-2 md:order-1"
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1760727466827-f11ca401116e?crop=entropy&cs=srgb&fm=jpg&w=600" 
-              alt="Morocco street scene"
-              className="rounded-2xl sm:rounded-3xl shadow-2xl w-full"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="order-1 md:order-2"
-          >
-            <h2 className="font-syne font-bold text-white mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl">
-              {t.about.title}
-            </h2>
-            <p className="font-dm text-white/80 text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
-              {t.about.description1}
-            </p>
-            <p className="font-dm text-white/80 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-              {t.about.description2}
-            </p>
-            
-            <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl sm:rounded-2xl">
-              <p className="font-caveat text-lg sm:text-xl text-sand mb-2">
-                "{t.about.quote}"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-sunset rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="font-syne font-bold text-white text-sm sm:text-base">NK</span>
-                </div>
-                <div>
-                  <p className="font-syne font-bold text-white text-sm sm:text-base">Naimi Mohamed Karim</p>
-                  <p className="font-dm text-xs sm:text-sm text-white/60">{t.about.founder}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 // Contact Section
-const ContactSection = ({ packages, onSubmit, isSubmitting }) => {
-  const { t, language } = useLanguage();
+const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "", trip_interest: "" });
+
+  const content = {
+    en: {
+      title: "Start Your Journey",
+      subtitle: "Ready to transform your next trip into an experience? Get in touch.",
+      name: "Your Name",
+      namePlaceholder: "Enter your name",
+      email: "Email Address",
+      emailPlaceholder: "your@email.com",
+      interested: "Which experience interests you?",
+      selectExperience: "Select an experience",
+      generalInquiry: "General Inquiry",
+      message: "Your Message",
+      messagePlaceholder: "Tell us about yourself, your goals, or any questions...",
+      sendMessage: "Send Message",
+      sending: "Sending...",
+      successTitle: "Message sent!",
+      successDesc: "We'll get back to you within 24 hours.",
+      errorTitle: "Error sending message",
+      errorDesc: "Please try again or email us directly."
+    },
+    fr: {
+      title: "Commencez Votre Voyage",
+      subtitle: "Prêt à transformer votre prochain voyage en expérience ? Contactez-nous.",
+      name: "Votre Nom",
+      namePlaceholder: "Entrez votre nom",
+      email: "Adresse Email",
+      emailPlaceholder: "votre@email.com",
+      interested: "Quelle expérience vous intéresse ?",
+      selectExperience: "Sélectionnez une expérience",
+      generalInquiry: "Demande Générale",
+      message: "Votre Message",
+      messagePlaceholder: "Parlez-nous de vous, vos objectifs ou vos questions...",
+      sendMessage: "Envoyer le Message",
+      sending: "Envoi en cours...",
+      successTitle: "Message envoyé !",
+      successDesc: "Nous vous répondrons dans les 24 heures.",
+      errorTitle: "Erreur d'envoi",
+      errorDesc: "Veuillez réessayer ou nous contacter directement."
+    },
+    es: {
+      title: "Comienza Tu Viaje",
+      subtitle: "¿Listo para transformar tu próximo viaje en una experiencia? Contáctanos.",
+      name: "Tu Nombre",
+      namePlaceholder: "Ingresa tu nombre",
+      email: "Correo Electrónico",
+      emailPlaceholder: "tu@email.com",
+      interested: "¿Qué experiencia te interesa?",
+      selectExperience: "Selecciona una experiencia",
+      generalInquiry: "Consulta General",
+      message: "Tu Mensaje",
+      messagePlaceholder: "Cuéntanos sobre ti, tus metas o preguntas...",
+      sendMessage: "Enviar Mensaje",
+      sending: "Enviando...",
+      successTitle: "¡Mensaje enviado!",
+      successDesc: "Te responderemos en 24 horas.",
+      errorTitle: "Error al enviar",
+      errorDesc: "Por favor intenta de nuevo o escríbenos directamente."
+    },
+    de: {
+      title: "Starte Deine Reise",
+      subtitle: "Bereit deine nächste Reise in ein Erlebnis zu verwandeln? Kontaktiere uns.",
+      name: "Dein Name",
+      namePlaceholder: "Gib deinen Namen ein",
+      email: "E-Mail Adresse",
+      emailPlaceholder: "deine@email.com",
+      interested: "Welches Erlebnis interessiert dich?",
+      selectExperience: "Wähle ein Erlebnis",
+      generalInquiry: "Allgemeine Anfrage",
+      message: "Deine Nachricht",
+      messagePlaceholder: "Erzähl uns von dir, deinen Zielen oder Fragen...",
+      sendMessage: "Nachricht Senden",
+      sending: "Wird gesendet...",
+      successTitle: "Nachricht gesendet!",
+      successDesc: "Wir melden uns innerhalb von 24 Stunden.",
+      errorTitle: "Fehler beim Senden",
+      errorDesc: "Bitte versuche es erneut oder schreib uns direkt."
+    },
+    pt: {
+      title: "Comece Sua Jornada",
+      subtitle: "Pronto para transformar sua próxima viagem em uma experiência? Entre em contato.",
+      name: "Seu Nome",
+      namePlaceholder: "Digite seu nome",
+      email: "Endereço de Email",
+      emailPlaceholder: "seu@email.com",
+      interested: "Qual experiência te interessa?",
+      selectExperience: "Selecione uma experiência",
+      generalInquiry: "Consulta Geral",
+      message: "Sua Mensagem",
+      messagePlaceholder: "Conte-nos sobre você, seus objetivos ou perguntas...",
+      sendMessage: "Enviar Mensagem",
+      sending: "Enviando...",
+      successTitle: "Mensagem enviada!",
+      successDesc: "Responderemos em 24 horas.",
+      errorTitle: "Erro ao enviar",
+      errorDesc: "Por favor tente novamente ou envie-nos um email."
+    }
+  };
+
+  const t = content[language] || content.en;
+
+  const experienceLabels = {
+    en: {
+      'combat-holiday': 'Combat & Self-Defense Holiday',
+      'language-holiday': 'Language Practice Holiday',
+      'visual-storytelling': 'Visual Storytelling Holiday'
+    },
+    fr: {
+      'combat-holiday': 'Séjour Combat & Self-Défense',
+      'language-holiday': 'Séjour Pratique Linguistique',
+      'visual-storytelling': 'Séjour Storytelling Visuel'
+    },
+    es: {
+      'combat-holiday': 'Vacaciones de Combate',
+      'language-holiday': 'Vacaciones de Idiomas',
+      'visual-storytelling': 'Vacaciones de Storytelling'
+    },
+    de: {
+      'combat-holiday': 'Kampf & Selbstverteidigung',
+      'language-holiday': 'Sprachpraxis Urlaub',
+      'visual-storytelling': 'Visual Storytelling'
+    },
+    pt: {
+      'combat-holiday': 'Férias de Combate',
+      'language-holiday': 'Férias de Idiomas',
+      'visual-storytelling': 'Férias de Storytelling'
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit(formData, t);
   };
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const getLocalizedPackage = (pkg) => {
-    const localizedData = packageTranslations[language]?.[pkg.id];
-    return localizedData ? localizedData.title : pkg.title;
-  };
-
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 bg-warmwhite" data-testid="contact-section">
+    <section id="contact" className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-white" data-testid="contact-section">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12"
+          className="text-center mb-10 sm:mb-12"
         >
-          <h2 className="font-syne font-bold text-ocean mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl">
-            {t.contact.title}
+          <h2 className="font-syne font-bold text-ocean mb-4 text-2xl sm:text-3xl md:text-4xl">
+            {t.title}
           </h2>
-          <p className="font-dm text-ocean/80 text-base sm:text-lg max-w-2xl mx-auto px-2">
-            {t.contact.subtitle}
+          <p className="font-dm text-ocean/70 text-base sm:text-lg max-w-2xl mx-auto">
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -1079,78 +1460,80 @@ const ContactSection = ({ packages, onSubmit, isSubmitting }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Card className="bg-white border-none shadow-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" data-testid="contact-form">
-                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <Card className="bg-warmwhite border-none shadow-xl">
+            <CardContent className="p-5 sm:p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-5" data-testid="contact-form">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm">
                       <User size={16} />
-                      {t.contact.name}
+                      {t.name}
                     </label>
                     <Input 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder={t.contact.namePlaceholder}
+                      placeholder={t.namePlaceholder}
                       required
-                      className="form-input border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base"
+                      className="border-border focus:border-sunset rounded-xl py-5"
                       data-testid="contact-name"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                    <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm">
                       <Mail size={16} />
-                      {t.contact.email}
+                      {t.email}
                     </label>
                     <Input 
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder={t.contact.emailPlaceholder}
+                      placeholder={t.emailPlaceholder}
                       required
-                      className="form-input border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base"
+                      className="border-border focus:border-sunset rounded-xl py-5"
                       data-testid="contact-email"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
-                    <Waves size={16} />
-                    {t.contact.interested}
+                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm">
+                    <Target size={16} />
+                    {t.interested}
                   </label>
                   <Select 
                     value={formData.trip_interest} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, trip_interest: value }))}
                   >
-                    <SelectTrigger className="border-border focus:border-sunset rounded-xl py-5 sm:py-6 text-base" data-testid="contact-trip-select">
-                      <SelectValue placeholder={t.contact.selectExperience} />
+                    <SelectTrigger className="border-border focus:border-sunset rounded-xl py-5" data-testid="contact-experience-select">
+                      <SelectValue placeholder={t.selectExperience} />
                     </SelectTrigger>
                     <SelectContent>
-                      {packages.map(pkg => (
-                        <SelectItem key={pkg.id} value={pkg.title}>{getLocalizedPackage(pkg)}</SelectItem>
+                      {experiences.map(exp => (
+                        <SelectItem key={exp.id} value={exp.title}>
+                          {experienceLabels[language]?.[exp.id] || exp.title}
+                        </SelectItem>
                       ))}
-                      <SelectItem value="general">{t.contact.generalInquiry}</SelectItem>
+                      <SelectItem value="general">{t.generalInquiry}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm sm:text-base">
+                  <label className="font-dm font-medium text-ocean flex items-center gap-2 text-sm">
                     <MessageSquare size={16} />
-                    {t.contact.message}
+                    {t.message}
                   </label>
                   <Textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder={t.contact.messagePlaceholder}
+                    placeholder={t.messagePlaceholder}
                     rows={4}
                     required
-                    className="form-input border-border focus:border-sunset rounded-xl resize-none text-base"
+                    className="border-border focus:border-sunset rounded-xl resize-none"
                     data-testid="contact-message"
                   />
                 </div>
@@ -1159,10 +1542,10 @@ const ContactSection = ({ packages, onSubmit, isSubmitting }) => {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 text-base sm:text-lg font-syne font-bold min-h-[44px]"
+                  className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 font-syne font-bold"
                   data-testid="contact-submit"
                 >
-                  {isSubmitting ? t.contact.sending : t.contact.sendMessage}
+                  {isSubmitting ? t.sending : t.sendMessage}
                   <ArrowRight className="ml-2" size={18} />
                 </Button>
               </form>
@@ -1176,35 +1559,88 @@ const ContactSection = ({ packages, onSubmit, isSubmitting }) => {
 
 // Footer
 const Footer = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   
-  const getLocalizedPackageTitle = (id) => {
-    const data = packageTranslations[language]?.[id];
-    return data ? data.title : id;
+  const content = {
+    en: {
+      description: "Travel • Practice • Experience. Transform your next trip into a journey of growth, connection, and unforgettable memories in Morocco.",
+      experiencesTitle: "Experiences",
+      contactTitle: "Contact",
+      companyInfo: "Company Info",
+      getInTouch: "Get in Touch",
+      rights: "All rights reserved.",
+      foundedBy: "Founded by"
+    },
+    fr: {
+      description: "Voyage • Pratique • Expérience. Transformez votre prochain voyage en un parcours de croissance, de connexion et de souvenirs inoubliables au Maroc.",
+      experiencesTitle: "Expériences",
+      contactTitle: "Contact",
+      companyInfo: "Info Entreprise",
+      getInTouch: "Nous Contacter",
+      rights: "Tous droits réservés.",
+      foundedBy: "Fondé par"
+    },
+    es: {
+      description: "Viaja • Practica • Experimenta. Transforma tu próximo viaje en un recorrido de crecimiento, conexión y recuerdos inolvidables en Marruecos.",
+      experiencesTitle: "Experiencias",
+      contactTitle: "Contacto",
+      companyInfo: "Info Empresa",
+      getInTouch: "Contáctanos",
+      rights: "Todos los derechos reservados.",
+      foundedBy: "Fundado por"
+    },
+    de: {
+      description: "Reisen • Üben • Erleben. Verwandle deine nächste Reise in eine Reise des Wachstums, der Verbindung und unvergesslicher Erinnerungen in Marokko.",
+      experiencesTitle: "Erlebnisse",
+      contactTitle: "Kontakt",
+      companyInfo: "Firmeninfo",
+      getInTouch: "Kontaktiere Uns",
+      rights: "Alle Rechte vorbehalten.",
+      foundedBy: "Gegründet von"
+    },
+    pt: {
+      description: "Viaje • Pratique • Experimente. Transforme sua próxima viagem em uma jornada de crescimento, conexão e memórias inesquecíveis em Marrocos.",
+      experiencesTitle: "Experiências",
+      contactTitle: "Contato",
+      companyInfo: "Info da Empresa",
+      getInTouch: "Entre em Contato",
+      rights: "Todos os direitos reservados.",
+      foundedBy: "Fundado por"
+    }
+  };
+
+  const t = content[language] || content.en;
+
+  const experienceLabels = {
+    en: ['Combat Holiday', 'Language Holiday', 'Storytelling Holiday'],
+    fr: ['Séjour Combat', 'Séjour Langues', 'Séjour Storytelling'],
+    es: ['Vacaciones Combate', 'Vacaciones Idiomas', 'Vacaciones Storytelling'],
+    de: ['Kampf Urlaub', 'Sprach Urlaub', 'Storytelling Urlaub'],
+    pt: ['Férias Combate', 'Férias Idiomas', 'Férias Storytelling']
   };
 
   return (
-    <footer className="bg-ocean py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-12" data-testid="footer">
+    <footer className="bg-ocean py-10 sm:py-12 px-4 sm:px-6 md:px-12" data-testid="footer">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div className="sm:col-span-2">
-            <h3 className="font-syne font-bold text-xl sm:text-2xl text-white mb-3 sm:mb-4">THE BRIDGE</h3>
-            <p className="font-dm text-white/70 mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
-              {t.footer.description}
+            <h3 className="font-syne font-bold text-xl sm:text-2xl text-white mb-3">THE BRIDGE</h3>
+            <p className="font-dm text-white/70 mb-5 max-w-md text-sm">
+              {t.description}
             </p>
-            <div className="flex gap-3 sm:gap-4">
+            <div className="flex gap-3">
               <a 
                 href="https://www.linkedin.com/in/karim-naimi-b1aa1139/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
                 data-testid="footer-linkedin"
               >
                 <Linkedin className="text-white" size={18} />
               </a>
               <a 
                 href="#" 
-                className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-sunset transition-colors"
                 data-testid="footer-instagram"
               >
                 <Instagram className="text-white" size={18} />
@@ -1213,34 +1649,33 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">{t.footer.packagesTitle}</h4>
+            <h4 className="font-syne font-bold text-white mb-4 text-sm">{t.experiencesTitle}</h4>
             <ul className="space-y-2 font-dm text-white/70 text-sm">
-              <li><a href="#packages" className="hover:text-sunset transition-colors">{getLocalizedPackageTitle("weekend-experience")}</a></li>
-              <li><a href="#packages" className="hover:text-sunset transition-colors">{getLocalizedPackageTitle("premium-weekend")}</a></li>
-              <li><a href="#packages" className="hover:text-sunset transition-colors">{getLocalizedPackageTitle("explorer-experience")}</a></li>
+              {(experienceLabels[language] || experienceLabels.en).map((label, i) => (
+                <li key={i}><a href="#experiences" className="hover:text-sunset transition-colors">{label}</a></li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-syne font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">{t.footer.contactTitle}</h4>
+            <h4 className="font-syne font-bold text-white mb-4 text-sm">{t.contactTitle}</h4>
             <ul className="space-y-2 font-dm text-white/70 text-sm">
               <li>
                 <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/unyceo-fr-953646577" target="_blank" rel="noopener noreferrer" className="hover:text-sunset transition-colors">
-                  {t.footer.companyInfo}
+                  {t.companyInfo}
                 </a>
               </li>
-              <li><a href="#contact" className="hover:text-sunset transition-colors">{t.footer.getInTouch}</a></li>
-              <li><a href="#trips" className="hover:text-sunset transition-colors">{t.nav.upcomingTrips}</a></li>
+              <li><a href="#contact" className="hover:text-sunset transition-colors">{t.getInTouch}</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-          <p className="font-dm text-white/60 text-xs sm:text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} THE BRIDGE. {t.footer.rights}
+        <div className="border-t border-white/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="font-dm text-white/60 text-xs text-center sm:text-left">
+            © {new Date().getFullYear()} THE BRIDGE. {t.rights}
           </p>
-          <p className="font-dm text-white/60 text-xs sm:text-sm text-center sm:text-right">
-            {t.footer.foundedBy} <span className="text-sand">Naimi Mohamed Karim</span>
+          <p className="font-dm text-white/60 text-xs text-center sm:text-right">
+            {t.foundedBy} <span className="text-sand">Naimi Mohamed Karim</span>
           </p>
         </div>
       </div>
@@ -1251,12 +1686,11 @@ const Footer = () => {
 // Main App Content
 const AppContent = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [packages, setPackages] = useState([]);
+  const [experiences, setExperiences] = useState([]);
   const [activities, setActivities] = useState([]);
   const [catalogue, setCatalogue] = useState([]);
-  const [trips, setTrips] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -1267,16 +1701,14 @@ const AppContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [pkgRes, actRes, catRes, tripsRes] = await Promise.all([
-          axios.get(`${API}/packages`),
+        const [expRes, actRes, catRes] = await Promise.all([
+          axios.get(`${API}/experiences`),
           axios.get(`${API}/activities`),
-          axios.get(`${API}/catalogue`),
-          axios.get(`${API}/trips`)
+          axios.get(`${API}/catalogue`)
         ]);
-        setPackages(pkgRes.data);
+        setExperiences(expRes.data);
         setActivities(actRes.data);
         setCatalogue(catRes.data);
-        setTrips(tripsRes.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -1284,14 +1716,14 @@ const AppContent = () => {
     fetchData();
   }, []);
 
-  const handleContactSubmit = async (formData) => {
+  const handleContactSubmit = async (formData, t) => {
     setIsSubmitting(true);
     try {
       await axios.post(`${API}/contact`, formData);
-      toast.success(t.contact.successTitle, { description: t.contact.successDesc });
+      toast.success(t.successTitle, { description: t.successDesc });
     } catch (error) {
       console.error("Error submitting contact:", error);
-      toast.error(t.contact.errorTitle, { description: t.contact.errorDesc });
+      toast.error(t.errorTitle, { description: t.errorDesc });
     } finally {
       setIsSubmitting(false);
     }
@@ -1302,14 +1734,13 @@ const AppContent = () => {
       <Toaster position="top-right" richColors />
       <Navigation scrolled={scrolled} />
       <HeroSection />
-      <ConceptSection />
-      <PackagesSection packages={packages} />
-      <ActivitiesSection activities={activities} />
-      <CatalogueSection catalogue={catalogue} />
+      <HowItWorksSection />
+      <ExperiencesSection experiences={experiences} />
+      <OptionalActivitiesSection activities={activities} />
+      <DestinationSection />
       <CommunitySection />
-      <TripsSection trips={trips} />
-      <AboutSection />
-      <ContactSection packages={packages} onSubmit={handleContactSubmit} isSubmitting={isSubmitting} />
+      <CatalogueSection catalogue={catalogue} />
+      <ContactSection experiences={experiences} onSubmit={handleContactSubmit} isSubmitting={isSubmitting} />
       <Footer />
     </>
   );
