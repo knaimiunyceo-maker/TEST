@@ -1858,6 +1858,7 @@ function App() {
             <Route path="/experiences" element={<ExperiencesPage />} />
             <Route path="/experiences/self-defense" element={<SelfDefensePage />} />
             <Route path="/experiences/language-practice" element={<LanguagePracticePage />} />
+            <Route path="/experiences/visual-storytelling" element={<VisualStorytellingPage />} />
             
             {/* Legacy route for language practice */}
             <Route path="/language-practice" element={<LanguagePracticePage />} />
@@ -1866,6 +1867,7 @@ function App() {
             <Route path="/destinations" element={<DestinationsPage />} />
             <Route path="/destinations/casablanca" element={<CasablancaPage />} />
             <Route path="/destinations/agadir" element={<AgadirPage />} />
+            <Route path="/destinations/marrakech" element={<MarrakechPage />} />
             
             {/* Other pages */}
             <Route path="/activities" element={<ActivitiesPage />} />
