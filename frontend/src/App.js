@@ -764,6 +764,14 @@ const ExperiencesSection = ({ experiences }) => {
                     >
                       <Link to="/experiences/self-defense">{t.bookNow}</Link>
                     </Button>
+                  ) : exp.id === 'visual-storytelling' ? (
+                    <Button 
+                      asChild
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
+                      data-testid={`book-experience-${exp.id}`}
+                    >
+                      <Link to="/experiences/visual-storytelling">{t.bookNow}</Link>
+                    </Button>
                   ) : (
                     <Button 
                       asChild
