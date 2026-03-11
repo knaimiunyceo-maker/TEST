@@ -680,7 +680,7 @@ const LanguagePracticePage = () => {
                       {selectedStartDate && (
                         <div className="flex justify-between">
                           <span className="text-white/70">Start:</span>
-                          <span className="font-medium">{selectedStartDate}</span>
+                          <span className="font-medium">{formatDate(selectedStartDate)}</span>
                         </div>
                       )}
                     </div>
