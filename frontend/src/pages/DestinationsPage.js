@@ -12,8 +12,17 @@ const DESTINATIONS = [
     tagline: "Morocco's modern metropolis",
     description: "The economic capital of Morocco. A blend of tradition and modernity with stunning Art Deco architecture.",
     image: "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=800",
-    experiences: ["Language Practice"],
+    experiences: ["Language Practice", "Self-Defense"],
     highlights: ["Hassan II Mosque", "Art Deco downtown", "Corniche beaches", "Vibrant nightlife"]
+  },
+  {
+    id: "marrakech",
+    name: "Marrakech",
+    tagline: "The Red City",
+    description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.",
+    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
+    experiences: ["Self-Defense", "Visual Storytelling"],
+    highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"]
   },
   {
     id: "agadir",
@@ -23,15 +32,6 @@ const DESTINATIONS = [
     image: "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=800",
     experiences: ["Self-Defense", "Visual Storytelling"],
     highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"]
-  },
-  {
-    id: "marrakech",
-    name: "Marrakech",
-    tagline: "The Red City",
-    description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.",
-    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
-    experiences: ["Visual Storytelling"],
-    highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"]
   }
 ];
 
