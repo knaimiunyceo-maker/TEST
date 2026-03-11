@@ -32,7 +32,8 @@ const EXPERIENCES = [
 
 const CITIES = [
   { id: "casablanca", label: "Casablanca" },
-  { id: "marrakech", label: "Marrakech" }
+  { id: "marrakech", label: "Marrakech" },
+  { id: "agadir", label: "Agadir" }
 ];
 
 const DURATIONS = [
