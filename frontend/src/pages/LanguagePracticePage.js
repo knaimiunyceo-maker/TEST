@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  ArrowLeft, Calendar, Clock, MapPin, Users, Award, 
+  ArrowLeft, Calendar as CalendarIcon, Clock, MapPin, Users, Award, 
   BookOpen, CheckCircle, Globe, GraduationCap, Languages,
   Mail, User, ChevronDown, Info, Star, Sun, Moon, X
 } from "lucide-react";
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { Calendar } from "@/components/ui/calendar";
 import { Toaster, toast } from "sonner";
 import {
   Select,
@@ -19,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
+import { fr } from "date-fns/locale";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
