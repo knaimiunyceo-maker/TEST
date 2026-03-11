@@ -270,7 +270,6 @@ const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
 const LanguagePracticePage = () => {
   const [selectedWeeks, setSelectedWeeks] = useState("4");
   const [selectedLevel, setSelectedLevel] = useState("a2");
-  const [isBeginner, setIsBeginner] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
