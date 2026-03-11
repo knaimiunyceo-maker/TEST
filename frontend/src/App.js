@@ -1804,10 +1804,8 @@ const AppContent = () => {
       <HeroSection />
       <HowItWorksSection />
       <ExperiencesSection experiences={experiences} />
-      <OptionalActivitiesSection activities={activities} />
       <DestinationSection />
       <CommunitySection />
-      <CatalogueSection catalogue={catalogue} />
       <ContactSection experiences={experiences} onSubmit={handleContactSubmit} isSubmitting={isSubmitting} />
       <Footer />
     </>
