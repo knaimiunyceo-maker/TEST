@@ -12,17 +12,17 @@ const DESTINATIONS = [
     tagline: "Morocco's modern metropolis",
     description: "The economic capital of Morocco. A blend of tradition and modernity with stunning Art Deco architecture.",
     image: "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=800",
-    experiences: ["Combat Holiday", "Language Holiday"],
+    experiences: ["Language Practice"],
     highlights: ["Hassan II Mosque", "Art Deco downtown", "Corniche beaches", "Vibrant nightlife"]
   },
   {
-    id: "marrakech",
-    name: "Marrakech",
-    tagline: "The Red City",
-    description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.",
-    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
-    experiences: ["Combat Holiday", "Language Holiday", "Visual Storytelling"],
-    highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"]
+    id: "agadir",
+    name: "Agadir",
+    tagline: "Morocco's sunny beach paradise",
+    description: "The premier beach destination with 300+ sunny days per year. Perfect for training and beach life.",
+    image: "https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=800",
+    experiences: ["Self-Defense"],
+    highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"]
   }
 ];
 
