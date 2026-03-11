@@ -440,7 +440,7 @@ const HowItWorksSection = () => {
       title: "Como Funciona",
       subtitle: "Sua jornada em 4 passos simples",
       steps: [
-        { number: "01", title: "Escolha sua experiência", description: "Combate, Idiomas ou Storytelling Visual — escolha o que mais te empolga.", icon: <Target size={28} /> },
+        { number: "01", title: "Escolha sua experiência", description: "Defesa Pessoal, Idiomas ou Storytelling Visual — escolha o que mais te empolga.", icon: <Target size={28} /> },
         { number: "02", title: "Selecione suas datas", description: "Encontre uma viagem que se encaixe na sua agenda. Oferecemos experiências o ano todo.", icon: <Calendar size={28} /> },
         { number: "03", title: "Adicione atividades", description: "Personalize sua viagem com excursões ao deserto, aulas de culinária, spa e mais.", icon: <Plus size={28} /> },
         { number: "04", title: "Junte-se à aventura", description: "Conheça seu grupo, pratique sua paixão e crie memórias inesquecíveis.", icon: <Compass size={28} /> }
