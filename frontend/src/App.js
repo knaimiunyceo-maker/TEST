@@ -35,11 +35,10 @@ import { catalogueTranslations } from "./translations";
 // Page imports
 import LanguagePracticePage from "./pages/LanguagePracticePage";
 import ExperiencesPage from "./pages/ExperiencesPage";
-import CombatHolidayPage from "./pages/CombatHolidayPage";
-import VisualStorytellingPage from "./pages/VisualStorytellingPage";
+import SelfDefensePage from "./pages/SelfDefensePage";
 import DestinationsPage from "./pages/DestinationsPage";
 import CasablancaPage from "./pages/CasablancaPage";
-import MarrakechPage from "./pages/MarrakechPage";
+import AgadirPage from "./pages/AgadirPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import AboutPage from "./pages/AboutPage";
