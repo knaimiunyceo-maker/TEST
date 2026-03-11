@@ -31,7 +31,19 @@ import {
 import { Toaster, toast } from "sonner";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import { catalogueTranslations } from "./translations";
+
+// Page imports
 import LanguagePracticePage from "./pages/LanguagePracticePage";
+import ExperiencesPage from "./pages/ExperiencesPage";
+import CombatHolidayPage from "./pages/CombatHolidayPage";
+import VisualStorytellingPage from "./pages/VisualStorytellingPage";
+import DestinationsPage from "./pages/DestinationsPage";
+import CasablancaPage from "./pages/CasablancaPage";
+import MarrakechPage from "./pages/MarrakechPage";
+import ActivitiesPage from "./pages/ActivitiesPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
+import AboutPage from "./pages/AboutPage";
+import BookPage from "./pages/BookPage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
