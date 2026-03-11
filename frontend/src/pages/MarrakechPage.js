@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  MapPin, ArrowRight, Sun, Users, Home, 
+  MapPin, ArrowRight, Sun, Users, Home, Shield,
   Camera, Check, Star, Mountain
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
