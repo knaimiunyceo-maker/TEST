@@ -25,7 +25,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const EXPERIENCES = [
-  { id: "combat", label: "Combat & Self-Defense Holiday", icon: <Dumbbell size={20} />, prices: { weekend: 250, "5days": 450, "7days": 550 } },
+  { id: "self-defense", label: "Self-Defense Holiday", icon: <Shield size={20} />, prices: { weekend: 250, "5days": 450, "7days": 550 } },
   { id: "language", label: "Language Practice Holiday", icon: <Languages size={20} />, prices: { weekend: 220, "5days": 400, "7days": 500 } },
   { id: "storytelling", label: "Visual Storytelling Holiday", icon: <Camera size={20} />, prices: { weekend: 260, "5days": 480, "7days": 580 } }
 ];
