@@ -11,7 +11,7 @@ const DESTINATIONS = [
     name: "Casablanca",
     tagline: "Morocco's modern metropolis",
     description: "The economic capital of Morocco. A blend of tradition and modernity with stunning Art Deco architecture.",
-    image: "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=800",
+    image: "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=800",
     experiences: ["Combat Holiday", "Language Holiday"],
     highlights: ["Hassan II Mosque", "Art Deco downtown", "Corniche beaches", "Vibrant nightlife"]
   },
