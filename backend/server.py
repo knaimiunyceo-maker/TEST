@@ -233,15 +233,15 @@ CATALOGUE = [
 # Two formats: Full Experiences (5-7 days) and Weekend Experiences (2 nights / 3 days)
 EXPERIENCES = [
     {
-        "id": "combat-holiday",
-        "title": "Combat & Self-Defense Holiday",
+        "id": "self-defense-holiday",
+        "title": "Self-Defense Holiday",
         "tagline": "Train your body, explore Morocco",
-        "description": "Morning training sessions including Boxing, Muay Thai, and Self-defense. Sessions focus on technique, conditioning and real-life combat skills. Afternoons include beach time, pool time, local exploration, and group dinners.",
+        "description": "Morning self-defense training sessions focusing on practical techniques, conditioning and real-life defense skills. Afternoons include beach time, pool time, local exploration, and group dinners.",
         "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
         "currency": "€",
-        "practices": ["Boxing", "Muay Thai", "Self-defense"],
-        "experiences": ["Beach time (Agadir/Essaouira)", "Pool time (Marrakech)", "Local exploration", "Group dinners"],
-        "destinations": ["Marrakech", "Agadir"],
+        "practices": ["Self-defense techniques", "Conditioning", "Practical combat skills"],
+        "experiences": ["Beach time", "Pool time", "Local exploration", "Group dinners"],
+        "destinations": ["Agadir"],
         "pricing": {
             "5_days": { "price": 450, "label": "5 days experience" },
             "7_days": { "price": 550, "label": "7 days / 6 nights experience" },
@@ -249,7 +249,7 @@ EXPERIENCES = [
         },
         "highlights": [
             "Daily morning training sessions with certified coaches",
-            "Mix of combat sports: boxing, Muay Thai, self-defense",
+            "Practical self-defense techniques",
             "Afternoon activities: beach, pool, exploration",
             "Small international group (18+)",
             "Accommodation included in partner hostels/guesthouses",
@@ -266,7 +266,7 @@ EXPERIENCES = [
         "currency": "€",
         "practices": ["English conversation", "Real-life discussions", "Group speaking activities"],
         "experiences": ["Excursions", "Cafés", "Social activities", "Local discovery"],
-        "destinations": ["Marrakech", "Essaouira"],
+        "destinations": ["Casablanca"],
         "pricing": {
             "5_days": { "price": 400, "label": "5 days experience" },
             "7_days": { "price": 500, "label": "7 days / 6 nights experience" },
@@ -281,48 +281,6 @@ EXPERIENCES = [
             "Social events and group dinners"
         ],
         "icon": "languages"
-    },
-    {
-        "id": "visual-storytelling",
-        "title": "Visual Storytelling Holiday",
-        "tagline": "Create content while exploring",
-        "description": "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty while exploring stunning locations with your group.",
-        "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
-        "currency": "€",
-        "practices": ["Filmmaking", "Photography", "Drone content"],
-        "experiences": ["City shooting", "Landscapes", "Desert", "Exploration"],
-        "destinations": ["Marrakech", "Essaouira", "Agadir"],
-        "pricing": {
-            "5_days": { "price": 480, "label": "5 days experience" },
-            "7_days": { "price": 580, "label": "7 days / 6 nights experience" },
-            "weekend": { "price": 260, "label": "Weekend (2 nights / 3 days)" }
-        },
-        "highlights": [
-            "Choose your track: Film, Photo, or Drone",
-            "Daily morning shooting/learning sessions",
-            "Afternoon exploration and content capture",
-            "Learn from experienced content creators",
-            "Accommodation included",
-            "Leave with your own visual portfolio"
-        ],
-        "tracks": [
-            {
-                "id": "filmmaking",
-                "title": "Filmmaking Holiday",
-                "description": "Learn storytelling, filming and basic editing."
-            },
-            {
-                "id": "photography",
-                "title": "Photography Holiday",
-                "description": "Improve composition, light and framing."
-            },
-            {
-                "id": "drone",
-                "title": "Drone Content Holiday",
-                "description": "Learn aerial filming and storytelling."
-            }
-        ],
-        "icon": "camera"
     }
 ]
 

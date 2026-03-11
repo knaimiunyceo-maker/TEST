@@ -64,7 +64,7 @@ const CasablancaPage = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <img src="https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=400" alt="Hassan II Mosque" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1581444072387-f3cbbcc8fe33?w=400" alt="Hassan II Mosque interior" className="rounded-xl aspect-square object-cover mt-8" />
+              <img src="https://images.unsplash.com/photo-1669831399403-dd59f1436fa7?w=400" alt="Casablanca cityscape" className="rounded-xl aspect-square object-cover mt-8" />
             </div>
           </div>
         </div>
@@ -73,25 +73,20 @@ const CasablancaPage = () => {
       {/* Experiences Available */}
       <section id="experiences" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experiences Available</h2>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {[
-              { icon: <Dumbbell size={24} />, title: "Combat & Self-Defense", desc: "Train in modern gyms with rooftop pools for recovery.", link: "/experiences/combat-holiday" },
-              { icon: <Languages size={24} />, title: "Language Practice", desc: "Practice English in cafés and explore the cosmopolitan city.", link: "/experiences/language-holiday" }
-            ].map((exp) => (
-              <Card key={exp.title} className="border-none bg-warmwhite">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
-                    {exp.icon}
-                  </div>
-                  <h3 className="font-syne font-bold text-ocean mb-2">{exp.title}</h3>
-                  <p className="font-dm text-ocean/70 text-sm mb-4">{exp.desc}</p>
-                  <Button asChild variant="outline" className="rounded-full">
-                    <Link to={exp.link}>Learn More <ArrowRight size={14} className="ml-2" /></Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experience Available</h2>
+          <div className="max-w-md mx-auto">
+            <Card className="border-none bg-warmwhite">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
+                  <Languages size={24} />
+                </div>
+                <h3 className="font-syne font-bold text-ocean mb-2">Language Practice</h3>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Practice English in cafés, explore the cosmopolitan city, and immerse yourself in real conversations.</p>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link to="/experiences/language-practice">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
