@@ -99,6 +99,22 @@ class Package(BaseModel):
     inclusions: List[str]
 
 
+class Experience(BaseModel):
+    id: str
+    title: str
+    tagline: str
+    description: str
+    image: str
+    price: str
+    currency: str
+    duration: str
+    practices: List[str]
+    experiences: List[str]
+    highlights: List[str]
+    icon: str
+    tracks: Optional[List[dict]] = None
+
+
 class Activity(BaseModel):
     id: str
     title: str
