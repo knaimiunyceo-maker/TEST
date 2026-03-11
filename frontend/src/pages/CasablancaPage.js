@@ -15,8 +15,8 @@ const CasablancaPage = () => {
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=1600" 
-            alt="Casablanca"
+            src="https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=1600" 
+            alt="Hassan II Mosque Casablanca"
             className="w-full h-full object-cover opacity-30"
           />
         </div>
