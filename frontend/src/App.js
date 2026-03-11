@@ -602,29 +602,24 @@ const ExperiencesSection = ({ experiences }) => {
 
   const localizedTitles = {
     en: {
-      'combat-holiday': 'Combat & Self-Defense Holiday',
-      'language-holiday': 'Language Practice Holiday',
-      'visual-storytelling': 'Visual Storytelling Holiday'
+      'self-defense-holiday': 'Self-Defense Holiday',
+      'language-holiday': 'Language Practice Holiday'
     },
     fr: {
-      'combat-holiday': 'Séjour Combat & Self-Défense',
-      'language-holiday': 'Séjour Pratique Linguistique',
-      'visual-storytelling': 'Séjour Storytelling Visuel'
+      'self-defense-holiday': 'Séjour Self-Défense',
+      'language-holiday': 'Séjour Pratique Linguistique'
     },
     es: {
-      'combat-holiday': 'Vacaciones de Combate & Defensa Personal',
-      'language-holiday': 'Vacaciones de Práctica de Idiomas',
-      'visual-storytelling': 'Vacaciones de Storytelling Visual'
+      'self-defense-holiday': 'Vacaciones de Defensa Personal',
+      'language-holiday': 'Vacaciones de Práctica de Idiomas'
     },
     de: {
-      'combat-holiday': 'Kampf & Selbstverteidigung Urlaub',
-      'language-holiday': 'Sprachpraxis Urlaub',
-      'visual-storytelling': 'Visual Storytelling Urlaub'
+      'self-defense-holiday': 'Selbstverteidigung Urlaub',
+      'language-holiday': 'Sprachpraxis Urlaub'
     },
     pt: {
-      'combat-holiday': 'Férias de Combate & Defesa Pessoal',
-      'language-holiday': 'Férias de Prática de Idiomas',
-      'visual-storytelling': 'Férias de Storytelling Visual'
+      'self-defense-holiday': 'Férias de Defesa Pessoal',
+      'language-holiday': 'Férias de Prática de Idiomas'
     }
   };
 
