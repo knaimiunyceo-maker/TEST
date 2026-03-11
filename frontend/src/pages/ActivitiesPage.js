@@ -119,10 +119,6 @@ const ActivitiesPage = () => {
                           ))}
                         </ul>
                       </div>
-
-                      <div className="flex items-center justify-between">
-                        <span className="font-syne font-bold text-sunset">{activity.price}</span>
-                      </div>
                     </CardContent>
                   </div>
                 </Card>
