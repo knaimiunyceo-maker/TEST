@@ -1852,8 +1852,28 @@ function App() {
       <div className="App">
         <LanguageProvider>
           <Routes>
+            {/* Home */}
             <Route path="/" element={<AppContent />} />
+            
+            {/* Experiences */}
+            <Route path="/experiences" element={<ExperiencesPage />} />
+            <Route path="/experiences/combat-holiday" element={<CombatHolidayPage />} />
+            <Route path="/experiences/language-holiday" element={<LanguagePracticePage />} />
+            <Route path="/experiences/visual-storytelling" element={<VisualStorytellingPage />} />
+            
+            {/* Legacy route for language practice */}
             <Route path="/language-practice" element={<LanguagePracticePage />} />
+            
+            {/* Destinations */}
+            <Route path="/destinations" element={<DestinationsPage />} />
+            <Route path="/destinations/casablanca" element={<CasablancaPage />} />
+            <Route path="/destinations/marrakech" element={<MarrakechPage />} />
+            
+            {/* Other pages */}
+            <Route path="/activities" element={<ActivitiesPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/book" element={<BookPage />} />
           </Routes>
         </LanguageProvider>
       </div>
