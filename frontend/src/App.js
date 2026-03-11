@@ -1503,29 +1503,24 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
 
   const experienceLabels = {
     en: {
-      'combat-holiday': 'Combat & Self-Defense Holiday',
-      'language-holiday': 'Language Practice Holiday',
-      'visual-storytelling': 'Visual Storytelling Holiday'
+      'self-defense-holiday': 'Self-Defense Holiday',
+      'language-holiday': 'Language Practice Holiday'
     },
     fr: {
-      'combat-holiday': 'Séjour Combat & Self-Défense',
-      'language-holiday': 'Séjour Pratique Linguistique',
-      'visual-storytelling': 'Séjour Storytelling Visuel'
+      'self-defense-holiday': 'Séjour Self-Défense',
+      'language-holiday': 'Séjour Pratique Linguistique'
     },
     es: {
-      'combat-holiday': 'Vacaciones de Combate',
-      'language-holiday': 'Vacaciones de Idiomas',
-      'visual-storytelling': 'Vacaciones de Storytelling'
+      'self-defense-holiday': 'Vacaciones de Defensa Personal',
+      'language-holiday': 'Vacaciones de Idiomas'
     },
     de: {
-      'combat-holiday': 'Kampf & Selbstverteidigung',
-      'language-holiday': 'Sprachpraxis Urlaub',
-      'visual-storytelling': 'Visual Storytelling'
+      'self-defense-holiday': 'Selbstverteidigung Urlaub',
+      'language-holiday': 'Sprachpraxis Urlaub'
     },
     pt: {
-      'combat-holiday': 'Férias de Combate',
-      'language-holiday': 'Férias de Idiomas',
-      'visual-storytelling': 'Férias de Storytelling'
+      'self-defense-holiday': 'Férias de Defesa Pessoal',
+      'language-holiday': 'Férias de Idiomas'
     }
   };
 
