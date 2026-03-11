@@ -73,8 +73,20 @@ const MarrakechPage = () => {
       {/* Experiences Available */}
       <section id="experiences" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experience Available</h2>
-          <div className="max-w-md mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experiences Available</h2>
+          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <Card className="border-none bg-warmwhite">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
+                  <Shield size={24} />
+                </div>
+                <h3 className="font-syne font-bold text-ocean mb-2">Self-Defense</h3>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Train self-defense in the Red City. Morning sessions and afternoon exploration of medinas and souks.</p>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link to="/experiences/self-defense">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                </Button>
+              </CardContent>
+            </Card>
             <Card className="border-none bg-warmwhite">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
