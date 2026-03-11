@@ -73,26 +73,20 @@ const MarrakechPage = () => {
       {/* Experiences Available */}
       <section id="experiences" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experiences Available</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {[
-              { icon: <Dumbbell size={24} />, title: "Combat & Self-Defense", desc: "Train and recover by the pool between sessions.", link: "/experiences/combat-holiday" },
-              { icon: <Languages size={24} />, title: "Language Practice", desc: "Practice in cafés, souks, and cultural settings.", link: "/experiences/language-holiday" },
-              { icon: <Camera size={24} />, title: "Visual Storytelling", desc: "Capture the stunning medina and mountain views.", link: "/experiences/visual-storytelling" }
-            ].map((exp) => (
-              <Card key={exp.title} className="border-none bg-warmwhite">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
-                    {exp.icon}
-                  </div>
-                  <h3 className="font-syne font-bold text-ocean mb-2 text-sm">{exp.title}</h3>
-                  <p className="font-dm text-ocean/70 text-xs mb-4">{exp.desc}</p>
-                  <Button asChild variant="outline" size="sm" className="rounded-full">
-                    <Link to={exp.link}>Learn More</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Experience Available</h2>
+          <div className="max-w-md mx-auto">
+            <Card className="border-none bg-warmwhite">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
+                  <Camera size={24} />
+                </div>
+                <h3 className="font-syne font-bold text-ocean mb-2">Visual Storytelling</h3>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Capture the stunning medina, palaces and mountain views. Perfect for filmmakers and photographers.</p>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link to="/experiences/visual-storytelling">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
