@@ -105,11 +105,11 @@ class Experience(BaseModel):
     tagline: str
     description: str
     image: str
-    price: str
     currency: str
-    duration: str
     practices: List[str]
     experiences: List[str]
+    destinations: List[str]
+    pricing: dict
     highlights: List[str]
     icon: str
     tracks: Optional[List[dict]] = None
