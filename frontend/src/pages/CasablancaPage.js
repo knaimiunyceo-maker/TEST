@@ -157,10 +157,10 @@ const CasablancaPage = () => {
           <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Photos</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400",
-              "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400",
-              "https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=400",
-              "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400"
+              "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=400",
+              "https://images.unsplash.com/photo-1581444072387-f3cbbcc8fe33?w=400",
+              "https://images.unsplash.com/photo-1706203644187-a719449587bb?w=400",
+              "https://images.unsplash.com/photo-1549493207-619ac0ba8963?w=400"
             ].map((img, i) => (
               <img key={i} src={img} alt={`Casablanca ${i+1}`} className="rounded-xl aspect-square object-cover w-full" />
             ))}
