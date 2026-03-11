@@ -87,7 +87,7 @@ const SelfDefensePage = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=400" alt="Training" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=400" alt="Agadir beach" className="rounded-xl aspect-square object-cover mt-8" />
+              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=400" alt="Agadir beach" className="rounded-xl aspect-square object-cover mt-8" />
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ const SelfDefensePage = () => {
           <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Location</h2>
           <div className="max-w-md mx-auto">
             <Card className="border-none overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=600" alt="Agadir" className="w-full h-48 object-cover" />
+              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=600" alt="Agadir" className="w-full h-48 object-cover" />
               <CardContent className="p-4">
                 <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
                   <MapPin size={16} className="text-sunset" /> Agadir
