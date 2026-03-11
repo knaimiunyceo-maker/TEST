@@ -404,7 +404,7 @@ const LanguagePracticePage = () => {
               </Card>
             </motion.div>
 
-            {/* Start Date Selection */}
+            {/* Start Date Selection - Calendar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -413,25 +413,65 @@ const LanguagePracticePage = () => {
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
                   <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
-                    <MapPin className="text-sunset" size={22} />
+                    <CalendarIcon className="text-sunset" size={22} />
                     Start Date
                   </h2>
                   
-                  <Select value={selectedStartDate} onValueChange={setSelectedStartDate}>
-                    <SelectTrigger 
-                      className="border-2 border-ocean/20 rounded-xl py-6 text-base font-dm focus:border-sunset"
-                      data-testid="start-date-select"
-                    >
-                      <SelectValue placeholder="Select start date" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {firstMondays.map((date, index) => (
-                        <SelectItem key={index} value={formatDate(date)}>
-                          <span className="font-dm">{formatDate(date)}</span>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  {selectedStartDate && (
+                    <div className="mb-4 p-3 bg-sunset/10 rounded-lg flex items-center justify-between">
+                      <span className="font-dm text-ocean">
+                        Selected: <strong>{formatDate(selectedStartDate)}</strong>
+                      </span>
+                      <button 
+                        onClick={() => setSelectedStartDate(null)}
+                        className="text-sunset hover:text-sunset/70 text-sm underline"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-center">
+                    <Calendar
+                      mode="single"
+                      selected={selectedStartDate}
+                      onSelect={setSelectedStartDate}
+                      weekStartsOn={1}
+                      disabled={(date) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        return date < today || date.getDay() !== 1;
+                      }}
+                      className="rounded-xl border border-border"
+                      classNames={{
+                        months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
+                        month: "space-y-4",
+                        caption: "flex justify-center pt-1 relative items-center",
+                        caption_label: "text-sm font-syne font-bold text-ocean",
+                        nav: "space-x-1 flex items-center",
+                        nav_button: "h-8 w-8 bg-transparent p-0 opacity-70 hover:opacity-100 hover:bg-sand/30 rounded-full transition-colors inline-flex items-center justify-center",
+                        nav_button_previous: "absolute left-1",
+                        nav_button_next: "absolute right-1",
+                        table: "w-full border-collapse space-y-1",
+                        head_row: "flex",
+                        head_cell: "text-ocean/60 rounded-md w-10 font-dm font-medium text-[0.8rem]",
+                        row: "flex w-full mt-2",
+                        cell: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-sunset/20 [&:has([aria-selected])]:rounded-lg",
+                        day: "h-10 w-10 p-0 font-dm font-normal hover:bg-sand/30 rounded-lg transition-colors inline-flex items-center justify-center",
+                        day_selected: "bg-sunset text-white hover:bg-sunset hover:text-white focus:bg-sunset focus:text-white rounded-lg",
+                        day_today: "bg-ocean/10 text-ocean font-bold",
+                        day_outside: "text-ocean/30",
+                        day_disabled: "text-ocean/20 hover:bg-transparent cursor-not-allowed",
+                        day_hidden: "invisible",
+                      }}
+                      data-testid="start-date-calendar"
+                    />
+                  </div>
+                  
+                  <p className="text-center text-ocean/60 text-sm mt-4 font-dm">
+                    <Info size={14} className="inline mr-1" />
+                    Courses start every Monday. Select your preferred start date.
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
