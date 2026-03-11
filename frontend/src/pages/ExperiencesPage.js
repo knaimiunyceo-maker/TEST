@@ -19,7 +19,7 @@ const EXPERIENCES = [
     icon: <Shield size={32} />,
     practices: ["Self-defense techniques", "Conditioning", "Practical skills"],
     pricing: { "5_days": 450, "7_days": 550, "weekend": 250 },
-    destinations: ["Agadir"]
+    destinations: ["Casablanca", "Marrakech", "Agadir"]
   },
   {
     id: "language",
@@ -43,7 +43,7 @@ const EXPERIENCES = [
     icon: <Camera size={32} />,
     practices: ["Filmmaking", "Photography", "Drone content"],
     pricing: { "5_days": 480, "7_days": 580, "weekend": 260 },
-    destinations: ["Marrakech", "Essaouira", "Agadir"]
+    destinations: ["Marrakech", "Agadir"]
   }
 ];
 
