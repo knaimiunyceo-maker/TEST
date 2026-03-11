@@ -659,13 +659,23 @@ const ExperiencesSection = ({ experiences }) => {
                     </div>
                   </div>
                   
-                  <Button 
-                    asChild
-                    className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
-                    data-testid={`book-experience-${exp.id}`}
-                  >
-                    <a href="#contact">{t.bookNow}</a>
-                  </Button>
+                  {exp.id === 'language-holiday' ? (
+                    <Button 
+                      asChild
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
+                      data-testid={`book-experience-${exp.id}`}
+                    >
+                      <Link to="/language-practice">{t.bookNow}</Link>
+                    </Button>
+                  ) : (
+                    <Button 
+                      asChild
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
+                      data-testid={`book-experience-${exp.id}`}
+                    >
+                      <a href="#contact">{t.bookNow}</a>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
