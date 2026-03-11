@@ -271,10 +271,8 @@ const LanguagePracticePage = () => {
   const [selectedWeeks, setSelectedWeeks] = useState("4");
   const [selectedLevel, setSelectedLevel] = useState("a2");
   const [isBeginner, setIsBeginner] = useState(false);
-  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-
-  const firstMondays = getFirstMondaysOfNextMonths(6);
 
   // Calculate pricing
   const weeks = parseInt(selectedWeeks);
@@ -282,6 +280,7 @@ const LanguagePracticePage = () => {
   const totalAmount = tuitionCost + PRICING_CONFIG.registrationFee;
 
   const formatDate = (date) => {
+    if (!date) return "";
     return date.toLocaleDateString('en-GB', { 
       weekday: 'short', 
       day: 'numeric', 
@@ -293,7 +292,7 @@ const LanguagePracticePage = () => {
   const getBookingDetails = () => ({
     weeks: weeks,
     level: COURSE_LEVELS.find(l => l.id === selectedLevel)?.name || "",
-    startDate: selectedStartDate || "To be confirmed",
+    startDate: selectedStartDate ? formatDate(selectedStartDate) : "To be confirmed",
     tuition: `${PRICING_CONFIG.currency}${tuitionCost}`,
     registrationFee: `${PRICING_CONFIG.currency}${PRICING_CONFIG.registrationFee}`,
     total: `${PRICING_CONFIG.currency}${totalAmount}`
@@ -302,7 +301,7 @@ const LanguagePracticePage = () => {
   // Clear start date function
   const clearSelection = () => {
     setSelectedWeeks("4");
-    setSelectedStartDate("");
+    setSelectedStartDate(null);
   };
 
   return (
