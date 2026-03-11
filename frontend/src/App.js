@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "@/App.css";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { 
   Waves, Mountain, Sun, Users, MapPin, Calendar, 
   ArrowRight, Menu, X, Mail, User, MessageSquare,
@@ -30,6 +31,7 @@ import {
 import { Toaster, toast } from "sonner";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import { catalogueTranslations } from "./translations";
+import LanguagePracticePage from "./pages/LanguagePracticePage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
