@@ -1750,11 +1750,16 @@ const AppContent = () => {
 
 function App() {
   return (
-    <div className="App">
-      <LanguageProvider>
-        <AppContent />
-      </LanguageProvider>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <LanguageProvider>
+          <Routes>
+            <Route path="/" element={<AppContent />} />
+            <Route path="/language-practice" element={<LanguagePracticePage />} />
+          </Routes>
+        </LanguageProvider>
+      </div>
+    </BrowserRouter>
   );
 }
 
