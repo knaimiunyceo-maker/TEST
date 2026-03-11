@@ -683,60 +683,11 @@ const ExperiencesSection = ({ experiences }) => {
                   </h3>
                   <p className="font-caveat text-sunset text-lg mb-3">{exp.tagline}</p>
                   
-                  {/* Pricing Section - Two Formats */}
-                  {exp.pricing && (
-                    <div className="bg-warmwhite rounded-xl p-4 mb-4">
-                      <p className="font-dm font-semibold text-ocean text-xs mb-3">{t.formats}</p>
-                      <div className="space-y-2">
-                        {/* Full Experience */}
-                        <div className="flex justify-between items-center">
-                          <span className="font-dm text-ocean/70 text-sm">{t.days5}</span>
-                          <span className="font-syne font-bold text-ocean">{exp.currency}{exp.pricing['5_days']?.price || '—'}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="font-dm text-ocean/70 text-sm">{t.days7}</span>
-                          <span className="font-syne font-bold text-sunset">{exp.currency}{exp.pricing['7_days']?.price || '—'}</span>
-                        </div>
-                        <div className="border-t border-border pt-2 mt-2">
-                          <div className="flex justify-between items-center">
-                            <span className="font-dm text-ocean/70 text-sm">{t.weekend3}</span>
-                            <span className="font-syne font-bold text-ocean">{exp.currency}{exp.pricing['weekend']?.price || '—'}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="font-dm text-green-600 text-xs mt-3 flex items-center gap-1">
-                        <Check size={12} /> {t.accommodationIncluded}
-                      </p>
-                    </div>
-                  )}
-                  
-                  {/* Morning Practice */}
-                  <div className="mb-3">
-                    <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.morningPractice}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {exp.practices.map((practice, i) => (
-                        <span key={i} className="bg-sunset/10 text-sunset px-2 py-1 rounded-full text-xs font-dm">
-                          {practice}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Afternoon Experience */}
-                  <div className="mb-3">
-                    <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.afternoonExperience}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {exp.experiences.map((item, i) => (
-                        <span key={i} className="bg-ocean/10 text-ocean px-2 py-1 rounded-full text-xs font-dm">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <p className="font-dm text-ocean/70 text-sm mb-4 flex-1">{exp.description}</p>
 
                   {/* Destinations */}
                   {exp.destinations && (
-                    <div className="mb-4 flex-1">
+                    <div className="mb-4">
                       <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.destinations}</p>
                       <div className="flex flex-wrap gap-1">
                         {exp.destinations.map((dest, i) => (
