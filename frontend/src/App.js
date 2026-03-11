@@ -1684,7 +1684,7 @@ const Footer = () => {
     fr: ['Séjour Self-Défense', 'Séjour Langues', 'Séjour Storytelling'],
     es: ['Vacaciones Defensa Personal', 'Vacaciones Idiomas', 'Vacaciones Storytelling'],
     de: ['Kampf Urlaub', 'Sprach Urlaub', 'Storytelling Urlaub'],
-    pt: ['Férias Combate', 'Férias Idiomas', 'Férias Storytelling']
+    pt: ['Férias Defesa Pessoal', 'Férias Idiomas', 'Férias Storytelling']
   };
 
   return (
