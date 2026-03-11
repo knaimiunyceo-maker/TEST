@@ -186,11 +186,95 @@ CATALOGUE = [
         "price_mad": "160",
         "reason": "Discover the Medina through the eyes of a local guide.",
         "icon": "map"
+    },
+    {
+        "id": "massage",
+        "activity": "Traditional Massage",
+        "price_eur": "30",
+        "price_mad": "320",
+        "reason": "Relaxing massage with local techniques.",
+        "icon": "heart"
+    },
+    {
+        "id": "sunset-experience",
+        "activity": "Sunset Experience",
+        "price_eur": "20",
+        "price_mad": "215",
+        "reason": "Watch the sunset from stunning viewpoints.",
+        "icon": "sunset"
+    },
+    {
+        "id": "group-dinner",
+        "activity": "Group Dinner",
+        "price_eur": "25",
+        "price_mad": "270",
+        "reason": "Traditional Moroccan dinner with the group.",
+        "icon": "utensils"
     }
 ]
 
-# Static data for travel packages
-PACKAGES = [
+# Static data for main experiences
+EXPERIENCES = [
+    {
+        "id": "combat-holiday",
+        "title": "Combat & Self-Defense Holiday",
+        "tagline": "Train your body, explore Morocco",
+        "description": "Active training holiday combining boxing, Muay Thai or self-defense with travel and group experiences.",
+        "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
+        "price": "599",
+        "currency": "€",
+        "duration": "7 days",
+        "practices": ["Boxing", "Muay Thai", "Self-defense training"],
+        "experiences": ["Beach", "Massage", "City exploration", "Local culture"],
+        "icon": "boxing"
+    },
+    {
+        "id": "language-holiday",
+        "title": "Language Practice Holiday",
+        "tagline": "Practice English through travel",
+        "description": "English immersion through travel and social interaction. Real conversations, group activities and local discovery.",
+        "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
+        "price": "499",
+        "currency": "€",
+        "duration": "7 days",
+        "practices": ["English conversation", "Real-life discussions", "Group speaking activities"],
+        "experiences": ["Excursions", "Cafés", "Social activities", "Local discovery"],
+        "icon": "languages"
+    },
+    {
+        "id": "visual-storytelling",
+        "title": "Visual Storytelling Holiday",
+        "tagline": "Create content while exploring",
+        "description": "Learn filmmaking, photography or drone content creation while capturing Morocco's beauty.",
+        "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
+        "price": "649",
+        "currency": "€",
+        "duration": "7 days",
+        "practices": ["Filmmaking", "Photography", "Drone content"],
+        "experiences": ["City shooting", "Landscapes", "Exploration"],
+        "tracks": [
+            {
+                "id": "filmmaking",
+                "title": "Filmmaking Holiday",
+                "description": "Learn storytelling, filming and basic editing while shooting real content during the trip."
+            },
+            {
+                "id": "photography",
+                "title": "Photography Holiday",
+                "description": "Improve composition, light and framing while exploring the city and landscapes."
+            },
+            {
+                "id": "drone",
+                "title": "Drone Content Holiday",
+                "description": "Learn aerial filming and storytelling using drones in beautiful locations."
+            }
+        ],
+        "icon": "camera"
+    }
+]
+
+# Static data for upcoming trips
+TRIPS = [
     {
         "id": "weekend-experience",
         "title": "Weekend Experience",
