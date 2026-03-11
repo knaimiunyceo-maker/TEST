@@ -63,8 +63,8 @@ const CasablancaPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400" alt="Casablanca" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400" alt="Hassan II Mosque" className="rounded-xl aspect-square object-cover mt-8" />
+              <img src="https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=400" alt="Hassan II Mosque" className="rounded-xl aspect-square object-cover" />
+              <img src="https://images.unsplash.com/photo-1581444072387-f3cbbcc8fe33?w=400" alt="Hassan II Mosque interior" className="rounded-xl aspect-square object-cover mt-8" />
             </div>
           </div>
         </div>
