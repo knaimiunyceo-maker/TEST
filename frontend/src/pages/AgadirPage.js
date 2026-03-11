@@ -15,7 +15,7 @@ const AgadirPage = () => {
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=1600" 
+            src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=1600" 
             alt="Agadir Beach Morocco"
             className="w-full h-full object-cover opacity-30"
           />
@@ -63,8 +63,8 @@ const AgadirPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=400" alt="Agadir beach" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=400" alt="Agadir marina" className="rounded-xl aspect-square object-cover mt-8" />
+              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=400" alt="Agadir beach" className="rounded-xl aspect-square object-cover" />
+              <img src="https://images.unsplash.com/photo-1669542832433-2839fa8e8ab7?w=400" alt="Surfing in Morocco" className="rounded-xl aspect-square object-cover mt-8" />
             </div>
           </div>
         </div>

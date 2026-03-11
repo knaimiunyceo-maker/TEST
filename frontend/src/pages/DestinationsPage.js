@@ -20,7 +20,7 @@ const DESTINATIONS = [
     name: "Agadir",
     tagline: "Morocco's sunny beach paradise",
     description: "The premier beach destination with 300+ sunny days per year. Perfect for training and beach life.",
-    image: "https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=800",
+    image: "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=800",
     experiences: ["Self-Defense"],
     highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"]
   }
