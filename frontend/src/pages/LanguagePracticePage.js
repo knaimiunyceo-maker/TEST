@@ -503,36 +503,6 @@ const LanguagePracticePage = () => {
                       ))}
                     </SelectContent>
                   </Select>
-
-                  {/* Beginner Toggle */}
-                  <div className="mt-6 p-4 bg-warmwhite rounded-xl">
-                    <div className="flex items-center justify-between mb-3">
-                      <label className="font-dm text-ocean flex items-center gap-2 cursor-pointer">
-                        <span>I am a complete beginner</span>
-                      </label>
-                      <Switch
-                        checked={isBeginner}
-                        onCheckedChange={setIsBeginner}
-                        data-testid="beginner-toggle"
-                      />
-                    </div>
-                    
-                    {isBeginner && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        className="mt-4"
-                      >
-                        <div className="flex items-start gap-2 p-3 bg-sunset/10 rounded-lg">
-                          <Info size={18} className="text-sunset flex-shrink-0 mt-0.5" />
-                          <p className="text-sm text-ocean">
-                            <strong>Beginner intakes</strong> are on the <strong>first Monday of every month</strong>. 
-                            Please select your preferred start date above.
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
