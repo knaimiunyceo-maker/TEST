@@ -13,9 +13,8 @@ const ACTIVITIES = [
     title: "Surf Lessons",
     icon: <Waves size={28} />,
     description: "Ride the Atlantic waves with experienced local instructors. Perfect for beginners and intermediate surfers.",
-    price: "From €35/session",
     image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400",
-    locations: ["Agadir", "Essaouira"],
+    locations: ["Agadir", "Taghazout"],
     includes: ["Equipment rental", "Instructor", "2-hour session"]
   },
   {
@@ -23,7 +22,6 @@ const ACTIVITIES = [
     title: "Cooking Class",
     icon: <Utensils size={28} />,
     description: "Learn to prepare authentic Moroccan dishes — tagines, couscous, pastilla and more.",
-    price: "From €40/class",
     image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400",
     locations: ["Marrakech", "Casablanca"],
     includes: ["Ingredients", "Chef guidance", "Full meal"]
@@ -33,7 +31,6 @@ const ACTIVITIES = [
     title: "City Tours",
     icon: <Map size={28} />,
     description: "Guided walking tours through medinas, historical sites, and hidden gems with local experts.",
-    price: "From €25/tour",
     image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400",
     locations: ["All cities"],
     includes: ["Local guide", "3-4 hours", "Small group"]
@@ -43,7 +40,6 @@ const ACTIVITIES = [
     title: "Quad / Desert Trip",
     icon: <Car size={28} />,
     description: "Adventure into the desert on quad bikes. Experience dunes, palm groves, and Berber villages.",
-    price: "From €50/trip",
     image: "https://images.unsplash.com/photo-1662009833223-75d3301290bd?w=400",
     locations: ["Marrakech", "Agadir"],
     includes: ["Quad rental", "Guide", "Safety gear", "Tea break"]
