@@ -1680,9 +1680,9 @@ const Footer = () => {
   const t = content[language] || content.en;
 
   const experienceLabels = {
-    en: ['Combat Holiday', 'Language Holiday', 'Storytelling Holiday'],
-    fr: ['Séjour Combat', 'Séjour Langues', 'Séjour Storytelling'],
-    es: ['Vacaciones Combate', 'Vacaciones Idiomas', 'Vacaciones Storytelling'],
+    en: ['Self-Defense Holiday', 'Language Holiday', 'Storytelling Holiday'],
+    fr: ['Séjour Self-Défense', 'Séjour Langues', 'Séjour Storytelling'],
+    es: ['Vacaciones Defensa Personal', 'Vacaciones Idiomas', 'Vacaciones Storytelling'],
     de: ['Kampf Urlaub', 'Sprach Urlaub', 'Storytelling Urlaub'],
     pt: ['Férias Combate', 'Férias Idiomas', 'Férias Storytelling']
   };
