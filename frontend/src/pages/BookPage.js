@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   Target, MapPin, Calendar, User, Mail, Phone, 
-  ArrowRight, Check, Dumbbell, Languages, Camera
+  ArrowRight, Check, Shield, Languages, Camera
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
