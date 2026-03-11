@@ -10,20 +10,20 @@ import PageLayout from "./components/PageLayout";
 
 const EXPERIENCES = [
   {
-    id: "combat",
-    slug: "combat-holiday",
-    title: "Combat & Self-Defense Holiday",
+    id: "self-defense",
+    slug: "self-defense",
+    title: "Self-Defense Holiday",
     tagline: "Train your body, explore Morocco",
-    description: "Morning training sessions including Boxing, Muay Thai, and Self-defense. Afternoons include beach time, pool time, local exploration, and group dinners.",
+    description: "Morning self-defense training sessions focusing on practical techniques. Afternoons include beach time, pool time, local exploration, and group dinners.",
     image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
-    icon: <Dumbbell size={32} />,
-    practices: ["Boxing", "Muay Thai", "Self-defense"],
+    icon: <Shield size={32} />,
+    practices: ["Self-defense techniques", "Conditioning", "Practical skills"],
     pricing: { "5_days": 450, "7_days": 550, "weekend": 250 },
-    destinations: ["Marrakech", "Agadir"]
+    destinations: ["Agadir"]
   },
   {
     id: "language",
-    slug: "language-holiday",
+    slug: "language-practice",
     title: "Language Practice Holiday",
     tagline: "Practice English through travel",
     description: "Morning English practice sessions with real conversations and group activities. Afternoons dedicated to exploring Morocco and cultural experiences.",
@@ -31,19 +31,7 @@ const EXPERIENCES = [
     icon: <Languages size={32} />,
     practices: ["English conversation", "Real-life discussions", "Group activities"],
     pricing: { "5_days": 400, "7_days": 500, "weekend": 220 },
-    destinations: ["Marrakech", "Essaouira"]
-  },
-  {
-    id: "storytelling",
-    slug: "visual-storytelling",
-    title: "Visual Storytelling Holiday",
-    tagline: "Create content while exploring",
-    description: "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty.",
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
-    icon: <Camera size={32} />,
-    practices: ["Filmmaking", "Photography", "Drone content"],
-    pricing: { "5_days": 480, "7_days": 580, "weekend": 260 },
-    destinations: ["Marrakech", "Essaouira", "Agadir"]
+    destinations: ["Casablanca"]
   }
 ];
 
