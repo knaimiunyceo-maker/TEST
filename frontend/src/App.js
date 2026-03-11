@@ -605,23 +605,28 @@ const ExperiencesSection = ({ experiences }) => {
   const localizedTitles = {
     en: {
       'self-defense-holiday': 'Self-Defense Holiday',
-      'language-holiday': 'Language Practice Holiday'
+      'language-holiday': 'Language Practice Holiday',
+      'visual-storytelling': 'Visual Storytelling Holiday'
     },
     fr: {
       'self-defense-holiday': 'Séjour Self-Défense',
-      'language-holiday': 'Séjour Pratique Linguistique'
+      'language-holiday': 'Séjour Pratique Linguistique',
+      'visual-storytelling': 'Séjour Storytelling Visuel'
     },
     es: {
       'self-defense-holiday': 'Vacaciones de Defensa Personal',
-      'language-holiday': 'Vacaciones de Práctica de Idiomas'
+      'language-holiday': 'Vacaciones de Práctica de Idiomas',
+      'visual-storytelling': 'Vacaciones de Storytelling Visual'
     },
     de: {
       'self-defense-holiday': 'Selbstverteidigung Urlaub',
-      'language-holiday': 'Sprachpraxis Urlaub'
+      'language-holiday': 'Sprachpraxis Urlaub',
+      'visual-storytelling': 'Visual Storytelling Urlaub'
     },
     pt: {
       'self-defense-holiday': 'Férias de Defesa Pessoal',
-      'language-holiday': 'Férias de Prática de Idiomas'
+      'language-holiday': 'Férias de Prática de Idiomas',
+      'visual-storytelling': 'Férias de Storytelling Visual'
     }
   };
 
