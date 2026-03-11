@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  ArrowLeft, Calendar as CalendarIcon, Clock, MapPin, Users, Award, 
+  ArrowLeft, Calendar as CalendarIcon, Clock, Users, Award, 
   BookOpen, CheckCircle, Globe, GraduationCap, Languages,
-  Mail, User, ChevronDown, Info, Star, Sun, Moon, X
+  Mail, User, Info, Star, Sun, Moon, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
 import { Calendar } from "@/components/ui/calendar";
 import { Toaster, toast } from "sonner";
 import {
