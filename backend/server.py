@@ -281,6 +281,48 @@ EXPERIENCES = [
             "Social events and group dinners"
         ],
         "icon": "languages"
+    },
+    {
+        "id": "visual-storytelling",
+        "title": "Visual Storytelling Holiday",
+        "tagline": "Create content while exploring",
+        "description": "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty while exploring stunning locations with your group.",
+        "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
+        "currency": "€",
+        "practices": ["Filmmaking", "Photography", "Drone content"],
+        "experiences": ["City shooting", "Landscapes", "Desert", "Exploration"],
+        "destinations": ["Marrakech", "Essaouira", "Agadir"],
+        "pricing": {
+            "5_days": { "price": 480, "label": "5 days experience" },
+            "7_days": { "price": 580, "label": "7 days / 6 nights experience" },
+            "weekend": { "price": 260, "label": "Weekend (2 nights / 3 days)" }
+        },
+        "highlights": [
+            "Choose your track: Film, Photo, or Drone",
+            "Daily morning shooting/learning sessions",
+            "Afternoon exploration and content capture",
+            "Learn from experienced content creators",
+            "Accommodation included",
+            "Leave with your own visual portfolio"
+        ],
+        "tracks": [
+            {
+                "id": "filmmaking",
+                "title": "Filmmaking Holiday",
+                "description": "Learn storytelling, filming and basic editing."
+            },
+            {
+                "id": "photography",
+                "title": "Photography Holiday",
+                "description": "Improve composition, light and framing."
+            },
+            {
+                "id": "drone",
+                "title": "Drone Content Holiday",
+                "description": "Learn aerial filming and storytelling."
+            }
+        ],
+        "icon": "camera"
     }
 ]
 
