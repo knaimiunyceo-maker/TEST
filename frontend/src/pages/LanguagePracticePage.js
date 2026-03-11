@@ -9,7 +9,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Toaster, toast } from "sonner";
 import {
@@ -28,16 +27,27 @@ const API = `${BACKEND_URL}/api`;
 // PRICING CONFIG - Easy to update prices here
 // ============================================
 const PRICING_CONFIG = {
-  locations: {
-    london: { name: "London, UK", price: 215, flag: "🇬🇧" },
-    dublin: { name: "Dublin, Ireland", price: 195, flag: "🇮🇪" },
-    malta: { name: "Malta", price: 180, flag: "🇲🇹" }
-  },
-  registrationFee: 45,
+  pricePerWeek: 215,        // €215 per week
+  registrationFee: 45,      // €45 one-time fee
   currency: "€",
-  minWeeks: 1,
   maxWeeks: 12
 };
+
+// Week options for dropdown
+const WEEK_OPTIONS = [
+  { value: "1", label: "1 week", weeks: 1 },
+  { value: "2", label: "2 weeks", weeks: 2 },
+  { value: "3", label: "3 weeks", weeks: 3 },
+  { value: "4", label: "4 weeks", weeks: 4 },
+  { value: "5", label: "5 weeks", weeks: 5 },
+  { value: "6", label: "6 weeks", weeks: 6 },
+  { value: "7", label: "7 weeks", weeks: 7 },
+  { value: "8", label: "8 weeks", weeks: 8 },
+  { value: "9", label: "9 weeks", weeks: 9 },
+  { value: "10", label: "10 weeks", weeks: 10 },
+  { value: "11", label: "11 weeks", weeks: 11 },
+  { value: "12", label: "12 weeks", weeks: 12 }
+];
 
 const COURSE_LEVELS = [
   { id: "a1", name: "A1 - Beginner", description: "No prior knowledge" },
@@ -125,10 +135,11 @@ const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
         name: formData.name,
         email: formData.email,
         message: `Language Course Booking Request:
-- Location: ${bookingDetails.location}
 - Duration: ${bookingDetails.weeks} weeks
 - Level: ${bookingDetails.level}
 - Start Date: ${bookingDetails.startDate}
+- Tuition: ${bookingDetails.tuition}
+- Registration Fee: ${bookingDetails.registrationFee}
 - Total: ${bookingDetails.total}`,
         trip_interest: "Language Practice Holiday"
       });
@@ -167,10 +178,6 @@ const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
             <h4 className="font-dm font-semibold text-ocean mb-3">Booking Summary</h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-ocean/70">Location:</span>
-                <span className="font-medium text-ocean">{bookingDetails.location}</span>
-              </div>
-              <div className="flex justify-between">
                 <span className="text-ocean/70">Duration:</span>
                 <span className="font-medium text-ocean">{bookingDetails.weeks} weeks</span>
               </div>
@@ -178,12 +185,22 @@ const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
                 <span className="text-ocean/70">Level:</span>
                 <span className="font-medium text-ocean">{bookingDetails.level}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-ocean/70">Start Date:</span>
-                <span className="font-medium text-ocean">{bookingDetails.startDate}</span>
-              </div>
-              <div className="border-t border-border pt-2 mt-2">
+              {bookingDetails.startDate && (
                 <div className="flex justify-between">
+                  <span className="text-ocean/70">Start Date:</span>
+                  <span className="font-medium text-ocean">{bookingDetails.startDate}</span>
+                </div>
+              )}
+              <div className="border-t border-border pt-2 mt-2 space-y-1">
+                <div className="flex justify-between">
+                  <span className="text-ocean/70">Tuition ({bookingDetails.weeks} weeks):</span>
+                  <span className="font-medium text-ocean">{bookingDetails.tuition}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-ocean/70">Registration Fee:</span>
+                  <span className="font-medium text-ocean">{bookingDetails.registrationFee}</span>
+                </div>
+                <div className="flex justify-between pt-2 border-t border-border">
                   <span className="font-semibold text-ocean">Total:</span>
                   <span className="font-syne font-bold text-sunset text-lg">{bookingDetails.total}</span>
                 </div>
@@ -249,8 +266,7 @@ const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
 
 // Main Page Component
 const LanguagePracticePage = () => {
-  const [selectedLocation, setSelectedLocation] = useState("london");
-  const [weeks, setWeeks] = useState([4]);
+  const [selectedWeeks, setSelectedWeeks] = useState("4");
   const [selectedLevel, setSelectedLevel] = useState("a2");
   const [isBeginner, setIsBeginner] = useState(false);
   const [selectedStartDate, setSelectedStartDate] = useState("");
@@ -259,8 +275,8 @@ const LanguagePracticePage = () => {
   const firstMondays = getFirstMondaysOfNextMonths(6);
 
   // Calculate pricing
-  const locationData = PRICING_CONFIG.locations[selectedLocation];
-  const tuitionCost = locationData.price * weeks[0];
+  const weeks = parseInt(selectedWeeks);
+  const tuitionCost = PRICING_CONFIG.pricePerWeek * weeks;
   const totalAmount = tuitionCost + PRICING_CONFIG.registrationFee;
 
   const formatDate = (date) => {
@@ -273,12 +289,19 @@ const LanguagePracticePage = () => {
   };
 
   const getBookingDetails = () => ({
-    location: locationData.name,
-    weeks: weeks[0],
+    weeks: weeks,
     level: COURSE_LEVELS.find(l => l.id === selectedLevel)?.name || "",
     startDate: selectedStartDate || "To be confirmed",
+    tuition: `${PRICING_CONFIG.currency}${tuitionCost}`,
+    registrationFee: `${PRICING_CONFIG.currency}${PRICING_CONFIG.registrationFee}`,
     total: `${PRICING_CONFIG.currency}${totalAmount}`
   });
+
+  // Clear start date function
+  const clearSelection = () => {
+    setSelectedWeeks("4");
+    setSelectedStartDate("");
+  };
 
   return (
     <div className="min-h-screen bg-warmwhite">
@@ -314,21 +337,15 @@ const LanguagePracticePage = () => {
             </div>
             
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Learn English Through Travel
+              Intensive English Course
             </h1>
-            <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto mb-6">
-              Immerse yourself in English while exploring incredible destinations. 
+            <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto mb-2">
+              This course includes 20 intensive weekly lessons
+            </p>
+            <p className="font-dm text-white/60 text-base max-w-2xl mx-auto">
+              Immerse yourself in English while exploring Morocco. 
               Real conversations, cultural experiences, and unforgettable memories.
             </p>
-            
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              {Object.entries(PRICING_CONFIG.locations).map(([key, loc]) => (
-                <div key={key} className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-full">
-                  <span>{loc.flag}</span>
-                  <span>{loc.name}</span>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>
@@ -340,7 +357,7 @@ const LanguagePracticePage = () => {
           {/* Left Column - Booking Form */}
           <div className="lg:col-span-2 space-y-8">
             
-            {/* Location Selection */}
+            {/* Duration Selection - Dropdown Style like Taronja */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -349,85 +366,70 @@ const LanguagePracticePage = () => {
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
                   <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
-                    <MapPin className="text-sunset" size={22} />
-                    Choose Your Location
+                    <Calendar className="text-sunset" size={22} />
+                    Duration
                   </h2>
                   
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    {Object.entries(PRICING_CONFIG.locations).map(([key, loc]) => (
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="flex-1">
+                      <Select value={selectedWeeks} onValueChange={setSelectedWeeks}>
+                        <SelectTrigger 
+                          className="border-2 border-ocean/20 rounded-xl py-6 text-base font-dm focus:border-sunset"
+                          data-testid="weeks-select"
+                        >
+                          <SelectValue placeholder="Select duration" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {WEEK_OPTIONS.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              <span className="font-dm">{option.label}</span>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    {(selectedWeeks !== "4" || selectedStartDate) && (
                       <button
-                        key={key}
-                        onClick={() => setSelectedLocation(key)}
-                        className={`p-4 rounded-xl border-2 transition-all ${
-                          selectedLocation === key
-                            ? "border-sunset bg-sunset/5"
-                            : "border-border hover:border-sunset/50"
-                        }`}
-                        data-testid={`location-${key}`}
+                        onClick={clearSelection}
+                        className="text-sunset hover:text-sunset/70 font-dm text-sm underline transition-colors"
                       >
-                        <span className="text-2xl mb-2 block">{loc.flag}</span>
-                        <span className="font-syne font-bold text-ocean block">{loc.name}</span>
-                        <span className="font-dm text-sunset font-bold">
-                          {PRICING_CONFIG.currency}{loc.price}/week
-                        </span>
+                        Clear
                       </button>
-                    ))}
+                    )}
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Duration Selection */}
+            {/* Start Date Selection */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.15 }}
             >
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
                   <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
-                    <Calendar className="text-sunset" size={22} />
-                    Course Duration
+                    <MapPin className="text-sunset" size={22} />
+                    Start Date
                   </h2>
                   
-                  <div className="mb-6">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-dm text-ocean/70">Select weeks:</span>
-                      <span className="font-syne font-bold text-2xl text-sunset">{weeks[0]} weeks</span>
-                    </div>
-                    
-                    <Slider
-                      value={weeks}
-                      onValueChange={setWeeks}
-                      min={PRICING_CONFIG.minWeeks}
-                      max={PRICING_CONFIG.maxWeeks}
-                      step={1}
-                      className="mb-4"
-                      data-testid="weeks-slider"
-                    />
-                    
-                    <div className="flex justify-between text-xs text-ocean/50 font-dm">
-                      <span>{PRICING_CONFIG.minWeeks} week</span>
-                      <span>{PRICING_CONFIG.maxWeeks} weeks</span>
-                    </div>
-                  </div>
-
-                  {/* Quick selection buttons */}
-                  <div className="flex flex-wrap gap-2">
-                    {[2, 4, 8, 12].map((w) => (
-                      <button
-                        key={w}
-                        onClick={() => setWeeks([w])}
-                        className={`px-4 py-2 rounded-full text-sm font-dm transition-colors ${
-                          weeks[0] === w
-                            ? "bg-sunset text-white"
-                            : "bg-warmwhite text-ocean hover:bg-sand/30"
-                        }`}
-                      >
-                        {w} weeks
-                      </button>
-                    ))}
-                  </div>
+                  <Select value={selectedStartDate} onValueChange={setSelectedStartDate}>
+                    <SelectTrigger 
+                      className="border-2 border-ocean/20 rounded-xl py-6 text-base font-dm focus:border-sunset"
+                      data-testid="start-date-select"
+                    >
+                      <SelectValue placeholder="Select start date" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {firstMondays.map((date, index) => (
+                        <SelectItem key={index} value={formatDate(date)}>
+                          <span className="font-dm">{formatDate(date)}</span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </CardContent>
               </Card>
             </motion.div>
@@ -436,7 +438,7 @@ const LanguagePracticePage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.2 }}
             >
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
@@ -446,7 +448,7 @@ const LanguagePracticePage = () => {
                   </h2>
                   
                   <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                    <SelectTrigger className="border-border rounded-xl py-6" data-testid="level-select">
+                    <SelectTrigger className="border-2 border-ocean/20 rounded-xl py-6 text-base font-dm focus:border-sunset" data-testid="level-select">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -480,28 +482,12 @@ const LanguagePracticePage = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         className="mt-4"
                       >
-                        <div className="flex items-start gap-2 p-3 bg-sunset/10 rounded-lg mb-4">
+                        <div className="flex items-start gap-2 p-3 bg-sunset/10 rounded-lg">
                           <Info size={18} className="text-sunset flex-shrink-0 mt-0.5" />
                           <p className="text-sm text-ocean">
                             <strong>Beginner intakes</strong> are on the <strong>first Monday of every month</strong>. 
-                            Please select your preferred start date below.
+                            Please select your preferred start date above.
                           </p>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                          {firstMondays.map((date, index) => (
-                            <button
-                              key={index}
-                              onClick={() => setSelectedStartDate(formatDate(date))}
-                              className={`p-3 rounded-lg text-sm font-dm transition-colors ${
-                                selectedStartDate === formatDate(date)
-                                  ? "bg-sunset text-white"
-                                  : "bg-white border border-border text-ocean hover:border-sunset"
-                              }`}
-                            >
-                              {formatDate(date)}
-                            </button>
-                          ))}
                         </div>
                       </motion.div>
                     )}
@@ -514,7 +500,7 @@ const LanguagePracticePage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3 }}
             >
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
@@ -565,13 +551,13 @@ const LanguagePracticePage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
             >
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
                   <h2 className="font-syne font-bold text-xl text-ocean mb-6 flex items-center gap-2">
                     <CheckCircle className="text-sunset" size={22} />
-                    What's Included
+                    Included in your course
                   </h2>
                   
                   <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -608,25 +594,26 @@ const LanguagePracticePage = () => {
                       <h3 className="font-syne font-bold text-lg">Price Summary</h3>
                     </div>
 
-                    {/* Selected Location */}
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{locationData.flag}</span>
-                        <div>
-                          <p className="font-dm text-white/70 text-xs">Location</p>
-                          <p className="font-syne font-bold">{locationData.name}</p>
-                        </div>
+                    {/* Price Display - Taronja Style */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 mb-6 text-center">
+                      <div className="mb-2">
+                        <span className="font-syne font-bold text-4xl text-sand">
+                          {PRICING_CONFIG.currency}{tuitionCost}
+                        </span>
                       </div>
+                      <p className="font-dm text-white/80 text-sm">
+                        + {PRICING_CONFIG.currency}{PRICING_CONFIG.registrationFee} Registration Fee
+                      </p>
                     </div>
 
                     {/* Price Breakdown */}
                     <div className="space-y-3 mb-6">
-                      <div className="flex justify-between items-center">
-                        <span className="font-dm text-white/70">Tuition ({weeks[0]} weeks)</span>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="font-dm text-white/70">Tuition ({weeks} week{weeks > 1 ? 's' : ''})</span>
                         <span className="font-dm font-medium">{PRICING_CONFIG.currency}{tuitionCost}</span>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-dm text-white/70">Enrollment Fee</span>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="font-dm text-white/70">Registration Fee</span>
                         <span className="font-dm font-medium">{PRICING_CONFIG.currency}{PRICING_CONFIG.registrationFee}</span>
                       </div>
                       <div className="border-t border-white/20 pt-3">
@@ -643,7 +630,7 @@ const LanguagePracticePage = () => {
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6 space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-white/70">Duration:</span>
-                        <span className="font-medium">{weeks[0]} weeks</span>
+                        <span className="font-medium">{weeks} week{weeks > 1 ? 's' : ''}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-white/70">Level:</span>
