@@ -12,7 +12,7 @@ const STEPS = [
   {
     number: "01",
     title: "Choose Your Experience",
-    description: "Combat & Self-Defense, Language Practice, or Visual Storytelling — pick what excites you.",
+    description: "Self-Defense, Language Practice, or Visual Storytelling — pick what excites you.",
     icon: <Target size={28} />
   },
   {
