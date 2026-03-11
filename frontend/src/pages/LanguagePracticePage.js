@@ -1,0 +1,714 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { 
+  ArrowLeft, Calendar, Clock, MapPin, Users, Award, 
+  BookOpen, CheckCircle, Globe, GraduationCap, Languages,
+  Mail, User, ChevronDown, Info, Star, Sun, Moon, X
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Toaster, toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+// ============================================
+// PRICING CONFIG - Easy to update prices here
+// ============================================
+const PRICING_CONFIG = {
+  locations: {
+    london: { name: "London, UK", price: 215, flag: "🇬🇧" },
+    dublin: { name: "Dublin, Ireland", price: 195, flag: "🇮🇪" },
+    malta: { name: "Malta", price: 180, flag: "🇲🇹" }
+  },
+  registrationFee: 45,
+  currency: "€",
+  minWeeks: 1,
+  maxWeeks: 12
+};
+
+const COURSE_LEVELS = [
+  { id: "a1", name: "A1 - Beginner", description: "No prior knowledge" },
+  { id: "a2", name: "A2 - Elementary", description: "Basic phrases" },
+  { id: "b1", name: "B1 - Intermediate", description: "Independent user" },
+  { id: "b2", name: "B2 - Upper Intermediate", description: "Complex texts" },
+  { id: "c1", name: "C1 - Advanced", description: "Fluent expression" }
+];
+
+// Schedule data for rotating timetable
+const SCHEDULE_DATA = {
+  weekA: {
+    name: "Week A",
+    sessions: [
+      { day: "Monday", time: "09:00 - 13:00", type: "morning" },
+      { day: "Tuesday", time: "14:00 - 18:00", type: "afternoon" },
+      { day: "Wednesday", time: "09:00 - 13:00", type: "morning" },
+      { day: "Thursday", time: "14:00 - 18:00", type: "afternoon" },
+      { day: "Friday", time: "09:00 - 13:00", type: "morning" }
+    ]
+  },
+  weekB: {
+    name: "Week B",
+    sessions: [
+      { day: "Monday", time: "14:00 - 18:00", type: "afternoon" },
+      { day: "Tuesday", time: "09:00 - 13:00", type: "morning" },
+      { day: "Wednesday", time: "14:00 - 18:00", type: "afternoon" },
+      { day: "Thursday", time: "09:00 - 13:00", type: "morning" },
+      { day: "Friday", time: "14:00 - 18:00", type: "afternoon" }
+    ]
+  }
+};
+
+const INCLUSIONS = [
+  { icon: <BookOpen size={28} />, title: "20 Lessons/week", description: "4 hours daily, 5 days a week" },
+  { icon: <Award size={28} />, title: "Certificate", description: "End-of-course certificate" },
+  { icon: <GraduationCap size={28} />, title: "Level Test", description: "Placement test included" },
+  { icon: <Users size={28} />, title: "5 Social Activities", description: "Weekly activities included" }
+];
+
+// Get first Mondays for beginner start dates
+const getFirstMondaysOfNextMonths = (count = 6) => {
+  const dates = [];
+  const today = new Date();
+  let currentMonth = today.getMonth();
+  let currentYear = today.getFullYear();
+
+  for (let i = 0; i < count; i++) {
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    const dayOfWeek = firstDay.getDay();
+    const daysUntilMonday = dayOfWeek === 0 ? 1 : dayOfWeek === 1 ? 0 : 8 - dayOfWeek;
+    const firstMonday = new Date(currentYear, currentMonth, 1 + daysUntilMonday);
+    
+    if (firstMonday > today) {
+      dates.push(firstMonday);
+    }
+    
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+  }
+  
+  return dates.slice(0, count);
+};
+
+// Booking Modal Component
+const BookingModal = ({ isOpen, onClose, bookingDetails }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      await axios.post(`${API}/contact`, {
+        name: formData.name,
+        email: formData.email,
+        message: `Language Course Booking Request:
+- Location: ${bookingDetails.location}
+- Duration: ${bookingDetails.weeks} weeks
+- Level: ${bookingDetails.level}
+- Start Date: ${bookingDetails.startDate}
+- Total: ${bookingDetails.total}`,
+        trip_interest: "Language Practice Holiday"
+      });
+      
+      toast.success("Booking request sent!", {
+        description: "We'll contact you within 24 hours to confirm your booking."
+      });
+      onClose();
+    } catch (error) {
+      toast.error("Error sending request", {
+        description: "Please try again or contact us directly."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="font-syne font-bold text-xl text-ocean">Complete Your Booking</h3>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <X size={20} className="text-ocean/60" />
+            </button>
+          </div>
+
+          {/* Booking Summary */}
+          <div className="bg-warmwhite rounded-xl p-4 mb-6">
+            <h4 className="font-dm font-semibold text-ocean mb-3">Booking Summary</h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-ocean/70">Location:</span>
+                <span className="font-medium text-ocean">{bookingDetails.location}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-ocean/70">Duration:</span>
+                <span className="font-medium text-ocean">{bookingDetails.weeks} weeks</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-ocean/70">Level:</span>
+                <span className="font-medium text-ocean">{bookingDetails.level}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-ocean/70">Start Date:</span>
+                <span className="font-medium text-ocean">{bookingDetails.startDate}</span>
+              </div>
+              <div className="border-t border-border pt-2 mt-2">
+                <div className="flex justify-between">
+                  <span className="font-semibold text-ocean">Total:</span>
+                  <span className="font-syne font-bold text-sunset text-lg">{bookingDetails.total}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="font-dm font-medium text-ocean text-sm flex items-center gap-2 mb-2">
+                <User size={16} /> Full Name
+              </label>
+              <Input
+                required
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                placeholder="Enter your full name"
+                className="border-border focus:border-sunset rounded-xl"
+              />
+            </div>
+            
+            <div>
+              <label className="font-dm font-medium text-ocean text-sm flex items-center gap-2 mb-2">
+                <Mail size={16} /> Email Address
+              </label>
+              <Input
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                placeholder="your@email.com"
+                className="border-border focus:border-sunset rounded-xl"
+              />
+            </div>
+
+            <div>
+              <label className="font-dm font-medium text-ocean text-sm flex items-center gap-2 mb-2">
+                <Globe size={16} /> Phone (optional)
+              </label>
+              <Input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                placeholder="+33 6 12 34 56 78"
+                className="border-border focus:border-sunset rounded-xl"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 font-syne font-bold"
+            >
+              {isSubmitting ? "Sending..." : "Confirm Booking Request"}
+            </Button>
+          </form>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+// Main Page Component
+const LanguagePracticePage = () => {
+  const [selectedLocation, setSelectedLocation] = useState("london");
+  const [weeks, setWeeks] = useState([4]);
+  const [selectedLevel, setSelectedLevel] = useState("a2");
+  const [isBeginner, setIsBeginner] = useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+  const firstMondays = getFirstMondaysOfNextMonths(6);
+
+  // Calculate pricing
+  const locationData = PRICING_CONFIG.locations[selectedLocation];
+  const tuitionCost = locationData.price * weeks[0];
+  const totalAmount = tuitionCost + PRICING_CONFIG.registrationFee;
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('en-GB', { 
+      weekday: 'short', 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
+  const getBookingDetails = () => ({
+    location: locationData.name,
+    weeks: weeks[0],
+    level: COURSE_LEVELS.find(l => l.id === selectedLevel)?.name || "",
+    startDate: selectedStartDate || "To be confirmed",
+    total: `${PRICING_CONFIG.currency}${totalAmount}`
+  });
+
+  return (
+    <div className="min-h-screen bg-warmwhite">
+      <Toaster position="top-right" richColors />
+      
+      {/* Header */}
+      <header className="bg-ocean text-white py-4 px-4 sm:px-6 lg:px-12 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 text-white hover:text-sand transition-colors">
+            <ArrowLeft size={20} />
+            <span className="font-dm">Back to Home</span>
+          </Link>
+          <span className="font-syne font-bold text-lg">THE BRIDGE</span>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative py-16 sm:py-20 bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-sand rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-48 h-48 bg-sunset rounded-full blur-3xl" />
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <Languages size={20} className="text-sand" />
+              <span className="font-dm text-sm">Language Practice Holiday</span>
+            </div>
+            
+            <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
+              Learn English Through Travel
+            </h1>
+            <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto mb-6">
+              Immerse yourself in English while exploring incredible destinations. 
+              Real conversations, cultural experiences, and unforgettable memories.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              {Object.entries(PRICING_CONFIG.locations).map(([key, loc]) => (
+                <div key={key} className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-full">
+                  <span>{loc.flag}</span>
+                  <span>{loc.name}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
+        <div className="grid lg:grid-cols-3 gap-8">
+          
+          {/* Left Column - Booking Form */}
+          <div className="lg:col-span-2 space-y-8">
+            
+            {/* Location Selection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
+                    <MapPin className="text-sunset" size={22} />
+                    Choose Your Location
+                  </h2>
+                  
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    {Object.entries(PRICING_CONFIG.locations).map(([key, loc]) => (
+                      <button
+                        key={key}
+                        onClick={() => setSelectedLocation(key)}
+                        className={`p-4 rounded-xl border-2 transition-all ${
+                          selectedLocation === key
+                            ? "border-sunset bg-sunset/5"
+                            : "border-border hover:border-sunset/50"
+                        }`}
+                        data-testid={`location-${key}`}
+                      >
+                        <span className="text-2xl mb-2 block">{loc.flag}</span>
+                        <span className="font-syne font-bold text-ocean block">{loc.name}</span>
+                        <span className="font-dm text-sunset font-bold">
+                          {PRICING_CONFIG.currency}{loc.price}/week
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Duration Selection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
+                    <Calendar className="text-sunset" size={22} />
+                    Course Duration
+                  </h2>
+                  
+                  <div className="mb-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="font-dm text-ocean/70">Select weeks:</span>
+                      <span className="font-syne font-bold text-2xl text-sunset">{weeks[0]} weeks</span>
+                    </div>
+                    
+                    <Slider
+                      value={weeks}
+                      onValueChange={setWeeks}
+                      min={PRICING_CONFIG.minWeeks}
+                      max={PRICING_CONFIG.maxWeeks}
+                      step={1}
+                      className="mb-4"
+                      data-testid="weeks-slider"
+                    />
+                    
+                    <div className="flex justify-between text-xs text-ocean/50 font-dm">
+                      <span>{PRICING_CONFIG.minWeeks} week</span>
+                      <span>{PRICING_CONFIG.maxWeeks} weeks</span>
+                    </div>
+                  </div>
+
+                  {/* Quick selection buttons */}
+                  <div className="flex flex-wrap gap-2">
+                    {[2, 4, 8, 12].map((w) => (
+                      <button
+                        key={w}
+                        onClick={() => setWeeks([w])}
+                        className={`px-4 py-2 rounded-full text-sm font-dm transition-colors ${
+                          weeks[0] === w
+                            ? "bg-sunset text-white"
+                            : "bg-warmwhite text-ocean hover:bg-sand/30"
+                        }`}
+                      >
+                        {w} weeks
+                      </button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Course Level */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h2 className="font-syne font-bold text-xl text-ocean mb-4 flex items-center gap-2">
+                    <GraduationCap className="text-sunset" size={22} />
+                    Your English Level
+                  </h2>
+                  
+                  <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                    <SelectTrigger className="border-border rounded-xl py-6" data-testid="level-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {COURSE_LEVELS.map((level) => (
+                        <SelectItem key={level.id} value={level.id}>
+                          <div className="flex flex-col">
+                            <span className="font-dm font-medium">{level.name}</span>
+                            <span className="text-xs text-ocean/60">{level.description}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {/* Beginner Toggle */}
+                  <div className="mt-6 p-4 bg-warmwhite rounded-xl">
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="font-dm text-ocean flex items-center gap-2 cursor-pointer">
+                        <span>I am a complete beginner</span>
+                      </label>
+                      <Switch
+                        checked={isBeginner}
+                        onCheckedChange={setIsBeginner}
+                        data-testid="beginner-toggle"
+                      />
+                    </div>
+                    
+                    {isBeginner && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="mt-4"
+                      >
+                        <div className="flex items-start gap-2 p-3 bg-sunset/10 rounded-lg mb-4">
+                          <Info size={18} className="text-sunset flex-shrink-0 mt-0.5" />
+                          <p className="text-sm text-ocean">
+                            <strong>Beginner intakes</strong> are on the <strong>first Monday of every month</strong>. 
+                            Please select your preferred start date below.
+                          </p>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {firstMondays.map((date, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setSelectedStartDate(formatDate(date))}
+                              className={`p-3 rounded-lg text-sm font-dm transition-colors ${
+                                selectedStartDate === formatDate(date)
+                                  ? "bg-sunset text-white"
+                                  : "bg-white border border-border text-ocean hover:border-sunset"
+                              }`}
+                            >
+                              {formatDate(date)}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Schedule Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h2 className="font-syne font-bold text-xl text-ocean mb-2 flex items-center gap-2">
+                    <Clock className="text-sunset" size={22} />
+                    The Schedule
+                  </h2>
+                  <p className="font-dm text-ocean/70 text-sm mb-6">
+                    Rotating timetable — alternating morning and afternoon sessions each week
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {Object.entries(SCHEDULE_DATA).map(([key, week]) => (
+                      <div key={key} className="bg-warmwhite rounded-xl p-4">
+                        <h3 className="font-syne font-bold text-ocean mb-4 flex items-center gap-2">
+                          {key === 'weekA' ? <Sun className="text-sand" size={18} /> : <Moon className="text-ocean/60" size={18} />}
+                          {week.name}
+                        </h3>
+                        <div className="space-y-2">
+                          {week.sessions.map((session, idx) => (
+                            <div
+                              key={idx}
+                              className={`flex justify-between items-center p-3 rounded-lg ${
+                                session.type === 'morning' 
+                                  ? 'bg-sand/20' 
+                                  : 'bg-ocean/10'
+                              }`}
+                            >
+                              <span className="font-dm text-ocean">{session.day}</span>
+                              <span className={`font-dm font-medium text-sm px-3 py-1 rounded-full ${
+                                session.type === 'morning'
+                                  ? 'bg-sand text-ocean'
+                                  : 'bg-ocean text-white'
+                              }`}>
+                                {session.time}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Inclusions */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h2 className="font-syne font-bold text-xl text-ocean mb-6 flex items-center gap-2">
+                    <CheckCircle className="text-sunset" size={22} />
+                    What's Included
+                  </h2>
+                  
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {INCLUSIONS.map((item, index) => (
+                      <div
+                        key={index}
+                        className="bg-warmwhite rounded-xl p-4 text-center hover:shadow-md transition-shadow"
+                      >
+                        <div className="w-14 h-14 bg-sunset/10 rounded-full flex items-center justify-center mx-auto mb-3 text-sunset">
+                          {item.icon}
+                        </div>
+                        <h4 className="font-syne font-bold text-ocean text-sm mb-1">{item.title}</h4>
+                        <p className="font-dm text-ocean/60 text-xs">{item.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Right Column - Price Summary (Sticky) */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Card className="border-none shadow-xl bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-6">
+                      <Star className="text-sand" size={20} />
+                      <h3 className="font-syne font-bold text-lg">Price Summary</h3>
+                    </div>
+
+                    {/* Selected Location */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{locationData.flag}</span>
+                        <div>
+                          <p className="font-dm text-white/70 text-xs">Location</p>
+                          <p className="font-syne font-bold">{locationData.name}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Price Breakdown */}
+                    <div className="space-y-3 mb-6">
+                      <div className="flex justify-between items-center">
+                        <span className="font-dm text-white/70">Tuition ({weeks[0]} weeks)</span>
+                        <span className="font-dm font-medium">{PRICING_CONFIG.currency}{tuitionCost}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-dm text-white/70">Enrollment Fee</span>
+                        <span className="font-dm font-medium">{PRICING_CONFIG.currency}{PRICING_CONFIG.registrationFee}</span>
+                      </div>
+                      <div className="border-t border-white/20 pt-3">
+                        <div className="flex justify-between items-center">
+                          <span className="font-syne font-bold">Total Amount</span>
+                          <span className="font-syne font-bold text-2xl text-sand">
+                            {PRICING_CONFIG.currency}{totalAmount}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Course Info */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6 space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Duration:</span>
+                        <span className="font-medium">{weeks[0]} weeks</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Level:</span>
+                        <span className="font-medium">{COURSE_LEVELS.find(l => l.id === selectedLevel)?.name.split(' - ')[0]}</span>
+                      </div>
+                      {selectedStartDate && (
+                        <div className="flex justify-between">
+                          <span className="text-white/70">Start:</span>
+                          <span className="font-medium">{selectedStartDate}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Book Now Button */}
+                    <Button
+                      onClick={() => setIsBookingModalOpen(true)}
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full py-6 font-syne font-bold text-lg"
+                      data-testid="book-now-btn"
+                    >
+                      Book Now
+                    </Button>
+
+                    <p className="text-center text-white/60 text-xs mt-4 font-dm">
+                      No payment required now. We'll contact you to confirm.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Trust badges */}
+                <div className="mt-6 flex items-center justify-center gap-4 text-ocean/60">
+                  <div className="flex items-center gap-1 text-xs font-dm">
+                    <CheckCircle size={14} className="text-green-500" />
+                    <span>Free cancellation</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs font-dm">
+                    <CheckCircle size={14} className="text-green-500" />
+                    <span>Verified school</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        bookingDetails={getBookingDetails()}
+      />
+
+      {/* Footer */}
+      <footer className="bg-ocean py-8 px-4 sm:px-6 lg:px-12 mt-12">
+        <div className="max-w-7xl mx-auto text-center">
+          <Link to="/" className="font-syne font-bold text-xl text-white hover:text-sand transition-colors">
+            THE BRIDGE
+          </Link>
+          <p className="font-dm text-white/60 text-sm mt-2">
+            Travel • Practice • Experience
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LanguagePracticePage;
