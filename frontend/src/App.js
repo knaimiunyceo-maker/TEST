@@ -486,55 +486,95 @@ const HowItWorksSection = () => {
   );
 };
 
-// Our Experiences Section - 3 Categories
+// Our Experiences Section - 3 Categories with Full & Weekend formats
 const ExperiencesSection = ({ experiences }) => {
   const { language } = useLanguage();
 
   const content = {
     en: {
       title: "Our Experiences",
-      subtitle: "Three unique ways to travel, learn, and grow",
-      from: "From",
-      duration: "7 days",
-      whatYouPractice: "What you'll practice:",
-      whatYouExperience: "What you'll experience:",
-      bookNow: "Book This Experience"
+      subtitle: "Practice in the morning • Explore Morocco in the afternoon",
+      concept: "Travel • Practice • Experience",
+      formats: "Two formats available:",
+      fullExp: "Full Experience",
+      weekend: "Weekend",
+      days5: "5 days",
+      days7: "7 days / 6 nights",
+      weekend3: "2 nights / 3 days",
+      morningPractice: "Morning Practice:",
+      afternoonExperience: "Afternoon Experience:",
+      destinations: "Destinations:",
+      accommodationIncluded: "Accommodation included",
+      bookNow: "Book This Experience",
+      smallGroups: "Small international groups (18+)"
     },
     fr: {
       title: "Nos Expériences",
-      subtitle: "Trois façons uniques de voyager, apprendre et grandir",
-      from: "À partir de",
-      duration: "7 jours",
-      whatYouPractice: "Ce que vous pratiquerez :",
-      whatYouExperience: "Ce que vous vivrez :",
-      bookNow: "Réserver cette expérience"
+      subtitle: "Pratique le matin • Exploration du Maroc l'après-midi",
+      concept: "Voyage • Pratique • Expérience",
+      formats: "Deux formats disponibles :",
+      fullExp: "Expérience Complète",
+      weekend: "Weekend",
+      days5: "5 jours",
+      days7: "7 jours / 6 nuits",
+      weekend3: "2 nuits / 3 jours",
+      morningPractice: "Pratique du matin :",
+      afternoonExperience: "Expérience de l'après-midi :",
+      destinations: "Destinations :",
+      accommodationIncluded: "Hébergement inclus",
+      bookNow: "Réserver cette expérience",
+      smallGroups: "Petits groupes internationaux (18+)"
     },
     es: {
       title: "Nuestras Experiencias",
-      subtitle: "Tres formas únicas de viajar, aprender y crecer",
-      from: "Desde",
-      duration: "7 días",
-      whatYouPractice: "Lo que practicarás:",
-      whatYouExperience: "Lo que experimentarás:",
-      bookNow: "Reservar esta experiencia"
+      subtitle: "Práctica por la mañana • Explora Marruecos por la tarde",
+      concept: "Viaja • Practica • Experimenta",
+      formats: "Dos formatos disponibles:",
+      fullExp: "Experiencia Completa",
+      weekend: "Fin de semana",
+      days5: "5 días",
+      days7: "7 días / 6 noches",
+      weekend3: "2 noches / 3 días",
+      morningPractice: "Práctica matutina:",
+      afternoonExperience: "Experiencia vespertina:",
+      destinations: "Destinos:",
+      accommodationIncluded: "Alojamiento incluido",
+      bookNow: "Reservar esta experiencia",
+      smallGroups: "Pequeños grupos internacionales (18+)"
     },
     de: {
       title: "Unsere Erlebnisse",
-      subtitle: "Drei einzigartige Wege zu reisen, lernen und wachsen",
-      from: "Ab",
-      duration: "7 Tage",
-      whatYouPractice: "Was du üben wirst:",
-      whatYouExperience: "Was du erleben wirst:",
-      bookNow: "Dieses Erlebnis buchen"
+      subtitle: "Übung am Morgen • Marokko entdecken am Nachmittag",
+      concept: "Reisen • Üben • Erleben",
+      formats: "Zwei Formate verfügbar:",
+      fullExp: "Vollständiges Erlebnis",
+      weekend: "Wochenende",
+      days5: "5 Tage",
+      days7: "7 Tage / 6 Nächte",
+      weekend3: "2 Nächte / 3 Tage",
+      morningPractice: "Morgens Übung:",
+      afternoonExperience: "Nachmittags Erlebnis:",
+      destinations: "Reiseziele:",
+      accommodationIncluded: "Unterkunft inklusive",
+      bookNow: "Dieses Erlebnis buchen",
+      smallGroups: "Kleine internationale Gruppen (18+)"
     },
     pt: {
       title: "Nossas Experiências",
-      subtitle: "Três formas únicas de viajar, aprender e crescer",
-      from: "A partir de",
-      duration: "7 dias",
-      whatYouPractice: "O que você vai praticar:",
-      whatYouExperience: "O que você vai experimentar:",
-      bookNow: "Reservar esta experiência"
+      subtitle: "Prática pela manhã • Explore Marrocos à tarde",
+      concept: "Viaje • Pratique • Experimente",
+      formats: "Dois formatos disponíveis:",
+      fullExp: "Experiência Completa",
+      weekend: "Fim de semana",
+      days5: "5 dias",
+      days7: "7 dias / 6 noites",
+      weekend3: "2 noites / 3 dias",
+      morningPractice: "Prática matinal:",
+      afternoonExperience: "Experiência vespertina:",
+      destinations: "Destinos:",
+      accommodationIncluded: "Hospedagem incluída",
+      bookNow: "Reservar esta experiência",
+      smallGroups: "Pequenos grupos internacionais (18+)"
     }
   };
 
@@ -542,10 +582,10 @@ const ExperiencesSection = ({ experiences }) => {
 
   const getExperienceIcon = (icon) => {
     switch(icon) {
-      case 'boxing': return <Dumbbell size={32} />;
-      case 'languages': return <Languages size={32} />;
-      case 'camera': return <Camera size={32} />;
-      default: return <Star size={32} />;
+      case 'boxing': return <Dumbbell size={28} />;
+      case 'languages': return <Languages size={28} />;
+      case 'camera': return <Camera size={28} />;
+      default: return <Star size={28} />;
     }
   };
 
@@ -591,12 +631,14 @@ const ExperiencesSection = ({ experiences }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
+          <p className="font-caveat text-sand text-xl sm:text-2xl mb-2">{t.concept}</p>
           <h2 className="font-syne font-bold text-white mb-4 text-2xl sm:text-3xl md:text-4xl">
             {t.title}
           </h2>
-          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="font-dm text-white/80 text-base sm:text-lg max-w-2xl mx-auto mb-4">
             {t.subtitle}
           </p>
+          <p className="font-dm text-sand/80 text-sm">{t.smallGroups}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
@@ -623,41 +665,75 @@ const ExperiencesSection = ({ experiences }) => {
                   </div>
                 </div>
                 <CardContent className="p-5 sm:p-6 flex flex-col flex-1">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean leading-tight">
-                      {localizedTitles[language]?.[exp.id] || exp.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean leading-tight mb-1">
+                    {localizedTitles[language]?.[exp.id] || exp.title}
+                  </h3>
+                  <p className="font-caveat text-sunset text-lg mb-3">{exp.tagline}</p>
                   
-                  <p className="font-caveat text-sunset text-lg mb-2">{exp.tagline}</p>
+                  {/* Pricing Section - Two Formats */}
+                  {exp.pricing && (
+                    <div className="bg-warmwhite rounded-xl p-4 mb-4">
+                      <p className="font-dm font-semibold text-ocean text-xs mb-3">{t.formats}</p>
+                      <div className="space-y-2">
+                        {/* Full Experience */}
+                        <div className="flex justify-between items-center">
+                          <span className="font-dm text-ocean/70 text-sm">{t.days5}</span>
+                          <span className="font-syne font-bold text-ocean">{exp.currency}{exp.pricing['5_days']?.price || '—'}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="font-dm text-ocean/70 text-sm">{t.days7}</span>
+                          <span className="font-syne font-bold text-sunset">{exp.currency}{exp.pricing['7_days']?.price || '—'}</span>
+                        </div>
+                        <div className="border-t border-border pt-2 mt-2">
+                          <div className="flex justify-between items-center">
+                            <span className="font-dm text-ocean/70 text-sm">{t.weekend3}</span>
+                            <span className="font-syne font-bold text-ocean">{exp.currency}{exp.pricing['weekend']?.price || '—'}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-dm text-green-600 text-xs mt-3 flex items-center gap-1">
+                        <Check size={12} /> {t.accommodationIncluded}
+                      </p>
+                    </div>
+                  )}
                   
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="font-dm text-sm text-ocean/60">{t.from}</span>
-                    <span className="font-syne font-bold text-2xl text-ocean">{exp.currency}{exp.price}</span>
-                    <span className="font-dm text-sm text-ocean/60">/ {exp.duration}</span>
-                  </div>
-                  
-                  <div className="mb-4">
-                    <p className="font-dm font-semibold text-ocean text-sm mb-2">{t.whatYouPractice}</p>
-                    <div className="flex flex-wrap gap-2">
+                  {/* Morning Practice */}
+                  <div className="mb-3">
+                    <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.morningPractice}</p>
+                    <div className="flex flex-wrap gap-1">
                       {exp.practices.map((practice, i) => (
-                        <span key={i} className="bg-sunset/10 text-sunset px-3 py-1 rounded-full text-xs font-dm">
+                        <span key={i} className="bg-sunset/10 text-sunset px-2 py-1 rounded-full text-xs font-dm">
                           {practice}
                         </span>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="mb-4 flex-1">
-                    <p className="font-dm font-semibold text-ocean text-sm mb-2">{t.whatYouExperience}</p>
-                    <div className="flex flex-wrap gap-2">
+                  {/* Afternoon Experience */}
+                  <div className="mb-3">
+                    <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.afternoonExperience}</p>
+                    <div className="flex flex-wrap gap-1">
                       {exp.experiences.map((item, i) => (
-                        <span key={i} className="bg-ocean/10 text-ocean px-3 py-1 rounded-full text-xs font-dm">
+                        <span key={i} className="bg-ocean/10 text-ocean px-2 py-1 rounded-full text-xs font-dm">
                           {item}
                         </span>
                       ))}
                     </div>
                   </div>
+
+                  {/* Destinations */}
+                  {exp.destinations && (
+                    <div className="mb-4 flex-1">
+                      <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.destinations}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {exp.destinations.map((dest, i) => (
+                          <span key={i} className="bg-sand/30 text-ocean px-2 py-1 rounded-full text-xs font-dm flex items-center gap-1">
+                            <MapPin size={10} /> {dest}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
                   {exp.id === 'language-holiday' ? (
                     <Button 
