@@ -561,6 +561,21 @@ async def get_catalogue():
     return CATALOGUE
 
 
+@api_router.get("/experiences", response_model=List[Experience])
+async def get_experiences():
+    """Get all main experiences (Combat, Language, Visual Storytelling)"""
+    return EXPERIENCES
+
+
+@api_router.get("/experiences/{experience_id}")
+async def get_experience(experience_id: str):
+    """Get a specific experience by ID"""
+    for exp in EXPERIENCES:
+        if exp["id"] == experience_id:
+            return exp
+    raise HTTPException(status_code=404, detail="Experience not found")
+
+
 @api_router.get("/packages", response_model=List[Package])
 async def get_packages():
     """Get all travel packages"""
