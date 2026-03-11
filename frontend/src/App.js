@@ -747,7 +747,15 @@ const ExperiencesSection = ({ experiences }) => {
                       className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
                       data-testid={`book-experience-${exp.id}`}
                     >
-                      <Link to="/language-practice">{t.bookNow}</Link>
+                      <Link to="/experiences/language-practice">{t.bookNow}</Link>
+                    </Button>
+                  ) : exp.id === 'self-defense-holiday' ? (
+                    <Button 
+                      asChild
+                      className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
+                      data-testid={`book-experience-${exp.id}`}
+                    >
+                      <Link to="/experiences/self-defense">{t.bookNow}</Link>
                     </Button>
                   ) : (
                     <Button 
