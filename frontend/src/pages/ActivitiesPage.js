@@ -43,6 +43,24 @@ const ACTIVITIES = [
     image: "https://images.unsplash.com/photo-1662009833223-75d3301290bd?w=400",
     locations: ["Marrakech", "Agadir"],
     includes: ["Quad rental", "Guide", "Safety gear", "Tea break"]
+  },
+  {
+    id: "hammam",
+    title: "Hammam & Massage",
+    icon: <Waves size={28} />,
+    description: "Traditional Moroccan spa experience. Relax and recover after your training sessions.",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400",
+    locations: ["All cities"],
+    includes: ["Traditional hammam", "Gommage", "Relaxation area"]
+  },
+  {
+    id: "paradise-valley",
+    title: "Paradise Valley",
+    icon: <Map size={28} />,
+    description: "Day trip to the stunning natural pools and waterfalls of Paradise Valley near Agadir.",
+    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400",
+    locations: ["Agadir"],
+    includes: ["Transport", "Guide", "Swimming stops"]
   }
 ];
 
