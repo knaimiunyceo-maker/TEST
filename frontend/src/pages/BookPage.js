@@ -444,9 +444,23 @@ Additional Message: ${formData.message || 'None'}`,
                       </div>
                       <div className="border-t border-border pt-2 mt-2">
                         <div className="flex justify-between">
-                          <span className="text-ocean/70">Prix:</span>
-                          <span className="font-medium text-ocean">€{price}</span>
+                          <span className="text-ocean/70">Prix de base:</span>
+                          <span className={`font-medium ${isEarlyBird ? 'line-through text-ocean/50' : 'text-ocean'}`}>€{price}</span>
                         </div>
+                        {isEarlyBird && (
+                          <div className="flex justify-between items-center bg-green-50 -mx-4 px-4 py-2 my-2">
+                            <span className="text-green-700 flex items-center gap-2">
+                              <Gift size={16} /> Early Bird (-8%)
+                            </span>
+                            <span className="font-bold text-green-700">-€{earlyBirdDiscount}</span>
+                          </div>
+                        )}
+                        {isEarlyBird && (
+                          <div className="flex justify-between">
+                            <span className="text-ocean/70">Prix après réduction:</span>
+                            <span className="font-medium text-ocean">€{priceAfterDiscount}</span>
+                          </div>
+                        )}
                         {registrationFee > 0 && (
                           <div className="flex justify-between">
                             <span className="text-ocean/70">Frais d'inscription:</span>
