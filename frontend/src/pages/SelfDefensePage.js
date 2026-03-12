@@ -228,11 +228,11 @@ const SelfDefensePage = () => {
                 <CardContent className="p-6">
                   <p className="font-dm text-white/70 text-sm mb-2">Votre sélection</p>
                   <p className="font-syne font-bold text-xl mb-1">
-                    Self-Defense Weekend – {getWeekendCity(weekends.indexOf(selectedWeekend))}
+                    Self-Defense Weekend – {getWeekendCity(weekends.findIndex(w => w.getTime() === selectedWeekend.getTime()))}
                   </p>
                   <p className="font-dm text-sand mb-4">{formatWeekendDate(selectedWeekend)}</p>
                   <Button asChild className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-8">
-                    <Link to={`/book?experience=self-defense&city=${getWeekendCity(weekends.indexOf(selectedWeekend)).toLowerCase()}&date=${selectedWeekend.toISOString()}`}>
+                    <Link to={`/book?experience=self-defense&city=${getWeekendCity(weekends.findIndex(w => w.getTime() === selectedWeekend.getTime())).toLowerCase()}&date=${selectedWeekend.toISOString()}`}>
                       Réserver ce weekend <ArrowRight size={16} className="ml-2" />
                     </Link>
                   </Button>
