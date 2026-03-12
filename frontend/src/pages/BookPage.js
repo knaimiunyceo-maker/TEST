@@ -79,6 +79,7 @@ const BookPage = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     experience: "",
+    courseType: "",
     city: "",
     duration: "",
     startDate: null,
@@ -90,7 +91,11 @@ const BookPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const selectedExperience = EXPERIENCES.find(e => e.id === formData.experience);
+  const availableCities = selectedExperience ? ALL_CITIES.filter(c => selectedExperience.cities.includes(c.id)) : [];
+  const availableDurations = selectedExperience ? ALL_DURATIONS.filter(d => selectedExperience.durations.includes(d.id)) : [];
   const price = selectedExperience?.prices[formData.duration] || 0;
+  const registrationFee = formData.experience === "language" ? 45 : 0;
+  const totalPrice = price + registrationFee;
 
   const formatDate = (date) => {
     if (!date) return "";
