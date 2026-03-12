@@ -37,7 +37,7 @@ const EXPERIENCES = [
     id: "language", 
     label: "Cours d'Anglais Intensif", 
     icon: <Languages size={20} />, 
-    prices: { "1week": 400, "2weeks": 750, "3weeks": 1050, "4weeks": 1300 },
+    pricePerWeek: 400,
     cities: ["casablanca", "marrakech"],
     durations: ["1week", "2weeks", "3weeks", "4weeks"],
     courseTypes: [
