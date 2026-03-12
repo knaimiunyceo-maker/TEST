@@ -12,21 +12,21 @@ const EXPERIENCES = [
   {
     id: "self-defense",
     slug: "self-defense",
-    title: "Self-Defense Holiday",
-    tagline: "Train your body, explore Morocco",
-    description: "Morning self-defense training sessions focusing on practical techniques. Afternoons include beach time, pool time, local exploration, and group dinners.",
+    title: "Self-Defense Weekend",
+    tagline: "3 jours / 2 nuits",
+    description: "Un weekend intensif de self-défense. Vendredi → Dimanche. Petit groupe de 10 personnes maximum.",
     image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
     icon: <Shield size={32} />,
     practices: ["Self-defense techniques", "Conditioning", "Practical skills"],
     pricing: { "5_days": 450, "7_days": 550, "weekend": 250 },
-    destinations: ["Casablanca", "Marrakech", "Agadir"]
+    destinations: ["Marrakech", "Agadir"]
   },
   {
     id: "language",
     slug: "language-practice",
-    title: "Language Practice Holiday",
-    tagline: "Practice English through travel",
-    description: "Cours d'anglais intensif avec 20 heures par semaine. Test de niveau gratuit, TOEFL, IELTS, Business English.",
+    title: "Cours d'Anglais Intensif",
+    tagline: "Minimum 1 semaine",
+    description: "20 heures de cours par semaine. Test de niveau gratuit, TOEFL, IELTS, Business English.",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
     icon: <Languages size={32} />,
     practices: ["English conversation", "TOEFL/IELTS", "Business English"],
@@ -41,7 +41,7 @@ const EXPERIENCES = [
     description: "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty.",
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
     icon: <Camera size={32} />,
-    practices: ["Filmmaking", "Photography", "Drone content"],
+    practices: ["Filmmaking", "Photography", "drone content"],
     pricing: { "5_days": 480, "7_days": 580, "weekend": 260 },
     destinations: ["Marrakech", "Agadir"]
   }
