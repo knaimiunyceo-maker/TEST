@@ -26,12 +26,12 @@ const EXPERIENCES = [
     slug: "language-practice",
     title: "Language Practice Holiday",
     tagline: "Practice English through travel",
-    description: "Morning English practice sessions with real conversations and group activities. Afternoons dedicated to exploring Morocco and cultural experiences.",
+    description: "Cours d'anglais intensif avec 20 heures par semaine. Test de niveau gratuit, TOEFL, IELTS, Business English.",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
     icon: <Languages size={32} />,
-    practices: ["English conversation", "Real-life discussions", "Group activities"],
-    pricing: { "5_days": 400, "7_days": 500, "weekend": 220 },
-    destinations: ["Casablanca"]
+    practices: ["English conversation", "TOEFL/IELTS", "Business English"],
+    pricing: { "1_week": 400, "2_weeks": 750, "4_weeks": 1300 },
+    destinations: ["Casablanca", "Marrakech"]
   },
   {
     id: "storytelling",
