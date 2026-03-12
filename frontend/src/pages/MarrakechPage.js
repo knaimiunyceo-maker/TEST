@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   MapPin, ArrowRight, Sun, Users, Home, Shield,
-  Camera, Check, Star, Mountain
+  Camera, Check, Star, Mountain, Languages
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
