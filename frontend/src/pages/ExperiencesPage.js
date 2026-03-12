@@ -104,18 +104,23 @@ const ExperiencesPage = () => {
                     
                     {/* Pricing */}
                     <div className="bg-warmwhite rounded-lg p-3 mb-4">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="font-dm text-ocean/70">5 days</span>
-                        <span className="font-syne font-bold text-ocean">€{exp.pricing["5_days"]}</span>
-                      </div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="font-dm text-ocean/70">7 days</span>
-                        <span className="font-syne font-bold text-sunset">€{exp.pricing["7_days"]}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="font-dm text-ocean/70">Weekend</span>
-                        <span className="font-syne font-bold text-ocean">€{exp.pricing["weekend"]}</span>
-                      </div>
+                      {Object.entries(exp.pricing).map(([key, price], index) => {
+                        const labels = {
+                          "5_days": "5 days",
+                          "7_days": "7 days", 
+                          "weekend": "Weekend",
+                          "1_week": "1 week",
+                          "2_weeks": "2 weeks",
+                          "4_weeks": "4 weeks"
+                        };
+                        const isHighlighted = key === "7_days" || key === "2_weeks";
+                        return (
+                          <div key={key} className={`flex justify-between text-sm ${index < Object.keys(exp.pricing).length - 1 ? 'mb-1' : ''}`}>
+                            <span className="font-dm text-ocean/70">{labels[key]}</span>
+                            <span className={`font-syne font-bold ${isHighlighted ? 'text-sunset' : 'text-ocean'}`}>€{price}</span>
+                          </div>
+                        );
+                      })}
                     </div>
 
                     {/* Destinations */}
