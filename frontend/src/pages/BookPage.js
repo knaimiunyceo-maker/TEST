@@ -330,32 +330,32 @@ Additional Message: ${formData.message || 'None'}`,
                   <div className="space-y-4">
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <User size={16} /> Full Name *
+                        <User size={16} /> Nom complet *
                       </label>
                       <Input 
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        placeholder="Your full name"
+                        placeholder="Votre nom complet"
                         className="border-border rounded-xl"
                         required
                       />
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <Mail size={16} /> Email Address *
+                        <Mail size={16} /> Email *
                       </label>
                       <Input 
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        placeholder="your@email.com"
+                        placeholder="votre@email.com"
                         className="border-border rounded-xl"
                         required
                       />
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <Phone size={16} /> Phone (optional)
+                        <Phone size={16} /> Téléphone (optionnel)
                       </label>
                       <Input 
                         type="tel"
@@ -366,11 +366,11 @@ Additional Message: ${formData.message || 'None'}`,
                       />
                     </div>
                     <div>
-                      <label className="font-dm font-medium text-ocean text-sm mb-2">Additional Message</label>
+                      <label className="font-dm font-medium text-ocean text-sm mb-2">Message additionnel</label>
                       <Textarea 
                         value={formData.message}
                         onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                        placeholder="Any questions or special requests?"
+                        placeholder="Questions ou demandes spéciales ?"
                         className="border-border rounded-xl"
                         rows={3}
                       />
@@ -379,28 +379,44 @@ Additional Message: ${formData.message || 'None'}`,
 
                   {/* Summary */}
                   <div className="mt-6 p-4 bg-warmwhite rounded-xl">
-                    <h3 className="font-syne font-bold text-ocean mb-3">Booking Summary</h3>
+                    <h3 className="font-syne font-bold text-ocean mb-3">Récapitulatif</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Experience:</span>
+                        <span className="text-ocean/70">Expérience:</span>
                         <span className="font-medium text-ocean">{selectedExperience?.label}</span>
                       </div>
+                      {formData.courseType && (
+                        <div className="flex justify-between">
+                          <span className="text-ocean/70">Type de cours:</span>
+                          <span className="font-medium text-ocean">{selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label}</span>
+                        </div>
+                      )}
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">City:</span>
-                        <span className="font-medium text-ocean">{CITIES.find(c => c.id === formData.city)?.label}</span>
+                        <span className="text-ocean/70">Ville:</span>
+                        <span className="font-medium text-ocean">{ALL_CITIES.find(c => c.id === formData.city)?.label}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Duration:</span>
-                        <span className="font-medium text-ocean">{DURATIONS.find(d => d.id === formData.duration)?.label}</span>
+                        <span className="text-ocean/70">Durée:</span>
+                        <span className="font-medium text-ocean">{ALL_DURATIONS.find(d => d.id === formData.duration)?.label}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Start Date:</span>
+                        <span className="text-ocean/70">Date de début:</span>
                         <span className="font-medium text-ocean">{formatDate(formData.startDate)}</span>
                       </div>
                       <div className="border-t border-border pt-2 mt-2">
                         <div className="flex justify-between">
+                          <span className="text-ocean/70">Prix:</span>
+                          <span className="font-medium text-ocean">€{price}</span>
+                        </div>
+                        {registrationFee > 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-ocean/70">Frais d'inscription:</span>
+                            <span className="font-medium text-ocean">€{registrationFee}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between mt-2">
                           <span className="font-syne font-bold text-ocean">Total:</span>
-                          <span className="font-syne font-bold text-sunset text-xl">€{price}</span>
+                          <span className="font-syne font-bold text-sunset text-xl">€{totalPrice}</span>
                         </div>
                       </div>
                     </div>
