@@ -99,7 +99,10 @@ const BookPage = () => {
   const selectedDuration = ALL_DURATIONS.find(d => d.id === formData.duration);
   let price = 0;
   if (selectedExperience && formData.duration) {
-    if (selectedExperience.pricePerWeek && selectedDuration?.weeks) {
+    if (selectedExperience.price) {
+      // Self-Defense: fixed weekend price
+      price = selectedExperience.price;
+    } else if (selectedExperience.pricePerWeek && selectedDuration?.weeks) {
       // Language course: price per week × number of weeks
       price = selectedExperience.pricePerWeek * selectedDuration.weeks;
     } else if (selectedExperience.prices) {
