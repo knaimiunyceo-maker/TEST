@@ -275,17 +275,17 @@ Additional Message: ${formData.message || 'None'}`,
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-6">
                     <Calendar className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Choose Duration & Dates</h2>
+                    <h2 className="font-syne font-bold text-xl text-ocean">Durée & Date de début</h2>
                   </div>
                   
                   <div className="mb-6">
-                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Duration</label>
+                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Durée</label>
                     <Select value={formData.duration} onValueChange={(v) => setFormData(prev => ({ ...prev, duration: v }))}>
                       <SelectTrigger className="border-border rounded-xl">
-                        <SelectValue placeholder="Select duration" />
+                        <SelectValue placeholder="Sélectionnez la durée" />
                       </SelectTrigger>
                       <SelectContent>
-                        {DURATIONS.map((d) => (
+                        {availableDurations.map((d) => (
                           <SelectItem key={d.id} value={d.id}>{d.label}</SelectItem>
                         ))}
                       </SelectContent>
