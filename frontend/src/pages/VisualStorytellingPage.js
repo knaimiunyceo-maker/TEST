@@ -3,44 +3,96 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   Camera, ArrowRight, MapPin, Calendar, Users, Check, 
-  Clock, ChevronDown, ChevronUp, Film, Image, Plane
+  Clock, ChevronLeft, ChevronRight, Sun, Moon, Film, Image, Aperture
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
 
+// Generate weekend dates for a given month
+const generateWeekends = (year, month) => {
+  const weekends = [];
+  const date = new Date(year, month, 1);
+  
+  // Find all Fridays in the month
+  while (date.getMonth() === month) {
+    if (date.getDay() === 5) { // Friday
+      weekends.push(new Date(date));
+    }
+    date.setDate(date.getDate() + 1);
+  }
+  
+  return weekends;
+};
+
+// Assign cities to weekends (alternating Marrakech/Agadir)
+const getWeekendCity = (weekendIndex) => {
+  return weekendIndex % 2 === 0 ? "Marrakech" : "Agadir";
+};
+
 const TRACKS = [
-  { id: "filmmaking", title: "Filmmaking", icon: <Film size={24} />, desc: "Learn storytelling, filming techniques, and basic editing while shooting real content." },
-  { id: "photography", title: "Photography", icon: <Image size={24} />, desc: "Master composition, lighting, and framing while exploring stunning locations." },
-  { id: "drone", title: "Drone Content", icon: <Plane size={24} />, desc: "Learn aerial filming and storytelling using drones in beautiful Moroccan landscapes." }
+  { id: "film", name: "Filmmaking", icon: <Film size={20} />, desc: "Apprenez le storytelling vidéo, le cadrage et le montage." },
+  { id: "photo", name: "Photography", icon: <Image size={20} />, desc: "Maîtrisez la composition, la lumière et le post-traitement." },
+  { id: "drone", name: "Drone", icon: <Aperture size={20} />, desc: "Capturez des images aériennes spectaculaires." }
 ];
 
 const PROGRAM = [
-  { day: "Day 1", morning: "Welcome & equipment check", afternoon: "City orientation shoot" },
-  { day: "Day 2", morning: "Technique fundamentals", afternoon: "Medina exploration & shooting" },
-  { day: "Day 3", morning: "Advanced techniques", afternoon: "Landscape/architecture session" },
-  { day: "Day 4", morning: "Editing workshop", afternoon: "Golden hour shoot" },
-  { day: "Day 5", morning: "Project review", afternoon: "Final shots & departure (5-day)" },
-  { day: "Day 6", morning: "Desert/beach expedition", afternoon: "Sunset content creation" },
-  { day: "Day 7", morning: "Portfolio review & certificates", afternoon: "Farewell" }
-];
-
-const WEEKEND_PROGRAM = [
-  { day: "Day 1", morning: "Arrival & orientation", afternoon: "First shooting session" },
-  { day: "Day 2", morning: "Intensive workshop", afternoon: "Location shoot" },
-  { day: "Day 3", morning: "Review & editing tips", afternoon: "Departure" }
-];
-
-const FAQ = [
-  { q: "Do I need my own equipment?", a: "Basic equipment is helpful but not required. We can provide cameras for beginners. Bring your own if you prefer specific gear." },
-  { q: "What skill level is required?", a: "All levels welcome! From complete beginners to those looking to improve specific skills." },
-  { q: "Can I do multiple tracks?", a: "You can choose one main track, but workshops often overlap so you'll learn bits of everything." },
-  { q: "What will I leave with?", a: "A portfolio of content you created during the trip, plus new skills and connections." },
-  { q: "Is drone flying legal in Morocco?", a: "Yes, with proper permits. We handle all authorizations for our drone sessions." }
+  { 
+    day: "Vendredi", 
+    icon: <Moon size={20} />,
+    activities: [
+      { time: "18:00", activity: "Arrivée & Installation" },
+      { time: "19:00", activity: "Briefing créatif & présentation des tracks" },
+      { time: "20:00", activity: "Dîner de groupe" }
+    ]
+  },
+  { 
+    day: "Samedi", 
+    icon: <Sun size={20} />,
+    activities: [
+      { time: "06:00 - 08:00", activity: "Shooting lever de soleil (optionnel)", highlight: true },
+      { time: "09:00 - 12:00", activity: "Session technique + shooting", highlight: true },
+      { time: "12:30", activity: "Déjeuner" },
+      { time: "14:00 - 18:00", activity: "Exploration & capture de contenu", highlight: true },
+      { time: "18:00 - 19:30", activity: "Golden hour shooting", highlight: true },
+      { time: "20:00", activity: "Dîner + review des images" }
+    ]
+  },
+  { 
+    day: "Dimanche", 
+    icon: <Sun size={20} />,
+    activities: [
+      { time: "09:00 - 12:00", activity: "Session finale + post-production", highlight: true },
+      { time: "12:30", activity: "Déjeuner de clôture & partage des créations" },
+      { time: "14:00", activity: "Départ" }
+    ]
+  }
 ];
 
 const VisualStorytellingPage = () => {
-  const [openFaq, setOpenFaq] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedWeekend, setSelectedWeekend] = useState(null);
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const weekends = generateWeekends(currentYear, currentMonth);
+
+  const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+                      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+  const navigateMonth = (direction) => {
+    const newDate = new Date(currentDate);
+    newDate.setMonth(newDate.getMonth() + direction);
+    setCurrentDate(newDate);
+    setSelectedWeekend(null);
+  };
+
+  const formatWeekendDate = (friday) => {
+    const sunday = new Date(friday);
+    sunday.setDate(sunday.getDate() + 2);
+    return `${friday.getDate()} - ${sunday.getDate()} ${monthNames[friday.getMonth()]}`;
+  };
 
   return (
     <PageLayout>
@@ -49,188 +101,314 @@ const VisualStorytellingPage = () => {
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1600" 
-            alt="Visual storytelling"
+            alt="Visual Storytelling"
             className="w-full h-full object-cover opacity-20"
           />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center">
                 <Camera size={28} className="text-white" />
               </div>
-              <span className="font-dm text-sand text-sm">Experience</span>
+              <span className="bg-sunset/20 text-sand px-4 py-1 rounded-full text-sm font-dm">Weekend Experience</span>
+              <span className="bg-white/10 text-white/80 px-4 py-1 rounded-full text-sm font-dm">3 jours / 2 nuits</span>
             </div>
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Visual Storytelling Holiday
+              Visual Storytelling Weekend
             </h1>
-            <p className="font-caveat text-sand text-xl mb-4">Create content while exploring</p>
+            <p className="font-caveat text-sand text-xl mb-4">Vendredi → Dimanche</p>
             <p className="font-dm text-white/80 text-lg max-w-2xl">
-              Learn filmmaking, photography, or drone content creation while capturing 
-              Morocco's beauty. Leave with a portfolio and new skills.
+              Un weekend créatif pour apprendre la photo, vidéo ou drone. 
+              Capturez le Maroc avec un petit groupe de 10 personnes maximum.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Overview */}
-      <section id="overview" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Overview</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="font-dm text-ocean/80 text-base leading-relaxed mb-6">
-                Transform your creative vision into reality with our Visual Storytelling Holiday. 
-                Whether you're into filmmaking, photography, or drone content, our experienced 
-                mentors will guide you through techniques while you capture Morocco's stunning landscapes.
-              </p>
-              <p className="font-dm text-ocean/80 text-base leading-relaxed mb-6">
-                Mornings are dedicated to learning and practice. Afternoons become your canvas — 
-                explore medinas, deserts, beaches, and mountains while creating content you'll be proud of.
-              </p>
-              
-              {/* Tracks */}
-              <h3 className="font-syne font-bold text-lg text-ocean mb-4">Choose Your Track</h3>
-              <div className="space-y-3">
-                {TRACKS.map((track) => (
-                  <div key={track.id} className="flex items-start gap-3 bg-white p-3 rounded-lg">
-                    <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center text-sunset flex-shrink-0">
-                      {track.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-dm font-semibold text-ocean text-sm">{track.title}</h4>
-                      <p className="font-dm text-ocean/60 text-xs">{track.desc}</p>
-                    </div>
-                  </div>
-                ))}
+      {/* Key Info */}
+      <section className="py-8 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {[
+              { icon: <Calendar size={20} />, label: "Durée", value: "3 jours / 2 nuits" },
+              { icon: <Clock size={20} />, label: "Horaires", value: "Vendredi → Dimanche" },
+              { icon: <Users size={20} />, label: "Groupe", value: "Max 10 personnes" },
+              { icon: <MapPin size={20} />, label: "Villes", value: "Marrakech / Agadir" }
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center mx-auto mb-2 text-sunset">
+                  {item.icon}
+                </div>
+                <p className="font-dm text-ocean/60 text-xs mb-1">{item.label}</p>
+                <p className="font-syne font-bold text-ocean text-sm">{item.value}</p>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400" alt="Photography" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400" alt="Camera" className="rounded-xl aspect-square object-cover mt-8" />
-            </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Choose Your Track */}
+      <section id="tracks" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">Choisissez votre Track</h2>
+          <p className="font-dm text-ocean/60 text-center mb-8">Spécialisez-vous dans un domaine</p>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {TRACKS.map((track) => (
+              <button
+                key={track.id}
+                onClick={() => setSelectedTrack(track.id)}
+                className={`p-6 rounded-xl border-2 text-left transition-all ${
+                  selectedTrack === track.id
+                    ? "border-sunset bg-sunset/5 shadow-lg"
+                    : "border-border hover:border-sunset/50 hover:shadow-md"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
+                  selectedTrack === track.id ? "bg-sunset text-white" : "bg-ocean/10 text-ocean"
+                }`}>
+                  {track.icon}
+                </div>
+                <h3 className="font-syne font-bold text-ocean mb-2">{track.name}</h3>
+                <p className="font-dm text-ocean/60 text-sm">{track.desc}</p>
+                {selectedTrack === track.id && (
+                  <div className="mt-3 pt-3 border-t border-sunset/20">
+                    <span className="text-sunset font-dm text-sm flex items-center gap-1">
+                      <Check size={14} /> Sélectionné
+                    </span>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Calendar */}
+      <section id="calendar" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">Calendrier des Weekends</h2>
+          <p className="font-dm text-ocean/60 text-center mb-8">Choisissez votre weekend</p>
+
+          {/* Month Navigation */}
+          <div className="flex items-center justify-between mb-6">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => navigateMonth(-1)}
+              className="rounded-full"
+            >
+              <ChevronLeft size={18} />
+            </Button>
+            <h3 className="font-syne font-bold text-xl text-ocean">
+              {monthNames[currentMonth]} {currentYear}
+            </h3>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => navigateMonth(1)}
+              className="rounded-full"
+            >
+              <ChevronRight size={18} />
+            </Button>
+          </div>
+
+          {/* Weekends Grid */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {weekends.map((friday, index) => {
+              const city = getWeekendCity(index);
+              const isPast = friday < new Date();
+              const isSelected = selectedWeekend?.getTime() === friday.getTime();
+              
+              return (
+                <button
+                  key={friday.toISOString()}
+                  onClick={() => !isPast && setSelectedWeekend(friday)}
+                  disabled={isPast}
+                  className={`p-4 rounded-xl border-2 text-left transition-all ${
+                    isPast 
+                      ? "border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed"
+                      : isSelected
+                        ? "border-sunset bg-sunset/5 shadow-lg"
+                        : "border-border hover:border-sunset/50 hover:shadow-md"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`font-syne font-bold ${isPast ? "text-gray-400" : "text-ocean"}`}>
+                      Weekend {index + 1}
+                    </span>
+                    <span className={`text-xs font-dm px-2 py-1 rounded-full ${
+                      city === "Marrakech" 
+                        ? "bg-red-100 text-red-700" 
+                        : "bg-blue-100 text-blue-700"
+                    }`}>
+                      {city}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar size={16} className={isPast ? "text-gray-400" : "text-sunset"} />
+                    <span className={`font-dm ${isPast ? "text-gray-400" : "text-ocean/70"}`}>
+                      {formatWeekendDate(friday)}
+                    </span>
+                  </div>
+                  {isSelected && (
+                    <div className="mt-3 pt-3 border-t border-sunset/20">
+                      <span className="text-sunset font-dm text-sm flex items-center gap-1">
+                        <Check size={14} /> Sélectionné
+                      </span>
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Book Button */}
+          {selectedWeekend && selectedTrack && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-8 text-center"
+            >
+              <Card className="border-none bg-ocean text-white inline-block">
+                <CardContent className="p-6">
+                  <p className="font-dm text-white/70 text-sm mb-2">Votre sélection</p>
+                  <p className="font-syne font-bold text-xl mb-1">
+                    {TRACKS.find(t => t.id === selectedTrack)?.name} Weekend – {getWeekendCity(weekends.findIndex(w => w.getTime() === selectedWeekend.getTime()))}
+                  </p>
+                  <p className="font-dm text-sand mb-4">{formatWeekendDate(selectedWeekend)}</p>
+                  <Button asChild className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-8">
+                    <Link to={`/book?experience=storytelling&track=${selectedTrack}&city=${getWeekendCity(weekends.findIndex(w => w.getTime() === selectedWeekend.getTime())).toLowerCase()}&date=${selectedWeekend.toISOString()}`}>
+                      Réserver ce weekend <ArrowRight size={16} className="ml-2" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+
+          {selectedWeekend && !selectedTrack && (
+            <p className="mt-6 text-center font-dm text-ocean/60">
+              ↑ Sélectionnez d'abord votre track (Film, Photo ou Drone)
+            </p>
+          )}
         </div>
       </section>
 
       {/* Program */}
       <section id="program" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Program</h2>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Programme du Weekend</h2>
+          
           <div className="space-y-4">
-            {PROGRAM.map((day, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className={`border-none ${index >= 5 ? "bg-sand/20" : "bg-warmwhite"}`}>
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <div className="w-16 h-16 bg-ocean rounded-xl flex items-center justify-center flex-shrink-0">
-                      <span className="font-syne font-bold text-white text-sm">{day.day}</span>
-                    </div>
-                    <div className="flex-1 grid sm:grid-cols-2 gap-2">
-                      <div>
-                        <p className="font-dm text-xs text-ocean/60 mb-1">Morning</p>
-                        <p className="font-dm text-ocean font-medium text-sm">{day.morning}</p>
+            {PROGRAM.map((day, dayIndex) => (
+              <Card key={dayIndex} className="border-none overflow-hidden">
+                <div className={`p-4 ${dayIndex === 0 ? 'bg-ocean' : 'bg-sunset'} text-white flex items-center gap-3`}>
+                  {day.icon}
+                  <h3 className="font-syne font-bold text-lg">{day.day}</h3>
+                </div>
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    {day.activities.map((activity, actIndex) => (
+                      <div 
+                        key={actIndex} 
+                        className={`flex items-center gap-4 p-3 rounded-lg ${
+                          activity.highlight ? 'bg-sunset/10' : 'bg-warmwhite'
+                        }`}
+                      >
+                        <span className="font-dm text-ocean/60 text-sm w-28 flex-shrink-0">{activity.time}</span>
+                        <span className={`font-dm ${activity.highlight ? 'font-semibold text-ocean' : 'text-ocean/80'}`}>
+                          {activity.activity}
+                        </span>
+                        {activity.highlight && <Camera size={16} className="text-sunset ml-auto" />}
                       </div>
-                      <div>
-                        <p className="font-dm text-xs text-ocean/60 mb-1">Afternoon</p>
-                        <p className="font-dm text-ocean/80 text-sm">{day.afternoon}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
-          <p className="text-center font-dm text-ocean/60 text-sm mt-4">* Days 6-7 for 7-day experience only</p>
         </div>
       </section>
 
       {/* Pricing */}
       <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-12 bg-ocean text-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-8 text-center">Pricing</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Tarif Weekend</h2>
+          <div className="bg-white/10 rounded-2xl p-8 mb-6">
+            <p className="font-syne font-extrabold text-5xl text-sand mb-2">€260</p>
+            <p className="font-dm text-white/70">par personne</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3 text-left max-w-md mx-auto">
             {[
-              { label: "Weekend", duration: "2 nights / 3 days", price: 260, popular: false },
-              { label: "5 Days", duration: "5 days experience", price: 480, popular: false },
-              { label: "Full Week", duration: "7 days / 6 nights", price: 580, popular: true }
-            ].map((plan) => (
-              <Card key={plan.label} className={`border-none ${plan.popular ? "bg-sunset" : "bg-white/10"}`}>
-                <CardContent className="p-6 text-center">
-                  {plan.popular && <span className="bg-sand text-ocean text-xs font-dm px-3 py-1 rounded-full">Most Popular</span>}
-                  <h3 className="font-syne font-bold text-xl mt-3 mb-1">{plan.label}</h3>
-                  <p className="font-dm text-white/70 text-sm mb-4">{plan.duration}</p>
-                  <p className="font-syne font-bold text-4xl mb-4">€{plan.price}</p>
-                  <ul className="text-left space-y-2 mb-6">
-                    {["Accommodation included", "Daily workshops", "Equipment guidance"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 font-dm text-sm text-white/80">
-                        <Check size={14} className="text-sand" /> {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className={`w-full rounded-full ${plan.popular ? "bg-white text-sunset hover:bg-white/90" : "bg-sunset hover:bg-sunset/90"}`}>
-                    <Link to="/book">Book Now</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              "Sessions shooting guidées",
+              "2 nuits d'hébergement",
+              "Tous les repas inclus",
+              "Groupe max 10 personnes",
+              "Formateur professionnel",
+              "Accès spots exclusifs"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <Check size={16} className="text-sand flex-shrink-0" />
+                <span className="font-dm text-white/80 text-sm">{item}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Locations */}
-      <section id="locations" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+      {/* Destinations */}
+      <section id="destinations" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Locations</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {[
-              { city: "Marrakech", desc: "Vibrant medinas, stunning architecture, perfect for street photography.", image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400" },
-              { city: "Essaouira", desc: "Coastal beauty, blue fishing boats, incredible golden hour light.", image: "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400" },
-              { city: "Agadir", desc: "Beach vibes, modern city, great for drone and landscape content.", image: "https://images.unsplash.com/photo-1596627116790-af6f46dddbf4?w=400" }
-            ].map((loc) => (
-              <Card key={loc.city} className="border-none overflow-hidden">
-                <img src={loc.image} alt={loc.city} className="w-full h-32 object-cover" />
-                <CardContent className="p-4">
-                  <h3 className="font-syne font-bold text-ocean mb-1 flex items-center gap-2">
-                    <MapPin size={14} className="text-sunset" /> {loc.city}
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Nos Destinations</h2>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600" alt="Marrakech" className="w-full h-48 object-cover" />
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-syne font-bold text-lg text-ocean flex items-center gap-2">
+                    <MapPin size={16} className="text-sunset" /> Marrakech
                   </h3>
-                  <p className="font-dm text-ocean/70 text-xs">{loc.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+                  <span className="text-xs font-dm bg-red-100 text-red-700 px-2 py-1 rounded-full">Weekends 1 & 3</span>
+                </div>
+                <p className="font-dm text-ocean/70 text-sm">
+                  Médina colorée, palais somptueux, montagnes de l'Atlas. Un terrain de jeu idéal pour les créateurs.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=600" alt="Agadir" className="w-full h-48 object-cover" />
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-syne font-bold text-lg text-ocean flex items-center gap-2">
+                    <MapPin size={16} className="text-sunset" /> Agadir
+                  </h3>
+                  <span className="text-xs font-dm bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Weekends 2 & 4</span>
+                </div>
+                <p className="font-dm text-ocean/70 text-sm">
+                  Couchers de soleil sur l'océan, surf à Taghazout, ambiance beach. Parfait pour le contenu lifestyle.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Weekend Format */}
-      <section id="weekend" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* What You'll Create */}
+      <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-4 text-center">Weekend Format</h2>
-          <p className="font-dm text-ocean/70 text-center mb-8 max-w-2xl mx-auto">
-            Perfect for a quick creative getaway. Intensive learning in just 3 days.
-          </p>
-          <div className="space-y-3">
-            {WEEKEND_PROGRAM.map((day, index) => (
-              <Card key={index} className="border-none bg-sunset/10">
-                <CardContent className="p-4 flex items-center gap-4">
-                  <div className="w-14 h-14 bg-sunset rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="font-syne font-bold text-white text-sm">{day.day}</span>
-                  </div>
-                  <div className="flex-1 grid sm:grid-cols-2 gap-2">
-                    <div>
-                      <p className="font-dm text-xs text-ocean/60 mb-1">Morning</p>
-                      <p className="font-dm text-ocean font-medium text-sm">{day.morning}</p>
-                    </div>
-                    <div>
-                      <p className="font-dm text-xs text-ocean/60 mb-1">Afternoon</p>
-                      <p className="font-dm text-ocean/80 text-sm">{day.afternoon}</p>
-                    </div>
-                  </div>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Ce que vous créerez</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { track: "Filmmaking", result: "Un court-métrage de 1-2 min sur votre weekend au Maroc" },
+              { track: "Photography", result: "Un portfolio de 15-20 photos éditées prêtes pour Instagram/Portfolio" },
+              { track: "Drone", result: "Des séquences aériennes époustouflantes + un showreel" }
+            ].map((item, i) => (
+              <Card key={i} className="border-none bg-warmwhite">
+                <CardContent className="p-4 text-center">
+                  <h4 className="font-syne font-bold text-ocean mb-2">{item.track}</h4>
+                  <p className="font-dm text-ocean/70 text-sm">{item.result}</p>
                 </CardContent>
               </Card>
             ))}
@@ -238,40 +416,15 @@ const VisualStorytellingPage = () => {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">FAQ</h2>
-          <div className="space-y-3">
-            {FAQ.map((item, index) => (
-              <Card key={index} className="border-none bg-white">
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full p-4 flex items-center justify-between text-left"
-                >
-                  <span className="font-dm font-medium text-ocean">{item.q}</span>
-                  {openFaq === index ? <ChevronUp size={20} className="text-sunset" /> : <ChevronDown size={20} className="text-ocean/50" />}
-                </button>
-                {openFaq === index && (
-                  <div className="px-4 pb-4">
-                    <p className="font-dm text-ocean/70 text-sm">{item.a}</p>
-                  </div>
-                )}
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Book CTA */}
-      <section id="book" className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
+      {/* CTA */}
+      <section className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Ready to Create?</h2>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Prêt à créer ?</h2>
           <p className="font-dm text-white/80 mb-6">
-            Book your Visual Storytelling Holiday and start capturing Morocco.
+            Rejoignez-nous pour un weekend créatif au Maroc.
           </p>
           <Button asChild size="lg" className="bg-white text-sunset hover:bg-white/90 rounded-full px-8">
-            <Link to="/book">Book This Experience <ArrowRight size={18} className="ml-2" /></Link>
+            <a href="#tracks">Choisir mon track <ArrowRight size={18} className="ml-2" /></a>
           </Button>
         </div>
       </section>
