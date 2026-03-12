@@ -287,44 +287,50 @@ EXPERIENCES = [
     },
     {
         "id": "visual-storytelling",
-        "title": "Visual Storytelling Holiday",
-        "tagline": "Create content while exploring",
-        "description": "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty while exploring stunning locations with your group.",
+        "title": "Visual Storytelling Weekend",
+        "tagline": "Weekend Experience",
+        "description": "Un weekend créatif pour apprendre la photo, vidéo ou drone. Capturez le Maroc avec un petit groupe de 10 personnes maximum.",
         "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
         "currency": "€",
-        "practices": ["Filmmaking", "Photography", "Drone content"],
-        "experiences": ["City shooting", "Landscapes", "Desert", "Exploration"],
+        "format": "weekend",
+        "duration": "3 jours / 2 nuits",
+        "schedule": "Vendredi → Dimanche",
+        "maxParticipants": 10,
+        "practices": ["Filmmaking", "Photography", "Drone"],
+        "experiences": ["Shooting sessions", "Golden hour", "Local exploration"],
         "destinations": ["Marrakech", "Agadir"],
-        "pricing": {
-            "5_days": { "price": 480, "label": "5 days experience" },
-            "7_days": { "price": 580, "label": "7 days / 6 nights experience" },
-            "weekend": { "price": 260, "label": "Weekend (2 nights / 3 days)" }
-        },
+        "price": 260,
         "highlights": [
-            "Choose your track: Film, Photo, or Drone",
-            "Daily morning shooting/learning sessions",
-            "Afternoon exploration and content capture",
-            "Learn from experienced content creators",
-            "Accommodation included",
-            "Leave with your own visual portfolio"
+            "Sessions shooting guidées",
+            "2 nuits d'hébergement",
+            "Tous les repas inclus",
+            "Groupe max 10 personnes",
+            "Formateur professionnel",
+            "Accès spots exclusifs"
         ],
         "tracks": [
             {
                 "id": "filmmaking",
-                "title": "Filmmaking Holiday",
-                "description": "Learn storytelling, filming and basic editing."
+                "title": "Filmmaking",
+                "description": "Apprenez le storytelling vidéo, le cadrage et le montage."
             },
             {
                 "id": "photography",
-                "title": "Photography Holiday",
-                "description": "Improve composition, light and framing."
+                "title": "Photography",
+                "description": "Maîtrisez la composition, la lumière et le post-traitement."
             },
             {
                 "id": "drone",
-                "title": "Drone Content Holiday",
-                "description": "Learn aerial filming and storytelling."
+                "title": "Drone",
+                "description": "Capturez des images aériennes spectaculaires."
             }
         ],
+        "calendar": {
+            "weekend_1": "Marrakech",
+            "weekend_2": "Agadir",
+            "weekend_3": "Marrakech",
+            "weekend_4": "Agadir"
+        },
         "icon": "camera"
     }
 ]
