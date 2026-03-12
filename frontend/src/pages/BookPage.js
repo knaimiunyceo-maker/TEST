@@ -218,17 +218,37 @@ Additional Message: ${formData.message || 'None'}`,
             </motion.div>
           )}
 
-          {/* Step 2: Choose City */}
+          {/* Step 2: Choose City (+ Course Type for Language) */}
           {step === 2 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
+                  {/* Course Type for Language */}
+                  {formData.experience === "language" && (
+                    <div className="mb-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Languages className="text-sunset" size={24} />
+                        <h2 className="font-syne font-bold text-xl text-ocean">Type de Cours</h2>
+                      </div>
+                      <Select value={formData.courseType} onValueChange={(v) => setFormData(prev => ({ ...prev, courseType: v }))}>
+                        <SelectTrigger className="border-border rounded-xl">
+                          <SelectValue placeholder="Sélectionnez le type de cours" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {selectedExperience?.courseTypes?.map((c) => (
+                            <SelectItem key={c.id} value={c.id}>{c.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
                   <div className="flex items-center gap-3 mb-6">
                     <MapPin className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Choose Your City</h2>
+                    <h2 className="font-syne font-bold text-xl text-ocean">Choisissez votre ville</h2>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    {CITIES.map((city) => (
+                    {availableCities.map((city) => (
                       <button
                         key={city.id}
                         onClick={() => setFormData(prev => ({ ...prev, city: city.id }))}
