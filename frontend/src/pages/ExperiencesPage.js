@@ -101,27 +101,6 @@ const ExperiencesPage = () => {
                     <h3 className="font-syne font-bold text-xl text-ocean mb-1">{exp.title}</h3>
                     <p className="font-caveat text-sunset text-lg mb-3">{exp.tagline}</p>
                     <p className="font-dm text-ocean/70 text-sm mb-4 flex-1">{exp.description}</p>
-                    
-                    {/* Pricing */}
-                    <div className="bg-warmwhite rounded-lg p-3 mb-4">
-                      {Object.entries(exp.pricing).map(([key, price], index) => {
-                        const labels = {
-                          "5_days": "5 days",
-                          "7_days": "7 days", 
-                          "weekend": "Weekend",
-                          "1_week": "1 week",
-                          "2_weeks": "2 weeks",
-                          "4_weeks": "4 weeks"
-                        };
-                        const isHighlighted = key === "7_days" || key === "2_weeks";
-                        return (
-                          <div key={key} className={`flex justify-between text-sm ${index < Object.keys(exp.pricing).length - 1 ? 'mb-1' : ''}`}>
-                            <span className="font-dm text-ocean/70">{labels[key]}</span>
-                            <span className={`font-syne font-bold ${isHighlighted ? 'text-sunset' : 'text-ocean'}`}>€{price}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
 
                     {/* Destinations */}
                     <div className="flex flex-wrap gap-1 mb-4">
@@ -134,7 +113,7 @@ const ExperiencesPage = () => {
 
                     <Button asChild className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full">
                       <Link to={`/experiences/${exp.slug}`}>
-                        View Details <ArrowRight size={16} className="ml-2" />
+                        En savoir plus <ArrowRight size={16} className="ml-2" />
                       </Link>
                     </Button>
                   </CardContent>
