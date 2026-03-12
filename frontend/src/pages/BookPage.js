@@ -459,7 +459,7 @@ Additional Message: ${formData.message || 'None'}`,
                   onClick={() => setStep(step - 1)}
                   className="rounded-full"
                 >
-                  Back
+                  Retour
                 </Button>
               ) : <div />}
               
@@ -469,7 +469,7 @@ Additional Message: ${formData.message || 'None'}`,
                   disabled={!canProceed()}
                   className="bg-sunset hover:bg-sunset/90 text-white rounded-full"
                 >
-                  Continue <ArrowRight size={16} className="ml-2" />
+                  Continuer <ArrowRight size={16} className="ml-2" />
                 </Button>
               ) : (
                 <Button 
@@ -477,7 +477,7 @@ Additional Message: ${formData.message || 'None'}`,
                   disabled={!canProceed() || isSubmitting}
                   className="bg-sunset hover:bg-sunset/90 text-white rounded-full"
                 >
-                  {isSubmitting ? "Sending..." : "Submit Booking Request"}
+                  {isSubmitting ? "Envoi..." : "Envoyer la demande"}
                 </Button>
               )}
             </div>
