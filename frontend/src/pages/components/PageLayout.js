@@ -123,19 +123,19 @@ const PageLayout = ({ children, showBackButton = true }) => {
                           <Link
                             key={sub.href}
                             to={sub.href}
-                            className="block py-2 font-dm text-sm text-white/80 hover:text-sand"
+                            className="block py-2 font-dm text-sm text-white/80 hover:text-sand transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {sub.label}
                           </Link>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </>
                 ) : (
                   <Link
                     to={item.href}
-                    className="block py-3 font-dm text-white hover:text-sand"
+                    className="block py-3 font-dm text-white hover:text-sand transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -143,11 +143,11 @@ const PageLayout = ({ children, showBackButton = true }) => {
                 )}
               </div>
             ))}
-            <Button asChild className="w-full mt-4 bg-sunset hover:bg-sunset/90 text-white rounded-full">
-              <Link to="/book" onClick={() => setMobileMenuOpen(false)}>Book Now</Link>
+            <Button asChild className="w-full mt-4 bg-sunset hover:bg-sunset/90 text-white rounded-full transition-transform active:scale-95">
+              <Link to="/book" onClick={() => setMobileMenuOpen(false)}>Réserver</Link>
             </Button>
           </nav>
-        )}
+        </div>
       </header>
 
       {/* Main Content */}
