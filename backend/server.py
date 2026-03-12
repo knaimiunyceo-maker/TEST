@@ -261,24 +261,25 @@ EXPERIENCES = [
         "id": "language-holiday",
         "title": "Language Practice Holiday",
         "tagline": "Practice English through travel",
-        "description": "Morning English practice sessions with real conversations and group activities. Afternoons dedicated to exploring Morocco, cultural experiences, and social activities with your international group.",
+        "description": "Cours d'anglais intensif avec 20 heures par semaine. Immersion totale au Maroc avec activités culturelles et exploration.",
         "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
         "currency": "€",
-        "practices": ["English conversation", "Real-life discussions", "Group speaking activities"],
+        "practices": ["English conversation", "TOEFL/IELTS prep", "Business English"],
         "experiences": ["Excursions", "Cafés", "Social activities", "Local discovery"],
-        "destinations": ["Casablanca"],
+        "destinations": ["Casablanca", "Marrakech"],
         "pricing": {
-            "5_days": { "price": 400, "label": "5 days experience" },
-            "7_days": { "price": 500, "label": "7 days / 6 nights experience" },
-            "weekend": { "price": 220, "label": "Weekend (2 nights / 3 days)" }
+            "1_week": { "price": 400, "label": "1 semaine" },
+            "2_weeks": { "price": 750, "label": "2 semaines" },
+            "3_weeks": { "price": 1050, "label": "3 semaines" },
+            "4_weeks": { "price": 1300, "label": "4 semaines" }
         },
         "highlights": [
-            "Daily morning conversation practice",
-            "International group environment",
-            "Cultural excursions and activities",
-            "100% immersive learning",
-            "Accommodation included",
-            "Social events and group dinners"
+            "20 heures de cours par semaine",
+            "Test de niveau gratuit",
+            "Certificat de participation",
+            "Groupe international (max 10)",
+            "Hébergement inclus",
+            "Activités culturelles"
         ],
         "icon": "languages"
     },
