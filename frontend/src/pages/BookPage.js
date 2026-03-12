@@ -93,7 +93,20 @@ const BookPage = () => {
   const selectedExperience = EXPERIENCES.find(e => e.id === formData.experience);
   const availableCities = selectedExperience ? ALL_CITIES.filter(c => selectedExperience.cities.includes(c.id)) : [];
   const availableDurations = selectedExperience ? ALL_DURATIONS.filter(d => selectedExperience.durations.includes(d.id)) : [];
-  const price = selectedExperience?.prices[formData.duration] || 0;
+  
+  // Calculate price
+  const selectedDuration = ALL_DURATIONS.find(d => d.id === formData.duration);
+  let price = 0;
+  if (selectedExperience && formData.duration) {
+    if (selectedExperience.pricePerWeek && selectedDuration?.weeks) {
+      // Language course: price per week × number of weeks
+      price = selectedExperience.pricePerWeek * selectedDuration.weeks;
+    } else if (selectedExperience.prices) {
+      // Other experiences: fixed prices
+      price = selectedExperience.prices[formData.duration] || 0;
+    }
+  }
+  
   const registrationFee = formData.experience === "language" ? 45 : 0;
   const totalPrice = price + registrationFee;
 
