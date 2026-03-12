@@ -139,7 +139,11 @@ Additional Message: ${formData.message || 'None'}`,
   const canProceed = () => {
     switch(step) {
       case 1: return formData.experience !== "";
-      case 2: return formData.city !== "";
+      case 2: 
+        if (formData.experience === "language") {
+          return formData.city !== "" && formData.courseType !== "";
+        }
+        return formData.city !== "";
       case 3: return formData.duration !== "" && formData.startDate !== null;
       case 4: return formData.name !== "" && formData.email !== "";
       default: return false;
@@ -155,10 +159,10 @@ Additional Message: ${formData.message || 'None'}`,
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl mb-4">
-              Book Your Experience
+              Réserver votre expérience
             </h1>
             <p className="font-dm text-white/80 text-lg">
-              Complete the steps below to request your booking.
+              Complétez les étapes ci-dessous pour envoyer votre demande.
             </p>
           </motion.div>
         </div>
