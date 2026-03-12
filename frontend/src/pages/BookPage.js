@@ -106,16 +106,17 @@ const BookPage = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    const courseTypeLabel = selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label || '';
     try {
       await axios.post(`${API}/contact`, {
         name: formData.name,
         email: formData.email,
         message: `BOOKING REQUEST
-Experience: ${selectedExperience?.label}
-City: ${CITIES.find(c => c.id === formData.city)?.label}
-Duration: ${DURATIONS.find(d => d.id === formData.duration)?.label}
+Experience: ${selectedExperience?.label}${courseTypeLabel ? ` - ${courseTypeLabel}` : ''}
+City: ${ALL_CITIES.find(c => c.id === formData.city)?.label}
+Duration: ${ALL_DURATIONS.find(d => d.id === formData.duration)?.label}
 Start Date: ${formatDate(formData.startDate)}
-Price: €${price}
+Price: €${price}${registrationFee > 0 ? ` + €${registrationFee} (inscription) = €${totalPrice}` : ''}
 
 Phone: ${formData.phone || 'Not provided'}
 Additional Message: ${formData.message || 'None'}`,
