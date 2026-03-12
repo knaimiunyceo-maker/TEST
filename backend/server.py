@@ -234,27 +234,33 @@ CATALOGUE = [
 EXPERIENCES = [
     {
         "id": "self-defense-holiday",
-        "title": "Self-Defense Holiday",
-        "tagline": "Train your body, explore Morocco",
-        "description": "Morning self-defense training sessions focusing on practical techniques, conditioning and real-life defense skills. Afternoons include beach time, pool time, local exploration, and group dinners.",
+        "title": "Self-Defense Weekend",
+        "tagline": "Weekend Experience",
+        "description": "Un weekend intensif de 3 jours pour apprendre les techniques de self-défense. Petit groupe de 10 personnes maximum.",
         "image": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
         "currency": "€",
-        "practices": ["Self-defense techniques", "Conditioning", "Practical combat skills"],
-        "experiences": ["Beach time", "Pool time", "Local exploration", "Group dinners"],
-        "destinations": ["Casablanca", "Marrakech", "Agadir"],
-        "pricing": {
-            "5_days": { "price": 450, "label": "5 days experience" },
-            "7_days": { "price": 550, "label": "7 days / 6 nights experience" },
-            "weekend": { "price": 250, "label": "Weekend (2 nights / 3 days)" }
-        },
+        "format": "weekend",
+        "duration": "3 jours / 2 nuits",
+        "schedule": "Vendredi → Dimanche",
+        "maxParticipants": 10,
+        "practices": ["Self-defense techniques", "Conditioning", "Practical skills"],
+        "experiences": ["Group dinner", "Free time", "Local exploration"],
+        "destinations": ["Marrakech", "Agadir"],
+        "price": 250,
         "highlights": [
-            "Daily morning training sessions with certified coaches",
-            "Practical self-defense techniques",
-            "Afternoon activities: beach, pool, exploration",
-            "Small international group (18+)",
-            "Accommodation included in partner hostels/guesthouses",
-            "Optional: massages organized individually"
+            "2 sessions de self-défense",
+            "2 nuits d'hébergement",
+            "Tous les repas inclus",
+            "Groupe max 10 personnes",
+            "Coach certifié",
+            "Certificat de participation"
         ],
+        "calendar": {
+            "weekend_1": "Marrakech",
+            "weekend_2": "Agadir",
+            "weekend_3": "Marrakech",
+            "weekend_4": "Agadir"
+        },
         "icon": "boxing"
     },
     {
