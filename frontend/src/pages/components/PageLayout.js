@@ -104,8 +104,8 @@ const PageLayout = ({ children, showBackButton = true }) => {
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-white/20 pt-4">
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
+          <nav className="mt-4 pb-4 border-t border-white/20 pt-4">
             {NAV_ITEMS.map((item) => (
               <div key={item.label}>
                 {item.submenu ? (
@@ -115,9 +115,9 @@ const PageLayout = ({ children, showBackButton = true }) => {
                       className="w-full flex items-center justify-between py-3 font-dm text-white"
                     >
                       {item.label}
-                      <ChevronDown size={16} className={`transition-transform ${openSubmenu === item.label ? "rotate-180" : ""}`} />
+                      <ChevronDown size={16} className={`transition-transform duration-200 ${openSubmenu === item.label ? "rotate-180" : ""}`} />
                     </button>
-                    {openSubmenu === item.label && (
+                    <div className={`overflow-hidden transition-all duration-200 ${openSubmenu === item.label ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
                       <div className="pl-4 pb-2">
                         {item.submenu.map((sub) => (
                           <Link
