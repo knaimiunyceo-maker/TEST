@@ -109,10 +109,18 @@ class Experience(BaseModel):
     practices: List[str]
     experiences: List[str]
     destinations: List[str]
-    pricing: dict
+    pricing: Optional[dict] = None
+    price: Optional[int] = None
+    pricePerWeek: Optional[int] = None
+    registrationFee: Optional[int] = None
     highlights: List[str]
     icon: str
     tracks: Optional[List[dict]] = None
+    format: Optional[str] = None
+    duration: Optional[str] = None
+    schedule: Optional[str] = None
+    maxParticipants: Optional[int] = None
+    calendar: Optional[dict] = None
 
 
 class Activity(BaseModel):
