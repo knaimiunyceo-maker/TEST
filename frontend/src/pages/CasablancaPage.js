@@ -80,10 +80,10 @@ const CasablancaPage = () => {
                 <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
                   <Languages size={24} />
                 </div>
-                <h3 className="font-syne font-bold text-ocean mb-2">Language Practice</h3>
-                <p className="font-dm text-ocean/70 text-sm mb-4">Practice English in cafés, explore the cosmopolitan city, and immerse yourself in real conversations.</p>
+                <h3 className="font-syne font-bold text-ocean mb-2">Cours d'Anglais Intensif</h3>
+                <p className="font-dm text-ocean/70 text-sm mb-4">20h/semaine. TOEFL, IELTS, Business English. Test de niveau gratuit.</p>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link to="/experiences/language-practice">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                  <Link to="/experiences/language-practice">En savoir plus <ArrowRight size={14} className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
@@ -93,9 +93,9 @@ const CasablancaPage = () => {
                   <Shield size={24} />
                 </div>
                 <h3 className="font-syne font-bold text-ocean mb-2">Self-Defense</h3>
-                <p className="font-dm text-ocean/70 text-sm mb-4">Train self-defense techniques in modern gyms. Perfect combination of urban training and city exploration.</p>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Entraînement self-défense dans des gyms modernes. Exploration urbaine l'après-midi.</p>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link to="/experiences/self-defense">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                  <Link to="/experiences/self-defense">En savoir plus <ArrowRight size={14} className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
