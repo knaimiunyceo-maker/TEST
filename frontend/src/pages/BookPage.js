@@ -336,6 +336,15 @@ Additional Message: ${formData.message || 'None'}`,
                     {formData.startDate && (
                       <p className="font-dm text-sunset mb-2">Selected: <strong>{formatDate(formData.startDate)}</strong></p>
                     )}
+                    {isEarlyBird && (
+                      <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+                        <Gift className="text-green-600" size={20} />
+                        <div>
+                          <p className="font-syne font-bold text-green-700 text-sm">Early Bird -8%</p>
+                          <p className="font-dm text-green-600 text-xs">Réservation 30+ jours à l'avance</p>
+                        </div>
+                      </div>
+                    )}
                     <div className="flex justify-center">
                       <CalendarComponent
                         mode="single"
