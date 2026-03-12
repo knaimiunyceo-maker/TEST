@@ -66,13 +66,13 @@ const ALL_CITIES = [
 ];
 
 const ALL_DURATIONS = [
-  { id: "weekend", label: "Weekend (2 nuits / 3 jours)" },
-  { id: "5days", label: "5 Jours" },
-  { id: "7days", label: "7 Jours / 6 Nuits" },
-  { id: "1week", label: "1 Semaine" },
-  { id: "2weeks", label: "2 Semaines" },
-  { id: "3weeks", label: "3 Semaines" },
-  { id: "4weeks", label: "4 Semaines" }
+  { id: "weekend", label: "Weekend (2 nuits / 3 jours)", weeks: 0 },
+  { id: "5days", label: "5 Jours", weeks: 0 },
+  { id: "7days", label: "7 Jours / 6 Nuits", weeks: 0 },
+  { id: "1week", label: "1 Semaine", weeks: 1 },
+  { id: "2weeks", label: "2 Semaines", weeks: 2 },
+  { id: "3weeks", label: "3 Semaines", weeks: 3 },
+  { id: "4weeks", label: "4 Semaines", weeks: 4 }
 ];
 
 const BookPage = () => {
