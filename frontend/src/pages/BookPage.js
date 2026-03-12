@@ -140,6 +140,7 @@ const BookPage = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const courseTypeLabel = selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label || '';
+    const earlyBirdText = isEarlyBird ? `\nEarly Bird Discount: -€${earlyBirdDiscount} (8%)` : '';
     try {
       await axios.post(`${API}/contact`, {
         name: formData.name,
@@ -149,7 +150,8 @@ Experience: ${selectedExperience?.label}${courseTypeLabel ? ` - ${courseTypeLabe
 City: ${ALL_CITIES.find(c => c.id === formData.city)?.label}
 Duration: ${ALL_DURATIONS.find(d => d.id === formData.duration)?.label}
 Start Date: ${formatDate(formData.startDate)}
-Price: €${price}${registrationFee > 0 ? ` + €${registrationFee} (inscription) = €${totalPrice}` : ''}
+Base Price: €${price}${earlyBirdText}${registrationFee > 0 ? `\nRegistration Fee: €${registrationFee}` : ''}
+TOTAL: €${totalPrice}
 
 Phone: ${formData.phone || 'Not provided'}
 Additional Message: ${formData.message || 'None'}`,
