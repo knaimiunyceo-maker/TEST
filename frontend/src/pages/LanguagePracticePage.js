@@ -12,9 +12,9 @@ import PageLayout from "./components/PageLayout";
 
 const PRICING = [
   { weeks: 1, price: 400, label: "1 semaine" },
-  { weeks: 2, price: 750, label: "2 semaines" },
-  { weeks: 3, price: 1050, label: "3 semaines" },
-  { weeks: 4, price: 1300, label: "4 semaines" }
+  { weeks: 2, price: 800, label: "2 semaines" },
+  { weeks: 3, price: 1200, label: "3 semaines" },
+  { weeks: 4, price: 1600, label: "4 semaines" }
 ];
 
 const COURSES = [
