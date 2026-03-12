@@ -165,20 +165,41 @@ const SelfDefensePage = () => {
         </div>
       </section>
 
-      {/* Location */}
+      {/* Locations */}
       <section id="locations" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Location</h2>
-          <div className="max-w-md mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Locations</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
             <Card className="border-none overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=600" alt="Agadir" className="w-full h-48 object-cover" />
+              <img src="https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=600" alt="Casablanca" className="w-full h-40 object-cover" />
+              <CardContent className="p-4">
+                <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
+                  <MapPin size={16} className="text-sunset" /> Casablanca
+                </h3>
+                <p className="font-dm text-ocean/70 text-sm">
+                  Urban training in Morocco's modern metropolis. Explore the corniche and Art Deco downtown.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600" alt="Marrakech" className="w-full h-40 object-cover" />
+              <CardContent className="p-4">
+                <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
+                  <MapPin size={16} className="text-sunset" /> Marrakech
+                </h3>
+                <p className="font-dm text-ocean/70 text-sm">
+                  Train in the Red City. Explore medinas, souks and the Atlas Mountains nearby.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1553522987-b6cb62385487?w=600" alt="Agadir" className="w-full h-40 object-cover" />
               <CardContent className="p-4">
                 <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
                   <MapPin size={16} className="text-sunset" /> Agadir
                 </h3>
                 <p className="font-dm text-ocean/70 text-sm">
-                  Beach vibes and surf culture. Morning training, afternoon beach sessions. 
-                  300+ sunny days per year. Gateway to Taghazout surf.
+                  Beach vibes and surf culture. Morning training, afternoon beach sessions.
                 </p>
               </CardContent>
             </Card>
