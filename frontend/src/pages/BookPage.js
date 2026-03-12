@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   Target, MapPin, Calendar, User, Mail, Phone, 
-  ArrowRight, Check, Shield, Languages, Camera
+  ArrowRight, Check, Shield, Languages, Camera, Gift
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -113,7 +113,22 @@ const BookPage = () => {
   }
   
   const registrationFee = formData.experience === "language" ? 45 : 0;
-  const totalPrice = price + registrationFee;
+  
+  // Early Bird discount: 8% off if booking 30+ days in advance
+  const EARLY_BIRD_DAYS = 30;
+  const EARLY_BIRD_DISCOUNT = 0.08; // 8%
+  
+  const isEarlyBird = formData.startDate && (() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffTime = formData.startDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays >= EARLY_BIRD_DAYS;
+  })();
+  
+  const earlyBirdDiscount = isEarlyBird ? Math.round(price * EARLY_BIRD_DISCOUNT) : 0;
+  const priceAfterDiscount = price - earlyBirdDiscount;
+  const totalPrice = priceAfterDiscount + registrationFee;
 
   const formatDate = (date) => {
     if (!date) return "";
