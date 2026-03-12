@@ -99,7 +99,8 @@ const LanguagePracticePage = () => {
       <section id="tarifs" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">Tarifs et Planning des Cours</h2>
-          <p className="font-dm text-ocean/60 text-center mb-8">Minimum 1 semaine (7 jours)</p>
+          <p className="font-dm text-ocean/60 text-center mb-2">Minimum 1 semaine (7 jours)</p>
+          <p className="font-syne font-bold text-sunset text-center text-2xl mb-8">€400 / semaine</p>
           
           <Card className="border-none shadow-xl overflow-hidden">
             <div className="bg-ocean p-6 text-white">
@@ -129,7 +130,7 @@ const LanguagePracticePage = () => {
 
               <div className="bg-warmwhite rounded-xl p-4 mb-6">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="font-dm text-ocean/70">Cours intensif ({selectedWeeks} sem.)</span>
+                  <span className="font-dm text-ocean/70">{selectedWeeks} semaine{selectedWeeks > 1 ? 's' : ''} × €400</span>
                   <span className="font-syne font-bold text-ocean">€{selectedPrice?.price}</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-border">
