@@ -27,11 +27,12 @@ const API = `${BACKEND_URL}/api`;
 const EXPERIENCES = [
   { 
     id: "self-defense", 
-    label: "Self-Defense Holiday", 
+    label: "Self-Defense Weekend", 
     icon: <Shield size={20} />, 
-    prices: { weekend: 250, "5days": 450, "7days": 550 },
-    cities: ["casablanca", "marrakech", "agadir"],
-    durations: ["weekend", "5days", "7days"]
+    price: 250,
+    format: "weekend",
+    cities: ["marrakech", "agadir"],
+    durations: ["weekend"]
   },
   { 
     id: "language", 
