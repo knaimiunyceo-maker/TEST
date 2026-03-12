@@ -267,12 +267,8 @@ EXPERIENCES = [
         "practices": ["English conversation", "TOEFL/IELTS prep", "Business English"],
         "experiences": ["Excursions", "Cafés", "Social activities", "Local discovery"],
         "destinations": ["Casablanca", "Marrakech"],
-        "pricing": {
-            "1_week": { "price": 400, "label": "1 semaine" },
-            "2_weeks": { "price": 750, "label": "2 semaines" },
-            "3_weeks": { "price": 1050, "label": "3 semaines" },
-            "4_weeks": { "price": 1300, "label": "4 semaines" }
-        },
+        "pricePerWeek": 400,
+        "registrationFee": 45,
         "highlights": [
             "20 heures de cours par semaine",
             "Test de niveau gratuit",
