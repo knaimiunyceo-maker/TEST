@@ -164,8 +164,8 @@ const PageLayout = ({ children, showBackButton = true }) => {
             <div>
               <h4 className="font-dm font-semibold text-white mb-3 text-sm">Experiences</h4>
               <ul className="space-y-2">
-                <li><Link to="/experiences/combat-holiday" className="font-dm text-white/60 text-sm hover:text-sand">Combat Holiday</Link></li>
-                <li><Link to="/experiences/language-holiday" className="font-dm text-white/60 text-sm hover:text-sand">Language Holiday</Link></li>
+                <li><Link to="/experiences/self-defense" className="font-dm text-white/60 text-sm hover:text-sand">Self-Defense</Link></li>
+                <li><Link to="/experiences/language-practice" className="font-dm text-white/60 text-sm hover:text-sand">Language Practice</Link></li>
                 <li><Link to="/experiences/visual-storytelling" className="font-dm text-white/60 text-sm hover:text-sand">Visual Storytelling</Link></li>
               </ul>
             </div>
@@ -174,6 +174,7 @@ const PageLayout = ({ children, showBackButton = true }) => {
               <ul className="space-y-2">
                 <li><Link to="/destinations/casablanca" className="font-dm text-white/60 text-sm hover:text-sand">Casablanca</Link></li>
                 <li><Link to="/destinations/marrakech" className="font-dm text-white/60 text-sm hover:text-sand">Marrakech</Link></li>
+                <li><Link to="/destinations/agadir" className="font-dm text-white/60 text-sm hover:text-sand">Agadir</Link></li>
               </ul>
             </div>
             <div>
