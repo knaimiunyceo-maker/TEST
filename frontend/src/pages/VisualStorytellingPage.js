@@ -337,7 +337,7 @@ const VisualStorytellingPage = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Tarif Weekend</h2>
           <div className="bg-white/10 rounded-2xl p-8 mb-6">
-            <p className="font-syne font-extrabold text-5xl text-sand mb-2">€260</p>
+            <p className="font-syne font-extrabold text-5xl text-sand mb-2">€350</p>
             <p className="font-dm text-white/70">par personne</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-3 text-left max-w-md mx-auto">

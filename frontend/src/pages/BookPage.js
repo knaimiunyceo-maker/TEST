@@ -52,11 +52,12 @@ const EXPERIENCES = [
   },
   { 
     id: "storytelling", 
-    label: "Visual Storytelling Holiday", 
+    label: "Visual Storytelling Weekend", 
     icon: <Camera size={20} />, 
-    prices: { weekend: 260, "5days": 480, "7days": 580 },
+    price: 350,
+    format: "weekend",
     cities: ["marrakech", "agadir"],
-    durations: ["weekend", "5days", "7days"]
+    durations: ["weekend"]
   }
 ];
 

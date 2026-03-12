@@ -299,7 +299,7 @@ EXPERIENCES = [
         "practices": ["Filmmaking", "Photography", "Drone"],
         "experiences": ["Shooting sessions", "Golden hour", "Local exploration"],
         "destinations": ["Marrakech", "Agadir"],
-        "price": 260,
+        "price": 350,
         "highlights": [
             "Sessions shooting guidées",
             "2 nuits d'hébergement",

@@ -36,13 +36,13 @@ const EXPERIENCES = [
   {
     id: "storytelling",
     slug: "visual-storytelling",
-    title: "Visual Storytelling Holiday",
-    tagline: "Create content while exploring",
-    description: "Morning sessions learning filmmaking, photography or drone content creation. Afternoons spent capturing Morocco's beauty.",
+    title: "Visual Storytelling Weekend",
+    tagline: "3 jours / 2 nuits",
+    description: "Un weekend créatif pour apprendre la photo, vidéo ou drone. Vendredi → Dimanche. Petit groupe de 10 personnes maximum.",
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
     icon: <Camera size={32} />,
-    practices: ["Filmmaking", "Photography", "drone content"],
-    pricing: { "5_days": 480, "7_days": 580, "weekend": 260 },
+    practices: ["Filmmaking", "Photography", "Drone"],
+    pricing: { "weekend": 350 },
     destinations: ["Marrakech", "Agadir"]
   }
 ];
