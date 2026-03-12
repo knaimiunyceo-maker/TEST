@@ -53,7 +53,7 @@ const LanguagePracticePage = () => {
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1529156069898-49953e29b3ac?w=1600" 
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600" 
             alt="English Practice"
             className="w-full h-full object-cover opacity-20"
           />
