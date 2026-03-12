@@ -4,246 +4,211 @@ import { Link } from "react-router-dom";
 import { 
   Languages, ArrowRight, MapPin, Calendar, Users, Check, 
   Clock, ChevronDown, ChevronUp, BookOpen, Award, GraduationCap,
-  Sun, Moon, Mail, User, Globe, X, Info, Star
+  Star, FileText, Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Toaster, toast } from "sonner";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import PageLayout from "./components/PageLayout";
-import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const PROGRAM = [
-  { day: "Day 1", morning: "Welcome & Level Assessment", afternoon: "City orientation, group introduction" },
-  { day: "Day 2", morning: "Conversation practice", afternoon: "Café culture & social activities" },
-  { day: "Day 3", morning: "Real-life scenarios", afternoon: "Medina exploration & shopping practice" },
-  { day: "Day 4", morning: "Group discussions", afternoon: "Cultural excursion" },
-  { day: "Day 5", morning: "Review & feedback", afternoon: "Farewell activity (5-day)" },
-  { day: "Day 6", morning: "Advanced conversation", afternoon: "Day trip excursion" },
-  { day: "Day 7", morning: "Final session & certificates", afternoon: "Departure" }
+const PRICING = [
+  { weeks: 1, price: 400, label: "1 semaine" },
+  { weeks: 2, price: 750, label: "2 semaines" },
+  { weeks: 3, price: 1050, label: "3 semaines" },
+  { weeks: 4, price: 1300, label: "4 semaines" }
 ];
 
-const SCHEDULE_DATA = {
-  weekA: {
-    name: "Week A",
-    sessions: [
-      { day: "Monday", time: "09:00 - 13:00", type: "morning" },
-      { day: "Tuesday", time: "14:00 - 18:00", type: "afternoon" },
-      { day: "Wednesday", time: "09:00 - 13:00", type: "morning" },
-      { day: "Thursday", time: "14:00 - 18:00", type: "afternoon" },
-      { day: "Friday", time: "09:00 - 13:00", type: "morning" }
-    ]
-  },
-  weekB: {
-    name: "Week B",
-    sessions: [
-      { day: "Monday", time: "14:00 - 18:00", type: "afternoon" },
-      { day: "Tuesday", time: "09:00 - 13:00", type: "morning" },
-      { day: "Wednesday", time: "14:00 - 18:00", type: "afternoon" },
-      { day: "Thursday", time: "09:00 - 13:00", type: "morning" },
-      { day: "Friday", time: "14:00 - 18:00", type: "afternoon" }
-    ]
-  }
-};
+const COURSES = [
+  { name: "TOEFL iBT", desc: "Test of English as a Foreign Language - Internet Based" },
+  { name: "TOEFL ITP", desc: "Institutional Testing Program" },
+  { name: "IELTS Academic", desc: "International English Language Testing System - Academic" },
+  { name: "IELTS General", desc: "International English Language Testing System - General Training" },
+  { name: "Business English", desc: "Formation professionnelle en anglais des affaires" }
+];
 
-const INCLUSIONS = [
-  { icon: <BookOpen size={28} />, title: "20 Lessons/week", description: "4 hours daily, 5 days a week" },
-  { icon: <Award size={28} />, title: "Certificate", description: "End-of-course certificate" },
-  { icon: <GraduationCap size={28} />, title: "Level Test", description: "Placement test included" },
-  { icon: <Users size={28} />, title: "5 Social Activities", description: "Weekly activities included" }
+const LEVELS = [
+  { level: "A1", name: "Débutant", desc: "Expressions basiques et phrases simples" },
+  { level: "A2", name: "Élémentaire", desc: "Communication dans des situations courantes" },
+  { level: "B1", name: "Intermédiaire", desc: "Se débrouiller dans la plupart des situations" },
+  { level: "B2", name: "Intermédiaire+", desc: "Communication fluide et spontanée" },
+  { level: "C1", name: "Avancé", desc: "Expression fluide et structurée" }
 ];
 
 const FAQ = [
-  { q: "What level of English do I need?", a: "All levels welcome! From complete beginners to advanced speakers looking to practice fluency." },
-  { q: "Is this a classroom course?", a: "No! This is 100% immersive learning through real conversations, activities, and cultural experiences." },
-  { q: "What about accommodation?", a: "Accommodation in partner hostels or guesthouses is included in the price." },
-  { q: "How big are the groups?", a: "Maximum 10 participants to ensure quality interaction and practice time." },
-  { q: "Can I combine with other experiences?", a: "Yes! Many participants add activities like surf lessons or cooking classes." }
+  { q: "Quel est le niveau minimum requis ?", a: "Aucun ! Nous accueillons tous les niveaux, du débutant complet (A1) à l'avancé (C1). Un test de niveau gratuit est effectué à l'arrivée." },
+  { q: "Combien d'étudiants par classe ?", a: "Maximum 10 étudiants par groupe pour garantir une attention personnalisée et plus de temps de parole." },
+  { q: "Quel est le contenu des cours ?", a: "Expression orale, compréhension, grammaire appliquée, vocabulaire pratique. Focus sur la communication réelle." },
+  { q: "L'hébergement est-il inclus ?", a: "Oui, l'hébergement en auberge partenaire ou riad est inclus dans le prix." },
+  { q: "Puis-je prolonger mon séjour ?", a: "Absolument ! Contactez-nous pour ajouter des semaines supplémentaires." }
 ];
 
-const LanguageHolidayPage = () => {
+const LanguagePracticePage = () => {
   const [openFaq, setOpenFaq] = useState(null);
+  const [selectedWeeks, setSelectedWeeks] = useState(1);
+
+  const selectedPrice = PRICING.find(p => p.weeks === selectedWeeks);
 
   return (
     <PageLayout>
-      <Toaster position="top-right" richColors />
-      
       {/* Hero */}
       <section className="relative py-20 sm:py-28 bg-gradient-to-br from-ocean to-ocean/90 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600" 
-            alt="Language practice"
+            src="https://images.unsplash.com/photo-1529156069898-49953e29b3ac?w=1600" 
+            alt="English Practice"
             className="w-full h-full object-cover opacity-20"
           />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center">
-                <Languages size={28} className="text-white" />
-              </div>
-              <span className="font-dm text-sand text-sm">Experience</span>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="bg-sunset/20 text-sand px-3 py-1 rounded-full text-sm font-dm">Anglais Général • Adultes</span>
+              <span className="bg-white/10 text-white/80 px-3 py-1 rounded-full text-sm font-dm">Since 2020</span>
             </div>
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Language Practice Holiday
+              Cours d'Anglais Intensif
             </h1>
             <p className="font-caveat text-sand text-xl mb-4">Practice English through travel</p>
             <p className="font-dm text-white/80 text-lg max-w-2xl">
-              Morning English practice sessions with real conversations and group activities. 
-              Afternoons dedicated to exploring Morocco and cultural experiences.
+              Fidèles à l'enseignement d'anglais de qualité. Immersion totale au Maroc avec 
+              20 heures de cours par semaine.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Overview */}
-      <section id="overview" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Overview</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="font-dm text-ocean/80 text-base leading-relaxed mb-6">
-                Forget boring classrooms! Our Language Practice Holiday immerses you in English 
-                through real-life situations. Practice ordering coffee, negotiating in souks, 
-                making friends from around the world — all while exploring beautiful Morocco.
-              </p>
-              <p className="font-dm text-ocean/80 text-base leading-relaxed mb-6">
-                Mornings are dedicated to structured conversation practice with our facilitators. 
-                Afternoons, you'll put your skills to use exploring cities, joining excursions, 
-                and participating in social activities with your international group.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {["Conversation practice", "Real-life scenarios", "Cultural immersion"].map((item) => (
-                  <span key={item} className="bg-sunset/10 text-sunset px-4 py-2 rounded-full font-dm text-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="Group conversation" className="rounded-xl aspect-square object-cover" />
-              <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Learning together" className="rounded-xl aspect-square object-cover mt-8" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Program */}
-      <section id="program" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Program</h2>
-          <div className="space-y-4">
-            {PROGRAM.map((day, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className={`border-none ${index >= 5 ? "bg-sand/20" : "bg-warmwhite"}`}>
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <div className="w-16 h-16 bg-ocean rounded-xl flex items-center justify-center flex-shrink-0">
-                      <span className="font-syne font-bold text-white text-sm">{day.day}</span>
-                    </div>
-                    <div className="flex-1 grid sm:grid-cols-2 gap-2">
-                      <div>
-                        <p className="font-dm text-xs text-ocean/60 mb-1">Morning</p>
-                        <p className="font-dm text-ocean font-medium text-sm">{day.morning}</p>
-                      </div>
-                      <div>
-                        <p className="font-dm text-xs text-ocean/60 mb-1">Afternoon</p>
-                        <p className="font-dm text-ocean/80 text-sm">{day.afternoon}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center font-dm text-ocean/60 text-sm mt-4">* Days 6-7 for 7-day experience only</p>
-        </div>
-      </section>
-
-      {/* Schedule */}
-      <section id="schedule" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">The Schedule</h2>
-          <p className="font-dm text-ocean/70 text-center mb-8">
-            Rotating timetable — alternating morning and afternoon sessions each week
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {Object.entries(SCHEDULE_DATA).map(([key, week]) => (
-              <Card key={key} className="border-none">
-                <CardContent className="p-4">
-                  <h3 className="font-syne font-bold text-ocean mb-4 flex items-center gap-2">
-                    {key === 'weekA' ? <Sun className="text-sand" size={18} /> : <Moon className="text-ocean/60" size={18} />}
-                    {week.name}
-                  </h3>
-                  <div className="space-y-2">
-                    {week.sessions.map((session, idx) => (
-                      <div
-                        key={idx}
-                        className={`flex justify-between items-center p-3 rounded-lg ${
-                          session.type === 'morning' ? 'bg-sand/20' : 'bg-ocean/10'
-                        }`}
-                      >
-                        <span className="font-dm text-ocean text-sm">{session.day}</span>
-                        <span className={`font-dm font-medium text-xs px-3 py-1 rounded-full ${
-                          session.type === 'morning' ? 'bg-sand text-ocean' : 'bg-ocean text-white'
-                        }`}>
-                          {session.time}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-12 bg-ocean text-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-8 text-center">Pricing</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
+      {/* Badges */}
+      <section className="py-8 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4">
             {[
-              { label: "Weekend", duration: "2 nights / 3 days", price: 220, popular: false },
-              { label: "5 Days", duration: "5 days experience", price: 400, popular: false },
-              { label: "Full Week", duration: "7 days / 6 nights", price: 500, popular: true }
-            ].map((plan) => (
-              <Card key={plan.label} className={`border-none ${plan.popular ? "bg-sunset" : "bg-white/10"}`}>
-                <CardContent className="p-6 text-center">
-                  {plan.popular && <span className="bg-sand text-ocean text-xs font-dm px-3 py-1 rounded-full">Most Popular</span>}
-                  <h3 className="font-syne font-bold text-xl mt-3 mb-1">{plan.label}</h3>
-                  <p className="font-dm text-white/70 text-sm mb-4">{plan.duration}</p>
-                  <p className="font-syne font-bold text-4xl mb-4">€{plan.price}</p>
-                  <ul className="text-left space-y-2 mb-6">
-                    {["Accommodation included", "Daily practice sessions", "Social activities"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 font-dm text-sm text-white/80">
-                        <Check size={14} className="text-sand" /> {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className={`w-full rounded-full ${plan.popular ? "bg-white text-sunset hover:bg-white/90" : "bg-sunset hover:bg-sunset/90"}`}>
-                    <Link to="/book">Book Now</Link>
-                  </Button>
+              { icon: <FileText size={18} />, text: "Test de niveau Gratuit" },
+              { icon: <BookOpen size={18} />, text: "Écrit et Oral" },
+              { icon: <Award size={18} />, text: "Certificat inclus" },
+              { icon: <Users size={18} />, text: "Max 10 étudiants" }
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                <span className="text-sunset">{badge.icon}</span>
+                <span className="font-dm text-ocean text-sm">{badge.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Card */}
+      <section id="tarifs" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">Tarifs et Planning des Cours</h2>
+          <p className="font-dm text-ocean/60 text-center mb-8">Minimum 1 semaine (7 jours)</p>
+          
+          <Card className="border-none shadow-xl overflow-hidden">
+            <div className="bg-ocean p-6 text-white">
+              <h3 className="font-syne font-bold text-xl mb-2">Cours d'Anglais Intensif</h3>
+              <p className="font-dm text-white/70 text-sm">20 heures de cours par semaine</p>
+            </div>
+            <CardContent className="p-6">
+              <div className="mb-6">
+                <label className="font-dm font-medium text-ocean text-sm mb-2 block">Durée</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {PRICING.map((p) => (
+                    <button
+                      key={p.weeks}
+                      onClick={() => setSelectedWeeks(p.weeks)}
+                      className={`p-3 rounded-xl border-2 text-center transition-all ${
+                        selectedWeeks === p.weeks
+                          ? "border-sunset bg-sunset/5"
+                          : "border-border hover:border-sunset/50"
+                      }`}
+                    >
+                      <span className="font-syne font-bold text-ocean block">{p.label}</span>
+                      <span className="font-dm text-sunset font-bold">€{p.price}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-warmwhite rounded-xl p-4 mb-6">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-dm text-ocean/70">Cours intensif ({selectedWeeks} sem.)</span>
+                  <span className="font-syne font-bold text-ocean">€{selectedPrice?.price}</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="font-dm text-ocean/70">Frais d'inscription</span>
+                  <span className="font-syne font-bold text-ocean">€45</span>
+                </div>
+                <div className="flex justify-between items-center pt-3">
+                  <span className="font-syne font-bold text-ocean">Total</span>
+                  <span className="font-syne font-bold text-sunset text-2xl">€{(selectedPrice?.price || 0) + 45}</span>
+                </div>
+              </div>
+
+              <Button asChild size="lg" className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full">
+                <Link to="/book">Réserver maintenant <ArrowRight size={18} className="ml-2" /></Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Nos Cours Vedette */}
+      <section id="courses" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Nos Cours Vedette</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {COURSES.map((course, i) => (
+              <Card key={i} className="border-none">
+                <CardContent className="p-4">
+                  <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-3">
+                    <GraduationCap size={20} />
+                  </div>
+                  <h3 className="font-syne font-bold text-ocean mb-1">{course.name}</h3>
+                  <p className="font-dm text-ocean/60 text-xs">{course.desc}</p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Niveaux */}
+      <section id="levels" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Niveaux de Cours</h2>
+          <div className="space-y-3">
+            {LEVELS.map((level, i) => (
+              <div key={i} className="flex items-center gap-4 bg-warmwhite rounded-xl p-4">
+                <div className="w-14 h-14 bg-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="font-syne font-bold text-white">{level.level}</span>
+                </div>
+                <div>
+                  <h3 className="font-syne font-bold text-ocean">{level.name}</h3>
+                  <p className="font-dm text-ocean/60 text-sm">{level.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ce qui est inclus */}
+      <section id="included" className="py-16 px-4 sm:px-6 lg:px-12 bg-ocean text-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-8 text-center">Inclus dans votre cours</h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              "Test de niveau avant l'arrivée",
+              "Hébergement inclus",
+              "Certificat de participation",
+              "Matériel pédagogique",
+              "Activités culturelles",
+              "Support WhatsApp 24/7",
+              "Accueil à l'aéroport (sur demande)",
+              "Groupe international"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white/10 rounded-xl p-3">
+                <Check className="text-sand flex-shrink-0" size={18} />
+                <span className="font-dm text-white/90 text-sm">{item}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -252,48 +217,70 @@ const LanguageHolidayPage = () => {
       {/* Locations */}
       <section id="locations" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Locations</h2>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Destinations</h2>
           <div className="grid sm:grid-cols-2 gap-6">
-            {[
-              { city: "Marrakech", desc: "Practice in cafés, souks, and cultural settings. Rich environment for immersive learning.", image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400" },
-              { city: "Essaouira", desc: "Relaxed coastal town perfect for conversation practice in a laid-back atmosphere.", image: "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400" }
-            ].map((loc) => (
-              <Card key={loc.city} className="border-none overflow-hidden">
-                <img src={loc.image} alt={loc.city} className="w-full h-40 object-cover" />
-                <CardContent className="p-4">
-                  <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
-                    <MapPin size={16} className="text-sunset" /> {loc.city}
-                  </h3>
-                  <p className="font-dm text-ocean/70 text-sm">{loc.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=600" alt="Casablanca" className="w-full h-40 object-cover" />
+              <CardContent className="p-4">
+                <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
+                  <MapPin size={16} className="text-sunset" /> Casablanca
+                </h3>
+                <p className="font-dm text-ocean/70 text-sm">
+                  La métropole moderne du Maroc. Pratiquez l'anglais dans un environnement cosmopolite.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-none overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600" alt="Marrakech" className="w-full h-40 object-cover" />
+              <CardContent className="p-4">
+                <h3 className="font-syne font-bold text-lg text-ocean mb-2 flex items-center gap-2">
+                  <MapPin size={16} className="text-sunset" /> Marrakech
+                </h3>
+                <p className="font-dm text-ocean/70 text-sm">
+                  La ville rouge. Immersion culturelle et pratique linguistique dans les souks et médinas.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* What's Included */}
-      <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* Horaires */}
+      <section id="schedule" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">What's Included</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {INCLUSIONS.map((item, index) => (
-              <div key={index} className="bg-warmwhite rounded-xl p-4 text-center">
-                <div className="w-14 h-14 bg-sunset/10 rounded-full flex items-center justify-center mx-auto mb-3 text-sunset">
-                  {item.icon}
-                </div>
-                <h4 className="font-syne font-bold text-ocean text-sm mb-1">{item.title}</h4>
-                <p className="font-dm text-ocean/60 text-xs">{item.description}</p>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Horaires</h2>
+          <Card className="border-none">
+            <CardContent className="p-6">
+              <div className="space-y-3">
+                {[
+                  { time: "09:00 - 10:40", activity: "Cours intensif", type: "course" },
+                  { time: "10:40 - 11:00", activity: "Pause", type: "break" },
+                  { time: "11:00 - 12:40", activity: "Cours intensif", type: "course" },
+                  { time: "12:45 - 13:35", activity: "Conversation libre", type: "optional" },
+                  { time: "14:00 - 18:00", activity: "Exploration & Activités", type: "activity" }
+                ].map((slot, i) => (
+                  <div key={i} className={`flex items-center gap-4 p-3 rounded-xl ${
+                    slot.type === 'course' ? 'bg-sunset/10' : 
+                    slot.type === 'break' ? 'bg-gray-100' : 
+                    slot.type === 'optional' ? 'bg-ocean/5' : 'bg-sand/20'
+                  }`}>
+                    <span className="font-dm font-medium text-ocean w-28 text-sm">{slot.time}</span>
+                    <span className="font-dm text-ocean/80">{slot.activity}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+              <p className="font-dm text-ocean/60 text-sm mt-4 text-center">
+                Programme alterné : Pratique ↔ Activité (matin/après-midi)
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* FAQ */}
       <section id="faq" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">FAQ</h2>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-8 text-center">Questions Fréquentes</h2>
           <div className="space-y-3">
             {FAQ.map((item, index) => (
               <Card key={index} className="border-none bg-white">
@@ -315,15 +302,15 @@ const LanguageHolidayPage = () => {
         </div>
       </section>
 
-      {/* Book CTA */}
-      <section id="book" className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
+      {/* CTA */}
+      <section className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Ready to Practice?</h2>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl mb-4">Prêt à améliorer votre anglais ?</h2>
           <p className="font-dm text-white/80 mb-6">
-            Book your Language Practice Holiday and start speaking with confidence.
+            Réservez votre séjour linguistique dès maintenant.
           </p>
           <Button asChild size="lg" className="bg-white text-sunset hover:bg-white/90 rounded-full px-8">
-            <Link to="/book">Book This Experience <ArrowRight size={18} className="ml-2" /></Link>
+            <Link to="/book">Réserver <ArrowRight size={18} className="ml-2" /></Link>
           </Button>
         </div>
       </section>
@@ -331,4 +318,4 @@ const LanguageHolidayPage = () => {
   );
 };
 
-export default LanguageHolidayPage;
+export default LanguagePracticePage;
