@@ -81,9 +81,9 @@ const MarrakechPage = () => {
                   <Shield size={24} />
                 </div>
                 <h3 className="font-syne font-bold text-ocean mb-2">Self-Defense</h3>
-                <p className="font-dm text-ocean/70 text-sm mb-4">Train self-defense in the Red City. Morning sessions and afternoon exploration of medinas and souks.</p>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Entraînement self-défense dans la ville rouge. Exploration des médinas et souks l'après-midi.</p>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link to="/experiences/self-defense">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                  <Link to="/experiences/self-defense">En savoir plus <ArrowRight size={14} className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
@@ -93,9 +93,21 @@ const MarrakechPage = () => {
                   <Camera size={24} />
                 </div>
                 <h3 className="font-syne font-bold text-ocean mb-2">Visual Storytelling</h3>
-                <p className="font-dm text-ocean/70 text-sm mb-4">Capture the stunning medina, palaces and mountain views. Perfect for filmmakers and photographers.</p>
+                <p className="font-dm text-ocean/70 text-sm mb-4">Capturez la médina, les palais et les vues sur l'Atlas. Parfait pour les créateurs de contenu.</p>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link to="/experiences/visual-storytelling">Learn More <ArrowRight size={14} className="ml-2" /></Link>
+                  <Link to="/experiences/visual-storytelling">En savoir plus <ArrowRight size={14} className="ml-2" /></Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="border-none bg-warmwhite sm:col-span-2 max-w-md mx-auto">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-sunset/10 rounded-full flex items-center justify-center text-sunset mb-4">
+                  <Languages size={24} />
+                </div>
+                <h3 className="font-syne font-bold text-ocean mb-2">Cours d'Anglais Intensif</h3>
+                <p className="font-dm text-ocean/70 text-sm mb-4">20h/semaine. TOEFL, IELTS, Business English. Test de niveau gratuit.</p>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link to="/experiences/language-practice">En savoir plus <ArrowRight size={14} className="ml-2" /></Link>
                 </Button>
               </CardContent>
             </Card>
