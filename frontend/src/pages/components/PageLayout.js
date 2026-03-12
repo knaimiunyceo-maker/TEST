@@ -11,8 +11,8 @@ const NAV_ITEMS = [
     label: "Experiences", 
     href: "/experiences",
     submenu: [
-      { label: "Combat & Self-Defense", href: "/experiences/combat-holiday" },
-      { label: "Language Practice", href: "/experiences/language-holiday" },
+      { label: "Self-Defense", href: "/experiences/self-defense" },
+      { label: "Language Practice", href: "/experiences/language-practice" },
       { label: "Visual Storytelling", href: "/experiences/visual-storytelling" }
     ]
   },
@@ -21,7 +21,8 @@ const NAV_ITEMS = [
     href: "/destinations",
     submenu: [
       { label: "Casablanca", href: "/destinations/casablanca" },
-      { label: "Marrakech", href: "/destinations/marrakech" }
+      { label: "Marrakech", href: "/destinations/marrakech" },
+      { label: "Agadir", href: "/destinations/agadir" }
     ]
   },
   { label: "Activities", href: "/activities" },
