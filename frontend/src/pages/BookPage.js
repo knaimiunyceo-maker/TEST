@@ -25,21 +25,54 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const EXPERIENCES = [
-  { id: "self-defense", label: "Self-Defense Holiday", icon: <Shield size={20} />, prices: { weekend: 250, "5days": 450, "7days": 550 } },
-  { id: "language", label: "Language Practice Holiday", icon: <Languages size={20} />, prices: { weekend: 220, "5days": 400, "7days": 500 } },
-  { id: "storytelling", label: "Visual Storytelling Holiday", icon: <Camera size={20} />, prices: { weekend: 260, "5days": 480, "7days": 580 } }
+  { 
+    id: "self-defense", 
+    label: "Self-Defense Holiday", 
+    icon: <Shield size={20} />, 
+    prices: { weekend: 250, "5days": 450, "7days": 550 },
+    cities: ["casablanca", "marrakech", "agadir"],
+    durations: ["weekend", "5days", "7days"]
+  },
+  { 
+    id: "language", 
+    label: "Cours d'Anglais Intensif", 
+    icon: <Languages size={20} />, 
+    prices: { "1week": 400, "2weeks": 750, "3weeks": 1050, "4weeks": 1300 },
+    cities: ["casablanca", "marrakech"],
+    durations: ["1week", "2weeks", "3weeks", "4weeks"],
+    courseTypes: [
+      { id: "general", label: "Anglais Général" },
+      { id: "toefl-ibt", label: "TOEFL iBT" },
+      { id: "toefl-itp", label: "TOEFL ITP" },
+      { id: "ielts-academic", label: "IELTS Academic" },
+      { id: "ielts-general", label: "IELTS General" },
+      { id: "business", label: "Business English" }
+    ]
+  },
+  { 
+    id: "storytelling", 
+    label: "Visual Storytelling Holiday", 
+    icon: <Camera size={20} />, 
+    prices: { weekend: 260, "5days": 480, "7days": 580 },
+    cities: ["marrakech", "agadir"],
+    durations: ["weekend", "5days", "7days"]
+  }
 ];
 
-const CITIES = [
+const ALL_CITIES = [
   { id: "casablanca", label: "Casablanca" },
   { id: "marrakech", label: "Marrakech" },
   { id: "agadir", label: "Agadir" }
 ];
 
-const DURATIONS = [
-  { id: "weekend", label: "Weekend (2 nights / 3 days)" },
-  { id: "5days", label: "5 Days Experience" },
-  { id: "7days", label: "7 Days / 6 Nights" }
+const ALL_DURATIONS = [
+  { id: "weekend", label: "Weekend (2 nuits / 3 jours)" },
+  { id: "5days", label: "5 Jours" },
+  { id: "7days", label: "7 Jours / 6 Nuits" },
+  { id: "1week", label: "1 Semaine" },
+  { id: "2weeks", label: "2 Semaines" },
+  { id: "3weeks", label: "3 Semaines" },
+  { id: "4weeks", label: "4 Semaines" }
 ];
 
 const BookPage = () => {
