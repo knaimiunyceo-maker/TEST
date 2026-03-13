@@ -180,13 +180,6 @@ const WeekendCalendarStep = ({ formData, setFormData, selectedExperience, isEarl
         <h2 className="font-syne font-bold text-xl text-ocean">Calendrier des Weekends</h2>
       </div>
       <p className="font-dm text-ocean/60 mb-6">Choisissez votre week-end (Vendredi → Dimanche)</p>
-      
-      {/* Info: Minimum 14 days notice */}
-      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
-        <p className="font-dm text-blue-700 text-sm">
-          📅 Délai minimum de 2 semaines pour l'organisation
-        </p>
-      </div>
 
       {/* Early Bird indicator */}
       {isEarlyBird && (
@@ -634,14 +627,6 @@ Additional Message: ${formData.message || 'None'}`,
 
                       <div>
                         <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
-                        
-                        {/* Info: Minimum 14 days notice */}
-                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
-                          <p className="font-dm text-blue-700 text-sm">
-                            📅 Réservation possible à partir du <strong>{formatDate(getMinBookingDate())}</strong>
-                          </p>
-                          <p className="font-dm text-blue-600 text-xs mt-1">Délai minimum de 2 semaines pour l'organisation</p>
-                        </div>
                         
                         {formData.startDate && (
                           <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
