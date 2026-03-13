@@ -298,6 +298,33 @@ Additional Message: ${formData.message || 'None'}`,
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
+                  {/* Show selected experience with option to change */}
+                  {selectedExperience && (
+                    <div className="mb-6 p-4 bg-ocean/5 rounded-xl">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-sunset rounded-full flex items-center justify-center text-white">
+                            {selectedExperience.icon}
+                          </div>
+                          <div>
+                            <p className="font-syne font-bold text-ocean">{selectedExperience.label}</p>
+                            <p className="font-dm text-ocean/60 text-sm">
+                              {selectedExperience.price ? `€${selectedExperience.price}` : `€${selectedExperience.pricePerWeek}/semaine`}
+                            </p>
+                          </div>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={() => setStep(1)}
+                          className="text-ocean/60 hover:text-ocean"
+                        >
+                          Changer
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  
                   {/* Course Type for Language */}
                   {formData.experience === "language" && (
                     <div className="mb-8">
