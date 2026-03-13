@@ -497,7 +497,7 @@ Additional Message: ${formData.message || 'None'}`,
             </motion.div>
           )}
 
-          {/* Step 2: Choose City (+ Course Type for Language) */}
+          {/* Step 2: Choose City (+ Course Type for Language) - SKIP for Weekend experiences */}
           {step === 2 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
               <Card className="border-none shadow-lg">
@@ -529,46 +529,68 @@ Additional Message: ${formData.message || 'None'}`,
                     </div>
                   )}
                   
-                  {/* Course Type for Language */}
-                  {formData.experience === "language" && (
-                    <div className="mb-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Languages className="text-sunset" size={24} />
-                        <h2 className="font-syne font-bold text-xl text-ocean">Type de Cours</h2>
+                  {/* Weekend experiences: Show info and go to calendar */}
+                  {selectedExperience?.format === "weekend" ? (
+                    <div className="text-center py-4">
+                      <div className="flex items-center justify-center gap-3 mb-4">
+                        <Calendar className="text-sunset" size={24} />
+                        <h2 className="font-syne font-bold text-xl text-ocean">Prochaine étape</h2>
                       </div>
-                      <Select value={formData.courseType} onValueChange={(v) => setFormData(prev => ({ ...prev, courseType: v }))}>
-                        <SelectTrigger className="border-border rounded-xl">
-                          <SelectValue placeholder="Sélectionnez le type de cours" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {selectedExperience?.courseTypes?.map((c) => (
-                            <SelectItem key={c.id} value={c.id}>{c.label}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-3 mb-6">
-                    <MapPin className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Choisissez votre ville</h2>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {availableCities.map((city) => (
-                      <button
-                        key={city.id}
-                        onClick={() => setFormData(prev => ({ ...prev, city: city.id }))}
-                        className={`p-6 rounded-xl border-2 text-center transition-all ${
-                          formData.city === city.id
-                            ? "border-sunset bg-sunset/5"
-                            : "border-border hover:border-sunset/50"
-                        }`}
+                      <p className="font-dm text-ocean/70 mb-6">
+                        Choisissez votre weekend parmi les dates disponibles.<br/>
+                        La ville (Marrakech ou Agadir) alterne chaque semaine.
+                      </p>
+                      <Button 
+                        onClick={() => setStep(3)}
+                        className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-8"
                       >
-                        <MapPin className={`mx-auto mb-2 ${formData.city === city.id ? "text-sunset" : "text-ocean/50"}`} size={32} />
-                        <span className="font-syne font-bold text-ocean">{city.label}</span>
-                      </button>
-                    ))}
-                  </div>
+                        Voir le calendrier des weekends <ArrowRight size={16} className="ml-2" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Course Type for Language */}
+                      {formData.experience === "language" && (
+                        <div className="mb-8">
+                          <div className="flex items-center gap-3 mb-4">
+                            <Languages className="text-sunset" size={24} />
+                            <h2 className="font-syne font-bold text-xl text-ocean">Type de Cours</h2>
+                          </div>
+                          <Select value={formData.courseType} onValueChange={(v) => setFormData(prev => ({ ...prev, courseType: v }))}>
+                            <SelectTrigger className="border-border rounded-xl">
+                              <SelectValue placeholder="Sélectionnez le type de cours" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {selectedExperience?.courseTypes?.map((c) => (
+                                <SelectItem key={c.id} value={c.id}>{c.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-3 mb-6">
+                        <MapPin className="text-sunset" size={24} />
+                        <h2 className="font-syne font-bold text-xl text-ocean">Choisissez votre ville</h2>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {availableCities.map((city) => (
+                          <button
+                            key={city.id}
+                            onClick={() => setFormData(prev => ({ ...prev, city: city.id }))}
+                            className={`p-6 rounded-xl border-2 text-center transition-all ${
+                              formData.city === city.id
+                                ? "border-sunset bg-sunset/5"
+                                : "border-border hover:border-sunset/50"
+                            }`}
+                          >
+                            <MapPin className={`mx-auto mb-2 ${formData.city === city.id ? "text-sunset" : "text-ocean/50"}`} size={32} />
+                            <span className="font-syne font-bold text-ocean">{city.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
