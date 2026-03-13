@@ -144,7 +144,7 @@ const LanguagePracticePage = () => {
               </div>
 
               <Button asChild size="lg" className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full">
-                <Link to="/book">Réserver maintenant <ArrowRight size={18} className="ml-2" /></Link>
+                <Link to="/book?experience=language">Réserver maintenant <ArrowRight size={18} className="ml-2" /></Link>
               </Button>
             </CardContent>
           </Card>
