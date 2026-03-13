@@ -738,16 +738,56 @@ Additional Message: ${formData.message || 'None'}`,
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <Phone size={16} /> Téléphone (optionnel)
+                        <Phone size={16} /> WhatsApp *
                       </label>
-                      <Input 
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        placeholder="+33 6 12 34 56 78"
-                        className="border-border rounded-xl"
-                      />
+                      <div className="flex gap-2">
+                        <Select 
+                          value={formData.whatsappCountry} 
+                          onValueChange={(v) => setFormData(prev => ({ ...prev, whatsappCountry: v }))}
+                        >
+                          <SelectTrigger className="w-32 border-border rounded-xl">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {COUNTRY_CODES.map((c) => (
+                              <SelectItem key={c.code} value={c.code}>
+                                {c.code} {c.country}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <Input 
+                          type="tel"
+                          value={formData.whatsapp}
+                          onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
+                          placeholder="6 12 34 56 78"
+                          className="border-border rounded-xl flex-1"
+                          required
+                        />
+                      </div>
+                      <p className="font-dm text-xs text-ocean/50 mt-1">Nous vous contacterons sur WhatsApp</p>
                     </div>
+                    
+                    <div>
+                      <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
+                        Langue préférée *
+                      </label>
+                      <Select 
+                        value={formData.preferredLanguage} 
+                        onValueChange={(v) => setFormData(prev => ({ ...prev, preferredLanguage: v }))}
+                      >
+                        <SelectTrigger className="border-border rounded-xl">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {LANGUAGE_OPTIONS.map((lang) => (
+                            <SelectItem key={lang.id} value={lang.id}>{lang.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <p className="font-dm text-xs text-ocean/50 mt-1">Un référent {LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label} vous contactera</p>
+                    </div>
+
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2">Message additionnel</label>
                       <Textarea 
@@ -758,6 +798,16 @@ Additional Message: ${formData.message || 'None'}`,
                         rows={3}
                       />
                     </div>
+                  </div>
+
+                  {/* Payment Information */}
+                  <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                    <h3 className="font-syne font-bold text-blue-800 text-sm mb-2">💡 Processus de réservation</h3>
+                    <p className="font-dm text-blue-700 text-sm leading-relaxed">
+                      L'expérience est confirmée dès que le groupe atteint <strong>8 participants</strong>. 
+                      L'acompte de 30% ne sera demandé qu'après l'appel de validation. 
+                      Dans le cas où le séjour serait annulé faute de participants, vous serez <strong>entièrement remboursé</strong>.
+                    </p>
                   </div>
 
                   {/* Consent Checkboxes */}
