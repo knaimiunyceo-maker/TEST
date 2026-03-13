@@ -246,14 +246,14 @@ const HeroSection = () => {
     en: {
       headline: "Travel • Practice • Experience",
       subtitle: "Choose your experience. Learn something new. Discover Morocco.",
-      tagline: "More than a trip. A transformation.",
+      tagline: "More than a trip. An experience.",
       cta: "Discover Experiences",
       secondary: "How It Works"
     },
     fr: {
       headline: "Voyage • Pratique • Expérience",
       subtitle: "Choisissez votre expérience. Apprenez quelque chose de nouveau. Découvrez le Maroc.",
-      tagline: "Plus qu'un voyage. Une transformation.",
+      tagline: "Plus qu'un voyage. Une expérience.",
       cta: "Découvrir les Expériences",
       secondary: "Comment ça marche"
     },
@@ -906,7 +906,7 @@ const DestinationSection = () => {
     en: {
       title: "Destination: Morocco",
       subtitle: "Where ancient traditions meet modern adventure",
-      description: "From the Atlantic surf beaches of Taghazout to the golden dunes of the Sahara, from the vibrant medinas of Marrakech to the blue streets of Chefchaouen — Morocco offers an incredible backdrop for your transformation journey.",
+      description: "From the Atlantic surf beaches of Taghazout to the golden dunes of the Sahara, from the vibrant medinas of Marrakech to the blue streets of Chefchaouen — Morocco offers an incredible backdrop for your journey.",
       highlights: [
         "Year-round sunshine & perfect weather",
         "Rich culture & friendly locals",
@@ -917,7 +917,7 @@ const DestinationSection = () => {
     fr: {
       title: "Destination : Maroc",
       subtitle: "Où traditions anciennes rencontrent aventure moderne",
-      description: "Des plages de surf de Taghazout aux dunes dorées du Sahara, des médinas vibrantes de Marrakech aux rues bleues de Chefchaouen — le Maroc offre un cadre incroyable pour votre voyage de transformation.",
+      description: "Des plages de surf de Taghazout aux dunes dorées du Sahara, des médinas vibrantes de Marrakech aux rues bleues de Chefchaouen — le Maroc offre un cadre incroyable pour votre voyage.",
       highlights: [
         "Soleil toute l'année & météo parfaite",
         "Culture riche & habitants accueillants",
