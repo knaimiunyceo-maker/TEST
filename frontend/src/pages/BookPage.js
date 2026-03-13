@@ -735,6 +735,59 @@ Additional Message: ${formData.message || 'None'}`,
                     </div>
                   </div>
 
+                  {/* Consent Checkboxes */}
+                  <div className="mt-6 space-y-4 p-4 bg-ocean/5 rounded-xl">
+                    <h3 className="font-syne font-bold text-ocean text-sm mb-3">Consentements requis</h3>
+                    
+                    {/* CGV + Privacy Policy */}
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <div className="relative mt-0.5">
+                        <input
+                          type="checkbox"
+                          checked={formData.acceptTerms}
+                          onChange={(e) => setFormData(prev => ({ ...prev, acceptTerms: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-5 h-5 border-2 border-ocean/30 rounded peer-checked:bg-sunset peer-checked:border-sunset transition-all flex items-center justify-center">
+                          {formData.acceptTerms && <Check size={14} className="text-white" />}
+                        </div>
+                      </div>
+                      <span className="font-dm text-sm text-ocean/80 leading-relaxed">
+                        J'accepte les{" "}
+                        <Link to="/cgv" target="_blank" className="text-sunset hover:underline font-medium">
+                          Conditions Générales de Vente
+                        </Link>{" "}
+                        et la{" "}
+                        <Link to="/confidentialite" target="_blank" className="text-sunset hover:underline font-medium">
+                          Politique de Confidentialité
+                        </Link>{" "}
+                        de THE BRIDGE. *
+                      </span>
+                    </label>
+
+                    {/* Data Processing Consent */}
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <div className="relative mt-0.5">
+                        <input
+                          type="checkbox"
+                          checked={formData.acceptData}
+                          onChange={(e) => setFormData(prev => ({ ...prev, acceptData: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-5 h-5 border-2 border-ocean/30 rounded peer-checked:bg-sunset peer-checked:border-sunset transition-all flex items-center justify-center">
+                          {formData.acceptData && <Check size={14} className="text-white" />}
+                        </div>
+                      </div>
+                      <span className="font-dm text-sm text-ocean/80 leading-relaxed">
+                        J'accepte que mes données personnelles soient traitées par UNYCEO FR dans le cadre de ma demande de réservation. *
+                      </span>
+                    </label>
+
+                    <p className="font-dm text-xs text-ocean/50 mt-2">
+                      * Champs obligatoires
+                    </p>
+                  </div>
+
                   {/* Summary */}
                   <div className="mt-6 p-4 bg-warmwhite rounded-xl">
                     <h3 className="font-syne font-bold text-ocean mb-3">Récapitulatif</h3>
