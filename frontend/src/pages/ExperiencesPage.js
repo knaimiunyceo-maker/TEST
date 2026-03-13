@@ -111,11 +111,18 @@ const ExperiencesPage = () => {
                       ))}
                     </div>
 
-                    <Button asChild className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full">
-                      <Link to={`/experiences/${exp.slug}`}>
-                        En savoir plus <ArrowRight size={16} className="ml-2" />
-                      </Link>
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button asChild className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full">
+                        <Link to={`/book?experience=${exp.id}`}>
+                          Réserver <ArrowRight size={16} className="ml-2" />
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" className="w-full rounded-full border-ocean/20 text-ocean hover:bg-ocean/5">
+                        <Link to={`/experiences/${exp.slug}`}>
+                          En savoir plus
+                        </Link>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
