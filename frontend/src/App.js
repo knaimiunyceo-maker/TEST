@@ -46,6 +46,7 @@ import HowItWorksPage from "./pages/HowItWorksPage";
 import AboutPage from "./pages/AboutPage";
 import BookPage from "./pages/BookPage";
 import CGVPage from "./pages/CGVPage";
+import MentionsLegalesPage from "./pages/MentionsLegalesPage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -1843,6 +1844,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/book" element={<BookPage />} />
             <Route path="/cgv" element={<CGVPage />} />
+            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
           </Routes>
         </LanguageProvider>
       </div>

@@ -184,6 +184,7 @@ const PageLayout = ({ children, showBackButton = true }) => {
                 <li><Link to="/how-it-works" className="font-dm text-white/60 text-sm hover:text-sand">How it Works</Link></li>
                 <li><Link to="/activities" className="font-dm text-white/60 text-sm hover:text-sand">Activities</Link></li>
                 <li><Link to="/cgv" className="font-dm text-white/60 text-sm hover:text-sand">CGV</Link></li>
+                <li><Link to="/mentions-legales" className="font-dm text-white/60 text-sm hover:text-sand">Mentions légales</Link></li>
               </ul>
             </div>
           </div>
