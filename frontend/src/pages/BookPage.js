@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { 
   Target, MapPin, Calendar, User, Mail, Phone, 
-  ArrowRight, Check, Shield, Languages, Camera, Gift
+  ArrowRight, Check, Shield, Languages, Camera, Gift,
+  ChevronDown, ChevronUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
