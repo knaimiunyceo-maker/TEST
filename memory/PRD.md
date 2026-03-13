@@ -13,7 +13,7 @@ Build a website for a travel brand "THE BRIDGE" based on the concept "Travel •
 
 1. **Self-Defense Weekend** - Marrakech & Agadir
    - Format: Weekend (Vendredi → Dimanche, 3 jours / 2 nuits)
-   - Monthly recurring calendar alternating cities (Weekend 1 & 3: Marrakech, Weekend 2 & 4: Agadir)
+   - Monthly recurring calendar alternating cities (odd weeks: Marrakech, even weeks: Agadir)
    - Max 10 participants
    - Pricing: €250 per weekend
 
@@ -64,13 +64,38 @@ Build a website for a travel brand "THE BRIDGE" based on the concept "Travel •
 - [x] Homepage with hero, experiences section, destination section (simplified, no prices)
 - [x] Self-Defense page - Weekend format with recurring calendar (Marrakech/Agadir)
 - [x] Language Practice page - Weekly format with linear pricing €400/week
-- [x] Visual Storytelling page - Weekend format with track selection & calendar
+- [x] Visual Storytelling page - Weekend format with track selection & calendar (€350)
 - [x] Destination pages (Casablanca, Agadir, Marrakech)
 - [x] Shared navigation/footer layout (PageLayout.js)
 - [x] Multi-step booking form with dynamic fields per experience
 - [x] Contact form with Resend email integration
 - [x] Multi-language support (EN, FR, ES, DE, PT)
 - [x] Responsive design across all devices
+- [x] **Early Bird discount**: 8% off for bookings 30+ days in advance
+- [x] **Improved booking flow**:
+  - URL params pre-select experience (e.g., `/book?experience=self-defense`)
+  - Skips step 1 when experience is pre-selected
+  - Weekend experiences: "Calendrier des Weekends" (18 months of weekends)
+  - 14-day minimum booking notice for organization
+  - City automatically determined by weekend selection (alternating Marrakech/Agadir)
+  - Direct "Réserver" buttons on homepage and /experiences page
+
+## Booking Flow (Current)
+
+### Weekend Experiences (Self-Defense / Visual Storytelling)
+1. **Step 1**: Select experience (or skip if pre-selected via URL)
+2. **Step 2**: See experience info → Click "Voir le calendrier des weekends"
+3. **Step 3**: "Calendrier des Weekends" - 18 months of weekends with city alternating
+   - Grayed out: weekends less than 14 days away
+   - Shows: date range + city (Marrakech/Agadir badge)
+   - Early Bird indicator if 30+ days away
+4. **Step 4**: Contact info + price summary with discounts
+
+### Language Course
+1. **Step 1**: Select experience (or skip if pre-selected)
+2. **Step 2**: Select course type (IELTS, TOEFL, etc.) + city (Casablanca/Marrakech)
+3. **Step 3**: Select duration (1-4 weeks) + start date (standard calendar)
+4. **Step 4**: Contact info + price summary
 
 ## Pending Tasks
 
@@ -93,7 +118,7 @@ Build a website for a travel brand "THE BRIDGE" based on the concept "Travel •
 - `/app/frontend/src/pages/SelfDefensePage.js` - Weekend calendar template
 - `/app/frontend/src/pages/VisualStorytellingPage.js` - Weekend format with tracks
 - `/app/frontend/src/pages/LanguagePracticePage.js` - Weekly course format
-- `/app/frontend/src/pages/BookPage.js` - Multi-step booking flow
+- `/app/frontend/src/pages/BookPage.js` - Multi-step booking flow with weekend calendar
 - `/app/frontend/src/pages/ExperiencesPage.js` - Experience listing
 - `/app/frontend/src/pages/components/PageLayout.js` - Shared layout
 - `/app/backend/server.py` - API & data
@@ -108,9 +133,13 @@ Build a website for a travel brand "THE BRIDGE" based on the concept "Travel •
 ## Last Updated
 December 2025
 
-## Recent Changes
-- **Visual Storytelling**: Updated to Weekend format at €350 (was multi-day format at €260)
-- **Self-Defense**: Weekend format at €250, alternating Marrakech/Agadir
-- **Language Practice**: Weekly format €400/week, Casablanca & Marrakech only
-- **Homepage**: Simplified cards (no prices, no detailed activities)
-- **Booking Flow**: Dynamic per experience type
+## Recent Changes (This Session)
+- **Visual Storytelling**: Updated to Weekend format at €350
+- **Early Bird discount**: 8% off for 30+ days advance booking
+- **Booking flow improvements**:
+  - URL params for pre-selecting experience
+  - "Calendrier des Weekends" for weekend experiences (18 months)
+  - 14-day minimum booking notice
+  - City auto-selected by weekend choice
+  - Direct "Réserver" buttons on homepage and /experiences
+- **Homepage & /experiences**: Added direct booking buttons linking to `/book?experience=xxx`
