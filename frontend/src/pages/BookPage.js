@@ -396,30 +396,49 @@ const BookPage = () => {
     setIsSubmitting(true);
     const courseTypeLabel = selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label || '';
     const earlyBirdText = isEarlyBird ? `\nEarly Bird Discount: -€${earlyBirdDiscount} (8%)` : '';
+    const languageLabel = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label || 'Français';
+    const referentTag = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.referent || 'FR';
+    const fullWhatsApp = `${formData.whatsappCountry} ${formData.whatsapp}`;
+    
     try {
       await axios.post(`${API}/contact`, {
         name: formData.name,
         email: formData.email,
-        message: `BOOKING REQUEST
+        message: `🎯 DEMANDE DE RÉSERVATION - Lead ${referentTag}
+
+👤 PARTICIPANT
+Nom: ${formData.name}
+Email: ${formData.email}
+WhatsApp: ${fullWhatsApp}
+Langue préférée: ${languageLabel} [TAG: ${referentTag}]
+
+📅 EXPÉRIENCE
 Experience: ${selectedExperience?.label}${courseTypeLabel ? ` - ${courseTypeLabel}` : ''}
-City: ${ALL_CITIES.find(c => c.id === formData.city)?.label}
-Duration: ${ALL_DURATIONS.find(d => d.id === formData.duration)?.label}
-Start Date: ${formatDate(formData.startDate)}
-Base Price: €${price}${earlyBirdText}${registrationFee > 0 ? `\nRegistration Fee: €${registrationFee}` : ''}
+Ville: ${ALL_CITIES.find(c => c.id === formData.city)?.label}
+Durée: ${ALL_DURATIONS.find(d => d.id === formData.duration)?.label}
+Date de début: ${formatDate(formData.startDate)}
+
+💰 TARIF
+Prix de base: €${price}${earlyBirdText}${registrationFee > 0 ? `\nFrais d'inscription: €${registrationFee}` : ''}
 TOTAL: €${totalPrice}
 
-Phone: ${formData.phone || 'Not provided'}
-Additional Message: ${formData.message || 'None'}`,
-        trip_interest: selectedExperience?.label
+📝 MESSAGE
+${formData.message || 'Aucun message additionnel'}
+
+⚡ ACTION REQUISE: Contacter sur WhatsApp (${fullWhatsApp}) sous 24h`,
+        trip_interest: selectedExperience?.label,
+        lead_tag: referentTag,
+        whatsapp: fullWhatsApp,
+        preferred_language: formData.preferredLanguage
       });
       
-      toast.success("Booking request sent!", {
-        description: "We'll contact you within 24 hours to confirm your booking."
+      toast.success("Demande envoyée !", {
+        description: `Un référent ${languageLabel} vous contactera sous 24h.`
       });
       setStep(5); // Success step
     } catch (error) {
-      toast.error("Error sending request", {
-        description: "Please try again or contact us directly."
+      toast.error("Erreur lors de l'envoi", {
+        description: "Veuillez réessayer ou nous contacter directement."
       });
     } finally {
       setIsSubmitting(false);
