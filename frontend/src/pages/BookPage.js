@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { 
   Target, MapPin, Calendar, User, Mail, Phone, 
   ArrowRight, Check, Shield, Languages, Camera, Gift
@@ -23,6 +23,9 @@ import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
+
+// Minimum days before booking (2 weeks)
+const MIN_BOOKING_DAYS = 14;
 
 const EXPERIENCES = [
   { 
@@ -77,7 +80,16 @@ const ALL_DURATIONS = [
   { id: "4weeks", label: "4 Semaines", weeks: 4 }
 ];
 
+// Calculate minimum booking date (14 days from today)
+const getMinBookingDate = () => {
+  const date = new Date();
+  date.setDate(date.getDate() + MIN_BOOKING_DAYS);
+  date.setHours(0, 0, 0, 0);
+  return date;
+};
+
 const BookPage = () => {
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     experience: "",
@@ -91,6 +103,30 @@ const BookPage = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Pre-select experience from URL params and skip to step 2
+  useEffect(() => {
+    const expParam = searchParams.get('experience');
+    const cityParam = searchParams.get('city');
+    
+    if (expParam) {
+      const matchedExp = EXPERIENCES.find(e => 
+        e.id === expParam || 
+        e.id.includes(expParam) || 
+        expParam.includes(e.id)
+      );
+      
+      if (matchedExp) {
+        setFormData(prev => ({ 
+          ...prev, 
+          experience: matchedExp.id,
+          city: cityParam || ""
+        }));
+        // Skip to step 2 (city selection) if experience is pre-selected
+        setStep(2);
+      }
+    }
+  }, [searchParams]);
 
   const selectedExperience = EXPERIENCES.find(e => e.id === formData.experience);
   const availableCities = selectedExperience ? ALL_CITIES.filter(c => selectedExperience.cities.includes(c.id)) : [];
