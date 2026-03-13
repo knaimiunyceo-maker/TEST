@@ -183,12 +183,13 @@ const PageLayout = ({ children, showBackButton = true }) => {
                 <li><Link to="/about" className="font-dm text-white/60 text-sm hover:text-sand">About</Link></li>
                 <li><Link to="/how-it-works" className="font-dm text-white/60 text-sm hover:text-sand">How it Works</Link></li>
                 <li><Link to="/activities" className="font-dm text-white/60 text-sm hover:text-sand">Activities</Link></li>
+                <li><Link to="/cgv" className="font-dm text-white/60 text-sm hover:text-sand">CGV</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-white/20 pt-6 text-center">
             <p className="font-dm text-white/60 text-xs">
-              © {new Date().getFullYear()} THE BRIDGE. All rights reserved.
+              © {new Date().getFullYear()} THE BRIDGE — UNYCEO France. All rights reserved.
             </p>
           </div>
         </div>
