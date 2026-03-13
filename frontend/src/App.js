@@ -1373,8 +1373,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
 
   const content = {
     en: {
-      title: "Start Your Journey",
-      subtitle: "Ready to transform your next trip into an experience? Get in touch.",
+      title: "Information Request",
+      subtitle: "Have a question about our experiences? Send us a message.",
       name: "Your Name",
       namePlaceholder: "Enter your name",
       email: "Email Address",
@@ -1392,8 +1392,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       errorDesc: "Please try again or email us directly."
     },
     fr: {
-      title: "Commencez Votre Voyage",
-      subtitle: "Prêt à transformer votre prochain voyage en expérience ? Contactez-nous.",
+      title: "Demande d'Information",
+      subtitle: "Une question sur nos expériences ? Envoyez-nous un message.",
       name: "Votre Nom",
       namePlaceholder: "Entrez votre nom",
       email: "Adresse Email",
@@ -1411,8 +1411,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       errorDesc: "Veuillez réessayer ou nous contacter directement."
     },
     es: {
-      title: "Comienza Tu Viaje",
-      subtitle: "¿Listo para transformar tu próximo viaje en una experiencia? Contáctanos.",
+      title: "Solicitud de Información",
+      subtitle: "¿Tienes una pregunta sobre nuestras experiencias? Envíanos un mensaje.",
       name: "Tu Nombre",
       namePlaceholder: "Ingresa tu nombre",
       email: "Correo Electrónico",
@@ -1430,8 +1430,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       errorDesc: "Por favor intenta de nuevo o escríbenos directamente."
     },
     de: {
-      title: "Starte Deine Reise",
-      subtitle: "Bereit deine nächste Reise in ein Erlebnis zu verwandeln? Kontaktiere uns.",
+      title: "Informationsanfrage",
+      subtitle: "Haben Sie eine Frage zu unseren Erlebnissen? Senden Sie uns eine Nachricht.",
       name: "Dein Name",
       namePlaceholder: "Gib deinen Namen ein",
       email: "E-Mail Adresse",
