@@ -419,7 +419,7 @@ Additional Message: ${formData.message || 'None'}`,
           return formData.startDate !== null;
         }
         return formData.duration !== "" && formData.startDate !== null;
-      case 4: return formData.name !== "" && formData.email !== "";
+      case 4: return formData.name !== "" && formData.email !== "" && formData.acceptTerms && formData.acceptData;
       default: return false;
     }
   };
