@@ -628,6 +628,13 @@ Additional Message: ${formData.message || 'None'}`,
                       <div>
                         <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
                         
+                        {/* Info: Mondays only */}
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                          <p className="font-dm text-blue-700 text-sm">
+                            📅 Les cours commencent chaque <strong>lundi</strong>
+                          </p>
+                        </div>
+                        
                         {formData.startDate && (
                           <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
                         )}
@@ -648,7 +655,8 @@ Additional Message: ${formData.message || 'None'}`,
                             weekStartsOn={1}
                             disabled={(date) => {
                               const minDate = getMinBookingDate();
-                              return date < minDate;
+                              // Disable if before min date OR not a Monday (getDay() === 1 is Monday)
+                              return date < minDate || date.getDay() !== 1;
                             }}
                             className="rounded-xl border border-border"
                           />
