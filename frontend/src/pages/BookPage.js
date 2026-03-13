@@ -406,11 +406,20 @@ Additional Message: ${formData.message || 'None'}`,
     switch(step) {
       case 1: return formData.experience !== "";
       case 2: 
+        // Weekend experiences: city is auto-set by weekend selection, skip city check
+        if (selectedExperience?.format === "weekend") {
+          return true; // Just need experience selected, city will be set in step 3
+        }
         if (formData.experience === "language") {
           return formData.city !== "" && formData.courseType !== "";
         }
         return formData.city !== "";
-      case 3: return formData.duration !== "" && formData.startDate !== null;
+      case 3: 
+        // Weekend: just need date selected (duration and city are auto-set)
+        if (selectedExperience?.format === "weekend") {
+          return formData.startDate !== null;
+        }
+        return formData.duration !== "" && formData.startDate !== null;
       case 4: return formData.name !== "" && formData.email !== "";
       default: return false;
     }
