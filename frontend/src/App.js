@@ -1849,6 +1849,7 @@ function App() {
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             <Route path="/confidentialite" element={<ConfidentialitePage />} />
           </Routes>
+          <CookieBanner />
         </LanguageProvider>
       </div>
     </BrowserRouter>
