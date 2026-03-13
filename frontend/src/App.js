@@ -1449,8 +1449,8 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       errorDesc: "Bitte versuche es erneut oder schreib uns direkt."
     },
     pt: {
-      title: "Comece Sua Jornada",
-      subtitle: "Pronto para transformar sua próxima viagem em uma experiência? Entre em contato.",
+      title: "Pedido de Informação",
+      subtitle: "Tem alguma pergunta sobre as nossas experiências? Envie-nos uma mensagem.",
       name: "Seu Nome",
       namePlaceholder: "Digite seu nome",
       email: "Endereço de Email",
