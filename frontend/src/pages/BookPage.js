@@ -144,6 +144,145 @@ const groupWeekendsByMonth = (weekends) => {
   return grouped;
 };
 
+// Weekend Calendar Step Component
+const WeekendCalendarStep = ({ formData, setFormData, selectedExperience, isEarlyBird }) => {
+  const [expandedMonths, setExpandedMonths] = useState({});
+  const allWeekends = generateAllWeekends();
+  const minDate = getMinBookingDate();
+  const groupedWeekends = groupWeekendsByMonth(allWeekends);
+  const monthKeys = Object.keys(groupedWeekends);
+  
+  // Auto-expand first 3 months
+  useState(() => {
+    const initial = {};
+    monthKeys.slice(0, 3).forEach(key => { initial[key] = true; });
+    setExpandedMonths(initial);
+  });
+
+  const toggleMonth = (monthKey) => {
+    setExpandedMonths(prev => ({ ...prev, [monthKey]: !prev[monthKey] }));
+  };
+
+  const handleSelectWeekend = (friday) => {
+    const city = getWeekendCity(friday);
+    setFormData(prev => ({ 
+      ...prev, 
+      startDate: friday,
+      duration: "weekend",
+      city: city.toLowerCase()
+    }));
+  };
+
+  return (
+    <>
+      <div className="flex items-center gap-3 mb-2">
+        <Calendar className="text-sunset" size={24} />
+        <h2 className="font-syne font-bold text-xl text-ocean">Calendrier des Weekends</h2>
+      </div>
+      <p className="font-dm text-ocean/60 mb-6">Choisissez votre week-end (Vendredi → Dimanche)</p>
+      
+      {/* Info: Minimum 14 days notice */}
+      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+        <p className="font-dm text-blue-700 text-sm">
+          📅 Délai minimum de 2 semaines pour l'organisation
+        </p>
+      </div>
+
+      {/* Early Bird indicator */}
+      {isEarlyBird && (
+        <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+          <Gift className="text-green-600" size={20} />
+          <div>
+            <p className="font-syne font-bold text-green-700 text-sm">Early Bird -8%</p>
+            <p className="font-dm text-green-600 text-xs">Réservation 30+ jours à l'avance</p>
+          </div>
+        </div>
+      )}
+
+      {/* Weekend List by Month */}
+      <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
+        {monthKeys.map((monthKey) => {
+          const weekends = groupedWeekends[monthKey];
+          const isExpanded = expandedMonths[monthKey];
+          const hasAvailable = weekends.some(f => f >= minDate);
+          
+          return (
+            <div key={monthKey} className="border border-border rounded-xl overflow-hidden">
+              <button
+                onClick={() => toggleMonth(monthKey)}
+                className={`w-full p-3 flex items-center justify-between ${
+                  hasAvailable ? 'bg-white hover:bg-warmwhite' : 'bg-gray-50'
+                }`}
+              >
+                <span className={`font-syne font-bold ${hasAvailable ? 'text-ocean' : 'text-gray-400'}`}>
+                  {monthKey}
+                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-dm text-ocean/50">
+                    {weekends.filter(f => f >= minDate).length} dispo
+                  </span>
+                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </div>
+              </button>
+              
+              {isExpanded && (
+                <div className="p-3 pt-0 space-y-2">
+                  {weekends.map((friday, idx) => {
+                    const city = getWeekendCity(friday);
+                    const isPast = friday < minDate;
+                    const isSelected = formData.startDate?.getTime() === friday.getTime();
+                    
+                    return (
+                      <button
+                        key={friday.toISOString()}
+                        onClick={() => !isPast && handleSelectWeekend(friday)}
+                        disabled={isPast}
+                        className={`w-full p-3 rounded-lg text-left transition-all flex items-center justify-between ${
+                          isPast 
+                            ? "bg-gray-100 opacity-50 cursor-not-allowed"
+                            : isSelected
+                              ? "bg-sunset text-white shadow-md"
+                              : "bg-warmwhite hover:bg-sand/30"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <Calendar size={16} className={isSelected ? "text-white" : isPast ? "text-gray-400" : "text-sunset"} />
+                          <span className={`font-dm ${isSelected ? "text-white font-medium" : isPast ? "text-gray-400" : "text-ocean"}`}>
+                            {formatWeekendRange(friday)}
+                          </span>
+                        </div>
+                        <span className={`text-xs font-dm px-2 py-1 rounded-full ${
+                          isSelected
+                            ? "bg-white/20 text-white"
+                            : city === "Marrakech" 
+                              ? "bg-red-100 text-red-700" 
+                              : "bg-blue-100 text-blue-700"
+                        }`}>
+                          {city}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Selected Weekend Summary */}
+      {formData.startDate && (
+        <div className="mt-4 p-4 bg-ocean/5 rounded-xl">
+          <p className="font-dm text-ocean/60 text-sm mb-1">Weekend sélectionné</p>
+          <p className="font-syne font-bold text-ocean">
+            {formatWeekendRange(formData.startDate)} – {getWeekendCity(formData.startDate)}
+          </p>
+        </div>
+      )}
+    </>
+  );
+};
+
 const BookPage = () => {
   const [searchParams] = useSearchParams();
   const [step, setStep] = useState(1);
