@@ -311,7 +311,7 @@ const LanguagePracticePage = () => {
             Réservez votre séjour linguistique dès maintenant.
           </p>
           <Button asChild size="lg" className="bg-white text-sunset hover:bg-white/90 rounded-full px-8">
-            <Link to="/book">Réserver <ArrowRight size={18} className="ml-2" /></Link>
+            <Link to="/book?experience=language">Réserver <ArrowRight size={18} className="ml-2" /></Link>
           </Button>
         </div>
       </section>
