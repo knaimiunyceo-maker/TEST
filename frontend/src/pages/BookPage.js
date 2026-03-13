@@ -368,9 +368,18 @@ Additional Message: ${formData.message || 'None'}`,
                   </div>
 
                   <div>
-                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Start Date</label>
+                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
+                    
+                    {/* Info: Minimum 14 days notice */}
+                    <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                      <p className="font-dm text-blue-700 text-sm">
+                        📅 Réservation possible à partir du <strong>{formatDate(getMinBookingDate())}</strong>
+                      </p>
+                      <p className="font-dm text-blue-600 text-xs mt-1">Délai minimum de 2 semaines pour l'organisation</p>
+                    </div>
+                    
                     {formData.startDate && (
-                      <p className="font-dm text-sunset mb-2">Selected: <strong>{formatDate(formData.startDate)}</strong></p>
+                      <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
                     )}
                     {isEarlyBird && (
                       <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
@@ -388,9 +397,8 @@ Additional Message: ${formData.message || 'None'}`,
                         onSelect={(date) => setFormData(prev => ({ ...prev, startDate: date }))}
                         weekStartsOn={1}
                         disabled={(date) => {
-                          const today = new Date();
-                          today.setHours(0, 0, 0, 0);
-                          return date < today;
+                          const minDate = getMinBookingDate();
+                          return date < minDate;
                         }}
                         className="rounded-xl border border-border"
                       />
