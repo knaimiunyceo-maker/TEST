@@ -45,6 +45,7 @@ import ActivitiesPage from "./pages/ActivitiesPage";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import AboutPage from "./pages/AboutPage";
 import BookPage from "./pages/BookPage";
+import CGVPage from "./pages/CGVPage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
