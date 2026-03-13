@@ -1842,6 +1842,7 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/book" element={<BookPage />} />
+            <Route path="/cgv" element={<CGVPage />} />
           </Routes>
         </LanguageProvider>
       </div>
