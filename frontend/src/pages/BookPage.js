@@ -431,62 +431,76 @@ Additional Message: ${formData.message || 'None'}`,
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
               <Card className="border-none shadow-lg">
                 <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Calendar className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Durée & Date de début</h2>
-                  </div>
                   
-                  <div className="mb-6">
-                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Durée</label>
-                    <Select value={formData.duration} onValueChange={(v) => setFormData(prev => ({ ...prev, duration: v }))}>
-                      <SelectTrigger className="border-border rounded-xl">
-                        <SelectValue placeholder="Sélectionnez la durée" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {availableDurations.map((d) => (
-                          <SelectItem key={d.id} value={d.id}>{d.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {/* Weekend Experiences (Self-Defense & Visual Storytelling) */}
+                  {selectedExperience?.format === "weekend" ? (
+                    <WeekendCalendarStep 
+                      formData={formData}
+                      setFormData={setFormData}
+                      selectedExperience={selectedExperience}
+                      isEarlyBird={isEarlyBird}
+                    />
+                  ) : (
+                    /* Language Course - Standard Calendar */
+                    <>
+                      <div className="flex items-center gap-3 mb-6">
+                        <Calendar className="text-sunset" size={24} />
+                        <h2 className="font-syne font-bold text-xl text-ocean">Durée & Date de début</h2>
+                      </div>
+                      
+                      <div className="mb-6">
+                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">Durée</label>
+                        <Select value={formData.duration} onValueChange={(v) => setFormData(prev => ({ ...prev, duration: v }))}>
+                          <SelectTrigger className="border-border rounded-xl">
+                            <SelectValue placeholder="Sélectionnez la durée" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {availableDurations.map((d) => (
+                              <SelectItem key={d.id} value={d.id}>{d.label}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                  <div>
-                    <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
-                    
-                    {/* Info: Minimum 14 days notice */}
-                    <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
-                      <p className="font-dm text-blue-700 text-sm">
-                        📅 Réservation possible à partir du <strong>{formatDate(getMinBookingDate())}</strong>
-                      </p>
-                      <p className="font-dm text-blue-600 text-xs mt-1">Délai minimum de 2 semaines pour l'organisation</p>
-                    </div>
-                    
-                    {formData.startDate && (
-                      <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
-                    )}
-                    {isEarlyBird && (
-                      <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
-                        <Gift className="text-green-600" size={20} />
-                        <div>
-                          <p className="font-syne font-bold text-green-700 text-sm">Early Bird -8%</p>
-                          <p className="font-dm text-green-600 text-xs">Réservation 30+ jours à l'avance</p>
+                      <div>
+                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
+                        
+                        {/* Info: Minimum 14 days notice */}
+                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                          <p className="font-dm text-blue-700 text-sm">
+                            📅 Réservation possible à partir du <strong>{formatDate(getMinBookingDate())}</strong>
+                          </p>
+                          <p className="font-dm text-blue-600 text-xs mt-1">Délai minimum de 2 semaines pour l'organisation</p>
+                        </div>
+                        
+                        {formData.startDate && (
+                          <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
+                        )}
+                        {isEarlyBird && (
+                          <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+                            <Gift className="text-green-600" size={20} />
+                            <div>
+                              <p className="font-syne font-bold text-green-700 text-sm">Early Bird -8%</p>
+                              <p className="font-dm text-green-600 text-xs">Réservation 30+ jours à l'avance</p>
+                            </div>
+                          </div>
+                        )}
+                        <div className="flex justify-center">
+                          <CalendarComponent
+                            mode="single"
+                            selected={formData.startDate}
+                            onSelect={(date) => setFormData(prev => ({ ...prev, startDate: date }))}
+                            weekStartsOn={1}
+                            disabled={(date) => {
+                              const minDate = getMinBookingDate();
+                              return date < minDate;
+                            }}
+                            className="rounded-xl border border-border"
+                          />
                         </div>
                       </div>
-                    )}
-                    <div className="flex justify-center">
-                      <CalendarComponent
-                        mode="single"
-                        selected={formData.startDate}
-                        onSelect={(date) => setFormData(prev => ({ ...prev, startDate: date }))}
-                        weekStartsOn={1}
-                        disabled={(date) => {
-                          const minDate = getMinBookingDate();
-                          return date < minDate;
-                        }}
-                        className="rounded-xl border border-border"
-                      />
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
