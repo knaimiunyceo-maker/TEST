@@ -705,7 +705,7 @@ const ExperiencesSection = ({ experiences }) => {
                       className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
                       data-testid={`book-experience-${exp.id}`}
                     >
-                      <Link to="/experiences/language-practice">{t.bookNow}</Link>
+                      <Link to="/book?experience=language">{t.bookNow}</Link>
                     </Button>
                   ) : exp.id === 'self-defense-holiday' ? (
                     <Button 
@@ -713,7 +713,7 @@ const ExperiencesSection = ({ experiences }) => {
                       className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
                       data-testid={`book-experience-${exp.id}`}
                     >
-                      <Link to="/experiences/self-defense">{t.bookNow}</Link>
+                      <Link to="/book?experience=self-defense">{t.bookNow}</Link>
                     </Button>
                   ) : exp.id === 'visual-storytelling' ? (
                     <Button 
@@ -721,7 +721,7 @@ const ExperiencesSection = ({ experiences }) => {
                       className="w-full bg-sunset hover:bg-sunset/90 text-white rounded-full font-dm mt-auto"
                       data-testid={`book-experience-${exp.id}`}
                     >
-                      <Link to="/experiences/visual-storytelling">{t.bookNow}</Link>
+                      <Link to="/book?experience=storytelling">{t.bookNow}</Link>
                     </Button>
                   ) : (
                     <Button 
