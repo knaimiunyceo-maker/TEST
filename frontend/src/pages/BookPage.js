@@ -88,6 +88,61 @@ const getMinBookingDate = () => {
   return date;
 };
 
+// Generate all weekends for the next 18 months
+const generateAllWeekends = () => {
+  const weekends = [];
+  const today = new Date();
+  const endDate = new Date();
+  endDate.setMonth(endDate.getMonth() + 18);
+  
+  const date = new Date(today);
+  // Find first Friday
+  while (date.getDay() !== 5) {
+    date.setDate(date.getDate() + 1);
+  }
+  
+  // Generate all Fridays for 18 months
+  while (date < endDate) {
+    weekends.push(new Date(date));
+    date.setDate(date.getDate() + 7);
+  }
+  
+  return weekends;
+};
+
+// Get city for weekend (alternating Marrakech/Agadir based on week number of year)
+const getWeekendCity = (friday) => {
+  const startOfYear = new Date(friday.getFullYear(), 0, 1);
+  const days = Math.floor((friday - startOfYear) / (24 * 60 * 60 * 1000));
+  const weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+  return weekNumber % 2 === 0 ? "Agadir" : "Marrakech";
+};
+
+// Format weekend date range
+const formatWeekendRange = (friday) => {
+  const sunday = new Date(friday);
+  sunday.setDate(sunday.getDate() + 2);
+  const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"];
+  return `${friday.getDate()} - ${sunday.getDate()} ${months[friday.getMonth()]} ${friday.getFullYear()}`;
+};
+
+// Group weekends by month
+const groupWeekendsByMonth = (weekends) => {
+  const grouped = {};
+  const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+                      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  
+  weekends.forEach(friday => {
+    const key = `${monthNames[friday.getMonth()]} ${friday.getFullYear()}`;
+    if (!grouped[key]) {
+      grouped[key] = [];
+    }
+    grouped[key].push(friday);
+  });
+  
+  return grouped;
+};
+
 const BookPage = () => {
   const [searchParams] = useSearchParams();
   const [step, setStep] = useState(1);
