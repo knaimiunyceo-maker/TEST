@@ -44,7 +44,7 @@ const EXPERIENCES = [
     icon: <Languages size={20} />, 
     pricePerWeek: 400,
     cities: ["casablanca", "marrakech"],
-    durations: ["1week", "2weeks", "3weeks", "4weeks"],
+    durations: ["1week", "2weeks", "3weeks", "4weeks", "5weeks", "6weeks", "7weeks", "8weeks"],
     courseTypes: [
       { id: "general", label: "Anglais Général" },
       { id: "toefl-ibt", label: "TOEFL iBT" },
@@ -78,7 +78,11 @@ const ALL_DURATIONS = [
   { id: "1week", label: "1 Semaine", weeks: 1 },
   { id: "2weeks", label: "2 Semaines", weeks: 2 },
   { id: "3weeks", label: "3 Semaines", weeks: 3 },
-  { id: "4weeks", label: "4 Semaines", weeks: 4 }
+  { id: "4weeks", label: "4 Semaines", weeks: 4 },
+  { id: "5weeks", label: "5 Semaines", weeks: 5 },
+  { id: "6weeks", label: "6 Semaines", weeks: 6 },
+  { id: "7weeks", label: "7 Semaines", weeks: 7 },
+  { id: "8weeks", label: "8 Semaines", weeks: 8 }
 ];
 
 // Calculate minimum booking date (14 days from today)
