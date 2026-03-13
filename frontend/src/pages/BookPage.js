@@ -953,12 +953,36 @@ ${formData.message || 'Aucun message additionnel'}
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Check className="text-green-600" size={40} />
                   </div>
-                  <h2 className="font-syne font-bold text-2xl text-ocean mb-2">Booking Request Sent!</h2>
-                  <p className="font-dm text-ocean/70 mb-6">
-                    Thank you for your interest. We'll contact you within 24 hours to confirm your booking and provide payment details.
+                  <h2 className="font-syne font-bold text-2xl text-ocean mb-4">
+                    Merci {formData.name} !
+                  </h2>
+                  <p className="font-dm text-ocean/80 text-lg mb-4">
+                    Votre demande est bien reçue.
                   </p>
+                  <div className="bg-ocean/5 rounded-xl p-6 mb-6 text-left">
+                    <p className="font-dm text-ocean/80 mb-4">
+                      Un de nos référents <strong>{LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label}</strong> vous contactera personnellement sur WhatsApp sous <strong>24h</strong> pour :
+                    </p>
+                    <ul className="space-y-2 font-dm text-ocean/70">
+                      <li className="flex items-center gap-2">
+                        <Check size={16} className="text-green-600" /> Valider votre profil
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={16} className="text-green-600" /> Répondre à vos questions sur l'expérience
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={16} className="text-green-600" /> Confirmer votre place dans le groupe
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-blue-50 rounded-xl p-4 mb-6">
+                    <p className="font-dm text-blue-700 text-sm">
+                      💡 <strong>Bon à savoir :</strong> L'acompte de 30% ne sera demandé qu'après l'appel de validation. 
+                      Si le séjour est annulé, vous serez entièrement remboursé.
+                    </p>
+                  </div>
                   <Button asChild className="bg-sunset hover:bg-sunset/90 text-white rounded-full">
-                    <Link to="/">Back to Home</Link>
+                    <Link to="/">Retour à l'accueil</Link>
                   </Button>
                 </CardContent>
               </Card>
