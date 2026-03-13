@@ -292,7 +292,9 @@ const BookPage = () => {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    acceptTerms: false,
+    acceptData: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
