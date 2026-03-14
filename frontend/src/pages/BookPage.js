@@ -877,8 +877,8 @@ ${formData.message || 'Aucun message additionnel'}
         return formData.duration !== "" && formData.startDate !== null;
       case 4: 
         // Validate all fields
-        const emailError = validateEmail(formData.email);
-        const phoneError = validatePhone(formData.whatsapp);
+        const emailError = validateEmail(formData.email, t);
+        const phoneError = validatePhone(formData.whatsapp, t);
         return formData.name !== "" && !emailError && !phoneError && formData.acceptTerms && formData.acceptData;
       default: return false;
     }
@@ -889,21 +889,21 @@ ${formData.message || 'Aucun message additionnel'}
     const newErrors = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = "Le nom est requis";
+      newErrors.name = t.validation.nameRequired;
     }
     
-    const emailError = validateEmail(formData.email);
+    const emailError = validateEmail(formData.email, t);
     if (emailError) newErrors.email = emailError;
     
-    const phoneError = validatePhone(formData.whatsapp);
+    const phoneError = validatePhone(formData.whatsapp, t);
     if (phoneError) newErrors.whatsapp = phoneError;
     
     if (!formData.acceptTerms) {
-      newErrors.acceptTerms = "Vous devez accepter les CGV";
+      newErrors.acceptTerms = t.validation.acceptTerms;
     }
     
     if (!formData.acceptData) {
-      newErrors.acceptData = "Vous devez accepter le traitement des données";
+      newErrors.acceptData = t.validation.acceptData;
     }
     
     setErrors(newErrors);
