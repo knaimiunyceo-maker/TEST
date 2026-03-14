@@ -800,9 +800,9 @@ const ExperiencesSection = ({ experiences }) => {
                   <h3 className="font-syne font-bold text-lg sm:text-xl text-ocean leading-tight mb-1">
                     {localizedTitles[language]?.[exp.id] || exp.title}
                   </h3>
-                  <p className="font-caveat text-sunset text-lg mb-3">{exp.tagline}</p>
+                  <p className="font-caveat text-sunset text-lg mb-3">{localizedTaglines[language]?.[exp.id] || exp.tagline}</p>
                   
-                  <p className="font-dm text-ocean/70 text-sm mb-4 flex-1">{exp.description}</p>
+                  <p className="font-dm text-ocean/70 text-sm mb-4 flex-1">{localizedDescriptions[language]?.[exp.id] || exp.description}</p>
 
                   {/* Destinations */}
                   {exp.destinations && (
