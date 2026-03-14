@@ -4,7 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { 
   Target, MapPin, Calendar, User, Mail, Phone, 
   ArrowRight, Check, Shield, Languages, Camera, Gift,
-  ChevronDown, ChevronUp
+  ChevronDown, ChevronUp, AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/select";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import PageLayout from "./components/PageLayout";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -27,6 +29,35 @@ const API = `${BACKEND_URL}/api`;
 
 // Minimum days before booking (2 weeks)
 const MIN_BOOKING_DAYS = 14;
+
+// ===== SECURITY: Blocked email domains =====
+const BLOCKED_EMAIL_DOMAINS = [
+  "test.com", "example.com", "example.org", "example.net",
+  "mailinator.com", "guerrillamail.com", "10minutemail.com",
+  "tempmail.com", "throwaway.email", "fakeinbox.com",
+  "yopmail.com", "temp-mail.org", "getnada.com", "trashmail.com"
+];
+
+// Email validation regex
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+// Validate email
+const validateEmail = (email) => {
+  if (!email) return "L'adresse email est requise";
+  if (!EMAIL_REGEX.test(email)) return "Format d'email invalide";
+  const domain = email.split("@")[1]?.toLowerCase();
+  if (BLOCKED_EMAIL_DOMAINS.includes(domain)) {
+    return "Veuillez utiliser une adresse email valide";
+  }
+  return null;
+};
+
+// Validate phone
+const validatePhone = (phone) => {
+  if (!phone) return "Le numéro WhatsApp est requis";
+  if (!isValidPhoneNumber(phone)) return "Numéro de téléphone invalide ou incomplet";
+  return null;
+};
 
 const EXPERIENCES = [
   { 
