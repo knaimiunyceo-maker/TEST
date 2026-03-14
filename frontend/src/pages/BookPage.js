@@ -176,7 +176,7 @@ const bookPageTranslations = {
       title: "Resumen", experience: "Experiencia", city: "Ciudad", course: "Curso", 
       dates: "Fechas", duration: "Duración", price: "Precio", from: "Desde"
     },
-    buttons: { next: "Siguiente", previous: "Anterior", submit: "Enviar solicitud", submitting: "Enviando..." },
+    buttons: { next: "Siguiente", previous: "Anterior", submit: "Pagar depósito (30%)", submitting: "Redirigiendo al pago..." },
     validation: {
       nameRequired: "El nombre es obligatorio",
       emailRequired: "El correo electrónico es obligatorio",
@@ -240,7 +240,7 @@ const bookPageTranslations = {
       title: "Resumo", experience: "Experiência", city: "Cidade", course: "Curso", 
       dates: "Datas", duration: "Duração", price: "Preço", from: "A partir de"
     },
-    buttons: { next: "Próximo", previous: "Anterior", submit: "Enviar solicitação", submitting: "Enviando..." },
+    buttons: { next: "Próximo", previous: "Anterior", submit: "Pagar depósito (30%)", submitting: "Redirecionando para pagamento..." },
     validation: {
       nameRequired: "O nome é obrigatório",
       emailRequired: "O endereço de email é obrigatório",
@@ -304,7 +304,7 @@ const bookPageTranslations = {
       title: "Zusammenfassung", experience: "Erlebnis", city: "Stadt", course: "Kurs", 
       dates: "Daten", duration: "Dauer", price: "Preis", from: "Ab"
     },
-    buttons: { next: "Weiter", previous: "Zurück", submit: "Anfrage senden", submitting: "Wird gesendet..." },
+    buttons: { next: "Weiter", previous: "Zurück", submit: "Anzahlung (30%) bezahlen", submitting: "Weiterleitung zur Zahlung..." },
     validation: {
       nameRequired: "Name ist erforderlich",
       emailRequired: "E-Mail-Adresse ist erforderlich",
@@ -368,7 +368,7 @@ const bookPageTranslations = {
       title: "Riepilogo", experience: "Esperienza", city: "Città", course: "Corso", 
       dates: "Date", duration: "Durata", price: "Prezzo", from: "Da"
     },
-    buttons: { next: "Avanti", previous: "Indietro", submit: "Invia richiesta", submitting: "Invio in corso..." },
+    buttons: { next: "Avanti", previous: "Indietro", submit: "Paga acconto (30%)", submitting: "Reindirizzamento al pagamento..." },
     validation: {
       nameRequired: "Il nome è obbligatorio",
       emailRequired: "L'indirizzo email è obbligatorio",
