@@ -221,6 +221,9 @@ const PROGRAM = [
 ];
 
 const SelfDefensePage = () => {
+  const { language } = useLanguage();
+  const t = pageTranslations[language] || pageTranslations.en;
+  
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedWeekend, setSelectedWeekend] = useState(null);
 
@@ -228,8 +231,16 @@ const SelfDefensePage = () => {
   const currentMonth = currentDate.getMonth();
   const weekends = generateWeekends(currentYear, currentMonth);
 
-  const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
-                      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  const monthNames = {
+    en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    fr: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    pt: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    de: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    it: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+  };
+  
+  const months = monthNames[language] || monthNames.en;
 
   const navigateMonth = (direction) => {
     const newDate = new Date(currentDate);
@@ -241,7 +252,7 @@ const SelfDefensePage = () => {
   const formatWeekendDate = (friday) => {
     const sunday = new Date(friday);
     sunday.setDate(sunday.getDate() + 2);
-    return `${friday.getDate()} - ${sunday.getDate()} ${monthNames[friday.getMonth()]}`;
+    return `${friday.getDate()} - ${sunday.getDate()} ${months[friday.getMonth()]}`;
   };
 
   return (
