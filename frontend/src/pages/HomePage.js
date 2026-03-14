@@ -424,32 +424,32 @@ const ExperiencesSection = ({ experiences }) => {
 
   const localizedTaglines = {
     en: {
-      'self-defense-holiday': 'Boxe, Krav Maga & MMA',
+      'self-defense-holiday': 'Self Defense',
       'language-holiday': 'TOEFL, IELTS, Business',
       'visual-storytelling': 'Photography & Video'
     },
     fr: {
-      'self-defense-holiday': 'Boxe, Krav Maga & MMA',
+      'self-defense-holiday': 'Self Défense',
       'language-holiday': 'TOEFL, IELTS, Business',
       'visual-storytelling': 'Photo & Vidéo'
     },
     es: {
-      'self-defense-holiday': 'Boxeo, Krav Maga y MMA',
+      'self-defense-holiday': 'Defensa Personal',
       'language-holiday': 'TOEFL, IELTS, Negocios',
       'visual-storytelling': 'Fotografía y Video'
     },
     de: {
-      'self-defense-holiday': 'Boxen, Krav Maga & MMA',
+      'self-defense-holiday': 'Selbstverteidigung',
       'language-holiday': 'TOEFL, IELTS, Business',
       'visual-storytelling': 'Fotografie & Video'
     },
     pt: {
-      'self-defense-holiday': 'Boxe, Krav Maga e MMA',
+      'self-defense-holiday': 'Defesa Pessoal',
       'language-holiday': 'TOEFL, IELTS, Negócios',
       'visual-storytelling': 'Fotografia e Vídeo'
     },
     it: {
-      'self-defense-holiday': 'Boxe, Krav Maga e MMA',
+      'self-defense-holiday': 'Autodifesa',
       'language-holiday': 'TOEFL, IELTS, Business',
       'visual-storytelling': 'Fotografia e Video'
     }
