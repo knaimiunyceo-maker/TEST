@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
 import { FileText, Shield, Users, CreditCard, Calendar, AlertTriangle, Heart, Cloud, Briefcase, Camera, Lock, Scale } from "lucide-react";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const translations = {
+  en: { title: "Terms and Conditions", subtitle: "THE BRIDGE — UNYCEO France" },
+  fr: { title: "Conditions Générales de Vente", subtitle: "THE BRIDGE — UNYCEO France" },
+  es: { title: "Términos y Condiciones", subtitle: "THE BRIDGE — UNYCEO France" },
+  pt: { title: "Termos e Condições", subtitle: "THE BRIDGE — UNYCEO France" },
+  de: { title: "Allgemeine Geschäftsbedingungen", subtitle: "THE BRIDGE — UNYCEO France" },
+  it: { title: "Termini e Condizioni", subtitle: "THE BRIDGE — UNYCEO France" }
+};
 
 const Section = ({ icon: Icon, title, children, index }) => (
   <motion.div
