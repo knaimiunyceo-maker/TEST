@@ -1142,6 +1142,12 @@ export const tripTranslations = {
     "trip-2": { title: "Deserto & Estrelas", location: "Deserto do Saara" },
     "trip-3": { title: "Vibes de Marraquexe", location: "Marraquexe" },
     "trip-4": { title: "Costa a Costa", location: "Essaouira & Agadir" }
+  },
+  it: {
+    "trip-1": { title: "Settimana di Surf", location: "Taghazout" },
+    "trip-2": { title: "Deserto & Stelle", location: "Deserto del Sahara" },
+    "trip-3": { title: "Vibes di Marrakech", location: "Marrakech" },
+    "trip-4": { title: "Costa a Costa", location: "Essaouira & Agadir" }
   }
 };
 
