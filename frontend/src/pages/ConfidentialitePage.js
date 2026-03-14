@@ -4,6 +4,16 @@ import {
   Clock, Lock, UserCheck, Cookie, RefreshCw
 } from "lucide-react";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const translations = {
+  en: { title: "Privacy Policy", subtitle: "Protection of your personal data" },
+  fr: { title: "Politique de Confidentialité", subtitle: "Protection de vos données personnelles" },
+  es: { title: "Política de Privacidad", subtitle: "Protección de sus datos personales" },
+  pt: { title: "Política de Privacidade", subtitle: "Proteção dos seus dados pessoais" },
+  de: { title: "Datenschutzrichtlinie", subtitle: "Schutz Ihrer persönlichen Daten" },
+  it: { title: "Informativa sulla Privacy", subtitle: "Protezione dei tuoi dati personali" }
+};
 
 const Section = ({ icon: Icon, title, children, index }) => (
   <motion.div
