@@ -121,7 +121,12 @@ Added to HowItWorksPage and BookPage:
 
 ## API Endpoints
 - `GET /api/experiences` - List all experiences (hardcoded)
-- `POST /api/contact` - Submit booking request (sends email via Resend)
+- `POST /api/contact` - Submit contact request (sends email via Resend)
+- `POST /api/bookings/checkout` - Create Stripe checkout session for 30% deposit
+- `GET /api/bookings/payment-status/{session_id}` - Check payment status
+- `GET /api/bookings/{booking_id}` - Get booking details
+- `POST /api/webhook/stripe` - Stripe webhook for payment events
+- `GET /api/experience-prices` - Get prices and deposit amounts
 
 ---
 
