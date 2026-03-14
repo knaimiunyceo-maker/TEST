@@ -1595,6 +1595,11 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       'self-defense-holiday': 'Férias de Defesa Pessoal',
       'language-holiday': 'Férias de Idiomas',
       'visual-storytelling': 'Férias de Storytelling'
+    },
+    it: {
+      'self-defense-holiday': 'Vacanza Autodifesa',
+      'language-holiday': 'Vacanza Pratica Linguistica',
+      'visual-storytelling': 'Vacanza Visual Storytelling'
     }
   };
 
