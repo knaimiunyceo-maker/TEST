@@ -1106,6 +1106,30 @@ ${formData.message || 'Aucun message additionnel'}
           )}
         </div>
       </section>
+      
+      {/* Phone Input Styles */}
+      <style>{`
+        .phone-input-booking {
+          padding: 0.75rem 1rem;
+        }
+        .phone-input-booking .PhoneInputInput {
+          border: none;
+          outline: none;
+          background: transparent;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.875rem;
+          width: 100%;
+        }
+        .phone-input-booking .PhoneInputCountry {
+          margin-right: 0.75rem;
+        }
+        .phone-input-booking .PhoneInputCountryIcon {
+          width: 1.5rem;
+          height: 1rem;
+          border-radius: 2px;
+          overflow: hidden;
+        }
+      `}</style>
     </PageLayout>
   );
 };
