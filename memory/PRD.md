@@ -140,9 +140,9 @@ Added to HowItWorksPage and BookPage:
 - [x] ~~Verify footer links~~ ✅ COMPLETED
 
 ### P2 - Medium Priority
-- [ ] Migrate hardcoded data to MongoDB database
-- [ ] Extract HomePage component from App.js
-- [ ] Add SEO meta tags for each page
+- [x] ~~Extract HomePage component from App.js~~ ✅ COMPLETED (December 2025)
+- [x] ~~Add SEO meta tags for each page~~ ✅ COMPLETED (December 2025)
+- [ ] Migrate hardcoded data to SQL database
 
 ### P3 - Low Priority
 - [ ] Add more testimonials/reviews
