@@ -683,6 +683,72 @@ const ExperiencesSection = ({ experiences }) => {
     }
   };
 
+  const localizedTaglines = {
+    en: {
+      'self-defense-holiday': 'Boxe, Krav Maga & MMA',
+      'language-holiday': 'TOEFL, IELTS, Business',
+      'visual-storytelling': 'Photography & Video'
+    },
+    fr: {
+      'self-defense-holiday': 'Boxe, Krav Maga & MMA',
+      'language-holiday': 'TOEFL, IELTS, Business',
+      'visual-storytelling': 'Photo & Vidéo'
+    },
+    es: {
+      'self-defense-holiday': 'Boxeo, Krav Maga y MMA',
+      'language-holiday': 'TOEFL, IELTS, Negocios',
+      'visual-storytelling': 'Fotografía y Video'
+    },
+    de: {
+      'self-defense-holiday': 'Boxen, Krav Maga & MMA',
+      'language-holiday': 'TOEFL, IELTS, Business',
+      'visual-storytelling': 'Fotografie & Video'
+    },
+    pt: {
+      'self-defense-holiday': 'Boxe, Krav Maga e MMA',
+      'language-holiday': 'TOEFL, IELTS, Negócios',
+      'visual-storytelling': 'Fotografia e Vídeo'
+    },
+    it: {
+      'self-defense-holiday': 'Boxe, Krav Maga e MMA',
+      'language-holiday': 'TOEFL, IELTS, Business',
+      'visual-storytelling': 'Fotografia e Video'
+    }
+  };
+
+  const localizedDescriptions = {
+    en: {
+      'self-defense-holiday': 'Learn practical self-defense skills with certified instructors. Training in boxing, Krav Maga, and MMA, adapted to all levels.',
+      'language-holiday': 'Improve your English with certified teachers in a total immersion setting. TOEFL, IELTS preparation and Business English.',
+      'visual-storytelling': 'Learn to tell stories through images. Photography, videography, and content creation with professional equipment.'
+    },
+    fr: {
+      'self-defense-holiday': 'Apprenez des techniques de self-défense pratiques avec des instructeurs certifiés. Entraînement en boxe, Krav Maga et MMA, adapté à tous les niveaux.',
+      'language-holiday': 'Améliorez votre anglais avec des professeurs certifiés en immersion totale. Préparation TOEFL, IELTS et Business English.',
+      'visual-storytelling': 'Apprenez à raconter des histoires à travers les images. Photographie, vidéographie et création de contenu avec équipement professionnel.'
+    },
+    es: {
+      'self-defense-holiday': 'Aprende técnicas prácticas de defensa personal con instructores certificados. Entrenamiento en boxeo, Krav Maga y MMA, adaptado a todos los niveles.',
+      'language-holiday': 'Mejora tu inglés con profesores certificados en inmersión total. Preparación TOEFL, IELTS y Business English.',
+      'visual-storytelling': 'Aprende a contar historias a través de imágenes. Fotografía, videografía y creación de contenido con equipo profesional.'
+    },
+    de: {
+      'self-defense-holiday': 'Lernen Sie praktische Selbstverteidigungstechniken mit zertifizierten Trainern. Training in Boxen, Krav Maga und MMA, angepasst an alle Niveaus.',
+      'language-holiday': 'Verbessern Sie Ihr Englisch mit zertifizierten Lehrern in völliger Immersion. TOEFL, IELTS Vorbereitung und Business English.',
+      'visual-storytelling': 'Lernen Sie, Geschichten durch Bilder zu erzählen. Fotografie, Videografie und Content-Erstellung mit professioneller Ausrüstung.'
+    },
+    pt: {
+      'self-defense-holiday': 'Aprenda técnicas práticas de defesa pessoal com instrutores certificados. Treinamento em boxe, Krav Maga e MMA, adaptado a todos os níveis.',
+      'language-holiday': 'Melhore seu inglês com professores certificados em imersão total. Preparação TOEFL, IELTS e Business English.',
+      'visual-storytelling': 'Aprenda a contar histórias através de imagens. Fotografia, videografia e criação de conteúdo com equipamento profissional.'
+    },
+    it: {
+      'self-defense-holiday': 'Impara tecniche pratiche di autodifesa con istruttori certificati. Allenamento di boxe, Krav Maga e MMA, adattato a tutti i livelli.',
+      'language-holiday': 'Migliora il tuo inglese con insegnanti certificati in immersione totale. Preparazione TOEFL, IELTS e Business English.',
+      'visual-storytelling': 'Impara a raccontare storie attraverso le immagini. Fotografia, videografia e creazione di contenuti con attrezzatura professionale.'
+    }
+  };
+
   return (
     <section 
       id="experiences" 
