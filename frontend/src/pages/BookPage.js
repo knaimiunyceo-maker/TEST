@@ -417,6 +417,43 @@ const BookPage = () => {
     });
   };
 
+  // Real-time field validation (onBlur)
+  const validateFieldOnBlur = (field) => {
+    const newErrors = { ...errors };
+    
+    switch (field) {
+      case "name":
+        if (!formData.name.trim()) {
+          newErrors.name = "Le nom est requis";
+        } else if (formData.name.trim().length < 2) {
+          newErrors.name = "Le nom doit contenir au moins 2 caractères";
+        } else {
+          delete newErrors.name;
+        }
+        break;
+      case "email":
+        const emailError = validateEmail(formData.email);
+        if (emailError) {
+          newErrors.email = emailError;
+        } else {
+          delete newErrors.email;
+        }
+        break;
+      case "whatsapp":
+        const phoneError = validatePhone(formData.whatsapp);
+        if (phoneError) {
+          newErrors.whatsapp = phoneError;
+        } else {
+          delete newErrors.whatsapp;
+        }
+        break;
+      default:
+        break;
+    }
+    
+    setErrors(newErrors);
+  };
+
   const handleSubmit = async () => {
     // Honeypot check - if filled, silently fail (bot detected)
     if (formData.honeypot) {
