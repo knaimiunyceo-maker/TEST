@@ -35,6 +35,9 @@ const Section = ({ icon: Icon, title, children, index }) => (
 );
 
 const ConfidentialitePage = () => {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.fr;
+  
   return (
     <PageLayout>
       {/* Hero */}
@@ -48,10 +51,10 @@ const ConfidentialitePage = () => {
               <Shield className="text-sand" size={32} />
             </div>
             <h1 className="font-syne font-black text-3xl sm:text-4xl lg:text-5xl mb-4">
-              Politique de Confidentialité
+              {t.title}
             </h1>
             <p className="font-dm text-white/80 text-lg">
-              Protection de vos données personnelles
+              {t.subtitle}
             </p>
           </motion.div>
         </div>
