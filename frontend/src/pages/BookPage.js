@@ -418,12 +418,27 @@ const BookPage = () => {
   };
 
   const handleSubmit = async () => {
+    // Honeypot check - if filled, silently fail (bot detected)
+    if (formData.honeypot) {
+      console.log("Bot detected");
+      setStep(5); // Fake success
+      return;
+    }
+    
+    // Validate step 4
+    if (!validateStep4()) {
+      toast.error("Veuillez corriger les erreurs", {
+        description: "Certains champs sont invalides."
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     const courseTypeLabel = selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label || '';
     const earlyBirdText = isEarlyBird ? `\nEarly Bird Discount: -€${earlyBirdDiscount} (8%)` : '';
     const languageLabel = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label || 'Français';
     const referentTag = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.referent || 'FR';
-    const fullWhatsApp = `${formData.whatsappCountry} ${formData.whatsapp}`;
+    const fullWhatsApp = formData.whatsapp;
     
     try {
       await axios.post(`${API}/contact`, {
