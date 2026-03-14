@@ -48,7 +48,7 @@ const bookPageTranslations = {
       title: "Summary", experience: "Experience", city: "City", course: "Course", 
       dates: "Dates", duration: "Duration", price: "Price", from: "From"
     },
-    buttons: { next: "Next", previous: "Previous", submit: "Send Request", submitting: "Sending..." },
+    buttons: { next: "Next", previous: "Previous", submit: "Pay Deposit (30%)", submitting: "Redirecting to payment..." },
     validation: {
       nameRequired: "Name is required",
       emailRequired: "Email address is required",
@@ -112,7 +112,7 @@ const bookPageTranslations = {
       title: "Récapitulatif", experience: "Expérience", city: "Ville", course: "Cours", 
       dates: "Dates", duration: "Durée", price: "Prix", from: "À partir de"
     },
-    buttons: { next: "Suivant", previous: "Précédent", submit: "Envoyer la demande", submitting: "Envoi en cours..." },
+    buttons: { next: "Suivant", previous: "Précédent", submit: "Payer l'acompte (30%)", submitting: "Redirection vers le paiement..." },
     validation: {
       nameRequired: "Le nom est requis",
       emailRequired: "L'adresse email est requise",
