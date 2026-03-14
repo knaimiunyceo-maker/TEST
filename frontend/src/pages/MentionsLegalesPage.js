@@ -7,12 +7,42 @@ import PageLayout from "./components/PageLayout";
 import { useLanguage } from "../LanguageContext";
 
 const translations = {
-  en: { title: "Legal Notice", subtitle: "THE BRIDGE — UNYCEO FR" },
-  fr: { title: "Mentions Légales", subtitle: "THE BRIDGE — UNYCEO FR" },
-  es: { title: "Aviso Legal", subtitle: "THE BRIDGE — UNYCEO FR" },
-  pt: { title: "Aviso Legal", subtitle: "THE BRIDGE — UNYCEO FR" },
-  de: { title: "Impressum", subtitle: "THE BRIDGE — UNYCEO FR" },
-  it: { title: "Note Legali", subtitle: "THE BRIDGE — UNYCEO FR" }
+  en: { 
+    title: "Legal Notice", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: "The official legal text is in French, as required by French law.",
+    lastUpdate: "Last update: December 2025"
+  },
+  fr: { 
+    title: "Mentions Légales", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: null,
+    lastUpdate: "Dernière mise à jour : Décembre 2025"
+  },
+  es: { 
+    title: "Aviso Legal", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: "El texto legal oficial está en francés, según lo exige la ley francesa.",
+    lastUpdate: "Última actualización: Diciembre 2025"
+  },
+  pt: { 
+    title: "Aviso Legal", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: "O texto legal oficial está em francês, conforme exigido pela lei francesa.",
+    lastUpdate: "Última atualização: Dezembro 2025"
+  },
+  de: { 
+    title: "Impressum", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: "Der offizielle Rechtstext ist auf Französisch, wie es das französische Recht vorschreibt.",
+    lastUpdate: "Letzte Aktualisierung: Dezember 2025"
+  },
+  it: { 
+    title: "Note Legali", 
+    subtitle: "THE BRIDGE — UNYCEO FR",
+    legalNotice: "Il testo legale ufficiale è in francese, come richiesto dalla legge francese.",
+    lastUpdate: "Ultimo aggiornamento: Dicembre 2025"
+  }
 };
 
 const Section = ({ icon: Icon, title, children, index }) => (
@@ -63,6 +93,15 @@ const MentionsLegalesPage = () => {
       {/* Content */}
       <section className="py-12 sm:py-16 bg-warmwhite">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12">
+          
+          {/* Legal notice for non-French users */}
+          {t.legalNotice && (
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <p className="font-dm text-blue-700 text-sm">
+                ℹ️ {t.legalNotice}
+              </p>
+            </div>
+          )}
           
           {/* Éditeur du site */}
           <Section icon={Building2} title="Éditeur du site" index={0}>
@@ -192,7 +231,7 @@ const MentionsLegalesPage = () => {
           {/* Footer note */}
           <div className="mt-12 pt-8 border-t border-border text-center">
             <p className="font-dm text-ocean/60 text-sm">
-              Dernière mise à jour : Décembre 2025
+              {t.lastUpdate}
             </p>
           </div>
 
