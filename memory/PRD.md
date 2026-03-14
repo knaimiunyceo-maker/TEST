@@ -5,81 +5,81 @@ Site web pour une marque de voyage "THE BRIDGE" basée sur le concept "Travel �
 
 ## User Personas
 - Voyageurs internationaux (18-35 ans) cherchant des expériences authentiques au Maroc
-- Personnes souhaitant combiner voyage et apprentissage (langues, self-defense, storytelling)
+- Personnes souhaitant combiner voyage et apprentissage
 - Utilisateurs de 6 langues différentes (FR, EN, ES, PT, DE, IT)
 
-## Core Requirements
+## Core Requirements Implemented ✅
 
-### Multi-Language Support ✅
+### Multi-Language Support ✅ COMPLETE
 - 6 langues supportées: Français, English, Español, Português, Deutsch, Italiano
-- **Sélecteur de langue visible sur TOUTES les pages** (via PageLayout.js)
-- Traductions complètes sur:
-  - Page d'accueil (App.js)
-  - Navigation et footer (PageLayout.js + App.js)
-  - Page de réservation (BookPage.js)
-  - Page À Propos (AboutPage.js)
-  - Pages légales (CGV, Mentions Légales, Confidentialité)
+- **Sélecteur de langue visible sur TOUTES les pages**
+- Pages traduites:
+  - ✅ Homepage (App.js)
+  - ✅ Navigation + Footer (PageLayout.js)
+  - ✅ BookPage (formulaire de réservation)
+  - ✅ AboutPage
+  - ✅ HowItWorksPage
+  - ✅ ActivitiesPage
+  - ✅ DestinationsPage
+  - ✅ CGVPage (titre traduit)
+  - ✅ MentionsLegalesPage (titre traduit)
+  - ✅ ConfidentialitePage (titre traduit)
+  - ✅ SelfDefensePage
+  - ✅ LanguagePracticePage
+  - ✅ VisualStorytellingPage
 
 ### Footer Standardisé ✅
 Structure uniforme sur toutes les pages:
-```
-THE BRIDGE
-Travel • Practice • Experience
-
-Experiences          Destinations         Company
-- Self-Defense       - Casablanca         - About
-- Language Practice  - Marrakech          - How it Works
-- Visual Storytelling - Agadir            - Activities
-                                          - CGV
-                                          - Mentions légales
-                                          - Confidentialité
-```
+- THE BRIDGE + "Travel • Practice • Experience"
+- Experiences (Self-Defense, Language Practice, Visual Storytelling)
+- Destinations (Casablanca, Marrakech, Agadir)
+- Company (About, How it Works, Activities, CGV, Mentions légales, Confidentialité)
 
 ### Booking System ✅
-- Formulaire de réservation hybride (lead-capture) entièrement traduit
+- Formulaire entièrement traduit dans 6 langues
 - Validation email et téléphone international
 - Protection anti-bot (honeypot)
-- Calendrier personnalisé pour les weekends
-- Réduction Early Bird (-8%)
-
-### GDPR Compliance ✅
-- Bannière cookies traduite
-- Cases de consentement CGV et données personnelles
-- Pages légales complètes
-
-## What's Been Implemented
-
-### Date: March 2026
-
-1. **Sélecteur de langue sur toutes les pages**
-   - PageLayout.js mis à jour avec sélecteur de langue dans le header
-   - Navigation traduite (Accueil, Expériences, Destinations, etc.)
-   - Footer traduit (Entreprise, Confidentialité, etc.)
-
-2. **Traductions complètes**
-   - AboutPage.js avec traductions 6 langues
-   - BookPage.js avec traductions 6 langues
-   - PageLayout.js avec traductions navigation + footer
-   - translations.js avec italien ajouté
-
-3. **Nettoyage du code**
-   - Fichiers SecureBookingForm.js et SecureBookingPage.js supprimés
+- Calendrier weekends (alternance Marrakech/Agadir)
 
 ## Technical Architecture
 
-### Key Files
-- `/app/frontend/src/pages/components/PageLayout.js` - Layout avec nav + footer + sélecteur de langue
-- `/app/frontend/src/pages/BookPage.js` - Formulaire de réservation traduit
-- `/app/frontend/src/pages/AboutPage.js` - Page À propos traduite
-- `/app/frontend/src/LanguageContext.js` - Contexte de langue (changeLanguage)
-- `/app/frontend/src/translations.js` - Traductions globales
+### Frontend
+- React + TailwindCSS
+- react-router-dom pour routing
+- react-phone-number-input pour téléphone
+- Shadcn/UI components
+- LanguageContext pour gestion multilingue
+
+### Key Files Modifiés (Session Mars 2026)
+- `/app/frontend/src/pages/components/PageLayout.js` - Layout + sélecteur langue
+- `/app/frontend/src/pages/HowItWorksPage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/ActivitiesPage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/DestinationsPage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/SelfDefensePage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/LanguagePracticePage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/VisualStorytellingPage.js` - Traduit 6 langues
+- `/app/frontend/src/pages/CGVPage.js` - Titre traduit
+- `/app/frontend/src/pages/MentionsLegalesPage.js` - Titre traduit
+- `/app/frontend/src/pages/ConfidentialitePage.js` - Titre traduit
 
 ## Prioritized Backlog
 
-### P1 - Important
-- Traduire les pages restantes: HowItWorksPage, ActivitiesPage, CGVPage, etc.
-- Créer les pages destinations (Casablanca, Marrakech, Agadir)
+### P1 - Enhancement
+- Traduire le contenu complet des pages légales (CGV, Mentions, Confidentialité)
+- Ajouter plus de contenu aux pages destinations individuelles (Casablanca, Marrakech, Agadir)
+- Traduire le CookieBanner dans toutes les langues
 
-### P2 - Enhancement
+### P2 - Future
 - Intégration Stripe pour paiements
-- Base de données pour les expériences
+- Base de données pour les expériences (actuellement hardcodé)
+- SEO multilangue (balises hreflang)
+- Analytics integration
+
+## API Endpoints
+- `GET /api/experiences` - Liste des expériences
+- `POST /api/contact` - Soumission formulaire
+
+## Known Limitations
+- Données expériences hardcodées
+- Cookie banner reste en français (à traduire)
+- Contenu des pages légales pas entièrement traduit (structure uniquement)
