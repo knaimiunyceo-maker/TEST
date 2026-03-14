@@ -1015,6 +1015,17 @@ const DestinationSection = () => {
         "Paisagens diversas em um só país",
         "Acessível & barato da Europa"
       ]
+    },
+    it: {
+      title: "Destinazione: Marocco",
+      subtitle: "Dove antiche tradizioni incontrano avventure moderne",
+      description: "Dalle spiagge da surf di Taghazout alle dune dorate del Sahara, dalle vibranti medine di Marrakech alle strade blu di Chefchaouen — il Marocco offre uno sfondo incredibile per il tuo viaggio.",
+      highlights: [
+        "Sole tutto l'anno & clima perfetto",
+        "Cultura ricca & gente accogliente",
+        "Paesaggi diversi in un solo paese",
+        "Accessibile & conveniente dall'Europa"
+      ]
     }
   };
 
@@ -1145,6 +1156,17 @@ const CommunitySection = () => {
         "Amizades para a vida toda"
       ],
       cta: "Junte-se a 500+ viajantes"
+    },
+    it: {
+      title: "Piccoli Gruppi, Grandi Connessioni",
+      description: "Unisciti a un gruppo accuratamente selezionato di 8-12 viaggiatori internazionali. Le nostre esperienze sono progettate per connessioni significative — vi allenerete insieme, esplorerete insieme e creerete ricordi che dureranno tutta la vita.",
+      features: [
+        "Max 12 persone per esperienza",
+        "Gruppi internazionali e diversi",
+        "Pasti condivisi ed eventi sociali",
+        "Amicizie per la vita"
+      ],
+      cta: "Unisciti a 500+ viaggiatori"
     }
   };
 
@@ -1524,6 +1546,25 @@ const ContactSection = ({ experiences, onSubmit, isSubmitting }) => {
       successDesc: "Responderemos em 24 horas.",
       errorTitle: "Erro ao enviar",
       errorDesc: "Por favor tente novamente ou envie-nos um email."
+    },
+    it: {
+      title: "Richiesta Informazioni",
+      subtitle: "Hai una domanda sulle nostre esperienze? Inviaci un messaggio.",
+      name: "Il Tuo Nome",
+      namePlaceholder: "Inserisci il tuo nome",
+      email: "Indirizzo Email",
+      emailPlaceholder: "tua@email.com",
+      interested: "Quale esperienza ti interessa?",
+      selectExperience: "Seleziona un'esperienza",
+      generalInquiry: "Richiesta Generale",
+      message: "Il Tuo Messaggio",
+      messagePlaceholder: "Raccontaci di te, dei tuoi obiettivi o delle tue domande...",
+      sendMessage: "Invia Messaggio",
+      sending: "Invio in corso...",
+      successTitle: "Messaggio inviato!",
+      successDesc: "Ti risponderemo entro 24 ore.",
+      errorTitle: "Errore nell'invio",
+      errorDesc: "Riprova o contattaci direttamente."
     }
   };
 
