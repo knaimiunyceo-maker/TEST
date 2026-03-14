@@ -612,23 +612,66 @@ async def send_notification_email(submission: ContactSubmission):
     recipient = NOTIFICATION_EMAIL if NOTIFICATION_EMAIL else "onboarding@resend.dev"
     
     html_content = f"""
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #E76F51;">New Contact Submission - THE BRIDGE</h2>
-        <div style="background: #F4F1DE; padding: 20px; border-radius: 8px;">
-            <p><strong>Name:</strong> {submission.name}</p>
-            <p><strong>Email:</strong> {submission.email}</p>
-            <p><strong>Trip Interest:</strong> {submission.trip_interest or 'Not specified'}</p>
-            <p><strong>Message:</strong></p>
-            <p style="background: white; padding: 15px; border-radius: 4px;">{submission.message}</p>
-            <p style="color: #666; font-size: 12px;">Submitted at: {submission.created_at.isoformat()}</p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {{ font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f1de; margin: 0; padding: 20px; }}
+            .container {{ max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
+            .header {{ background: linear-gradient(135deg, #264653 0%, #2a9d8f 100%); padding: 30px; text-align: center; }}
+            .header h1 {{ color: white; margin: 0; font-size: 24px; }}
+            .header p {{ color: #e9c46a; margin: 10px 0 0; font-size: 14px; }}
+            .content {{ padding: 30px; }}
+            .badge {{ display: inline-block; background: #e76f51; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 20px; }}
+            .field {{ margin-bottom: 20px; }}
+            .field-label {{ color: #264653; font-weight: bold; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }}
+            .field-value {{ background: #f4f1de; padding: 15px; border-radius: 8px; color: #264653; }}
+            .message-box {{ background: #264653; color: white; padding: 20px; border-radius: 8px; margin-top: 20px; }}
+            .footer {{ background: #f4f1de; padding: 20px; text-align: center; font-size: 12px; color: #666; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>THE BRIDGE</h1>
+                <p>Travel • Practice • Experience</p>
+            </div>
+            <div class="content">
+                <span class="badge">NOUVELLE DEMANDE D'INFORMATION</span>
+                
+                <div class="field">
+                    <div class="field-label">Nom</div>
+                    <div class="field-value">{submission.name}</div>
+                </div>
+                
+                <div class="field">
+                    <div class="field-label">Email</div>
+                    <div class="field-value"><a href="mailto:{submission.email}" style="color: #2a9d8f;">{submission.email}</a></div>
+                </div>
+                
+                <div class="field">
+                    <div class="field-label">Expérience souhaitée</div>
+                    <div class="field-value">{submission.trip_interest or 'Non spécifiée'}</div>
+                </div>
+                
+                <div class="message-box">
+                    <div class="field-label" style="color: #e9c46a;">Message</div>
+                    <p style="margin: 10px 0 0; line-height: 1.6;">{submission.message}</p>
+                </div>
+            </div>
+            <div class="footer">
+                Reçu le {submission.created_at.strftime('%d/%m/%Y à %H:%M')} UTC<br>
+                THE BRIDGE - UNYCEO France
+            </div>
         </div>
-    </div>
+    </body>
+    </html>
     """
     
     params = {
         "from": SENDER_EMAIL,
         "to": [recipient],
-        "subject": f"New Inquiry from {submission.name} - THE BRIDGE",
+        "subject": f"📩 Nouvelle demande de {submission.name} - THE BRIDGE",
         "html": html_content
     }
     
