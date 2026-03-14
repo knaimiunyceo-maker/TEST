@@ -1099,6 +1099,16 @@ export const activityTranslations = {
     "hammam-spa": { title: "Experiência Hammam & Spa", description: "Hammam marroquino tradicional com banho de vapor, esfoliação e massagem relaxante." },
     "nightlife-events": { title: "Eventos Noturnos", description: "Festas em terraços, música ao vivo e os melhores pontos noturnos com seu grupo." },
     "cultural-workshop": { title: "Workshop Cultural", description: "Experiências práticas: cerâmica, arte de henna, música tradicional ou artesanato em couro." }
+  },
+  it: {
+    "surf-lessons": { title: "Lezioni di Surf", description: "Impara a cavalcare le onde con istruttori locali esperti sulle migliori spiagge da surf del Marocco." },
+    "desert-excursion": { title: "Escursione nel Deserto", description: "Giro in cammello tra le dune dorate, cena tradizionale e osservazione delle stelle nel Sahara." },
+    "quad-adventure": { title: "Avventura in Quad & Buggy", description: "Giro adrenalinico in quad o buggy attraverso paesaggi desertici e palmeti." },
+    "cooking-class": { title: "Corso di Cucina Marocchina", description: "Impara a preparare tajine, couscous e dolci marocchini con chef locali." },
+    "city-tour": { title: "Tour Guidato della Città", description: "Esplora la medina, i souk e i tesori nascosti con una guida locale esperta." },
+    "hammam-spa": { title: "Esperienza Hammam & Spa", description: "Hammam marocchino tradizionale con bagno di vapore, scrub e massaggio rilassante." },
+    "nightlife-events": { title: "Eventi Notturni", description: "Feste sui tetti, musica dal vivo e i migliori locali notturni con il tuo gruppo di viaggio." },
+    "cultural-workshop": { title: "Workshop Culturale", description: "Esperienze pratiche: ceramica, arte dell'henné, musica tradizionale o lavorazione del cuoio." }
   }
 };
 
