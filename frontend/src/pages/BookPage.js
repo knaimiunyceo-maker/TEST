@@ -1167,7 +1167,7 @@ ${formData.message || 'Aucun message additionnel'}
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-6">
                     <User className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Your Details</h2>
+                    <h2 className="font-syne font-bold text-xl text-ocean">{t.step4.title}</h2>
                   </div>
                   
                   {/* Honeypot anti-bot field */}
@@ -1185,13 +1185,13 @@ ${formData.message || 'Aucun message additionnel'}
                   <div className="space-y-4">
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <User size={16} /> Nom complet *
+                        <User size={16} /> {t.step4.fullName} *
                       </label>
                       <Input 
                         value={formData.name}
                         onChange={(e) => handleFieldChange("name", e.target.value)}
                         onBlur={() => validateFieldOnBlur("name")}
-                        placeholder="Votre nom complet"
+                        placeholder={t.step4.fullNamePlaceholder}
                         className={`border-border rounded-xl transition-colors ${errors.name ? "border-red-500 bg-red-50/50" : "focus:border-sunset"}`}
                         required
                       />
@@ -1207,14 +1207,14 @@ ${formData.message || 'Aucun message additionnel'}
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <Mail size={16} /> Email *
+                        <Mail size={16} /> {t.step4.email} *
                       </label>
                       <Input 
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleFieldChange("email", e.target.value)}
                         onBlur={() => validateFieldOnBlur("email")}
-                        placeholder="votre@email.com"
+                        placeholder={t.step4.emailPlaceholder}
                         className={`border-border rounded-xl transition-colors ${errors.email ? "border-red-500 bg-red-50/50" : "focus:border-sunset"}`}
                         required
                       />
@@ -1230,7 +1230,7 @@ ${formData.message || 'Aucun message additionnel'}
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        <Phone size={16} /> WhatsApp *
+                        <Phone size={16} /> {t.step4.whatsapp} *
                       </label>
                       <div className={`phone-input-wrapper rounded-xl border transition-colors ${errors.whatsapp ? "border-red-500 bg-red-50/50" : "border-border"} overflow-hidden bg-white`}>
                         <PhoneInput
