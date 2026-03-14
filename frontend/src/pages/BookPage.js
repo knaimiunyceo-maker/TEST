@@ -402,7 +402,17 @@ const bookPageTranslations = {
     months: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
     monthsFull: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
     weekendCalendar: { available: "Disponibile", unavailable: "Non disponibile", selectBtn: "Seleziona" },
-    earlyBird: { title: "Early Bird", discount: "di sconto applicato!" }
+    earlyBird: { title: "Early Bird", discount: "di sconto applicato!" },
+    bridgeExperience: {
+      title: "L'Esperienza The Bridge: Come Funziona",
+      learnMore: "Scopri di più sul nostro processo di prenotazione",
+      steps: [
+        { title: "1. Connessione Umana", desc: "Un referente locale ti chiama 15 min per rispondere alle domande." },
+        { title: "2. Prenotazione Prioritaria", desc: "Acconto 30% tramite link Stripe sicuro, valido 24h." },
+        { title: "3. Formazione del Gruppo", desc: "Ogni sessione richiede 10 partecipanti per la migliore esperienza." },
+        { title: "4. Conferma", desc: "Rimborso 100% se il gruppo minimo non viene raggiunto." }
+      ]
+    }
   }
 };
 
