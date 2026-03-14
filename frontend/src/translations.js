@@ -684,6 +684,143 @@ export const translations = {
         }
       ]
     }
+  },
+  it: {
+    code: "it",
+    name: "Italiano",
+    flag: "🇮🇹",
+    nav: {
+      experiences: "Esperienze",
+      upcomingTrips: "Prossimi Viaggi",
+      community: "Comunità",
+      about: "Chi Siamo",
+      contact: "Contatti",
+      bookNow: "Prenota"
+    },
+    hero: {
+      welcome: "Benvenuto a",
+      title: "THE BRIDGE",
+      subtitle: "Viaggi accessibili + esperienze personalizzabili in Marocco.",
+      tagline: "Viaggia da solo, vivi insieme.",
+      exploreBtn: "Scopri i Pacchetti",
+      viewTrips: "Vedi Viaggi"
+    },
+    concept: {
+      title: "Più di un Semplice Viaggio",
+      description: "Viaggiare non riguarda solo i luoghi. Riguarda",
+      people: "persone",
+      connections: "connessioni",
+      sharedExperiences: "esperienze condivise",
+      descriptionEnd: "THE BRIDGE crea esperienze di viaggio sociale dove i viaggiatori possono esplorare il Marocco insieme.",
+      meetPeople: "Incontra Persone",
+      meetPeopleDesc: "Connettiti con viaggiatori da tutto il mondo che condividono le tue idee.",
+      liveAdventures: "Vivi Avventure",
+      liveAdventuresDesc: "Vivi attività emozionanti dal surf al campeggio nel deserto.",
+      discoverCulture: "Scopri la Cultura",
+      discoverCultureDesc: "Immergiti nelle ricche tradizioni e nella storia del Marocco."
+    },
+    packages: {
+      title: "Esperienze di Viaggio",
+      subtitle: "Scegli il tuo pacchetto perfetto. Prezzi semplici, trasparenti e flessibili.",
+      from: "A partire da",
+      inclusions: "Cosa è incluso:",
+      reserveSpot: "Prenota il Tuo Posto"
+    },
+    activities: {
+      title: "Personalizza la Tua Esperienza",
+      subtitle: "Aggiungi attività opzionali per arricchire il tuo viaggio e creare la tua avventura perfetta.",
+      addToExperience: "Aggiungi all'Esperienza"
+    },
+    community: {
+      title: "Viaggia da Solo, Vivi Insieme",
+      description: "Unisciti a una comunità di anime avventurose da tutto il mondo. I nostri viaggi di gruppo riuniscono viaggiatori che condividono una passione per l'esplorazione, la cultura e le connessioni genuine.",
+      features: [
+        "Incontra viaggiatori internazionali",
+        "Avventure e attività di gruppo",
+        "Eventi sociali e incontri",
+        "Esperienze indimenticabili condivise"
+      ],
+      joinTravelers: "Unisciti a 500+ viaggiatori"
+    },
+    trips: {
+      title: "Prossimi Viaggi",
+      subtitle: "Assicurati il tuo posto per la prossima avventura. Posti limitati.",
+      spotsLeft: "posti disponibili",
+      bookSpot: "Prenota il Tuo Posto"
+    },
+    about: {
+      title: "La Nostra Missione",
+      description1: "THE BRIDGE connette le persone attraverso esperienze di viaggio in Marocco. Creiamo avventure che combinano cultura, comunità e momenti indimenticabili.",
+      description2: "Fondato con la passione di unire i viaggiatori, crediamo che i migliori viaggi siano condivisi. Le nostre esperienze accuratamente selezionate ti presentano il vero Marocco – le sue persone, tradizioni e tesori nascosti.",
+      quote: "Costruire ponti tra le culture, un viaggio alla volta.",
+      founder: "Fondatore"
+    },
+    contact: {
+      title: "Inizia la Tua Avventura",
+      subtitle: "Pronto a esplorare il Marocco? Contattaci e ti aiuteremo a pianificare il viaggio perfetto.",
+      name: "Il Tuo Nome",
+      namePlaceholder: "Inserisci il tuo nome",
+      email: "Indirizzo Email",
+      emailPlaceholder: "tua@email.com",
+      interested: "Interessato A",
+      selectExperience: "Seleziona un pacchetto",
+      generalInquiry: "Richiesta Generale",
+      message: "Il Tuo Messaggio",
+      messagePlaceholder: "Raccontaci dei tuoi piani di viaggio, domande o altro...",
+      sendMessage: "Invia Messaggio",
+      sending: "Invio in corso...",
+      successTitle: "Messaggio inviato con successo!",
+      successDesc: "Ti risponderemo presto riguardo alla tua avventura in Marocco!",
+      errorTitle: "Invio fallito",
+      errorDesc: "Per favore riprova o scrivici direttamente via email."
+    },
+    footer: {
+      description: "Connettere le persone attraverso i viaggi. Vivi il Marocco con una comunità di anime avventurose da tutto il mondo.",
+      packagesTitle: "Pacchetti",
+      contactTitle: "Contatti",
+      companyInfo: "Info Azienda",
+      getInTouch: "Contattaci",
+      rights: "Tutti i diritti riservati.",
+      foundedBy: "Fondato da"
+    },
+    faq: {
+      title: "Domande Frequenti",
+      subtitle: "Tutto quello che devi sapere sull'esperienza THE BRIDGE.",
+      items: [
+        {
+          question: "Cos'è THE BRIDGE?",
+          answer: "THE BRIDGE è una comunità di viaggio sociale che connette giovani viaggiatori internazionali con esperienze autentiche in Marocco. Non siamo un'agenzia di viaggi tradizionale — agiamo come un ponte tra viaggiatori e fornitori locali di fiducia, garantendo prezzi equi ed esperienze genuine."
+        },
+        {
+          question: "Per chi sono progettati i viaggi?",
+          answer: "Le nostre esperienze sono progettate per viaggiatori dai 18 ai 35 anni che vogliono più del semplice turismo. Se cerchi di incontrare persone con idee simili, esplorare la cultura marocchina in modo autentico e creare ricordi duraturi con una comunità di avventurieri, THE BRIDGE fa per te."
+        },
+        {
+          question: "Posso viaggiare da solo/a?",
+          answer: "Assolutamente! La maggior parte dei nostri viaggiatori viene da sola ma riparte con amici per la vita. I nostri viaggi sono progettati pensando ai viaggiatori solitari — ti unirai a un gruppo di viaggiatori internazionali e condividerai esperienze insieme. Viaggia da solo, vivi insieme."
+        },
+        {
+          question: "Come funzionano i prezzi?",
+          answer: "Crediamo nella trasparenza totale. I nostri pacchetti base includono alloggio, attività e coordinamento locale. I prezzi che vedi sono i prezzi reali — non aggiungiamo commissioni nascoste. Le attività opzionali hanno prezzi locali diretti."
+        },
+        {
+          question: "Cosa è incluso in un viaggio?",
+          answer: "Ogni pacchetto include alloggio, attività di gruppo, eventi sociali e supporto di un host locale. Le inclusioni esatte variano per pacchetto — Esperienza Weekend, Weekend Premium o Esperienza Explorer."
+        },
+        {
+          question: "Come prenoto un viaggio?",
+          answer: "Compila semplicemente il nostro modulo di contatto con le tue date e pacchetto preferiti. Il nostro team ti risponderà entro 24 ore per confermare la disponibilità e guidarti nel processo di prenotazione. Un deposito garantisce il tuo posto."
+        },
+        {
+          question: "Cosa rende THE BRIDGE diverso?",
+          answer: "A differenza delle agenzie tradizionali, ci concentriamo sulla comunità e l'autenticità. Lavoriamo direttamente con fornitori locali marocchini, garantendo prezzi equi per i viaggiatori e una compensazione equa per i locali."
+        },
+        {
+          question: "Il Marocco è sicuro per i viaggiatori?",
+          answer: "Sì! Il Marocco è una delle destinazioni più sicure in Africa e accoglie milioni di turisti ogni anno. I nostri host locali conoscono il paese alla perfezione e assicurano un'esperienza sicura e confortevole."
+        }
+      ]
+    }
   }
 };
 
