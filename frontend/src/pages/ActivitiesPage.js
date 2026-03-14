@@ -35,6 +35,11 @@ const TOP_EXPERIENCES = [
     id: "paradise-valley",
     image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600",
     icon: <Palmtree size={24} />
+  },
+  {
+    id: "hammam",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600",
+    icon: <Sparkles size={24} />
   }
 ];
 
