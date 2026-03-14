@@ -173,23 +173,6 @@ const VisualStorytellingPage = () => {
           </motion.div>
         </div>
       </section>
-              <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center">
-                <Camera size={28} className="text-white" />
-              </div>
-              <span className="bg-sunset/20 text-sand px-4 py-1 rounded-full text-sm font-dm">Weekend Experience</span>
-              <span className="bg-white/10 text-white/80 px-4 py-1 rounded-full text-sm font-dm">3 jours / 2 nuits</span>
-            </div>
-            <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Visual Storytelling Weekend
-            </h1>
-            <p className="font-caveat text-sand text-xl mb-4">Vendredi → Dimanche</p>
-            <p className="font-dm text-white/80 text-lg max-w-2xl">
-              Un weekend créatif pour apprendre la photo, vidéo ou drone. 
-              Capturez le Maroc avec un petit groupe de 10 personnes maximum.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Key Info */}
       <section className="py-8 px-4 sm:px-6 lg:px-12 bg-warmwhite">
