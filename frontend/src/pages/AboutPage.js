@@ -7,8 +7,147 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const aboutTranslations = {
+  en: {
+    heroTitle: "About The Bridge",
+    heroSubtitle: "A different way to travel",
+    intro1: "The Bridge was created for people who love to travel but don't want to spend their days lying on a beach chair.",
+    intro2: "Our experiences are designed for curious travelers who want to learn something new, stay active, and connect with people while discovering Morocco.",
+    intro3: "Instead of traditional tourism, we offer small group experiences built around",
+    learning: "learning",
+    exploration: "exploration",
+    connection: "human connection",
+    purposeTitle: "Travel with Purpose",
+    purposeSubtitle: "Our experiences combine three key elements",
+    purpose1Title: "Practice",
+    purpose1Desc: "Every trip includes morning sessions: self-defense, language practice, or visual storytelling.",
+    purpose2Title: "Discover",
+    purpose2Desc: "Afternoons are for exploring Morocco: medinas, beaches, mountains, and hidden gems.",
+    purpose3Title: "Connect",
+    purpose3Desc: "Small groups, shared meals, and evening activities create genuine connections.",
+    whyTitle: "Why Morocco?",
+    whyText: "Morocco is where Europe meets Africa, where ancient traditions coexist with modern energy. It's a country of incredible diversity – from the Atlantic coast to the Sahara, from the Atlas Mountains to vibrant cities like Marrakech and Casablanca. The people are warm, the culture is rich, and the experiences are unforgettable.",
+    ctaTitle: "Ready to bridge your next journey?",
+    ctaButton: "Explore Our Experiences"
+  },
+  fr: {
+    heroTitle: "À Propos de The Bridge",
+    heroSubtitle: "Une autre façon de voyager",
+    intro1: "The Bridge a été créé pour les personnes qui aiment voyager mais ne veulent pas passer leurs journées allongées sur une chaise longue.",
+    intro2: "Nos expériences sont conçues pour les voyageurs curieux qui veulent apprendre quelque chose de nouveau, rester actifs et se connecter avec les gens tout en découvrant le Maroc.",
+    intro3: "Au lieu du tourisme traditionnel, nous proposons des expériences en petits groupes construites autour de",
+    learning: "l'apprentissage",
+    exploration: "l'exploration",
+    connection: "la connexion humaine",
+    purposeTitle: "Voyager avec un But",
+    purposeSubtitle: "Nos expériences combinent trois éléments clés",
+    purpose1Title: "Pratiquer",
+    purpose1Desc: "Chaque voyage comprend des séances matinales : self-défense, pratique linguistique ou storytelling visuel.",
+    purpose2Title: "Découvrir",
+    purpose2Desc: "Les après-midis sont consacrés à l'exploration du Maroc : médinas, plages, montagnes et trésors cachés.",
+    purpose3Title: "Se Connecter",
+    purpose3Desc: "Petits groupes, repas partagés et activités du soir créent des connexions authentiques.",
+    whyTitle: "Pourquoi le Maroc ?",
+    whyText: "Le Maroc est là où l'Europe rencontre l'Afrique, où les traditions anciennes coexistent avec l'énergie moderne. C'est un pays d'une incroyable diversité – de la côte atlantique au Sahara, des montagnes de l'Atlas aux villes vibrantes comme Marrakech et Casablanca. Les gens sont chaleureux, la culture est riche et les expériences sont inoubliables.",
+    ctaTitle: "Prêt à franchir le pont vers votre prochaine aventure ?",
+    ctaButton: "Découvrir Nos Expériences"
+  },
+  es: {
+    heroTitle: "Sobre The Bridge",
+    heroSubtitle: "Una forma diferente de viajar",
+    intro1: "The Bridge fue creado para personas que aman viajar pero no quieren pasar sus días tumbados en una tumbona.",
+    intro2: "Nuestras experiencias están diseñadas para viajeros curiosos que quieren aprender algo nuevo, mantenerse activos y conectar con personas mientras descubren Marruecos.",
+    intro3: "En lugar del turismo tradicional, ofrecemos experiencias en grupos pequeños construidas alrededor de",
+    learning: "el aprendizaje",
+    exploration: "la exploración",
+    connection: "la conexión humana",
+    purposeTitle: "Viajar con Propósito",
+    purposeSubtitle: "Nuestras experiencias combinan tres elementos clave",
+    purpose1Title: "Practicar",
+    purpose1Desc: "Cada viaje incluye sesiones matutinas: defensa personal, práctica de idiomas o storytelling visual.",
+    purpose2Title: "Descubrir",
+    purpose2Desc: "Las tardes son para explorar Marruecos: medinas, playas, montañas y joyas escondidas.",
+    purpose3Title: "Conectar",
+    purpose3Desc: "Grupos pequeños, comidas compartidas y actividades nocturnas crean conexiones genuinas.",
+    whyTitle: "¿Por qué Marruecos?",
+    whyText: "Marruecos es donde Europa se encuentra con África, donde las tradiciones antiguas coexisten con la energía moderna. Es un país de increíble diversidad – desde la costa atlántica hasta el Sahara, desde las montañas del Atlas hasta ciudades vibrantes como Marrakech y Casablanca. La gente es cálida, la cultura es rica y las experiencias son inolvidables.",
+    ctaTitle: "¿Listo para tender un puente hacia tu próxima aventura?",
+    ctaButton: "Explorar Nuestras Experiencias"
+  },
+  pt: {
+    heroTitle: "Sobre The Bridge",
+    heroSubtitle: "Uma forma diferente de viajar",
+    intro1: "The Bridge foi criado para pessoas que amam viajar mas não querem passar seus dias deitadas em uma espreguiçadeira.",
+    intro2: "Nossas experiências são projetadas para viajantes curiosos que querem aprender algo novo, manter-se ativos e conectar-se com pessoas enquanto descobrem o Marrocos.",
+    intro3: "Em vez do turismo tradicional, oferecemos experiências em pequenos grupos construídas em torno de",
+    learning: "aprendizado",
+    exploration: "exploração",
+    connection: "conexão humana",
+    purposeTitle: "Viajar com Propósito",
+    purposeSubtitle: "Nossas experiências combinam três elementos-chave",
+    purpose1Title: "Praticar",
+    purpose1Desc: "Cada viagem inclui sessões matinais: autodefesa, prática de idiomas ou storytelling visual.",
+    purpose2Title: "Descobrir",
+    purpose2Desc: "As tardes são para explorar o Marrocos: medinas, praias, montanhas e joias escondidas.",
+    purpose3Title: "Conectar",
+    purpose3Desc: "Grupos pequenos, refeições compartilhadas e atividades noturnas criam conexões genuínas.",
+    whyTitle: "Por que Marrocos?",
+    whyText: "O Marrocos é onde a Europa encontra a África, onde tradições antigas coexistem com energia moderna. É um país de incrível diversidade – da costa atlântica ao Saara, das montanhas do Atlas a cidades vibrantes como Marrakech e Casablanca. As pessoas são calorosas, a cultura é rica e as experiências são inesquecíveis.",
+    ctaTitle: "Pronto para construir a ponte para sua próxima aventura?",
+    ctaButton: "Explorar Nossas Experiências"
+  },
+  de: {
+    heroTitle: "Über The Bridge",
+    heroSubtitle: "Eine andere Art zu reisen",
+    intro1: "The Bridge wurde für Menschen geschaffen, die gerne reisen, aber ihre Tage nicht auf einem Liegestuhl verbringen möchten.",
+    intro2: "Unsere Erlebnisse sind für neugierige Reisende konzipiert, die etwas Neues lernen, aktiv bleiben und sich mit Menschen verbinden möchten, während sie Marokko entdecken.",
+    intro3: "Anstelle von traditionellem Tourismus bieten wir Kleingrupperlebnisse, die sich um diese Elemente drehen:",
+    learning: "Lernen",
+    exploration: "Entdecken",
+    connection: "menschliche Verbindung",
+    purposeTitle: "Reisen mit Sinn",
+    purposeSubtitle: "Unsere Erlebnisse kombinieren drei Schlüsselelemente",
+    purpose1Title: "Üben",
+    purpose1Desc: "Jede Reise beinhaltet Morgensessions: Selbstverteidigung, Sprachpraxis oder visuelles Storytelling.",
+    purpose2Title: "Entdecken",
+    purpose2Desc: "Nachmittage sind zum Erkunden Marokkos: Medinas, Strände, Berge und versteckte Schätze.",
+    purpose3Title: "Verbinden",
+    purpose3Desc: "Kleine Gruppen, gemeinsame Mahlzeiten und Abendaktivitäten schaffen echte Verbindungen.",
+    whyTitle: "Warum Marokko?",
+    whyText: "Marokko ist dort, wo Europa auf Afrika trifft, wo alte Traditionen mit moderner Energie koexistieren. Es ist ein Land von unglaublicher Vielfalt – von der Atlantikküste bis zur Sahara, vom Atlasgebirge bis zu pulsierenden Städten wie Marrakesch und Casablanca. Die Menschen sind herzlich, die Kultur ist reich und die Erlebnisse sind unvergesslich.",
+    ctaTitle: "Bereit, die Brücke zu Ihrer nächsten Reise zu schlagen?",
+    ctaButton: "Unsere Erlebnisse Entdecken"
+  },
+  it: {
+    heroTitle: "Chi Siamo",
+    heroSubtitle: "Un modo diverso di viaggiare",
+    intro1: "The Bridge è stato creato per le persone che amano viaggiare ma non vogliono passare le giornate sdraiate su una sdraio.",
+    intro2: "Le nostre esperienze sono progettate per viaggiatori curiosi che vogliono imparare qualcosa di nuovo, rimanere attivi e connettersi con le persone mentre scoprono il Marocco.",
+    intro3: "Invece del turismo tradizionale, offriamo esperienze in piccoli gruppi costruite attorno a",
+    learning: "apprendimento",
+    exploration: "esplorazione",
+    connection: "connessione umana",
+    purposeTitle: "Viaggiare con Uno Scopo",
+    purposeSubtitle: "Le nostre esperienze combinano tre elementi chiave",
+    purpose1Title: "Praticare",
+    purpose1Desc: "Ogni viaggio include sessioni mattutine: autodifesa, pratica linguistica o visual storytelling.",
+    purpose2Title: "Scoprire",
+    purpose2Desc: "I pomeriggi sono per esplorare il Marocco: medine, spiagge, montagne e gemme nascoste.",
+    purpose3Title: "Connettersi",
+    purpose3Desc: "Piccoli gruppi, pasti condivisi e attività serali creano connessioni genuine.",
+    whyTitle: "Perché il Marocco?",
+    whyText: "Il Marocco è dove l'Europa incontra l'Africa, dove le tradizioni antiche coesistono con l'energia moderna. È un paese di incredibile diversità – dalla costa atlantica al Sahara, dalle montagne dell'Atlante a città vibranti come Marrakech e Casablanca. Le persone sono calde, la cultura è ricca e le esperienze sono indimenticabili.",
+    ctaTitle: "Pronto a costruire il ponte verso la tua prossima avventura?",
+    ctaButton: "Scopri Le Nostre Esperienze"
+  }
+};
 
 const AboutPage = () => {
+  const { language } = useLanguage();
+  const t = aboutTranslations[language] || aboutTranslations.en;
+  
   return (
     <PageLayout>
       {/* Hero */}
