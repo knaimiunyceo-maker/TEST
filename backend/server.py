@@ -1050,57 +1050,188 @@ async def send_booking_confirmation_email(booking: dict):
     try:
         # Email to customer
         customer_email_content = f"""
-        <h2>Booking Confirmation - The Bridge</h2>
-        <p>Dear {booking['name']},</p>
-        <p>Thank you for your deposit! Your booking has been confirmed.</p>
-        
-        <h3>Booking Details:</h3>
-        <ul>
-            <li><strong>Experience:</strong> {booking['experience_id'].replace('-', ' ').title()}</li>
-            <li><strong>Dates:</strong> {booking['dates']}</li>
-            <li><strong>City:</strong> {booking['city']}</li>
-            <li><strong>Participants:</strong> {booking['participants']}</li>
-            <li><strong>Room Type:</strong> {booking['room_type']}</li>
-        </ul>
-        
-        <h3>Payment Summary:</h3>
-        <ul>
-            <li><strong>Deposit Paid (30%):</strong> €{booking['deposit_amount']:.2f}</li>
-            <li><strong>Total Price:</strong> €{booking['total_price']:.2f}</li>
-            <li><strong>Remaining Balance:</strong> €{booking['total_price'] - booking['deposit_amount']:.2f}</li>
-        </ul>
-        
-        <p>A member of our team will contact you soon with next steps.</p>
-        
-        <p>Best regards,<br>The Bridge Team</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {{ font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f1de; margin: 0; padding: 20px; }}
+                .container {{ max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
+                .header {{ background: linear-gradient(135deg, #264653 0%, #2a9d8f 100%); padding: 30px; text-align: center; }}
+                .header h1 {{ color: white; margin: 0; font-size: 24px; }}
+                .header p {{ color: #e9c46a; margin: 10px 0 0; font-size: 14px; }}
+                .success-badge {{ background: #2a9d8f; color: white; padding: 15px 30px; display: inline-block; border-radius: 30px; font-weight: bold; margin: 20px 0; }}
+                .content {{ padding: 30px; }}
+                .section {{ background: #f4f1de; padding: 20px; border-radius: 8px; margin-bottom: 20px; }}
+                .section-title {{ color: #264653; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 2px solid #e9c46a; padding-bottom: 10px; }}
+                .detail-row {{ display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(38,70,83,0.1); }}
+                .detail-label {{ color: #666; }}
+                .detail-value {{ color: #264653; font-weight: bold; }}
+                .price-highlight {{ background: #264653; color: white; padding: 20px; border-radius: 8px; text-align: center; }}
+                .price-highlight .amount {{ font-size: 32px; color: #e9c46a; font-weight: bold; }}
+                .footer {{ background: #264653; padding: 20px; text-align: center; color: white; }}
+                .footer a {{ color: #e9c46a; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>THE BRIDGE</h1>
+                    <p>Travel • Practice • Experience</p>
+                </div>
+                <div class="content" style="text-align: center;">
+                    <div class="success-badge">✓ RÉSERVATION CONFIRMÉE</div>
+                    <p style="color: #264653; font-size: 18px;">Bonjour {booking['name']},</p>
+                    <p style="color: #666;">Merci pour votre acompte ! Votre réservation est confirmée.</p>
+                </div>
+                
+                <div class="content">
+                    <div class="section">
+                        <div class="section-title">Détails de la réservation</div>
+                        <div class="detail-row">
+                            <span class="detail-label">Expérience</span>
+                            <span class="detail-value">{booking['experience_id'].replace('-', ' ').title()}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Dates</span>
+                            <span class="detail-value">{booking['dates']}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Ville</span>
+                            <span class="detail-value">{booking['city']}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Participants</span>
+                            <span class="detail-value">{booking['participants']}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Type de chambre</span>
+                            <span class="detail-value">{booking['room_type']}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">Récapitulatif du paiement</div>
+                        <div class="detail-row">
+                            <span class="detail-label">Acompte versé (30%)</span>
+                            <span class="detail-value" style="color: #2a9d8f;">€{booking['deposit_amount']:.2f}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Prix total</span>
+                            <span class="detail-value">€{booking['total_price']:.2f}</span>
+                        </div>
+                        <div class="detail-row" style="border-bottom: none;">
+                            <span class="detail-label">Reste à payer</span>
+                            <span class="detail-value" style="color: #e76f51;">€{booking['total_price'] - booking['deposit_amount']:.2f}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="price-highlight">
+                        <p style="margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Acompte versé</p>
+                        <p class="amount" style="margin: 10px 0;">€{booking['deposit_amount']:.2f}</p>
+                    </div>
+                    
+                    <p style="color: #666; text-align: center; margin-top: 30px;">
+                        Un membre de notre équipe vous contactera bientôt pour les prochaines étapes.
+                    </p>
+                </div>
+                
+                <div class="footer">
+                    <p style="margin: 0;">THE BRIDGE - UNYCEO France</p>
+                    <p style="margin: 10px 0 0; font-size: 12px;">Travel • Practice • Experience</p>
+                </div>
+            </div>
+        </body>
+        </html>
         """
         
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [booking['email']],
-            "subject": "Booking Confirmed - The Bridge Experience",
+            "subject": "✓ Réservation Confirmée - THE BRIDGE",
             "html": customer_email_content
         })
         
         # Email to admin
         if NOTIFICATION_EMAIL:
             admin_email_content = f"""
-            <h2>New Booking Received!</h2>
-            <p><strong>Customer:</strong> {booking['name']} ({booking['email']})</p>
-            <p><strong>Phone:</strong> {booking['phone']}</p>
-            <p><strong>Experience:</strong> {booking['experience_id']}</p>
-            <p><strong>Dates:</strong> {booking['dates']}</p>
-            <p><strong>City:</strong> {booking['city']}</p>
-            <p><strong>Participants:</strong> {booking['participants']}</p>
-            <p><strong>Deposit Paid:</strong> €{booking['deposit_amount']:.2f}</p>
-            <p><strong>Total Price:</strong> €{booking['total_price']:.2f}</p>
-            <p><strong>Message:</strong> {booking.get('message', 'N/A')}</p>
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body {{ font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f1de; margin: 0; padding: 20px; }}
+                    .container {{ max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
+                    .header {{ background: linear-gradient(135deg, #e76f51 0%, #f4a261 100%); padding: 30px; text-align: center; }}
+                    .header h1 {{ color: white; margin: 0; font-size: 24px; }}
+                    .badge {{ display: inline-block; background: #264653; color: white; padding: 10px 25px; border-radius: 25px; font-weight: bold; margin: 20px 0; }}
+                    .content {{ padding: 30px; }}
+                    .section {{ background: #f4f1de; padding: 20px; border-radius: 8px; margin-bottom: 20px; }}
+                    .detail-row {{ display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(38,70,83,0.1); }}
+                    .detail-label {{ color: #666; }}
+                    .detail-value {{ color: #264653; font-weight: bold; }}
+                    .highlight {{ background: #2a9d8f; color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 24px; font-weight: bold; }}
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h1>🎉 NOUVELLE RÉSERVATION !</h1>
+                    </div>
+                    <div class="content" style="text-align: center;">
+                        <div class="badge">PAIEMENT REÇU</div>
+                    </div>
+                    <div class="content">
+                        <div class="section">
+                            <div class="detail-row">
+                                <span class="detail-label">Client</span>
+                                <span class="detail-value">{booking['name']}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value"><a href="mailto:{booking['email']}">{booking['email']}</a></span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Téléphone</span>
+                                <span class="detail-value">{booking['phone']}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Expérience</span>
+                                <span class="detail-value">{booking['experience_id'].replace('-', ' ').title()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Dates</span>
+                                <span class="detail-value">{booking['dates']}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Ville</span>
+                                <span class="detail-value">{booking['city']}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Participants</span>
+                                <span class="detail-value">{booking['participants']}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Acompte versé</span>
+                                <span class="detail-value" style="color: #2a9d8f;">€{booking['deposit_amount']:.2f}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Prix total</span>
+                                <span class="detail-value">€{booking['total_price']:.2f}</span>
+                            </div>
+                        </div>
+                        
+                        {f'<div class="section"><strong>Message du client:</strong><p>{booking.get("message", "")}</p></div>' if booking.get('message') else ''}
+                        
+                        <div class="highlight">€{booking['deposit_amount']:.2f} REÇU</div>
+                    </div>
+                </div>
+            </body>
+            </html>
             """
             
             resend.Emails.send({
                 "from": SENDER_EMAIL,
                 "to": [NOTIFICATION_EMAIL],
-                "subject": f"New Booking: {booking['name']} - {booking['experience_id']}",
+                "subject": f"🎉 Nouvelle Réservation: {booking['name']} - {booking['experience_id'].replace('-', ' ').title()}",
                 "html": admin_email_content
             })
         
