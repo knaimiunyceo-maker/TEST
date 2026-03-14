@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "../../LanguageContext";
+import SEO from "../../components/SEO";
 
 // Translations for PageLayout
 const layoutTranslations = {
