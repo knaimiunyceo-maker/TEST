@@ -1635,72 +1635,60 @@ const Footer = () => {
   
   const content = {
     en: {
-      description: "Travel • Practice • Experience. Transform your next trip into a journey of growth, connection, and unforgettable memories in Morocco.",
       experiencesTitle: "Experiences",
-      contactTitle: "Contact",
-      companyInfo: "Company Info",
-      getInTouch: "Get in Touch",
+      destinationsTitle: "Destinations",
+      companyTitle: "Company",
       rights: "All rights reserved.",
       foundedBy: "Founded by"
     },
     fr: {
-      description: "Voyage • Pratique • Expérience. Transformez votre prochain voyage en un parcours de croissance, de connexion et de souvenirs inoubliables au Maroc.",
       experiencesTitle: "Expériences",
-      contactTitle: "Contact",
-      companyInfo: "Info Entreprise",
-      getInTouch: "Nous Contacter",
+      destinationsTitle: "Destinations",
+      companyTitle: "Entreprise",
       rights: "Tous droits réservés.",
       foundedBy: "Fondé par"
     },
     es: {
-      description: "Viaja • Practica • Experimenta. Transforma tu próximo viaje en un recorrido de crecimiento, conexión y recuerdos inolvidables en Marruecos.",
       experiencesTitle: "Experiencias",
-      contactTitle: "Contacto",
-      companyInfo: "Info Empresa",
-      getInTouch: "Contáctanos",
+      destinationsTitle: "Destinos",
+      companyTitle: "Empresa",
       rights: "Todos los derechos reservados.",
       foundedBy: "Fundado por"
     },
     de: {
-      description: "Reisen • Üben • Erleben. Verwandle deine nächste Reise in eine Reise des Wachstums, der Verbindung und unvergesslicher Erinnerungen in Marokko.",
       experiencesTitle: "Erlebnisse",
-      contactTitle: "Kontakt",
-      companyInfo: "Firmeninfo",
-      getInTouch: "Kontaktiere Uns",
+      destinationsTitle: "Reiseziele",
+      companyTitle: "Unternehmen",
       rights: "Alle Rechte vorbehalten.",
       foundedBy: "Gegründet von"
     },
     pt: {
-      description: "Viaje • Pratique • Experimente. Transforme sua próxima viagem em uma jornada de crescimento, conexão e memórias inesquecíveis em Marrocos.",
       experiencesTitle: "Experiências",
-      contactTitle: "Contato",
-      companyInfo: "Info da Empresa",
-      getInTouch: "Entre em Contato",
+      destinationsTitle: "Destinos",
+      companyTitle: "Empresa",
       rights: "Todos os direitos reservados.",
       foundedBy: "Fundado por"
+    },
+    it: {
+      experiencesTitle: "Esperienze",
+      destinationsTitle: "Destinazioni",
+      companyTitle: "Azienda",
+      rights: "Tutti i diritti riservati.",
+      foundedBy: "Fondato da"
     }
   };
 
   const t = content[language] || content.en;
 
-  const experienceLabels = {
-    en: ['Self-Defense Holiday', 'Language Holiday', 'Storytelling Holiday'],
-    fr: ['Séjour Self-Défense', 'Séjour Langues', 'Séjour Storytelling'],
-    es: ['Vacaciones Defensa Personal', 'Vacaciones Idiomas', 'Vacaciones Storytelling'],
-    de: ['Kampf Urlaub', 'Sprach Urlaub', 'Storytelling Urlaub'],
-    pt: ['Férias Defesa Pessoal', 'Férias Idiomas', 'Férias Storytelling']
-  };
-
   return (
     <footer className="bg-ocean py-10 sm:py-12 px-4 sm:px-6 md:px-12" data-testid="footer">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          <div className="sm:col-span-2">
-            <h3 className="font-syne font-bold text-xl sm:text-2xl text-white mb-3">THE BRIDGE</h3>
-            <p className="font-dm text-white/70 mb-5 max-w-md text-sm">
-              {t.description}
-            </p>
-            <div className="flex gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+          {/* Brand */}
+          <div>
+            <h3 className="font-syne font-bold text-xl text-white mb-2">THE BRIDGE</h3>
+            <p className="font-caveat text-sand text-lg">Travel • Practice • Experience</p>
+            <div className="flex gap-3 mt-4">
               <a 
                 href="https://www.linkedin.com/in/karim-naimi-b1aa1139/" 
                 target="_blank" 
@@ -1720,31 +1708,43 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Experiences */}
           <div>
-            <h4 className="font-syne font-bold text-white mb-4 text-sm">{t.experiencesTitle}</h4>
+            <h4 className="font-dm font-semibold text-white mb-4 text-sm">{t.experiencesTitle}</h4>
             <ul className="space-y-2 font-dm text-white/70 text-sm">
-              {(experienceLabels[language] || experienceLabels.en).map((label, i) => (
-                <li key={i}><a href="#experiences" className="hover:text-sunset transition-colors">{label}</a></li>
-              ))}
+              <li><Link to="/experiences/self-defense" className="hover:text-sand transition-colors">Self-Defense</Link></li>
+              <li><Link to="/experiences/language-practice" className="hover:text-sand transition-colors">Language Practice</Link></li>
+              <li><Link to="/experiences/visual-storytelling" className="hover:text-sand transition-colors">Visual Storytelling</Link></li>
             </ul>
           </div>
 
+          {/* Destinations */}
           <div>
-            <h4 className="font-syne font-bold text-white mb-4 text-sm">{t.contactTitle}</h4>
+            <h4 className="font-dm font-semibold text-white mb-4 text-sm">{t.destinationsTitle}</h4>
             <ul className="space-y-2 font-dm text-white/70 text-sm">
-              <li>
-                <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/unyceo-fr-953646577" target="_blank" rel="noopener noreferrer" className="hover:text-sunset transition-colors">
-                  {t.companyInfo}
-                </a>
-              </li>
-              <li><a href="#contact" className="hover:text-sunset transition-colors">{t.getInTouch}</a></li>
+              <li><Link to="/destinations/casablanca" className="hover:text-sand transition-colors">Casablanca</Link></li>
+              <li><Link to="/destinations/marrakech" className="hover:text-sand transition-colors">Marrakech</Link></li>
+              <li><Link to="/destinations/agadir" className="hover:text-sand transition-colors">Agadir</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-dm font-semibold text-white mb-4 text-sm">{t.companyTitle}</h4>
+            <ul className="space-y-2 font-dm text-white/70 text-sm">
+              <li><Link to="/about" className="hover:text-sand transition-colors">About</Link></li>
+              <li><Link to="/how-it-works" className="hover:text-sand transition-colors">How it Works</Link></li>
+              <li><Link to="/activities" className="hover:text-sand transition-colors">Activities</Link></li>
+              <li><Link to="/cgv" className="hover:text-sand transition-colors">CGV</Link></li>
+              <li><Link to="/mentions-legales" className="hover:text-sand transition-colors">Mentions légales</Link></li>
+              <li><Link to="/confidentialite" className="hover:text-sand transition-colors">Confidentialité</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="font-dm text-white/60 text-xs text-center sm:text-left">
-            © {new Date().getFullYear()} THE BRIDGE. {t.rights}
+            © {new Date().getFullYear()} THE BRIDGE — UNYCEO France. {t.rights}
           </p>
           <p className="font-dm text-white/60 text-xs text-center sm:text-right">
             {t.foundedBy} <span className="text-sand">Naimi Mohamed Karim</span>
