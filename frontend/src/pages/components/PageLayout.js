@@ -122,13 +122,25 @@ const LANGUAGES = [
   { code: "it", name: "Italiano", flag: "🇮🇹" }
 ];
 
-const PageLayout = ({ children, showBackButton = true }) => {
+const PageLayout = ({ children, showBackButton = true, seoPage = null, seoTitle = null, seoDescription = null }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const location = useLocation();
   const { language, changeLanguage } = useLanguage();
   const t = layoutTranslations[language] || layoutTranslations.en;
+
+  // Auto-detect SEO page from location
+  const detectSeoPage = () => {
+    if (seoPage) return seoPage;
+    const path = location.pathname;
+    if (path.startsWith('/experiences')) return 'experiences';
+    if (path.startsWith('/destinations')) return 'destinations';
+    if (path === '/book') return 'book';
+    if (path === '/about') return 'about';
+    if (path === '/how-it-works') return 'howItWorks';
+    return null;
+  };
 
   const NAV_ITEMS = [
     { label: t.home, href: "/" },
