@@ -814,6 +814,10 @@ const OptionalActivitiesSection = ({ activities }) => {
     pt: {
       title: "Experiências Opcionais",
       subtitle: "Melhore sua viagem com atividades adicionais. Tudo a preços locais justos."
+    },
+    it: {
+      title: "Esperienze Opzionali",
+      subtitle: "Arricchisci il tuo viaggio con attività extra. Tutto a prezzi locali equi."
     }
   };
 
