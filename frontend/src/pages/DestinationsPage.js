@@ -4,38 +4,99 @@ import { MapPin, ArrowRight, Sun, Users, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
 
-const DESTINATIONS = [
-  {
-    id: "casablanca",
-    name: "Casablanca",
-    tagline: "Morocco's modern metropolis",
-    description: "The economic capital of Morocco. A blend of tradition and modernity with stunning Art Deco architecture.",
-    image: "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=800",
-    experiences: ["Language Practice"],
-    highlights: ["Hassan II Mosque", "Art Deco downtown", "Corniche beaches", "Vibrant nightlife"]
+const translations = {
+  en: {
+    heroSubtitle: "Discover Morocco",
+    heroTitle: "Our Destinations",
+    heroDesc: "From vibrant cities to coastal towns, experience Morocco's diverse beauty.",
+    availableExperiences: "Available experiences",
+    highlights: "Highlights",
+    explore: "Explore",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "Morocco's modern metropolis", description: "The economic capital of Morocco. A blend of tradition and modernity with stunning Art Deco architecture.", experiences: ["Language Practice"], highlights: ["Hassan II Mosque", "Art Deco downtown", "Corniche beaches", "Vibrant nightlife"] },
+      { id: "marrakech", name: "Marrakech", tagline: "The Red City", description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"] },
+      { id: "agadir", name: "Agadir", tagline: "Morocco's sunny beach paradise", description: "The premier beach destination with 300+ sunny days per year. Perfect for training and beach life.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"] }
+    ]
   },
-  {
-    id: "marrakech",
-    name: "Marrakech",
-    tagline: "The Red City",
-    description: "Ancient medinas, stunning palaces, and vibrant souks. The heart of Moroccan culture and adventure.",
-    image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
-    experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"],
-    highlights: ["Jemaa el-Fnaa", "Majorelle Garden", "Medina souks", "Atlas Mountains nearby"]
+  fr: {
+    heroSubtitle: "Découvrez le Maroc",
+    heroTitle: "Nos Destinations",
+    heroDesc: "Des villes vibrantes aux cités côtières, découvrez la beauté diverse du Maroc.",
+    availableExperiences: "Expériences disponibles",
+    highlights: "Points forts",
+    explore: "Explorer",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "La métropole moderne du Maroc", description: "La capitale économique du Maroc. Un mélange de tradition et de modernité avec une superbe architecture Art Déco.", experiences: ["Language Practice"], highlights: ["Mosquée Hassan II", "Centre-ville Art Déco", "Plages de la Corniche", "Vie nocturne animée"] },
+      { id: "marrakech", name: "Marrakech", tagline: "La Ville Rouge", description: "Anciennes médinas, palais magnifiques et souks animés. Le cœur de la culture et de l'aventure marocaine.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Jemaa el-Fnaa", "Jardin Majorelle", "Souks de la Médina", "Montagnes de l'Atlas"] },
+      { id: "agadir", name: "Agadir", tagline: "Le paradis balnéaire du Maroc", description: "La première destination balnéaire avec 300+ jours de soleil par an. Parfait pour l'entraînement et la vie de plage.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["Plage de 10km", "Surf à Taghazout", "Vallée du Paradis", "Marina nocturne"] }
+    ]
   },
-  {
-    id: "agadir",
-    name: "Agadir",
-    tagline: "Morocco's sunny beach paradise",
-    description: "The premier beach destination with 300+ sunny days per year. Perfect for training and beach life.",
-    image: "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=800",
-    experiences: ["Self-Defense Weekend", "Visual Storytelling"],
-    highlights: ["10km beach", "Taghazout surf", "Paradise Valley", "Marina nightlife"]
+  es: {
+    heroSubtitle: "Descubre Marruecos",
+    heroTitle: "Nuestros Destinos",
+    heroDesc: "Desde ciudades vibrantes hasta pueblos costeros, experimenta la belleza diversa de Marruecos.",
+    availableExperiences: "Experiencias disponibles",
+    highlights: "Destacados",
+    explore: "Explorar",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "La metrópolis moderna de Marruecos", description: "La capital económica de Marruecos. Una mezcla de tradición y modernidad con impresionante arquitectura Art Deco.", experiences: ["Language Practice"], highlights: ["Mezquita Hassan II", "Centro Art Deco", "Playas de Corniche", "Vida nocturna vibrante"] },
+      { id: "marrakech", name: "Marrakech", tagline: "La Ciudad Roja", description: "Antiguas medinas, palacios impresionantes y zocos vibrantes. El corazón de la cultura y aventura marroquí.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Jemaa el-Fnaa", "Jardín Majorelle", "Zocos de la Medina", "Montañas del Atlas"] },
+      { id: "agadir", name: "Agadir", tagline: "El paraíso playero de Marruecos", description: "El principal destino de playa con 300+ días de sol al año. Perfecto para entrenar y vida playera.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["Playa de 10km", "Surf en Taghazout", "Valle del Paraíso", "Marina nocturna"] }
+    ]
+  },
+  pt: {
+    heroSubtitle: "Descubra o Marrocos",
+    heroTitle: "Nossos Destinos",
+    heroDesc: "De cidades vibrantes a cidades costeiras, experimente a beleza diversa do Marrocos.",
+    availableExperiences: "Experiências disponíveis",
+    highlights: "Destaques",
+    explore: "Explorar",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "A metrópole moderna do Marrocos", description: "A capital econômica do Marrocos. Uma mistura de tradição e modernidade com impressionante arquitetura Art Deco.", experiences: ["Language Practice"], highlights: ["Mesquita Hassan II", "Centro Art Deco", "Praias de Corniche", "Vida noturna vibrante"] },
+      { id: "marrakech", name: "Marrakech", tagline: "A Cidade Vermelha", description: "Antigas medinas, palácios deslumbrantes e souks vibrantes. O coração da cultura e aventura marroquina.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Jemaa el-Fnaa", "Jardim Majorelle", "Souks da Medina", "Montanhas do Atlas"] },
+      { id: "agadir", name: "Agadir", tagline: "O paraíso praiano do Marrocos", description: "O principal destino de praia com 300+ dias de sol por ano. Perfeito para treino e vida de praia.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["Praia de 10km", "Surf em Taghazout", "Vale do Paraíso", "Marina noturna"] }
+    ]
+  },
+  de: {
+    heroSubtitle: "Entdecken Sie Marokko",
+    heroTitle: "Unsere Reiseziele",
+    heroDesc: "Von pulsierenden Städten bis zu Küstenstädten, erleben Sie Marokkos vielfältige Schönheit.",
+    availableExperiences: "Verfügbare Erlebnisse",
+    highlights: "Highlights",
+    explore: "Erkunden",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "Marokkos moderne Metropole", description: "Die Wirtschaftshauptstadt Marokkos. Eine Mischung aus Tradition und Moderne mit atemberaubender Art-Deco-Architektur.", experiences: ["Language Practice"], highlights: ["Hassan-II-Moschee", "Art-Deco-Innenstadt", "Corniche-Strände", "Lebhaftes Nachtleben"] },
+      { id: "marrakech", name: "Marrakesch", tagline: "Die Rote Stadt", description: "Alte Medinas, prächtige Paläste und lebhafte Souks. Das Herz der marokkanischen Kultur und Abenteuer.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Djemaa el-Fna", "Majorelle-Garten", "Medina-Souks", "Atlasgebirge in der Nähe"] },
+      { id: "agadir", name: "Agadir", tagline: "Marokkos sonniges Strandparadies", description: "Das führende Strandziel mit 300+ Sonnentagen im Jahr. Perfekt für Training und Strandleben.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["10km Strand", "Surfen in Taghazout", "Paradies-Tal", "Marina-Nachtleben"] }
+    ]
+  },
+  it: {
+    heroSubtitle: "Scopri il Marocco",
+    heroTitle: "Le Nostre Destinazioni",
+    heroDesc: "Dalle città vibranti alle città costiere, scopri la bellezza diversa del Marocco.",
+    availableExperiences: "Esperienze disponibili",
+    highlights: "Punti salienti",
+    explore: "Esplora",
+    destinations: [
+      { id: "casablanca", name: "Casablanca", tagline: "La metropoli moderna del Marocco", description: "La capitale economica del Marocco. Un mix di tradizione e modernità con splendida architettura Art Deco.", experiences: ["Language Practice"], highlights: ["Moschea Hassan II", "Centro Art Deco", "Spiagge Corniche", "Vivace vita notturna"] },
+      { id: "marrakech", name: "Marrakech", tagline: "La Città Rossa", description: "Antiche medine, palazzi mozzafiato e souk vibranti. Il cuore della cultura e dell'avventura marocchina.", experiences: ["Self-Defense Weekend", "Language Practice", "Visual Storytelling"], highlights: ["Jemaa el-Fnaa", "Giardino Majorelle", "Souk della Medina", "Montagne dell'Atlante vicine"] },
+      { id: "agadir", name: "Agadir", tagline: "Il paradiso balneare del Marocco", description: "La prima destinazione balneare con 300+ giorni di sole all'anno. Perfetto per l'allenamento e la vita da spiaggia.", experiences: ["Self-Defense Weekend", "Visual Storytelling"], highlights: ["Spiaggia di 10km", "Surf a Taghazout", "Valle del Paradiso", "Marina notturna"] }
+    ]
   }
-];
+};
+
+const DESTINATION_IMAGES = {
+  "casablanca": "https://images.unsplash.com/photo-1581443459255-e895f2a4222f?w=800",
+  "marrakech": "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
+  "agadir": "https://images.unsplash.com/photo-1553522987-b6cb62385487?w=800"
+};
 
 const DestinationsPage = () => {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.en;
+
   return (
     <PageLayout>
       {/* Hero */}
@@ -46,12 +107,12 @@ const DestinationsPage = () => {
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="font-caveat text-sand text-xl mb-2">Discover Morocco</p>
+            <p className="font-caveat text-sand text-xl mb-2">{t.heroSubtitle}</p>
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Our Destinations
+              {t.heroTitle}
             </h1>
             <p className="font-dm text-white/80 text-lg max-w-2xl mx-auto">
-              From vibrant cities to coastal towns, experience Morocco's diverse beauty.
+              {t.heroDesc}
             </p>
           </motion.div>
         </div>
