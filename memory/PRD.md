@@ -23,6 +23,29 @@ A multilingual website for "THE BRIDGE" travel brand with the concept "Travel �
 
 ## Completed Features ✅
 
+### Stripe Payment Integration (December 2025) ✅ NEW
+- [x] Backend checkout API (`POST /api/bookings/checkout`)
+- [x] 30% deposit calculation for all experiences
+- [x] Stripe Checkout session creation with redirect
+- [x] Payment status verification (`GET /api/bookings/payment-status/{session_id}`)
+- [x] Booking storage in MongoDB
+- [x] Webhook handler for payment confirmation
+- [x] BookSuccessPage with payment status polling
+- [x] Email confirmations (customer + admin) on successful payment
+
+### Experience Prices
+| Experience | Price | Deposit (30%) |
+|------------|-------|---------------|
+| Self-Defense | €1,490 | €447 |
+| Visual Storytelling | €1,690 | €507 |
+| Language Practice | €890 | €267 |
+
+### Form Validation ✅ TESTED
+- [x] Real-time email validation on blur
+- [x] Real-time phone validation on blur
+- [x] Blocked email domains (test.com, example.com, etc.)
+- [x] Multi-step form with progress indicator
+
 ### Core Pages (All Translated)
 - [x] Homepage (`/`) - Hero, experiences, destinations, testimonials
 - [x] How It Works (`/how-it-works`) - Process explanation + "The Bridge Experience" booking flow
