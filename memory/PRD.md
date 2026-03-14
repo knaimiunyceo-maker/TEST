@@ -138,6 +138,7 @@ Added to HowItWorksPage and BookPage:
 - [x] ~~Fix homepage experience translations (tagline, description)~~ ✅ COMPLETED (December 2025)
 - [x] ~~Remove emojis from booking page~~ ✅ COMPLETED
 - [x] ~~Verify footer links~~ ✅ COMPLETED
+- [x] ~~Email notifications for contact forms and bookings (Resend)~~ ✅ COMPLETED (December 2025)
 
 ### P2 - Medium Priority
 - [x] ~~Extract HomePage component from App.js~~ ✅ COMPLETED (December 2025)
