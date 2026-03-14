@@ -856,14 +856,19 @@ ${formData.message || 'Aucun message additionnel'}
                       <Input 
                         value={formData.name}
                         onChange={(e) => handleFieldChange("name", e.target.value)}
+                        onBlur={() => validateFieldOnBlur("name")}
                         placeholder="Votre nom complet"
-                        className={`border-border rounded-xl ${errors.name ? "border-red-500" : ""}`}
+                        className={`border-border rounded-xl transition-colors ${errors.name ? "border-red-500 bg-red-50/50" : "focus:border-sunset"}`}
                         required
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                          <AlertCircle size={12} /> {errors.name}
-                        </p>
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1.5 flex items-center gap-1 bg-red-50 p-2 rounded-lg"
+                        >
+                          <AlertCircle size={14} /> {errors.name}
+                        </motion.p>
                       )}
                     </div>
                     <div>
@@ -874,37 +879,49 @@ ${formData.message || 'Aucun message additionnel'}
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleFieldChange("email", e.target.value)}
+                        onBlur={() => validateFieldOnBlur("email")}
                         placeholder="votre@email.com"
-                        className={`border-border rounded-xl ${errors.email ? "border-red-500" : ""}`}
+                        className={`border-border rounded-xl transition-colors ${errors.email ? "border-red-500 bg-red-50/50" : "focus:border-sunset"}`}
                         required
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                          <AlertCircle size={12} /> {errors.email}
-                        </p>
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1.5 flex items-center gap-1 bg-red-50 p-2 rounded-lg"
+                        >
+                          <AlertCircle size={14} /> {errors.email}
+                        </motion.p>
                       )}
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
                         <Phone size={16} /> WhatsApp *
                       </label>
-                      <div className={`phone-input-wrapper rounded-xl border ${errors.whatsapp ? "border-red-500" : "border-border"} overflow-hidden bg-white`}>
+                      <div className={`phone-input-wrapper rounded-xl border transition-colors ${errors.whatsapp ? "border-red-500 bg-red-50/50" : "border-border"} overflow-hidden bg-white`}>
                         <PhoneInput
                           international
                           countryCallingCodeEditable={false}
                           defaultCountry="FR"
                           value={formData.whatsapp}
                           onChange={(value) => handleFieldChange("whatsapp", value || "")}
+                          onBlur={() => validateFieldOnBlur("whatsapp")}
                           placeholder="6 12 34 56 78"
                           className="phone-input-booking"
                         />
                       </div>
                       {errors.whatsapp && (
-                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                          <AlertCircle size={12} /> {errors.whatsapp}
-                        </p>
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1.5 flex items-center gap-1 bg-red-50 p-2 rounded-lg"
+                        >
+                          <AlertCircle size={14} /> {errors.whatsapp}
+                        </motion.p>
                       )}
-                      <p className="font-dm text-xs text-ocean/50 mt-1">Nous vous contacterons sur WhatsApp</p>
+                      {!errors.whatsapp && (
+                        <p className="font-dm text-xs text-ocean/50 mt-1">Nous vous contacterons sur WhatsApp</p>
+                      )}
                     </div>
                     
                     <div>
