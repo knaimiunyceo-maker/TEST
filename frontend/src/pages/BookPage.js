@@ -988,6 +988,31 @@ ${formData.message || 'Aucun message additionnel'}
         </div>
       </section>
 
+      {/* The Bridge Experience Info */}
+      <section className="py-6 px-4 sm:px-6 lg:px-12 bg-gradient-to-r from-sunset/5 to-sand/10 border-b border-sand/20">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center text-sunset">
+                <Shield size={20} />
+              </div>
+              <h3 className="font-syne font-bold text-ocean text-sm md:text-base">{t.bridgeExperience.title}</h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {t.bridgeExperience.steps.map((step, i) => (
+                <div key={i} className="flex items-center gap-2 bg-white px-3 py-2 rounded-full shadow-sm">
+                  <span className="w-6 h-6 bg-sunset/10 rounded-full flex items-center justify-center text-sunset text-xs font-bold">{i + 1}</span>
+                  <span className="font-dm text-ocean/80 text-xs">{step.title.split('.')[1]?.trim() || step.title}</span>
+                </div>
+              ))}
+            </div>
+            <Link to="/how-it-works" className="text-sunset hover:underline text-sm font-dm flex items-center gap-1">
+              {t.bridgeExperience.learnMore} <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Booking Form */}
       <section className="py-12 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-3xl mx-auto">
