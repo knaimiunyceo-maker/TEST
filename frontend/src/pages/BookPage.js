@@ -799,6 +799,18 @@ ${formData.message || 'Aucun message additionnel'}
                     <h2 className="font-syne font-bold text-xl text-ocean">Your Details</h2>
                   </div>
                   
+                  {/* Honeypot anti-bot field */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.honeypot}
+                    onChange={(e) => setFormData(prev => ({ ...prev, honeypot: e.target.value }))}
+                    autoComplete="off"
+                    tabIndex={-1}
+                    style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                    aria-hidden="true"
+                  />
+                  
                   <div className="space-y-4">
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
@@ -806,11 +818,16 @@ ${formData.message || 'Aucun message additionnel'}
                       </label>
                       <Input 
                         value={formData.name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) => handleFieldChange("name", e.target.value)}
                         placeholder="Votre nom complet"
-                        className="border-border rounded-xl"
+                        className={`border-border rounded-xl ${errors.name ? "border-red-500" : ""}`}
                         required
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                          <AlertCircle size={12} /> {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
@@ -819,41 +836,37 @@ ${formData.message || 'Aucun message additionnel'}
                       <Input 
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                        onChange={(e) => handleFieldChange("email", e.target.value)}
                         placeholder="votre@email.com"
-                        className="border-border rounded-xl"
+                        className={`border-border rounded-xl ${errors.email ? "border-red-500" : ""}`}
                         required
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                          <AlertCircle size={12} /> {errors.email}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
                         <Phone size={16} /> WhatsApp *
                       </label>
-                      <div className="flex gap-2">
-                        <Select 
-                          value={formData.whatsappCountry} 
-                          onValueChange={(v) => setFormData(prev => ({ ...prev, whatsappCountry: v }))}
-                        >
-                          <SelectTrigger className="w-32 border-border rounded-xl">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {COUNTRY_CODES.map((c) => (
-                              <SelectItem key={c.code} value={c.code}>
-                                {c.code} {c.country}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Input 
-                          type="tel"
+                      <div className={`phone-input-wrapper rounded-xl border ${errors.whatsapp ? "border-red-500" : "border-border"} overflow-hidden bg-white`}>
+                        <PhoneInput
+                          international
+                          countryCallingCodeEditable={false}
+                          defaultCountry="FR"
                           value={formData.whatsapp}
-                          onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
+                          onChange={(value) => handleFieldChange("whatsapp", value || "")}
                           placeholder="6 12 34 56 78"
-                          className="border-border rounded-xl flex-1"
-                          required
+                          className="phone-input-booking"
                         />
                       </div>
+                      {errors.whatsapp && (
+                        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                          <AlertCircle size={12} /> {errors.whatsapp}
+                        </p>
+                      )}
                       <p className="font-dm text-xs text-ocean/50 mt-1">Nous vous contacterons sur WhatsApp</p>
                     </div>
                     
