@@ -1254,13 +1254,13 @@ ${formData.message || 'Aucun message additionnel'}
                         </motion.p>
                       )}
                       {!errors.whatsapp && (
-                        <p className="font-dm text-xs text-ocean/50 mt-1">Nous vous contacterons sur WhatsApp</p>
+                        <p className="font-dm text-xs text-ocean/50 mt-1">{language === 'fr' ? 'Nous vous contacterons sur WhatsApp' : language === 'es' ? 'Te contactaremos por WhatsApp' : language === 'it' ? 'Ti contatteremo su WhatsApp' : language === 'de' ? 'Wir kontaktieren Sie über WhatsApp' : language === 'pt' ? 'Entraremos em contato pelo WhatsApp' : 'We will contact you on WhatsApp'}</p>
                       )}
                     </div>
                     
                     <div>
                       <label className="font-dm font-medium text-ocean text-sm mb-2 flex items-center gap-2">
-                        Langue préférée *
+                        {language === 'fr' ? 'Langue préférée' : language === 'es' ? 'Idioma preferido' : language === 'it' ? 'Lingua preferita' : language === 'de' ? 'Bevorzugte Sprache' : language === 'pt' ? 'Idioma preferido' : 'Preferred language'} *
                       </label>
                       <Select 
                         value={formData.preferredLanguage} 
@@ -1275,15 +1275,15 @@ ${formData.message || 'Aucun message additionnel'}
                           ))}
                         </SelectContent>
                       </Select>
-                      <p className="font-dm text-xs text-ocean/50 mt-1">Un référent {LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label} vous contactera</p>
+                      <p className="font-dm text-xs text-ocean/50 mt-1">{language === 'fr' ? 'Un référent' : language === 'es' ? 'Un referente' : language === 'it' ? 'Un referente' : language === 'de' ? 'Ein Ansprechpartner' : language === 'pt' ? 'Um referente' : 'A referent'} {LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label} {language === 'fr' ? 'vous contactera' : language === 'es' ? 'te contactará' : language === 'it' ? 'ti contatterà' : language === 'de' ? 'wird Sie kontaktieren' : language === 'pt' ? 'entrará em contato' : 'will contact you'}</p>
                     </div>
 
                     <div>
-                      <label className="font-dm font-medium text-ocean text-sm mb-2">Message additionnel</label>
+                      <label className="font-dm font-medium text-ocean text-sm mb-2">{t.step4.message}</label>
                       <Textarea 
                         value={formData.message}
                         onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                        placeholder="Questions ou demandes spéciales ?"
+                        placeholder={t.step4.messagePlaceholder}
                         className="border-border rounded-xl"
                         rows={3}
                       />
@@ -1292,17 +1292,15 @@ ${formData.message || 'Aucun message additionnel'}
 
                   {/* Payment Information */}
                   <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-                    <h3 className="font-syne font-bold text-blue-800 text-sm mb-2">💡 Processus de réservation</h3>
+                    <h3 className="font-syne font-bold text-blue-800 text-sm mb-2">💡 {language === 'fr' ? 'Processus de réservation' : language === 'es' ? 'Proceso de reserva' : language === 'it' ? 'Processo di prenotazione' : language === 'de' ? 'Buchungsprozess' : language === 'pt' ? 'Processo de reserva' : 'Booking process'}</h3>
                     <p className="font-dm text-blue-700 text-sm leading-relaxed">
-                      L'expérience est confirmée dès que le groupe atteint <strong>8 participants</strong>. 
-                      L'acompte de 30% ne sera demandé qu'après l'appel de validation. 
-                      Dans le cas où le séjour serait annulé faute de participants, vous serez <strong>entièrement remboursé</strong>.
+                      {language === 'fr' ? "L'expérience est confirmée dès que le groupe atteint" : language === 'es' ? "La experiencia se confirma cuando el grupo alcanza" : language === 'it' ? "L'esperienza è confermata quando il gruppo raggiunge" : language === 'de' ? "Die Erfahrung wird bestätigt, wenn die Gruppe erreicht" : language === 'pt' ? "A experiência é confirmada quando o grupo atinge" : "The experience is confirmed when the group reaches"} <strong>8 {language === 'fr' ? 'participants' : language === 'es' ? 'participantes' : language === 'it' ? 'partecipanti' : language === 'de' ? 'Teilnehmer' : language === 'pt' ? 'participantes' : 'participants'}</strong>.
                     </p>
                   </div>
 
                   {/* Consent Checkboxes */}
                   <div className="mt-6 space-y-4 p-4 bg-ocean/5 rounded-xl">
-                    <h3 className="font-syne font-bold text-ocean text-sm mb-3">Consentements requis</h3>
+                    <h3 className="font-syne font-bold text-ocean text-sm mb-3">{language === 'fr' ? 'Consentements requis' : language === 'es' ? 'Consentimientos requeridos' : language === 'it' ? 'Consensi richiesti' : language === 'de' ? 'Erforderliche Zustimmungen' : language === 'pt' ? 'Consentimentos necessários' : 'Required consents'}</h3>
                     
                     {/* CGV + Privacy Policy */}
                     <label className="flex items-start gap-3 cursor-pointer group">
@@ -1318,15 +1316,15 @@ ${formData.message || 'Aucun message additionnel'}
                         </div>
                       </div>
                       <span className="font-dm text-sm text-ocean/80 leading-relaxed">
-                        J'accepte les{" "}
+                        {t.step4.acceptTerms}{" "}
                         <Link to="/cgv" target="_blank" className="text-sunset hover:underline font-medium">
-                          Conditions Générales de Vente
+                          {t.step4.termsLink}
                         </Link>{" "}
-                        et la{" "}
+                        {language === 'fr' ? 'et la' : language === 'es' ? 'y la' : language === 'it' ? 'e la' : language === 'de' ? 'und die' : language === 'pt' ? 'e a' : 'and the'}{" "}
                         <Link to="/confidentialite" target="_blank" className="text-sunset hover:underline font-medium">
-                          Politique de Confidentialité
+                          {t.step4.privacyLink}
                         </Link>{" "}
-                        de THE BRIDGE. *
+                        {language === 'fr' ? 'de THE BRIDGE' : language === 'es' ? 'de THE BRIDGE' : language === 'it' ? 'di THE BRIDGE' : language === 'de' ? 'von THE BRIDGE' : language === 'pt' ? 'da THE BRIDGE' : 'of THE BRIDGE'}. *
                       </span>
                     </label>
 
