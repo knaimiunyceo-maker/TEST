@@ -130,6 +130,9 @@ const FAQ = [
 ];
 
 const LanguagePracticePage = () => {
+  const { language } = useLanguage();
+  const t = pageTranslations[language] || pageTranslations.en;
+  
   const [openFaq, setOpenFaq] = useState(null);
   const [selectedWeeks, setSelectedWeeks] = useState(1);
 
@@ -148,6 +151,19 @@ const LanguagePracticePage = () => {
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="w-16 h-16 bg-sunset rounded-2xl flex items-center justify-center mb-6 mx-auto sm:mx-0">
+              <Languages className="text-white" size={32} />
+            </div>
+            <h1 className="font-syne font-black text-3xl sm:text-4xl md:text-5xl text-center sm:text-left mb-4">
+              {t.heroTitle}
+            </h1>
+            <p className="font-caveat text-sand text-xl mb-4 text-center sm:text-left">{t.heroSubtitle}</p>
+            <p className="font-dm text-white/80 text-lg max-w-2xl text-center sm:text-left">
+              {t.heroDesc}
+            </p>
+          </motion.div>
+        </div>
+      </section>
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-sunset/20 text-sand px-3 py-1 rounded-full text-sm font-dm">Anglais Général • Adultes</span>
               <span className="bg-white/10 text-white/80 px-3 py-1 rounded-full text-sm font-dm">Since 2020</span>
