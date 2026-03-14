@@ -759,15 +759,15 @@ const BookPage = () => {
     switch (field) {
       case "name":
         if (!formData.name.trim()) {
-          newErrors.name = "Le nom est requis";
+          newErrors.name = t.validation.nameRequired;
         } else if (formData.name.trim().length < 2) {
-          newErrors.name = "Le nom doit contenir au moins 2 caractères";
+          newErrors.name = t.validation.nameRequired;
         } else {
           delete newErrors.name;
         }
         break;
       case "email":
-        const emailError = validateEmail(formData.email);
+        const emailError = validateEmail(formData.email, t);
         if (emailError) {
           newErrors.email = emailError;
         } else {
@@ -775,7 +775,7 @@ const BookPage = () => {
         }
         break;
       case "whatsapp":
-        const phoneError = validatePhone(formData.whatsapp);
+        const phoneError = validatePhone(formData.whatsapp, t);
         if (phoneError) {
           newErrors.whatsapp = phoneError;
         } else {
@@ -799,8 +799,8 @@ const BookPage = () => {
     
     // Validate step 4
     if (!validateStep4()) {
-      toast.error("Veuillez corriger les erreurs", {
-        description: "Certains champs sont invalides."
+      toast.error(t.toast.errorTitle, {
+        description: t.toast.errorDesc
       });
       return;
     }
