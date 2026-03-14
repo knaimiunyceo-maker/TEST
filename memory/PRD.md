@@ -135,6 +135,9 @@ Added to HowItWorksPage and BookPage:
 ### P1 - High Priority
 - [x] ~~Integrate Stripe for online payments~~ ✅ COMPLETED
 - [x] ~~Test real-time form validation on BookPage~~ ✅ COMPLETED
+- [x] ~~Fix homepage experience translations (tagline, description)~~ ✅ COMPLETED (December 2025)
+- [x] ~~Remove emojis from booking page~~ ✅ COMPLETED
+- [x] ~~Verify footer links~~ ✅ COMPLETED
 
 ### P2 - Medium Priority
 - [ ] Migrate hardcoded data to MongoDB database
