@@ -157,35 +157,42 @@ const PageLayout = ({ children, showBackButton = true }) => {
       <footer className="bg-ocean py-12 px-4 sm:px-6 lg:px-12">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            {/* Brand */}
             <div>
-              <h3 className="font-syne font-bold text-white mb-4">THE BRIDGE</h3>
-              <p className="font-dm text-white/60 text-sm">Travel • Practice • Experience</p>
+              <h3 className="font-syne font-bold text-white text-lg mb-2">THE BRIDGE</h3>
+              <p className="font-caveat text-sand text-lg">Travel • Practice • Experience</p>
             </div>
+            
+            {/* Experiences */}
             <div>
               <h4 className="font-dm font-semibold text-white mb-3 text-sm">Experiences</h4>
               <ul className="space-y-2">
-                <li><Link to="/experiences/self-defense" className="font-dm text-white/60 text-sm hover:text-sand">Self-Defense</Link></li>
-                <li><Link to="/experiences/language-practice" className="font-dm text-white/60 text-sm hover:text-sand">Language Practice</Link></li>
-                <li><Link to="/experiences/visual-storytelling" className="font-dm text-white/60 text-sm hover:text-sand">Visual Storytelling</Link></li>
+                <li><Link to="/experiences/self-defense" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Self-Defense</Link></li>
+                <li><Link to="/experiences/language-practice" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Language Practice</Link></li>
+                <li><Link to="/experiences/visual-storytelling" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Visual Storytelling</Link></li>
               </ul>
             </div>
+            
+            {/* Destinations */}
             <div>
               <h4 className="font-dm font-semibold text-white mb-3 text-sm">Destinations</h4>
               <ul className="space-y-2">
-                <li><Link to="/destinations/casablanca" className="font-dm text-white/60 text-sm hover:text-sand">Casablanca</Link></li>
-                <li><Link to="/destinations/marrakech" className="font-dm text-white/60 text-sm hover:text-sand">Marrakech</Link></li>
-                <li><Link to="/destinations/agadir" className="font-dm text-white/60 text-sm hover:text-sand">Agadir</Link></li>
+                <li><Link to="/destinations/casablanca" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Casablanca</Link></li>
+                <li><Link to="/destinations/marrakech" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Marrakech</Link></li>
+                <li><Link to="/destinations/agadir" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Agadir</Link></li>
               </ul>
             </div>
+            
+            {/* Company */}
             <div>
               <h4 className="font-dm font-semibold text-white mb-3 text-sm">Company</h4>
               <ul className="space-y-2">
-                <li><Link to="/about" className="font-dm text-white/60 text-sm hover:text-sand">About</Link></li>
-                <li><Link to="/how-it-works" className="font-dm text-white/60 text-sm hover:text-sand">How it Works</Link></li>
-                <li><Link to="/activities" className="font-dm text-white/60 text-sm hover:text-sand">Activities</Link></li>
-                <li><Link to="/cgv" className="font-dm text-white/60 text-sm hover:text-sand">CGV</Link></li>
-                <li><Link to="/mentions-legales" className="font-dm text-white/60 text-sm hover:text-sand">Mentions légales</Link></li>
-                <li><Link to="/confidentialite" className="font-dm text-white/60 text-sm hover:text-sand">Confidentialité</Link></li>
+                <li><Link to="/about" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">About</Link></li>
+                <li><Link to="/how-it-works" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">How it Works</Link></li>
+                <li><Link to="/activities" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Activities</Link></li>
+                <li><Link to="/cgv" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">CGV</Link></li>
+                <li><Link to="/mentions-legales" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Mentions légales</Link></li>
+                <li><Link to="/confidentialite" className="font-dm text-white/60 text-sm hover:text-sand transition-colors">Confidentialité</Link></li>
               </ul>
             </div>
           </div>
