@@ -618,6 +618,23 @@ const ExperiencesSection = ({ experiences }) => {
       accommodationIncluded: "Hospedagem incluída",
       bookNow: "Reservar esta experiência",
       smallGroups: "Pequenos grupos internacionais (18+)"
+    },
+    it: {
+      title: "Le Nostre Esperienze",
+      subtitle: "Pratica al mattino • Esplora il Marocco nel pomeriggio",
+      concept: "Viaggia • Pratica • Vivi",
+      formats: "Due formati disponibili:",
+      fullExp: "Esperienza Completa",
+      weekend: "Weekend",
+      days5: "5 giorni",
+      days7: "7 giorni / 6 notti",
+      weekend3: "2 notti / 3 giorni",
+      morningPractice: "Pratica mattutina:",
+      afternoonExperience: "Esperienza pomeridiana:",
+      destinations: "Destinazioni:",
+      accommodationIncluded: "Alloggio incluso",
+      bookNow: "Prenota questa esperienza",
+      smallGroups: "Piccoli gruppi internazionali (18+)"
     }
   };
 
