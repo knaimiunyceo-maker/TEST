@@ -99,7 +99,7 @@ class TestStripeCheckoutAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 400
@@ -118,7 +118,7 @@ class TestStripeCheckoutAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "Test booking",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 200
@@ -152,7 +152,7 @@ class TestStripeCheckoutAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 200
@@ -174,7 +174,7 @@ class TestStripeCheckoutAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 200
@@ -196,7 +196,7 @@ class TestStripeCheckoutAPI:
             "participants": 2,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 200
@@ -218,7 +218,7 @@ class TestStripeCheckoutAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         assert response.status_code == 422  # Validation error
@@ -245,7 +245,7 @@ class TestPaymentStatusAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         checkout_response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         
@@ -282,7 +282,7 @@ class TestBookingAPI:
             "participants": 1,
             "room_type": "shared",
             "message": "Test booking message",
-            "origin_url": "https://travel-bridge-1.preview.emergentagent.com"
+            "origin_url": "https://bridge-morocco.preview.emergentagent.com"
         }
         checkout_response = requests.post(f"{BASE_URL}/api/bookings/checkout", json=payload)
         
