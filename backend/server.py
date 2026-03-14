@@ -46,6 +46,16 @@ NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', '')
 if RESEND_AVAILABLE and RESEND_API_KEY:
     resend.api_key = RESEND_API_KEY
 
+# Stripe configuration
+STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
+
+# Define experience prices for 30% deposit calculation (in EUR)
+EXPERIENCE_PRICES = {
+    "self-defense": 1490.00,
+    "visual-storytelling": 1690.00,
+    "language-practice": 890.00,
+}
+
 # Create the main app without a prefix
 app = FastAPI()
 
