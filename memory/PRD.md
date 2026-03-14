@@ -1,145 +1,124 @@
 # THE BRIDGE - Product Requirements Document
 
 ## Original Problem Statement
-Build a website for a travel brand "THE BRIDGE" based on the concept "Travel • Practice • Experience". The site allows users to discover and book travel experiences in Morocco combining morning practice sessions with afternoon exploration.
+Site web pour une marque de voyage "THE BRIDGE" basée sur le concept "Travel • Practice • Experience". Le projet implique la création d'un site web multi-pages avec différentes expériences de voyage comme "Self-Defense", "Visual Storytelling" et "Language Practice".
 
 ## User Personas
-- **Primary**: European travelers (18+) looking for active holidays combining learning/training with travel
-- **Secondary**: Content creators seeking visual storytelling experiences
+- Voyageurs internationaux (18-35 ans) cherchant des expériences authentiques au Maroc
+- Personnes souhaitant combiner voyage et apprentissage (langues, self-defense, storytelling)
+- Utilisateurs de 6 langues différentes (FR, EN, ES, PT, DE, IT)
 
 ## Core Requirements
 
-### Experiences (3 types)
+### Multi-Language Support ✅
+- 6 langues supportées: Français, English, Español, Português, Deutsch, Italiano
+- Traductions complètes sur toutes les pages incluant:
+  - Page d'accueil
+  - Navigation et footer
+  - Pages d'expériences (Self-Defense, Language Practice, Visual Storytelling)
+  - Page de réservation (BookPage) avec tous les formulaires
+  - Pages légales (CGV, Mentions Légales, Confidentialité, À Propos)
 
-1. **Self-Defense Weekend** - Marrakech & Agadir
-   - Format: Weekend (Vendredi → Dimanche, 3 jours / 2 nuits)
-   - Monthly recurring calendar alternating cities (odd weeks: Marrakech, even weeks: Agadir)
-   - Max 10 participants
-   - Pricing: €250 per weekend
-
-2. **Language Practice Holiday** - Casablanca & Marrakech only
-   - Format: Weekly (minimum 7 days)
-   - 20 hours per week
-   - Course types: General English, TOEFL iBT, TOEFL ITP, IELTS Academic, IELTS General, Business English
-   - Pricing: €400/week + €45 registration fee
-   - Linear pricing (not degressive)
-
-3. **Visual Storytelling Weekend** - Marrakech & Agadir
-   - Format: Weekend (Vendredi → Dimanche, 3 jours / 2 nuits)
-   - Monthly recurring calendar alternating cities
-   - Tracks: Filmmaking, Photography, Drone
-   - Max 10 participants
-   - Pricing: €350 per weekend
-
-### Destinations (3 cities)
-1. **Casablanca** - Language Practice
-2. **Agadir** - Self-Defense, Visual Storytelling
-3. **Marrakech** - Self-Defense, Language Practice, Visual Storytelling
-
-## Tech Stack
-- **Frontend**: React, TailwindCSS, react-router-dom, Shadcn/UI
-- **Backend**: FastAPI (Python)
-- **Database**: MongoDB (currently hardcoded data)
-- **Email**: Resend API (configured)
-
-## Site Architecture
+### Footer Standardisé ✅
+Structure uniforme sur toutes les pages:
 ```
-/                    - Homepage
-/experiences         - All experiences listing
-/experiences/self-defense      - Weekend calendar with alternating cities
-/experiences/language-practice - Weekly course format
-/experiences/visual-storytelling - Weekend calendar with track selection
-/destinations        - All destinations
-/destinations/casablanca
-/destinations/agadir
-/destinations/marrakech
-/activities          - Optional activities
-/how-it-works        - Process explanation
-/about               - About THE BRIDGE
-/book                - Multi-step booking flow
+THE BRIDGE
+Travel • Practice • Experience
+
+Experiences          Destinations         Company
+- Self-Defense       - Casablanca         - About
+- Language Practice  - Marrakech          - How it Works
+- Visual Storytelling - Agadir            - Activities
+                                          - CGV
+                                          - Mentions légales
+                                          - Confidentialité
 ```
+
+### Booking System ✅
+- Formulaire de réservation hybride (lead-capture)
+- Validation email et téléphone international
+- Protection anti-bot (honeypot)
+- Calendrier personnalisé pour les weekends (alternance Marrakech/Agadir)
+- Calendrier "Lundis uniquement" pour les cours de langue
+- Règle de 14 jours minimum avant réservation
+- Réduction Early Bird (-8%) pour réservations 30+ jours à l'avance
+
+### GDPR Compliance ✅
+- Bannière cookies
+- Cases de consentement CGV et données personnelles
+- Pages légales complètes
 
 ## What's Been Implemented
-- [x] Multi-page architecture with react-router-dom
-- [x] Homepage with hero, experiences section, destination section (simplified, no prices)
-- [x] Self-Defense page - Weekend format with recurring calendar (Marrakech/Agadir)
-- [x] Language Practice page - Weekly format with linear pricing €400/week
-- [x] Visual Storytelling page - Weekend format with track selection & calendar (€350)
-- [x] Destination pages (Casablanca, Agadir, Marrakech)
-- [x] Shared navigation/footer layout (PageLayout.js)
-- [x] Multi-step booking form with dynamic fields per experience
-- [x] Contact form with Resend email integration
-- [x] Multi-language support (EN, FR, ES, DE, PT)
-- [x] Responsive design across all devices
-- [x] **Early Bird discount**: 8% off for bookings 30+ days in advance
-- [x] **Improved booking flow**:
-  - URL params pre-select experience (e.g., `/book?experience=self-defense`)
-  - Skips step 1 when experience is pre-selected
-  - Weekend experiences: "Calendrier des Weekends" (18 months of weekends)
-  - 14-day minimum booking notice for organization
-  - City automatically determined by weekend selection (alternating Marrakech/Agadir)
-  - Direct "Réserver" buttons on homepage and /experiences page
 
-## Booking Flow (Current)
+### Date: March 2026
 
-### Weekend Experiences (Self-Defense / Visual Storytelling)
-1. **Step 1**: Select experience (or skip if pre-selected via URL)
-2. **Step 2**: See experience info → Click "Voir le calendrier des weekends"
-3. **Step 3**: "Calendrier des Weekends" - 18 months of weekends with city alternating
-   - Grayed out: weekends less than 14 days away
-   - Shows: date range + city (Marrakech/Agadir badge)
-   - Early Bird indicator if 30+ days away
-4. **Step 4**: Contact info + price summary with discounts
+1. **Traductions complètes 6 langues**
+   - Ajout de l'italien comme 6ème langue
+   - Traduction de BookPage.js avec tous les textes d'interface
+   - Traduction de App.js (navigation, hero, footer)
+   - Traduction de PageLayout.js (footer des pages internes)
+   - Mise à jour de translations.js avec toutes les sections
 
-### Language Course
-1. **Step 1**: Select experience (or skip if pre-selected)
-2. **Step 2**: Select course type (IELTS, TOEFL, etc.) + city (Casablanca/Marrakech)
-3. **Step 3**: Select duration (1-4 weeks) + start date (standard calendar)
-4. **Step 4**: Contact info + price summary
+2. **Footer standardisé**
+   - Structure 4 colonnes identique sur homepage et pages internes
+   - Liens fonctionnels vers toutes les pages légales
 
-## Pending Tasks
+3. **Nettoyage du code**
+   - Suppression des fichiers redondants: SecureBookingForm.js, SecureBookingPage.js
+   - Suppression de la route /reservation dans App.js
+   - Mise à jour des pages d'expériences pour utiliser le bouton de réservation
 
-### P1 - High Priority
-- [ ] Populate content for About page
-- [ ] Add specific start dates for language course beginners
+4. **Système de réservation sécurisé**
+   - Validation email avec domaines bloqués
+   - Validation téléphone international (react-phone-number-input)
+   - Protection anti-bot honeypot
+   - Messages d'erreur en temps réel traduits
 
-### P2 - Medium Priority
-- [ ] Stripe payment integration
-- [ ] Complete translations for all new pages (FR/EN)
+## Prioritized Backlog
 
-### P3 - Future
-- [ ] FAQ sections
-- [ ] Testimonials
-- [ ] Move hardcoded data to MongoDB
-- [ ] Refactor App.js (extract homepage to HomePage.js)
+### P0 - Critique
+- ✅ Traductions complètes 6 langues
+- ✅ Footer standardisé
 
-## Key Files
-- `/app/frontend/src/App.js` - Main router & homepage
-- `/app/frontend/src/pages/SelfDefensePage.js` - Weekend calendar template
-- `/app/frontend/src/pages/VisualStorytellingPage.js` - Weekend format with tracks
-- `/app/frontend/src/pages/LanguagePracticePage.js` - Weekly course format
-- `/app/frontend/src/pages/BookPage.js` - Multi-step booking flow with weekend calendar
-- `/app/frontend/src/pages/ExperiencesPage.js` - Experience listing
-- `/app/frontend/src/pages/components/PageLayout.js` - Shared layout
-- `/app/backend/server.py` - API & data
+### P1 - Important
+- Contenu pour HowItWorksPage.js et ActivitiesPage.js
+- Pages destinations (Casablanca, Marrakech, Agadir)
+
+### P2 - Enhancement
+- Intégration Stripe pour paiements en ligne
+- Base de données pour les expériences (actuellement hardcodé)
+- Refactorisation de App.js (extraction HomePage)
+
+### P3 - Nice to Have
+- SEO optimizations
+- Analytics integration
+- Newsletter signup
+
+## Technical Architecture
+
+### Frontend
+- React avec TailwindCSS
+- react-router-dom pour le routing
+- react-phone-number-input pour validation téléphone
+- Shadcn/UI components
+- LanguageContext pour la gestion multilingue
+
+### Backend
+- FastAPI (Python)
+- Données hardcodées dans server.py
+- Intégration Resend pour emails
+
+### Key Files
+- `/app/frontend/src/pages/BookPage.js` - Formulaire de réservation
+- `/app/frontend/src/App.js` - Homepage et routing
+- `/app/frontend/src/translations.js` - Toutes les traductions
+- `/app/frontend/src/LanguageContext.js` - Contexte de langue
+- `/app/frontend/src/pages/components/PageLayout.js` - Layout avec footer
 
 ## API Endpoints
-- `GET /api/experiences` - List all experiences
-- `GET /api/experiences/{id}` - Get single experience details
-- `GET /api/destinations` - List all destinations  
-- `GET /api/activities` - List optional activities
-- `POST /api/contact` - Submit contact/booking form
+- `GET /api/experiences` - Liste des expériences
+- `POST /api/contact` - Soumission formulaire de contact/réservation
 
-## Last Updated
-December 2025
-
-## Recent Changes (This Session)
-- **Visual Storytelling**: Updated to Weekend format at €350
-- **Early Bird discount**: 8% off for 30+ days advance booking
-- **Booking flow improvements**:
-  - URL params for pre-selecting experience
-  - "Calendrier des Weekends" for weekend experiences (18 months)
-  - 14-day minimum booking notice
-  - City auto-selected by weekend choice
-  - Direct "Réserver" buttons on homepage and /experiences
-- **Homepage & /experiences**: Added direct booking buttons linking to `/book?experience=xxx`
+## Known Limitations
+- Données expériences hardcodées (pas de base de données)
+- Pages destinations non créées (liens présents mais pages vides)
