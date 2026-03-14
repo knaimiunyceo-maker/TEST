@@ -12,12 +12,13 @@ Site web pour une marque de voyage "THE BRIDGE" basée sur le concept "Travel �
 
 ### Multi-Language Support ✅
 - 6 langues supportées: Français, English, Español, Português, Deutsch, Italiano
-- Traductions complètes sur toutes les pages incluant:
-  - Page d'accueil
-  - Navigation et footer
-  - Pages d'expériences (Self-Defense, Language Practice, Visual Storytelling)
-  - Page de réservation (BookPage) avec tous les formulaires
-  - Pages légales (CGV, Mentions Légales, Confidentialité, À Propos)
+- **Sélecteur de langue visible sur TOUTES les pages** (via PageLayout.js)
+- Traductions complètes sur:
+  - Page d'accueil (App.js)
+  - Navigation et footer (PageLayout.js + App.js)
+  - Page de réservation (BookPage.js)
+  - Page À Propos (AboutPage.js)
+  - Pages légales (CGV, Mentions Légales, Confidentialité)
 
 ### Footer Standardisé ✅
 Structure uniforme sur toutes les pages:
@@ -35,16 +36,14 @@ Experiences          Destinations         Company
 ```
 
 ### Booking System ✅
-- Formulaire de réservation hybride (lead-capture)
+- Formulaire de réservation hybride (lead-capture) entièrement traduit
 - Validation email et téléphone international
 - Protection anti-bot (honeypot)
-- Calendrier personnalisé pour les weekends (alternance Marrakech/Agadir)
-- Calendrier "Lundis uniquement" pour les cours de langue
-- Règle de 14 jours minimum avant réservation
-- Réduction Early Bird (-8%) pour réservations 30+ jours à l'avance
+- Calendrier personnalisé pour les weekends
+- Réduction Early Bird (-8%)
 
 ### GDPR Compliance ✅
-- Bannière cookies
+- Bannière cookies traduite
 - Cases de consentement CGV et données personnelles
 - Pages légales complètes
 
@@ -52,73 +51,35 @@ Experiences          Destinations         Company
 
 ### Date: March 2026
 
-1. **Traductions complètes 6 langues**
-   - Ajout de l'italien comme 6ème langue
-   - Traduction de BookPage.js avec tous les textes d'interface
-   - Traduction de App.js (navigation, hero, footer)
-   - Traduction de PageLayout.js (footer des pages internes)
-   - Mise à jour de translations.js avec toutes les sections
+1. **Sélecteur de langue sur toutes les pages**
+   - PageLayout.js mis à jour avec sélecteur de langue dans le header
+   - Navigation traduite (Accueil, Expériences, Destinations, etc.)
+   - Footer traduit (Entreprise, Confidentialité, etc.)
 
-2. **Footer standardisé**
-   - Structure 4 colonnes identique sur homepage et pages internes
-   - Liens fonctionnels vers toutes les pages légales
+2. **Traductions complètes**
+   - AboutPage.js avec traductions 6 langues
+   - BookPage.js avec traductions 6 langues
+   - PageLayout.js avec traductions navigation + footer
+   - translations.js avec italien ajouté
 
 3. **Nettoyage du code**
-   - Suppression des fichiers redondants: SecureBookingForm.js, SecureBookingPage.js
-   - Suppression de la route /reservation dans App.js
-   - Mise à jour des pages d'expériences pour utiliser le bouton de réservation
-
-4. **Système de réservation sécurisé**
-   - Validation email avec domaines bloqués
-   - Validation téléphone international (react-phone-number-input)
-   - Protection anti-bot honeypot
-   - Messages d'erreur en temps réel traduits
-
-## Prioritized Backlog
-
-### P0 - Critique
-- ✅ Traductions complètes 6 langues
-- ✅ Footer standardisé
-
-### P1 - Important
-- Contenu pour HowItWorksPage.js et ActivitiesPage.js
-- Pages destinations (Casablanca, Marrakech, Agadir)
-
-### P2 - Enhancement
-- Intégration Stripe pour paiements en ligne
-- Base de données pour les expériences (actuellement hardcodé)
-- Refactorisation de App.js (extraction HomePage)
-
-### P3 - Nice to Have
-- SEO optimizations
-- Analytics integration
-- Newsletter signup
+   - Fichiers SecureBookingForm.js et SecureBookingPage.js supprimés
 
 ## Technical Architecture
 
-### Frontend
-- React avec TailwindCSS
-- react-router-dom pour le routing
-- react-phone-number-input pour validation téléphone
-- Shadcn/UI components
-- LanguageContext pour la gestion multilingue
-
-### Backend
-- FastAPI (Python)
-- Données hardcodées dans server.py
-- Intégration Resend pour emails
-
 ### Key Files
-- `/app/frontend/src/pages/BookPage.js` - Formulaire de réservation
-- `/app/frontend/src/App.js` - Homepage et routing
-- `/app/frontend/src/translations.js` - Toutes les traductions
-- `/app/frontend/src/LanguageContext.js` - Contexte de langue
-- `/app/frontend/src/pages/components/PageLayout.js` - Layout avec footer
+- `/app/frontend/src/pages/components/PageLayout.js` - Layout avec nav + footer + sélecteur de langue
+- `/app/frontend/src/pages/BookPage.js` - Formulaire de réservation traduit
+- `/app/frontend/src/pages/AboutPage.js` - Page À propos traduite
+- `/app/frontend/src/LanguageContext.js` - Contexte de langue (changeLanguage)
+- `/app/frontend/src/translations.js` - Traductions globales
 
-## API Endpoints
-- `GET /api/experiences` - Liste des expériences
-- `POST /api/contact` - Soumission formulaire de contact/réservation
+## Prioritized Backlog
 
-## Known Limitations
-- Données expériences hardcodées (pas de base de données)
-- Pages destinations non créées (liens présents mais pages vides)
+### P1 - Important
+- Traduire les pages restantes: HowItWorksPage, ActivitiesPage, CGVPage, etc.
+- Créer les pages destinations (Casablanca, Marrakech, Agadir)
+
+### P2 - Enhancement
+- Intégration Stripe pour paiements
+- Base de données pour les expériences
