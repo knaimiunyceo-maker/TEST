@@ -873,6 +873,16 @@ const OptionalActivitiesSection = ({ activities }) => {
       "hammam-spa": { title: "Hammam & Spa", desc: "Relaxamento autêntico" },
       "nightlife-events": { title: "Vida Noturna", desc: "Terraços & música ao vivo" },
       "cultural-workshop": { title: "Workshop Cultural", desc: "Cerâmica, henna, artesanato" }
+    },
+    it: {
+      "surf-lessons": { title: "Lezioni di Surf", desc: "Surfa con istruttori locali" },
+      "desert-excursion": { title: "Escursione Deserto", desc: "Cammelli, dune & stelle" },
+      "quad-adventure": { title: "Avventura Quad", desc: "Esplorazione fuoristrada" },
+      "cooking-class": { title: "Corso di Cucina", desc: "Cucina marocchina tradizionale" },
+      "city-tour": { title: "Tour Guidato", desc: "Scopri la medina & i souk" },
+      "hammam-spa": { title: "Hammam & Spa", desc: "Relax autentico" },
+      "nightlife-events": { title: "Vita Notturna", desc: "Terrazze & musica dal vivo" },
+      "cultural-workshop": { title: "Workshop Culturale", desc: "Ceramica, henné, artigianato" }
     }
   };
 
