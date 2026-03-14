@@ -104,7 +104,8 @@ const translations = {
       "atlas-trek": { title: "Atlas Mountains Trek", description: "Discover the breathtaking landscapes of the Atlas Mountains and authentic Berber villages during a guided mountain adventure." },
       "desert-dinner": { title: "Desert Dinner in Agafay", description: "Enjoy a magical evening under the stars in the Agafay desert with traditional Moroccan cuisine and live music." },
       "cooking-class": { title: "Moroccan Cooking Class", description: "Learn how to prepare traditional Moroccan dishes such as tagine and couscous with local chefs." },
-      "paradise-valley": { title: "Paradise Valley Adventure", description: "Explore natural pools, palm trees and spectacular landscapes during a unique excursion in one of Morocco's hidden gems." }
+      "paradise-valley": { title: "Paradise Valley Adventure", description: "Explore natural pools, palm trees and spectacular landscapes during a unique excursion in one of Morocco's hidden gems." },
+      "hammam": { title: "Traditional Moroccan Hammam", description: "Experience the authentic Moroccan spa ritual. Relax in the steam room, enjoy a traditional black soap scrub and emerge completely rejuvenated." }
     },
     activityNames: {
       "surf": "Surf", "kitesurf": "Kitesurf", "sup": "Stand Up Paddle", "yoga": "Yoga", "pilates": "Pilates",
