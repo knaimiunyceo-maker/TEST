@@ -1342,63 +1342,63 @@ ${formData.message || 'Aucun message additionnel'}
                         </div>
                       </div>
                       <span className="font-dm text-sm text-ocean/80 leading-relaxed">
-                        J'accepte que mes données personnelles soient traitées par UNYCEO FR dans le cadre de ma demande de réservation. *
+                        {t.step4.acceptData}{" "}{t.step4.privacyLink}. *
                       </span>
                     </label>
 
                     <p className="font-dm text-xs text-ocean/50 mt-2">
-                      * Champs obligatoires
+                      * {language === 'fr' ? 'Champs obligatoires' : language === 'es' ? 'Campos obligatorios' : language === 'it' ? 'Campi obbligatori' : language === 'de' ? 'Pflichtfelder' : language === 'pt' ? 'Campos obrigatórios' : 'Required fields'}
                     </p>
                   </div>
 
                   {/* Summary */}
                   <div className="mt-6 p-4 bg-warmwhite rounded-xl">
-                    <h3 className="font-syne font-bold text-ocean mb-3">Récapitulatif</h3>
+                    <h3 className="font-syne font-bold text-ocean mb-3">{t.summary.title}</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Expérience:</span>
-                        <span className="font-medium text-ocean">{selectedExperience?.label}</span>
+                        <span className="text-ocean/70">{t.summary.experience}:</span>
+                        <span className="font-medium text-ocean">{t.experiences[selectedExperience?.id] || selectedExperience?.label}</span>
                       </div>
                       {formData.courseType && (
                         <div className="flex justify-between">
-                          <span className="text-ocean/70">Type de cours:</span>
-                          <span className="font-medium text-ocean">{selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label}</span>
+                          <span className="text-ocean/70">{t.summary.course}:</span>
+                          <span className="font-medium text-ocean">{t.courseTypes[formData.courseType] || selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label}</span>
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Ville:</span>
+                        <span className="text-ocean/70">{t.summary.city}:</span>
                         <span className="font-medium text-ocean">{ALL_CITIES.find(c => c.id === formData.city)?.label}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Durée:</span>
-                        <span className="font-medium text-ocean">{ALL_DURATIONS.find(d => d.id === formData.duration)?.label}</span>
+                        <span className="text-ocean/70">{t.summary.duration}:</span>
+                        <span className="font-medium text-ocean">{t.durations[formData.duration] || ALL_DURATIONS.find(d => d.id === formData.duration)?.label}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-ocean/70">Date de début:</span>
+                        <span className="text-ocean/70">{t.summary.dates}:</span>
                         <span className="font-medium text-ocean">{formatDate(formData.startDate)}</span>
                       </div>
                       <div className="border-t border-border pt-2 mt-2">
                         <div className="flex justify-between">
-                          <span className="text-ocean/70">Prix de base:</span>
+                          <span className="text-ocean/70">{t.summary.price}:</span>
                           <span className={`font-medium ${isEarlyBird ? 'line-through text-ocean/50' : 'text-ocean'}`}>€{price}</span>
                         </div>
                         {isEarlyBird && (
                           <div className="flex justify-between items-center bg-green-50 -mx-4 px-4 py-2 my-2">
                             <span className="text-green-700 flex items-center gap-2">
-                              <Gift size={16} /> Early Bird (-8%)
+                              <Gift size={16} /> {t.earlyBird.title} (-8%)
                             </span>
                             <span className="font-bold text-green-700">-€{earlyBirdDiscount}</span>
                           </div>
                         )}
                         {isEarlyBird && (
                           <div className="flex justify-between">
-                            <span className="text-ocean/70">Prix après réduction:</span>
+                            <span className="text-ocean/70">{language === 'fr' ? 'Prix après réduction' : language === 'es' ? 'Precio después del descuento' : language === 'it' ? 'Prezzo dopo lo sconto' : language === 'de' ? 'Preis nach Rabatt' : language === 'pt' ? 'Preço após desconto' : 'Price after discount'}:</span>
                             <span className="font-medium text-ocean">€{priceAfterDiscount}</span>
                           </div>
                         )}
                         {registrationFee > 0 && (
                           <div className="flex justify-between">
-                            <span className="text-ocean/70">Frais d'inscription:</span>
+                            <span className="text-ocean/70">{language === 'fr' ? "Frais d'inscription" : language === 'es' ? 'Cuota de inscripción' : language === 'it' ? 'Quota di iscrizione' : language === 'de' ? 'Anmeldegebühr' : language === 'pt' ? 'Taxa de inscrição' : 'Registration fee'}:</span>
                             <span className="font-medium text-ocean">€{registrationFee}</span>
                           </div>
                         )}
