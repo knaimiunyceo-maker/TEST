@@ -355,6 +355,7 @@ const HomePageLayout = () => {
 
   return (
     <>
+      <SEO page="home" />
       <Navigation scrolled={scrolled} />
       <HomePage scrolled={scrolled} />
       <Footer />
