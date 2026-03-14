@@ -133,8 +133,8 @@ Added to HowItWorksPage and BookPage:
 ## Pending/Future Tasks
 
 ### P1 - High Priority
-- [ ] Integrate Stripe for online payments
-- [ ] Test real-time form validation on BookPage
+- [x] ~~Integrate Stripe for online payments~~ ✅ COMPLETED
+- [x] ~~Test real-time form validation on BookPage~~ ✅ COMPLETED
 
 ### P2 - Medium Priority
 - [ ] Migrate hardcoded data to MongoDB database
