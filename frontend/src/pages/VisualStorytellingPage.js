@@ -8,6 +8,46 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const pageTranslations = {
+  en: {
+    heroTitle: "Visual Storytelling Weekend",
+    heroSubtitle: "Capture stories through your lens",
+    heroDesc: "Learn photography and video storytelling while exploring Morocco's most photogenic locations.",
+    bookNow: "Book now"
+  },
+  fr: {
+    heroTitle: "Weekend Visual Storytelling",
+    heroSubtitle: "Capturez des histoires à travers votre objectif",
+    heroDesc: "Apprenez la photographie et le storytelling vidéo tout en explorant les lieux les plus photogéniques du Maroc.",
+    bookNow: "Réserver"
+  },
+  es: {
+    heroTitle: "Fin de Semana de Storytelling Visual",
+    heroSubtitle: "Captura historias a través de tu lente",
+    heroDesc: "Aprende fotografía y storytelling en video mientras exploras los lugares más fotogénicos de Marruecos.",
+    bookNow: "Reservar"
+  },
+  pt: {
+    heroTitle: "Fim de Semana de Visual Storytelling",
+    heroSubtitle: "Capture histórias através da sua lente",
+    heroDesc: "Aprenda fotografia e storytelling em vídeo enquanto explora os locais mais fotogênicos do Marrocos.",
+    bookNow: "Reservar"
+  },
+  de: {
+    heroTitle: "Visual Storytelling Wochenende",
+    heroSubtitle: "Geschichten durch Ihre Linse einfangen",
+    heroDesc: "Lernen Sie Fotografie und Video-Storytelling, während Sie die fotogensten Orte Marokkos erkunden.",
+    bookNow: "Jetzt buchen"
+  },
+  it: {
+    heroTitle: "Weekend di Visual Storytelling",
+    heroSubtitle: "Cattura storie attraverso il tuo obiettivo",
+    heroDesc: "Impara la fotografia e il video storytelling mentre esplori i luoghi più fotogenici del Marocco.",
+    bookNow: "Prenota ora"
+  }
+};
 
 // Generate weekend dates for a given month
 const generateWeekends = (year, month) => {
