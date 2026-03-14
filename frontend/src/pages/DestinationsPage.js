@@ -122,7 +122,7 @@ const DestinationsPage = () => {
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-warmwhite">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            {DESTINATIONS.map((dest, index) => (
+            {t.destinations.map((dest, index) => (
               <motion.div
                 key={dest.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -133,7 +133,7 @@ const DestinationsPage = () => {
                 <Card className="border-none shadow-lg overflow-hidden h-full">
                   <div className="aspect-[16/9] overflow-hidden relative">
                     <img 
-                      src={dest.image} 
+                      src={DESTINATION_IMAGES[dest.id]} 
                       alt={dest.name}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
@@ -147,7 +147,7 @@ const DestinationsPage = () => {
                     <p className="font-dm text-ocean/80 text-sm mb-4">{dest.description}</p>
                     
                     <div className="mb-4">
-                      <p className="font-dm font-semibold text-ocean text-xs mb-2">Experiences available:</p>
+                      <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.availableExperiences}:</p>
                       <div className="flex flex-wrap gap-2">
                         {dest.experiences.map((exp) => (
                           <span key={exp} className="bg-sunset/10 text-sunset px-2 py-1 rounded-full text-xs font-dm">
@@ -158,7 +158,7 @@ const DestinationsPage = () => {
                     </div>
 
                     <div className="mb-4">
-                      <p className="font-dm font-semibold text-ocean text-xs mb-2">Highlights:</p>
+                      <p className="font-dm font-semibold text-ocean text-xs mb-2">{t.highlights}:</p>
                       <div className="flex flex-wrap gap-2">
                         {dest.highlights.map((h) => (
                           <span key={h} className="bg-ocean/10 text-ocean px-2 py-1 rounded-full text-xs font-dm">
@@ -170,7 +170,7 @@ const DestinationsPage = () => {
 
                     <Button asChild className="w-full bg-ocean hover:bg-ocean/90 text-white rounded-full">
                       <Link to={`/destinations/${dest.id}`}>
-                        Explore {dest.name} <ArrowRight size={16} className="ml-2" />
+                        {t.explore} {dest.name} <ArrowRight size={16} className="ml-2" />
                       </Link>
                     </Button>
                   </CardContent>
