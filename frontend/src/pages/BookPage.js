@@ -866,53 +866,62 @@ const BookPage = () => {
     }
     
     setIsSubmitting(true);
-    const courseTypeLabel = selectedExperience?.courseTypes?.find(c => c.id === formData.courseType)?.label || '';
-    const earlyBirdText = isEarlyBird ? `\nEarly Bird Discount: -€${earlyBirdDiscount} (8%)` : '';
-    const languageLabel = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label || 'Français';
-    const referentTag = LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.referent || 'FR';
-    const fullWhatsApp = formData.whatsapp;
+    
+    // Map experience to API experience_id
+    const experienceIdMap = {
+      "self-defense": "self-defense",
+      "storytelling": "visual-storytelling", 
+      "language": "language-practice"
+    };
+    
+    const experienceId = experienceIdMap[formData.experience] || formData.experience;
+    const cityLabel = ALL_CITIES.find(c => c.id === formData.city)?.label || formData.city;
+    const durationLabel = ALL_DURATIONS.find(d => d.id === formData.duration)?.label || formData.duration;
+    const formattedDates = `${formatDate(formData.startDate)} - ${durationLabel}`;
     
     try {
-      await axios.post(`${API}/contact`, {
+      // Create booking and get Stripe checkout URL
+      const response = await axios.post(`${API}/bookings/checkout`, {
+        experience_id: experienceId,
         name: formData.name,
         email: formData.email,
-        message: `🎯 DEMANDE DE RÉSERVATION - Lead ${referentTag}
-
-👤 PARTICIPANT
-Nom: ${formData.name}
-Email: ${formData.email}
-WhatsApp: ${fullWhatsApp}
-Langue préférée: ${languageLabel} [TAG: ${referentTag}]
-
-📅 EXPÉRIENCE
-Experience: ${selectedExperience?.label}${courseTypeLabel ? ` - ${courseTypeLabel}` : ''}
-Ville: ${ALL_CITIES.find(c => c.id === formData.city)?.label}
-Durée: ${ALL_DURATIONS.find(d => d.id === formData.duration)?.label}
-Date de début: ${formatDate(formData.startDate)}
-
-💰 TARIF
-Prix de base: €${price}${earlyBirdText}${registrationFee > 0 ? `\nFrais d'inscription: €${registrationFee}` : ''}
-TOTAL: €${totalPrice}
-
-📝 MESSAGE
-${formData.message || 'Aucun message additionnel'}
-
-⚡ ACTION REQUISE: Contacter sur WhatsApp (${fullWhatsApp}) sous 24h`,
-        trip_interest: selectedExperience?.label,
-        lead_tag: referentTag,
-        whatsapp: fullWhatsApp,
-        preferred_language: formData.preferredLanguage
+        phone: formData.whatsapp,
+        dates: formattedDates,
+        city: cityLabel,
+        participants: 1,
+        room_type: "shared",
+        message: formData.message || "",
+        origin_url: window.location.origin
       });
       
-      toast.success("Demande envoyée !", {
-        description: `Un référent ${languageLabel} vous contactera sous 24h.`
+      const { checkout_url, booking_id, deposit_amount, total_price } = response.data;
+      
+      // Store booking info in localStorage for success page
+      localStorage.setItem('pending_booking', JSON.stringify({
+        booking_id,
+        deposit_amount,
+        total_price,
+        experience: selectedExperience?.label,
+        dates: formattedDates,
+        city: cityLabel
+      }));
+      
+      toast.success(language === 'fr' ? "Redirection vers Stripe..." : "Redirecting to Stripe...", {
+        description: language === 'fr' 
+          ? `Acompte: €${deposit_amount.toFixed(2)}` 
+          : `Deposit: €${deposit_amount.toFixed(2)}`
       });
-      setStep(5); // Success step
+      
+      // Redirect to Stripe Checkout
+      setTimeout(() => {
+        window.location.href = checkout_url;
+      }, 1000);
+      
     } catch (error) {
-      toast.error("Erreur lors de l'envoi", {
-        description: "Veuillez réessayer ou nous contacter directement."
+      console.error("Checkout error:", error);
+      toast.error(t.toast.errorTitle, {
+        description: error.response?.data?.detail || t.toast.errorDesc
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
