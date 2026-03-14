@@ -126,7 +126,7 @@ const PageLayout = ({ children, showBackButton = true }) => {
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const location = useLocation();
-  const { language, setLanguage } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
   const t = layoutTranslations[language] || layoutTranslations.en;
 
   const NAV_ITEMS = [
