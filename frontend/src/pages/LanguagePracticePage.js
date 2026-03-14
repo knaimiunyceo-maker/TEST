@@ -9,6 +9,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import SecureBookingForm from "../components/SecureBookingForm";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const PRICING = [
   { weeks: 1, price: 400, label: "1 semaine" },
@@ -303,6 +308,46 @@ const LanguagePracticePage = () => {
         </div>
       </section>
 
+      {/* Booking Form Section */}
+      <section id="booking" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2">Réserver votre séjour</h2>
+            <p className="font-dm text-ocean/70">Language Practice • À partir de €400/semaine</p>
+          </motion.div>
+          <SecureBookingForm 
+            onSubmit={async (formData) => {
+              await axios.post(`${API}/contact`, {
+                name: formData.fullName,
+                email: formData.email,
+                message: `📚 RÉSERVATION LANGUAGE PRACTICE
+
+👤 PARTICIPANT
+Nom: ${formData.fullName}
+Email: ${formData.email}
+Téléphone: ${formData.phone}
+
+📅 DÉTAILS
+Date: ${formData.date}
+Heure: ${formData.time}
+Nombre de personnes: ${formData.numberOfPeople}
+
+💰 TARIF: €400/semaine + €45 frais d'inscription
+
+⏰ Soumis le: ${formData.timestamp}`,
+                trip_interest: "Language Practice"
+              });
+            }}
+            experienceTitle="Language Practice • €400/semaine"
+          />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
         <div className="max-w-2xl mx-auto">
@@ -311,7 +356,7 @@ const LanguagePracticePage = () => {
             Réservez votre séjour linguistique dès maintenant.
           </p>
           <Button asChild size="lg" className="bg-white text-sunset hover:bg-white/90 rounded-full px-8">
-            <Link to="/book?experience=language">Réserver <ArrowRight size={18} className="ml-2" /></Link>
+            <a href="#booking">Réserver <ArrowRight size={18} className="ml-2" /></a>
           </Button>
         </div>
       </section>
