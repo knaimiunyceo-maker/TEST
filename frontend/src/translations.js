@@ -1009,6 +1009,43 @@ export const packageTranslations = {
         "Itinerário de viagem organizado"
       ]
     }
+  },
+  it: {
+    "weekend-experience": {
+      title: "Esperienza Weekend",
+      description: "L'esperienza entry-level progettata per rendere il viaggio accessibile. Perfetto per un primo assaggio del Marocco.",
+      inclusions: [
+        "2 notti di alloggio",
+        "1 attività di gruppo inclusa",
+        "Eventi sociali con altri viaggiatori",
+        "Atmosfera comunitaria",
+        "Host locale e coordinamento"
+      ]
+    },
+    "premium-weekend": {
+      title: "Weekend Premium",
+      description: "Un'esperienza weekend più completa con attività aggiuntive ed esperienze locali curate.",
+      inclusions: [
+        "2 notti di alloggio",
+        "2 attività incluse",
+        "Eventi sociali",
+        "Esperienze locali curate",
+        "Atmosfera di viaggio comunitaria",
+        "Host locale e coordinamento"
+      ]
+    },
+    "explorer-experience": {
+      title: "Esperienza Explorer",
+      description: "Un'esperienza di viaggio più lunga per immergersi completamente nella cultura, avventure e comunità del Marocco.",
+      inclusions: [
+        "5 giorni / 4 notti di alloggio",
+        "Molteplici attività di gruppo",
+        "Esperienze culturali",
+        "Eventi sociali con altri viaggiatori",
+        "Supporto host locale",
+        "Itinerario di viaggio curato"
+      ]
+    }
   }
 };
 
