@@ -32,6 +32,9 @@ const Section = ({ icon: Icon, title, children, index }) => (
 );
 
 const CGVPage = () => {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.fr;
+  
   return (
     <PageLayout>
       {/* Hero */}
@@ -45,10 +48,10 @@ const CGVPage = () => {
               <FileText className="text-sand" size={32} />
             </div>
             <h1 className="font-syne font-black text-3xl sm:text-4xl lg:text-5xl mb-4">
-              Conditions Générales de Vente
+              {t.title}
             </h1>
             <p className="font-dm text-white/80 text-lg">
-              THE BRIDGE — UNYCEO France
+              {t.subtitle}
             </p>
           </motion.div>
         </div>
