@@ -365,42 +365,44 @@ const HomePageLayout = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <LanguageProvider>
-          <Routes>
-            {/* Home */}
-            <Route path="/" element={<HomePageLayout />} />
-            
-            {/* Experiences */}
-            <Route path="/experiences" element={<ExperiencesPage />} />
-            <Route path="/experiences/self-defense" element={<SelfDefensePage />} />
-            <Route path="/experiences/language-practice" element={<LanguagePracticePage />} />
-            <Route path="/experiences/visual-storytelling" element={<VisualStorytellingPage />} />
-            
-            {/* Legacy route for language practice */}
-            <Route path="/language-practice" element={<LanguagePracticePage />} />
-            
-            {/* Destinations */}
-            <Route path="/destinations" element={<DestinationsPage />} />
-            <Route path="/destinations/casablanca" element={<CasablancaPage />} />
-            <Route path="/destinations/agadir" element={<AgadirPage />} />
-            <Route path="/destinations/marrakech" element={<MarrakechPage />} />
-            
-            {/* Other pages */}
-            <Route path="/activities" element={<ActivitiesPage />} />
-            <Route path="/how-it-works" element={<HowItWorksPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/book" element={<BookPage />} />
-            <Route path="/book/success" element={<BookSuccessPage />} />
-            <Route path="/cgv" element={<CGVPage />} />
-            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
-            <Route path="/confidentialite" element={<ConfidentialitePage />} />
-          </Routes>
-          <CookieBanner />
-        </LanguageProvider>
-      </div>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <div className="App">
+          <LanguageProvider>
+            <Routes>
+              {/* Home */}
+              <Route path="/" element={<HomePageLayout />} />
+              
+              {/* Experiences */}
+              <Route path="/experiences" element={<ExperiencesPage />} />
+              <Route path="/experiences/self-defense" element={<SelfDefensePage />} />
+              <Route path="/experiences/language-practice" element={<LanguagePracticePage />} />
+              <Route path="/experiences/visual-storytelling" element={<VisualStorytellingPage />} />
+              
+              {/* Legacy route for language practice */}
+              <Route path="/language-practice" element={<LanguagePracticePage />} />
+              
+              {/* Destinations */}
+              <Route path="/destinations" element={<DestinationsPage />} />
+              <Route path="/destinations/casablanca" element={<CasablancaPage />} />
+              <Route path="/destinations/agadir" element={<AgadirPage />} />
+              <Route path="/destinations/marrakech" element={<MarrakechPage />} />
+              
+              {/* Other pages */}
+              <Route path="/activities" element={<ActivitiesPage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/book" element={<BookPage />} />
+              <Route path="/book/success" element={<BookSuccessPage />} />
+              <Route path="/cgv" element={<CGVPage />} />
+              <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+              <Route path="/confidentialite" element={<ConfidentialitePage />} />
+            </Routes>
+            <CookieBanner />
+          </LanguageProvider>
+        </div>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
