@@ -1889,6 +1889,7 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/book" element={<BookPage />} />
+            <Route path="/book/success" element={<BookSuccessPage />} />
             <Route path="/cgv" element={<CGVPage />} />
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             <Route path="/confidentialite" element={<ConfidentialitePage />} />
