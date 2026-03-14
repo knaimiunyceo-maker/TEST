@@ -164,21 +164,6 @@ const LanguagePracticePage = () => {
           </motion.div>
         </div>
       </section>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="bg-sunset/20 text-sand px-3 py-1 rounded-full text-sm font-dm">Anglais Général • Adultes</span>
-              <span className="bg-white/10 text-white/80 px-3 py-1 rounded-full text-sm font-dm">Since 2020</span>
-            </div>
-            <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Cours d'Anglais Intensif
-            </h1>
-            <p className="font-caveat text-sand text-xl mb-4">Practice English through travel</p>
-            <p className="font-dm text-white/80 text-lg max-w-2xl">
-              Fidèles à l'enseignement d'anglais de qualité. Immersion totale au Maroc avec 
-              20 heures de cours par semaine.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Badges */}
       <section className="py-8 px-4 sm:px-6 lg:px-12 bg-warmwhite">
