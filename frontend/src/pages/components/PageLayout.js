@@ -175,6 +175,9 @@ const PageLayout = ({ children, showBackButton = true, seoPage = null, seoTitle 
 
   return (
     <div className="min-h-screen bg-warmwhite">
+      {/* SEO */}
+      {detectSeoPage() && <SEO page={detectSeoPage()} customTitle={seoTitle} customDescription={seoDescription} />}
+      
       {/* Navigation */}
       <header className="bg-ocean text-white py-4 px-4 sm:px-6 lg:px-12 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
