@@ -82,7 +82,17 @@ const bookPageTranslations = {
     months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     monthsFull: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     weekendCalendar: { available: "Available", unavailable: "Unavailable", selectBtn: "Select" },
-    earlyBird: { title: "Early Bird", discount: "discount applied!" }
+    earlyBird: { title: "Early Bird", discount: "discount applied!" },
+    bridgeExperience: {
+      title: "The Bridge Experience: How It Works",
+      learnMore: "Learn more about our booking process",
+      steps: [
+        { title: "1. Human Connection", desc: "A local referent will call you for 15 minutes to answer questions." },
+        { title: "2. Priority Booking", desc: "30% deposit via secure Stripe link, valid 24 hours." },
+        { title: "3. Group Formation", desc: "Each session needs 10 participants for the best experience." },
+        { title: "4. Confirmation", desc: "100% refund if minimum group not reached." }
+      ]
+    }
   },
   fr: {
     hero: { title: "Réserver votre expérience", subtitle: "Complétez les étapes ci-dessous pour envoyer votre demande." },
@@ -136,7 +146,17 @@ const bookPageTranslations = {
     months: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"],
     monthsFull: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
     weekendCalendar: { available: "Disponible", unavailable: "Indisponible", selectBtn: "Sélectionner" },
-    earlyBird: { title: "Early Bird", discount: "de réduction appliquée !" }
+    earlyBird: { title: "Early Bird", discount: "de réduction appliquée !" },
+    bridgeExperience: {
+      title: "L'Expérience The Bridge : Comment ça marche",
+      learnMore: "En savoir plus sur notre processus de réservation",
+      steps: [
+        { title: "1. Connexion Humaine", desc: "Un référent local vous appelle 15 min pour répondre à vos questions." },
+        { title: "2. Réservation Prioritaire", desc: "Acompte 30% via lien Stripe sécurisé, valide 24h." },
+        { title: "3. Constitution du Groupe", desc: "Chaque session nécessite 10 participants pour une meilleure expérience." },
+        { title: "4. Confirmation", desc: "Remboursement 100% si le groupe minimum n'est pas atteint." }
+      ]
+    }
   },
   es: {
     hero: { title: "Reserva tu experiencia", subtitle: "Completa los pasos a continuación para enviar tu solicitud." },
@@ -190,7 +210,17 @@ const bookPageTranslations = {
     months: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
     monthsFull: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
     weekendCalendar: { available: "Disponible", unavailable: "No disponible", selectBtn: "Seleccionar" },
-    earlyBird: { title: "Early Bird", discount: "¡descuento aplicado!" }
+    earlyBird: { title: "Early Bird", discount: "¡descuento aplicado!" },
+    bridgeExperience: {
+      title: "La Experiencia The Bridge: Cómo Funciona",
+      learnMore: "Más información sobre nuestro proceso de reserva",
+      steps: [
+        { title: "1. Conexión Humana", desc: "Un referente local te llama 15 min para responder tus preguntas." },
+        { title: "2. Reserva Prioritaria", desc: "Depósito 30% vía enlace Stripe seguro, válido 24h." },
+        { title: "3. Formación del Grupo", desc: "Cada sesión necesita 10 participantes para la mejor experiencia." },
+        { title: "4. Confirmación", desc: "Reembolso 100% si no se alcanza el grupo mínimo." }
+      ]
+    }
   },
   pt: {
     hero: { title: "Reserve sua experiência", subtitle: "Complete os passos abaixo para enviar sua solicitação." },
@@ -244,7 +274,17 @@ const bookPageTranslations = {
     months: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
     monthsFull: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
     weekendCalendar: { available: "Disponível", unavailable: "Indisponível", selectBtn: "Selecionar" },
-    earlyBird: { title: "Early Bird", discount: "de desconto aplicado!" }
+    earlyBird: { title: "Early Bird", discount: "de desconto aplicado!" },
+    bridgeExperience: {
+      title: "A Experiência The Bridge: Como Funciona",
+      learnMore: "Saiba mais sobre nosso processo de reserva",
+      steps: [
+        { title: "1. Conexão Humana", desc: "Um referente local liga 15 min para responder suas perguntas." },
+        { title: "2. Reserva Prioritária", desc: "Depósito 30% via link Stripe seguro, válido 24h." },
+        { title: "3. Formação do Grupo", desc: "Cada sessão precisa de 10 participantes para a melhor experiência." },
+        { title: "4. Confirmação", desc: "Reembolso 100% se o grupo mínimo não for atingido." }
+      ]
+    }
   },
   de: {
     hero: { title: "Buchen Sie Ihr Erlebnis", subtitle: "Füllen Sie die folgenden Schritte aus, um Ihre Anfrage zu senden." },
@@ -298,7 +338,17 @@ const bookPageTranslations = {
     months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     monthsFull: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
     weekendCalendar: { available: "Verfügbar", unavailable: "Nicht verfügbar", selectBtn: "Auswählen" },
-    earlyBird: { title: "Frühbucher", discount: "Rabatt angewendet!" }
+    earlyBird: { title: "Frühbucher", discount: "Rabatt angewendet!" },
+    bridgeExperience: {
+      title: "Das The Bridge Erlebnis: So funktioniert's",
+      learnMore: "Mehr über unseren Buchungsprozess erfahren",
+      steps: [
+        { title: "1. Menschliche Verbindung", desc: "Ein lokaler Ansprechpartner ruft Sie 15 Min an, um Fragen zu beantworten." },
+        { title: "2. Prioritätsbuchung", desc: "30% Anzahlung über sicheren Stripe-Link, 24h gültig." },
+        { title: "3. Gruppenbildung", desc: "Jede Session benötigt 10 Teilnehmer für das beste Erlebnis." },
+        { title: "4. Bestätigung", desc: "100% Erstattung, wenn die Mindestgruppe nicht erreicht wird." }
+      ]
+    }
   },
   it: {
     hero: { title: "Prenota la tua esperienza", subtitle: "Completa i passaggi qui sotto per inviare la tua richiesta." },
