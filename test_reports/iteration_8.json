@@ -1,0 +1,72 @@
+{
+  "summary": "Completed comprehensive testing of Stripe checkout integration and booking flow. All backend APIs working correctly (17/17 tests passed). Frontend booking flow, form validation, and language selector all functioning properly.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "passed_tests": [
+    "Backend: /api/experience-prices returns correct prices for all 3 experiences",
+    "Backend: self-defense price €1490, deposit €447 (30%)",
+    "Backend: visual-storytelling price €1690, deposit €507 (30%)",
+    "Backend: language-practice price €890, deposit €267 (30%)",
+    "Backend: POST /api/bookings/checkout creates Stripe session with correct deposit amount",
+    "Backend: Checkout validates experience_id (returns 400 for invalid)",
+    "Backend: Checkout validates email format (returns 422 for invalid)",
+    "Backend: Checkout calculates correct total for multiple participants",
+    "Backend: GET /api/bookings/payment-status/{session_id} returns payment status",
+    "Backend: GET /api/bookings/{booking_id} returns booking details",
+    "Backend: POST /api/webhook/stripe endpoint exists",
+    "Frontend: BookPage loads correctly with 3 experience options",
+    "Frontend: Step 1 - Experience selection works (Self-Defense, Language, Visual Storytelling)",
+    "Frontend: Step 2 - City selection and weekend calendar navigation works",
+    "Frontend: Step 3 - Weekend calendar shows alternating Marrakech/Agadir cities",
+    "Frontend: Step 3 - Weekend selection works correctly",
+    "Frontend: Step 4 - Form displays all required fields (Name, Email, Phone, Language, Message)",
+    "Frontend: Step 4 - Email validation shows 'Invalid email format' error on blur",
+    "Frontend: Step 4 - Phone validation shows 'Invalid or incomplete phone number' error on blur",
+    "Frontend: Step 4 - Summary shows correct pricing with Early Bird discount (-8%)",
+    "Frontend: Step 4 - 'Pay Deposit (30%)' button visible",
+    "Frontend: BookSuccessPage handles invalid session_id correctly (shows 'Payment Issue' state)",
+    "Frontend: BookSuccessPage shows 'Try Again' and 'Back to Home' buttons for failed payments",
+    "Frontend: Language selector works - switches between 6 languages (EN, FR, ES, PT, DE, IT)",
+    "Frontend: Language change updates all page content correctly"
+  ],
+  "test_report_links": [
+    "/app/backend/tests/test_stripe_checkout.py",
+    "/app/test_reports/pytest/stripe_checkout_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [
+    "/app/backend/tests/test_stripe_checkout.py"
+  ],
+  "success_rate": {
+    "backend": "100% (17/17 tests passed)",
+    "frontend": "100%"
+  },
+  "seed_data_creation": "Test bookings created via API during testing",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Stripe checkout integration fully tested. Experience prices: self-defense=€1490, visual-storytelling=€1690, language-practice=€890. Deposit is 30% of total. Checkout API creates Stripe session and returns checkout_url. BookSuccessPage polls /api/bookings/payment-status/{session_id} to verify payment. Form validation works on blur for email and phone fields.",
+  "stripe_integration_details": {
+    "checkout_endpoint": "POST /api/bookings/checkout",
+    "payment_status_endpoint": "GET /api/bookings/payment-status/{session_id}",
+    "booking_details_endpoint": "GET /api/bookings/{booking_id}",
+    "webhook_endpoint": "POST /api/webhook/stripe",
+    "experience_prices_endpoint": "GET /api/experience-prices",
+    "deposit_percentage": "30%",
+    "currency": "EUR",
+    "stripe_mode": "test (sk_test_emergent)"
+  },
+  "form_validation_tested": {
+    "email": "Real-time validation on blur - shows 'Invalid email format' for invalid emails",
+    "phone": "Real-time validation on blur - shows 'Invalid or incomplete phone number' for invalid phones",
+    "blocked_domains": "test.com, example.com, mailinator.com, etc. are blocked"
+  },
+  "language_support_tested": ["English", "Français", "Español", "Português", "Deutsch", "Italiano"]
+}
