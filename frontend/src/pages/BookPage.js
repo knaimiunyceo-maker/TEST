@@ -1423,35 +1423,18 @@ ${formData.message || 'Aucun message additionnel'}
                     <Check className="text-green-600" size={40} />
                   </div>
                   <h2 className="font-syne font-bold text-2xl text-ocean mb-4">
-                    Merci {formData.name} !
+                    {language === 'fr' ? 'Merci' : language === 'es' ? 'Gracias' : language === 'it' ? 'Grazie' : language === 'de' ? 'Danke' : language === 'pt' ? 'Obrigado' : 'Thank you'} {formData.name} !
                   </h2>
                   <p className="font-dm text-ocean/80 text-lg mb-4">
-                    Votre demande est bien reçue.
+                    {t.toast.successDesc}
                   </p>
                   <div className="bg-ocean/5 rounded-xl p-6 mb-6 text-left">
                     <p className="font-dm text-ocean/80 mb-4">
-                      Un de nos référents <strong>{LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label}</strong> vous contactera personnellement sur WhatsApp sous <strong>24h</strong> pour :
-                    </p>
-                    <ul className="space-y-2 font-dm text-ocean/70">
-                      <li className="flex items-center gap-2">
-                        <Check size={16} className="text-green-600" /> Valider votre profil
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check size={16} className="text-green-600" /> Répondre à vos questions sur l'expérience
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check size={16} className="text-green-600" /> Confirmer votre place dans le groupe
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="bg-blue-50 rounded-xl p-4 mb-6">
-                    <p className="font-dm text-blue-700 text-sm">
-                      💡 <strong>Bon à savoir :</strong> L'acompte de 30% ne sera demandé qu'après l'appel de validation. 
-                      Si le séjour est annulé, vous serez entièrement remboursé.
+                      {language === 'fr' ? 'Un de nos référents' : language === 'es' ? 'Uno de nuestros referentes' : language === 'it' ? 'Uno dei nostri referenti' : language === 'de' ? 'Einer unserer Ansprechpartner' : language === 'pt' ? 'Um dos nossos referentes' : 'One of our referents'} <strong>{LANGUAGE_OPTIONS.find(l => l.id === formData.preferredLanguage)?.label}</strong> {language === 'fr' ? 'vous contactera sur WhatsApp sous' : language === 'es' ? 'te contactará por WhatsApp en' : language === 'it' ? 'ti contatterà su WhatsApp entro' : language === 'de' ? 'wird Sie über WhatsApp innerhalb von kontaktieren' : language === 'pt' ? 'entrará em contato pelo WhatsApp em' : 'will contact you on WhatsApp within'} <strong>24h</strong>.
                     </p>
                   </div>
                   <Button asChild className="bg-sunset hover:bg-sunset/90 text-white rounded-full">
-                    <Link to="/">Retour à l'accueil</Link>
+                    <Link to="/">{language === 'fr' ? "Retour à l'accueil" : language === 'es' ? 'Volver al inicio' : language === 'it' ? 'Torna alla home' : language === 'de' ? 'Zurück zur Startseite' : language === 'pt' ? 'Voltar ao início' : 'Back to home'}</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -1467,7 +1450,7 @@ ${formData.message || 'Aucun message additionnel'}
                   onClick={() => setStep(step - 1)}
                   className="rounded-full"
                 >
-                  Retour
+                  {t.buttons.previous}
                 </Button>
               ) : <div />}
               
@@ -1477,7 +1460,7 @@ ${formData.message || 'Aucun message additionnel'}
                   disabled={!canProceed()}
                   className="bg-sunset hover:bg-sunset/90 text-white rounded-full"
                 >
-                  Continuer <ArrowRight size={16} className="ml-2" />
+                  {t.buttons.next} <ArrowRight size={16} className="ml-2" />
                 </Button>
               ) : (
                 <Button 
@@ -1485,7 +1468,7 @@ ${formData.message || 'Aucun message additionnel'}
                   disabled={!canProceed() || isSubmitting}
                   className="bg-sunset hover:bg-sunset/90 text-white rounded-full"
                 >
-                  {isSubmitting ? "Envoi..." : "Envoyer la demande"}
+                  {isSubmitting ? t.buttons.submitting : t.buttons.submit}
                 </Button>
               )}
             </div>
