@@ -8,6 +8,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import SecureBookingForm from "../components/SecureBookingForm";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 // Generate weekend dates for a given month
 const generateWeekends = (year, month) => {
@@ -416,6 +421,46 @@ const VisualStorytellingPage = () => {
         </div>
       </section>
 
+      {/* Booking Form Section */}
+      <section id="booking" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
+        <div className="max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2">Réserver votre weekend</h2>
+            <p className="font-dm text-ocean/70">Visual Storytelling Weekend • €350</p>
+          </motion.div>
+          <SecureBookingForm 
+            onSubmit={async (formData) => {
+              await axios.post(`${API}/contact`, {
+                name: formData.fullName,
+                email: formData.email,
+                message: `📸 RÉSERVATION VISUAL STORYTELLING WEEKEND
+
+👤 PARTICIPANT
+Nom: ${formData.fullName}
+Email: ${formData.email}
+Téléphone: ${formData.phone}
+
+📅 DÉTAILS
+Date: ${formData.date}
+Heure: ${formData.time}
+Nombre de personnes: ${formData.numberOfPeople}
+
+💰 TARIF: €350 / personne
+
+⏰ Soumis le: ${formData.timestamp}`,
+                trip_interest: "Visual Storytelling Weekend"
+              });
+            }}
+            experienceTitle="Visual Storytelling Weekend • €350"
+          />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
         <div className="max-w-2xl mx-auto">
@@ -424,7 +469,7 @@ const VisualStorytellingPage = () => {
             Rejoignez-nous pour un weekend créatif au Maroc.
           </p>
           <Button asChild size="lg" className="bg-white text-sunset hover:bg-white/90 rounded-full px-8">
-            <a href="#tracks">Choisir mon track <ArrowRight size={18} className="ml-2" /></a>
+            <a href="#booking">Réserver maintenant <ArrowRight size={18} className="ml-2" /></a>
           </Button>
         </div>
       </section>
