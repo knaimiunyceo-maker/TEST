@@ -340,21 +340,6 @@ const BookPage = () => {
     { id: "other", label: "Autre", referent: "INT" }
   ];
 
-  // Country codes for WhatsApp
-  const COUNTRY_CODES = [
-    { code: "+33", country: "France" },
-    { code: "+34", country: "Espagne" },
-    { code: "+44", country: "UK" },
-    { code: "+49", country: "Allemagne" },
-    { code: "+32", country: "Belgique" },
-    { code: "+41", country: "Suisse" },
-    { code: "+212", country: "Maroc" },
-    { code: "+1", country: "USA/Canada" },
-    { code: "+39", country: "Italie" },
-    { code: "+31", country: "Pays-Bas" },
-    { code: "+351", country: "Portugal" }
-  ];
-  
   // Pre-select experience from URL params and skip to step 2
   useEffect(() => {
     const expParam = searchParams.get('experience');
