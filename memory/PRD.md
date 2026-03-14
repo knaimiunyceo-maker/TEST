@@ -1,85 +1,130 @@
 # THE BRIDGE - Product Requirements Document
 
-## Original Problem Statement
-Site web pour une marque de voyage "THE BRIDGE" basée sur le concept "Travel • Practice • Experience". Le projet implique la création d'un site web multi-pages avec différentes expériences de voyage comme "Self-Defense", "Visual Storytelling" et "Language Practice".
+## Project Overview
+A multilingual website for "THE BRIDGE" travel brand with the concept "Travel • Practice • Experience". The site offers themed travel experiences in Morocco (Self-Defense, Visual Storytelling, Language Practice) across three destinations: Casablanca, Marrakech, and Agadir.
 
-## User Personas
-- Voyageurs internationaux (18-35 ans) cherchant des expériences authentiques au Maroc
-- Personnes souhaitant combiner voyage et apprentissage
-- Utilisateurs de 6 langues différentes (FR, EN, ES, PT, DE, IT)
+## Tech Stack
+- **Frontend**: React, TailwindCSS, Framer Motion, react-router-dom
+- **Backend**: FastAPI (Python)
+- **UI Components**: Shadcn/UI
+- **Internationalization**: Custom React Context-based i18n (6 languages)
+- **Phone Input**: react-phone-number-input
+- **Email**: Resend API (for booking notifications)
 
-## Core Requirements Implemented ✅
+## Supported Languages
+1. English (EN)
+2. French (FR)
+3. Spanish (ES)
+4. Portuguese (PT)
+5. German (DE)
+6. Italian (IT)
 
-### Multi-Language Support ✅ COMPLETE
-- 6 langues supportées: Français, English, Español, Português, Deutsch, Italiano
-- **Sélecteur de langue visible sur TOUTES les pages**
-- Pages traduites:
-  - ✅ Homepage (App.js)
-  - ✅ Navigation + Footer (PageLayout.js)
-  - ✅ BookPage (formulaire de réservation)
-  - ✅ AboutPage
-  - ✅ HowItWorksPage
-  - ✅ ActivitiesPage
-  - ✅ DestinationsPage
-  - ✅ CGVPage (titre traduit)
-  - ✅ MentionsLegalesPage (titre traduit)
-  - ✅ ConfidentialitePage (titre traduit)
-  - ✅ SelfDefensePage
-  - ✅ LanguagePracticePage
-  - ✅ VisualStorytellingPage
+---
 
-### Footer Standardisé ✅
-Structure uniforme sur toutes les pages:
-- THE BRIDGE + "Travel • Practice • Experience"
-- Experiences (Self-Defense, Language Practice, Visual Storytelling)
-- Destinations (Casablanca, Marrakech, Agadir)
-- Company (About, How it Works, Activities, CGV, Mentions légales, Confidentialité)
+## Completed Features ✅
 
-### Booking System ✅
-- Formulaire entièrement traduit dans 6 langues
-- Validation email et téléphone international
-- Protection anti-bot (honeypot)
-- Calendrier weekends (alternance Marrakech/Agadir)
+### Core Pages (All Translated)
+- [x] Homepage (`/`) - Hero, experiences, destinations, testimonials
+- [x] How It Works (`/how-it-works`) - Process explanation + "The Bridge Experience" booking flow
+- [x] About (`/about`) - Team and mission
+- [x] Activities (`/activities`) - All available activities
+- [x] Destinations (`/destinations`) - Overview of all destinations
+- [x] Book Page (`/book`) - Multi-step booking form with "The Bridge Experience" info banner
 
-## Technical Architecture
+### Destination Pages (All Translated with Rich Content)
+- [x] Casablanca (`/destinations/casablanca`) - Modern metropolis, Art Deco architecture
+- [x] Marrakech (`/destinations/marrakech`) - The Red City, medinas, Atlas Mountains
+- [x] Agadir (`/destinations/agadir`) - Beach paradise, surfing, 300+ sunny days
 
-### Frontend
-- React + TailwindCSS
-- react-router-dom pour routing
-- react-phone-number-input pour téléphone
-- Shadcn/UI components
-- LanguageContext pour gestion multilingue
+### Experience Pages (All Translated)
+- [x] Self-Defense (`/experiences/self-defense`)
+- [x] Visual Storytelling (`/experiences/visual-storytelling`)
+- [x] Language Practice (`/experiences/language-practice`)
 
-### Key Files Modifiés (Session Mars 2026)
-- `/app/frontend/src/pages/components/PageLayout.js` - Layout + sélecteur langue
-- `/app/frontend/src/pages/HowItWorksPage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/ActivitiesPage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/DestinationsPage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/SelfDefensePage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/LanguagePracticePage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/VisualStorytellingPage.js` - Traduit 6 langues
-- `/app/frontend/src/pages/CGVPage.js` - Titre traduit
-- `/app/frontend/src/pages/MentionsLegalesPage.js` - Titre traduit
-- `/app/frontend/src/pages/ConfidentialitePage.js` - Titre traduit
+### Legal Pages (Fully Translated - All 6 Languages)
+- [x] Terms & Conditions (`/cgv`) - 17 sections, complete translations
+- [x] Legal Notice (`/mentions-legales`) - Company info, hosting, IP, applicable law
+- [x] Privacy Policy (`/confidentialite`) - GDPR compliant, 11 sections
 
-## Prioritized Backlog
+### Components
+- [x] PageLayout - Global header/footer with language selector
+- [x] CookieBanner - Translated cookie consent banner
+- [x] Language Selector - Flag-based dropdown in header
 
-### P1 - Enhancement
-- Traduire le contenu complet des pages légales (CGV, Mentions, Confidentialité)
-- Ajouter plus de contenu aux pages destinations individuelles (Casablanca, Marrakech, Agadir)
-- Traduire le CookieBanner dans toutes les langues
+### "The Bridge Experience" Booking Process Content (December 2025)
+Added to HowItWorksPage and BookPage:
+1. **Step 1: Human Connection** - 15-minute call with local referent
+2. **Step 2: Priority Booking** - 30% deposit via Stripe, 24h validity
+3. **Step 3: Group Formation (Quorum)** - 10 participants required, "Circle of Explorers"
+4. **Step 4: Confirmation or Full Refund** - 100% guarantee, IBAN bank transfer
 
-### P2 - Future
-- Intégration Stripe pour paiements
-- Base de données pour les expériences (actuellement hardcodé)
-- SEO multilangue (balises hreflang)
-- Analytics integration
+---
+
+## Technical Implementation
+
+### i18n System
+- Central context: `/src/LanguageContext.js`
+- Language stored in localStorage: `thebridge-language`
+- Translations co-located in component files
+- Hook: `useLanguage()` returns `{ language, changeLanguage }`
+
+### Key Files
+```
+/app/frontend/src/
+├── App.js                 # Main app with routing
+├── LanguageContext.js     # i18n context provider
+├── components/
+│   └── CookieBanner.js    # Cookie consent (translated)
+└── pages/
+    ├── components/
+    │   └── PageLayout.js  # Global layout with header/footer
+    ├── AboutPage.js
+    ├── ActivitiesPage.js
+    ├── AgadirPage.js       # ✅ Fully translated + enriched
+    ├── BookPage.js         # ✅ + Bridge Experience banner
+    ├── CasablancaPage.js   # ✅ Fully translated
+    ├── CGVPage.js          # ✅ Fully translated (17 sections)
+    ├── ConfidentialitePage.js # ✅ Fully translated (11 sections)
+    ├── DestinationsPage.js
+    ├── HowItWorksPage.js   # ✅ + Bridge Experience steps
+    ├── LanguagePracticePage.js
+    ├── MarrakechPage.js    # ✅ Fully translated + enriched
+    ├── MentionsLegalesPage.js # ✅ Fully translated
+    ├── SelfDefensePage.js
+    └── VisualStorytellingPage.js
+```
+
+---
 
 ## API Endpoints
-- `GET /api/experiences` - Liste des expériences
-- `POST /api/contact` - Soumission formulaire
+- `GET /api/experiences` - List all experiences (hardcoded)
+- `POST /api/contact` - Submit booking request (sends email via Resend)
 
-## Known Limitations
-- Données expériences hardcodées
-- Cookie banner reste en français (à traduire)
-- Contenu des pages légales pas entièrement traduit (structure uniquement)
+---
+
+## Pending/Future Tasks
+
+### P1 - High Priority
+- [ ] Integrate Stripe for online payments
+- [ ] Test real-time form validation on BookPage
+
+### P2 - Medium Priority
+- [ ] Migrate hardcoded data to MongoDB database
+- [ ] Extract HomePage component from App.js
+- [ ] Add SEO meta tags for each page
+
+### P3 - Low Priority
+- [ ] Add more testimonials/reviews
+- [ ] Implement blog section
+- [ ] Add social media integration
+
+---
+
+## Notes
+- **Mocked Data**: Backend currently uses hardcoded JSON data
+- **Legal Text**: French is the official legal language; translations include disclaimer notices
+- **Mobile Responsive**: All pages are mobile-friendly with responsive design
+
+---
+
+*Last Updated: December 2025*
