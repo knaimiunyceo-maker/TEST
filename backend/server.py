@@ -736,6 +736,354 @@ async def get_trip(trip_id: str):
     raise HTTPException(status_code=404, detail="Trip not found")
 
 
+# ============================================
+# STRIPE PAYMENT ENDPOINTS
+# ============================================
+
+@api_router.post("/bookings/checkout", response_model=CheckoutResponse)
+async def create_booking_checkout(booking_data: BookingCreate, request: Request):
+    """
+    Create a booking and initiate Stripe checkout for 30% deposit.
+    """
+    if not STRIPE_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Payment service unavailable")
+    
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=503, detail="Stripe not configured")
+    
+    # Get experience price from server-side definition (SECURITY: never trust frontend)
+    experience_id = booking_data.experience_id
+    if experience_id not in EXPERIENCE_PRICES:
+        raise HTTPException(status_code=400, detail=f"Invalid experience: {experience_id}")
+    
+    base_price = EXPERIENCE_PRICES[experience_id]
+    total_price = base_price * booking_data.participants
+    deposit_amount = round(total_price * 0.30, 2)  # 30% deposit
+    
+    # Create booking record
+    booking = Booking(
+        experience_id=experience_id,
+        name=booking_data.name,
+        email=booking_data.email,
+        phone=booking_data.phone,
+        dates=booking_data.dates,
+        city=booking_data.city,
+        participants=booking_data.participants,
+        room_type=booking_data.room_type,
+        message=booking_data.message,
+        total_price=total_price,
+        deposit_amount=deposit_amount,
+        currency="eur",
+        payment_status="pending"
+    )
+    
+    # Store booking in database
+    booking_doc = booking.model_dump()
+    booking_doc['created_at'] = booking_doc['created_at'].isoformat()
+    booking_doc['updated_at'] = booking_doc['updated_at'].isoformat()
+    await db.bookings.insert_one(booking_doc)
+    logger.info(f"Booking created: {booking.id}")
+    
+    # Build success/cancel URLs from frontend origin
+    origin_url = booking_data.origin_url.rstrip('/')
+    success_url = f"{origin_url}/book/success?session_id={{CHECKOUT_SESSION_ID}}&booking_id={booking.id}"
+    cancel_url = f"{origin_url}/book?cancelled=true"
+    
+    # Initialize Stripe checkout
+    host_url = str(request.base_url).rstrip('/')
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
+    
+    # Create checkout session
+    checkout_request = CheckoutSessionRequest(
+        amount=deposit_amount,
+        currency="eur",
+        success_url=success_url,
+        cancel_url=cancel_url,
+        metadata={
+            "booking_id": booking.id,
+            "experience_id": experience_id,
+            "customer_email": booking_data.email,
+            "customer_name": booking_data.name,
+            "deposit_percentage": "30"
+        }
+    )
+    
+    try:
+        session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+    except Exception as e:
+        logger.error(f"Stripe checkout creation failed: {e}")
+        raise HTTPException(status_code=500, detail="Failed to create payment session")
+    
+    # Update booking with checkout session ID
+    await db.bookings.update_one(
+        {"id": booking.id},
+        {"$set": {
+            "checkout_session_id": session.session_id,
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }}
+    )
+    
+    # Create payment transaction record
+    payment_transaction = PaymentTransaction(
+        booking_id=booking.id,
+        session_id=session.session_id,
+        amount=deposit_amount,
+        currency="eur",
+        payment_status="initiated",
+        metadata={
+            "experience_id": experience_id,
+            "customer_email": booking_data.email
+        }
+    )
+    
+    tx_doc = payment_transaction.model_dump()
+    tx_doc['created_at'] = tx_doc['created_at'].isoformat()
+    tx_doc['updated_at'] = tx_doc['updated_at'].isoformat()
+    await db.payment_transactions.insert_one(tx_doc)
+    logger.info(f"Payment transaction created: {payment_transaction.id}")
+    
+    return CheckoutResponse(
+        checkout_url=session.url,
+        session_id=session.session_id,
+        booking_id=booking.id,
+        deposit_amount=deposit_amount,
+        total_price=total_price,
+        currency="eur"
+    )
+
+
+@api_router.get("/bookings/payment-status/{session_id}")
+async def get_payment_status(session_id: str, request: Request):
+    """
+    Check the payment status of a checkout session.
+    """
+    if not STRIPE_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Payment service unavailable")
+    
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=503, detail="Stripe not configured")
+    
+    # Find the payment transaction
+    transaction = await db.payment_transactions.find_one(
+        {"session_id": session_id},
+        {"_id": 0}
+    )
+    
+    if not transaction:
+        raise HTTPException(status_code=404, detail="Payment session not found")
+    
+    # Initialize Stripe checkout
+    host_url = str(request.base_url).rstrip('/')
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
+    
+    try:
+        checkout_status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+    except Exception as e:
+        logger.error(f"Failed to get checkout status: {e}")
+        raise HTTPException(status_code=500, detail="Failed to check payment status")
+    
+    # Map Stripe payment status
+    new_status = "pending"
+    if checkout_status.payment_status == "paid":
+        new_status = "paid"
+    elif checkout_status.status == "expired":
+        new_status = "expired"
+    elif checkout_status.status == "complete" and checkout_status.payment_status == "paid":
+        new_status = "paid"
+    
+    # Update transaction and booking if status changed
+    if transaction.get('payment_status') != new_status:
+        now = datetime.now(timezone.utc).isoformat()
+        
+        # Update payment transaction
+        await db.payment_transactions.update_one(
+            {"session_id": session_id},
+            {"$set": {
+                "payment_status": new_status,
+                "updated_at": now
+            }}
+        )
+        
+        # Update booking payment status
+        await db.bookings.update_one(
+            {"id": transaction['booking_id']},
+            {"$set": {
+                "payment_status": new_status,
+                "updated_at": now
+            }}
+        )
+        
+        logger.info(f"Payment status updated: {session_id} -> {new_status}")
+        
+        # Send confirmation email if paid
+        if new_status == "paid":
+            booking = await db.bookings.find_one(
+                {"id": transaction['booking_id']},
+                {"_id": 0}
+            )
+            if booking:
+                asyncio.create_task(send_booking_confirmation_email(booking))
+    
+    return {
+        "session_id": session_id,
+        "booking_id": transaction['booking_id'],
+        "payment_status": new_status,
+        "amount": checkout_status.amount_total / 100,  # Convert from cents
+        "currency": checkout_status.currency,
+        "stripe_status": checkout_status.status
+    }
+
+
+@api_router.get("/bookings/{booking_id}")
+async def get_booking(booking_id: str):
+    """Get booking details by ID"""
+    booking = await db.bookings.find_one({"id": booking_id}, {"_id": 0})
+    if not booking:
+        raise HTTPException(status_code=404, detail="Booking not found")
+    return booking
+
+
+@api_router.post("/webhook/stripe")
+async def stripe_webhook(request: Request):
+    """Handle Stripe webhook events"""
+    if not STRIPE_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Payment service unavailable")
+    
+    try:
+        body = await request.body()
+        signature = request.headers.get("Stripe-Signature")
+        
+        host_url = str(request.base_url).rstrip('/')
+        webhook_url = f"{host_url}/api/webhook/stripe"
+        stripe_checkout = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
+        
+        webhook_response = await stripe_checkout.handle_webhook(body, signature)
+        
+        logger.info(f"Webhook received: {webhook_response.event_type} - {webhook_response.session_id}")
+        
+        # Update payment status based on webhook
+        if webhook_response.payment_status == "paid":
+            now = datetime.now(timezone.utc).isoformat()
+            
+            await db.payment_transactions.update_one(
+                {"session_id": webhook_response.session_id},
+                {"$set": {
+                    "payment_status": "paid",
+                    "updated_at": now
+                }}
+            )
+            
+            # Get booking_id from metadata
+            booking_id = webhook_response.metadata.get("booking_id")
+            if booking_id:
+                await db.bookings.update_one(
+                    {"id": booking_id},
+                    {"$set": {
+                        "payment_status": "paid",
+                        "updated_at": now
+                    }}
+                )
+                
+                # Send confirmation email
+                booking = await db.bookings.find_one({"id": booking_id}, {"_id": 0})
+                if booking:
+                    asyncio.create_task(send_booking_confirmation_email(booking))
+        
+        return {"status": "ok"}
+    
+    except Exception as e:
+        logger.error(f"Webhook processing error: {e}")
+        raise HTTPException(status_code=400, detail="Webhook processing failed")
+
+
+async def send_booking_confirmation_email(booking: dict):
+    """Send booking confirmation email after successful payment"""
+    if not RESEND_AVAILABLE or not RESEND_API_KEY:
+        logger.warning("Email service not available")
+        return
+    
+    try:
+        # Email to customer
+        customer_email_content = f"""
+        <h2>Booking Confirmation - The Bridge</h2>
+        <p>Dear {booking['name']},</p>
+        <p>Thank you for your deposit! Your booking has been confirmed.</p>
+        
+        <h3>Booking Details:</h3>
+        <ul>
+            <li><strong>Experience:</strong> {booking['experience_id'].replace('-', ' ').title()}</li>
+            <li><strong>Dates:</strong> {booking['dates']}</li>
+            <li><strong>City:</strong> {booking['city']}</li>
+            <li><strong>Participants:</strong> {booking['participants']}</li>
+            <li><strong>Room Type:</strong> {booking['room_type']}</li>
+        </ul>
+        
+        <h3>Payment Summary:</h3>
+        <ul>
+            <li><strong>Deposit Paid (30%):</strong> €{booking['deposit_amount']:.2f}</li>
+            <li><strong>Total Price:</strong> €{booking['total_price']:.2f}</li>
+            <li><strong>Remaining Balance:</strong> €{booking['total_price'] - booking['deposit_amount']:.2f}</li>
+        </ul>
+        
+        <p>A member of our team will contact you soon with next steps.</p>
+        
+        <p>Best regards,<br>The Bridge Team</p>
+        """
+        
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [booking['email']],
+            "subject": "Booking Confirmed - The Bridge Experience",
+            "html": customer_email_content
+        })
+        
+        # Email to admin
+        if NOTIFICATION_EMAIL:
+            admin_email_content = f"""
+            <h2>New Booking Received!</h2>
+            <p><strong>Customer:</strong> {booking['name']} ({booking['email']})</p>
+            <p><strong>Phone:</strong> {booking['phone']}</p>
+            <p><strong>Experience:</strong> {booking['experience_id']}</p>
+            <p><strong>Dates:</strong> {booking['dates']}</p>
+            <p><strong>City:</strong> {booking['city']}</p>
+            <p><strong>Participants:</strong> {booking['participants']}</p>
+            <p><strong>Deposit Paid:</strong> €{booking['deposit_amount']:.2f}</p>
+            <p><strong>Total Price:</strong> €{booking['total_price']:.2f}</p>
+            <p><strong>Message:</strong> {booking.get('message', 'N/A')}</p>
+            """
+            
+            resend.Emails.send({
+                "from": SENDER_EMAIL,
+                "to": [NOTIFICATION_EMAIL],
+                "subject": f"New Booking: {booking['name']} - {booking['experience_id']}",
+                "html": admin_email_content
+            })
+        
+        logger.info(f"Confirmation emails sent for booking: {booking['id']}")
+    
+    except Exception as e:
+        logger.error(f"Failed to send confirmation email: {e}")
+
+
+@api_router.get("/experience-prices")
+async def get_experience_prices():
+    """Get experience prices for frontend display"""
+    return {
+        exp_id: {
+            "price": price,
+            "deposit": round(price * 0.30, 2),
+            "currency": "eur"
+        }
+        for exp_id, price in EXPERIENCE_PRICES.items()
+    }
+
+
+# ============================================
+# CONTACT ENDPOINTS
+# ============================================
+
 @api_router.post("/contact", response_model=ContactSubmission)
 async def submit_contact(input: ContactSubmissionCreate):
     """Submit a contact form / booking inquiry"""
