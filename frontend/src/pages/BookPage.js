@@ -919,10 +919,10 @@ ${formData.message || 'Aucun message additionnel'}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl mb-4">
-              Réserver votre expérience
+              {t.hero.title}
             </h1>
             <p className="font-dm text-white/80 text-lg">
-              Complétez les étapes ci-dessous pour envoyer votre demande.
+              {t.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -955,7 +955,7 @@ ${formData.message || 'Aucun message additionnel'}
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-6">
                     <Target className="text-sunset" size={24} />
-                    <h2 className="font-syne font-bold text-xl text-ocean">Choose Your Experience</h2>
+                    <h2 className="font-syne font-bold text-xl text-ocean">{t.step1.title}</h2>
                   </div>
                   <div className="space-y-3">
                     {EXPERIENCES.map((exp) => (
@@ -973,7 +973,7 @@ ${formData.message || 'Aucun message additionnel'}
                         }`}>
                           {exp.icon}
                         </div>
-                        <span className="font-dm font-medium text-ocean">{exp.label}</span>
+                        <span className="font-dm font-medium text-ocean">{t.experiences[exp.id] || exp.label}</span>
                       </button>
                     ))}
                   </div>
