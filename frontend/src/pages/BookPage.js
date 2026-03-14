@@ -379,6 +379,14 @@ const BookPage = () => {
     }
   }, [searchParams]);
 
+  // Clear error when field changes
+  const handleFieldChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: null }));
+    }
+  };
+
   const selectedExperience = EXPERIENCES.find(e => e.id === formData.experience);
   const availableCities = selectedExperience ? ALL_CITIES.filter(c => selectedExperience.cities.includes(c.id)) : [];
   const availableDurations = selectedExperience ? ALL_DURATIONS.filter(d => selectedExperience.durations.includes(d.id)) : [];
