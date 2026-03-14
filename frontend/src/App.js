@@ -675,6 +675,11 @@ const ExperiencesSection = ({ experiences }) => {
       'self-defense-holiday': 'Férias de Defesa Pessoal',
       'language-holiday': 'Férias de Prática de Idiomas',
       'visual-storytelling': 'Férias de Storytelling Visual'
+    },
+    it: {
+      'self-defense-holiday': 'Vacanza Autodifesa',
+      'language-holiday': 'Vacanza Pratica Linguistica',
+      'visual-storytelling': 'Vacanza Visual Storytelling'
     }
   };
 
