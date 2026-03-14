@@ -121,15 +121,24 @@ const Navigation = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
 
+  const navLabels = {
+    experiences: { en: 'Experiences', fr: 'Expériences', es: 'Experiencias', de: 'Erlebnisse', pt: 'Experiências', it: 'Esperienze' },
+    howItWorks: { en: 'How It Works', fr: 'Comment ça marche', es: 'Cómo funciona', de: "So funktioniert's", pt: 'Como funciona', it: 'Come funziona' },
+    activities: { en: 'Activities', fr: 'Activités', es: 'Actividades', de: 'Aktivitäten', pt: 'Atividades', it: 'Attività' },
+    destinations: { en: 'Destinations', fr: 'Destinations', es: 'Destinos', de: 'Reiseziele', pt: 'Destinos', it: 'Destinazioni' },
+    about: { en: 'About', fr: 'À propos', es: 'Acerca de', de: 'Über uns', pt: 'Sobre', it: 'Chi siamo' },
+    bookNow: { en: 'Book Now', fr: 'Réserver', es: 'Reservar', de: 'Buchen', pt: 'Reservar', it: 'Prenota' }
+  };
+
   const navLinks = [
-    { href: "/experiences", label: language === 'fr' ? 'Expériences' : language === 'es' ? 'Experiencias' : language === 'de' ? 'Erlebnisse' : language === 'pt' ? 'Experiências' : 'Experiences', isRoute: true },
-    { href: "/how-it-works", label: language === 'fr' ? 'Comment ça marche' : language === 'es' ? 'Cómo funciona' : language === 'de' ? 'So funktioniert\'s' : language === 'pt' ? 'Como funciona' : 'How It Works', isRoute: true },
-    { href: "/activities", label: language === 'fr' ? 'Activités' : language === 'es' ? 'Actividades' : language === 'de' ? 'Aktivitäten' : language === 'pt' ? 'Atividades' : 'Activities', isRoute: true },
-    { href: "/destinations", label: language === 'fr' ? 'Destinations' : language === 'es' ? 'Destinos' : language === 'de' ? 'Reiseziele' : language === 'pt' ? 'Destinos' : 'Destinations', isRoute: true },
-    { href: "/about", label: language === 'fr' ? 'À propos' : language === 'es' ? 'Acerca de' : language === 'de' ? 'Über uns' : language === 'pt' ? 'Sobre' : 'About', isRoute: true },
+    { href: "/experiences", label: navLabels.experiences[language] || navLabels.experiences.en, isRoute: true },
+    { href: "/how-it-works", label: navLabels.howItWorks[language] || navLabels.howItWorks.en, isRoute: true },
+    { href: "/activities", label: navLabels.activities[language] || navLabels.activities.en, isRoute: true },
+    { href: "/destinations", label: navLabels.destinations[language] || navLabels.destinations.en, isRoute: true },
+    { href: "/about", label: navLabels.about[language] || navLabels.about.en, isRoute: true },
   ];
 
-  const bookNowLabel = language === 'fr' ? 'Réserver' : language === 'es' ? 'Reservar' : language === 'de' ? 'Buchen' : language === 'pt' ? 'Reservar' : 'Book Now';
+  const bookNowLabel = navLabels.bookNow[language] || navLabels.bookNow.en;
 
   return (
     <motion.nav
