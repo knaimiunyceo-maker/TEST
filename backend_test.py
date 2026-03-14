@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class BridgeAPITester:
-    def __init__(self, base_url="https://bridge-travel-1.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://travel-bridge-1.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0

@@ -1,143 +1,173 @@
 <analysis>**original_problem_statement:**
-The user wants to build a website for a travel brand, THE BRIDGE, based on the concept Travel • Practice • Experience. The project has evolved significantly, from a single page to a multi-page site.
+The user wants to build a website for a travel brand, THE BRIDGE, based on the concept Travel • Practice • Experience. The project started with creating experience pages, a booking system with custom business logic (e.g., 14-day lead time), and several static content pages. The focus then shifted from a payment-based booking system to a hybrid lead-capture form with enhanced security and validation. The most recent and ongoing request is to make the entire website multilingual (English, French, Spanish, German, Portuguese, and Italian) and enrich the content on several pages.
 
-The most recent user requests focus on refining the experience formats:
-1.  **Self-Defense Experience:** Must now be a Weekend Experience only (Friday-Sunday), alternating monthly between Marrakech and Agadir, presented in a simple recurring calendar view. This has been implemented.
-2.  **Visual Storytelling Experience:** The user was impressed with the new Self-Defense format and has requested that the Visual Storytelling experience be updated to follow the exact same weekend calendar model.
-3.  **Language Practice Experience:** This experience has been redesigned based on a reference site. It has a weekly pricing model (not degressive), is only available in Casablanca and Marrakech, and requires a minimum duration of 7 days.
-4.  **Homepage Cleanup:** The user requested the removal of all pricing, detailed activity lists, and supplementary sections (like Optional Activities) from the homepage cards to simplify the initial user view.
-5.  **Responsiveness:** The user requested the site be made responsive and fluid across all devices.
+PRODUCT REQUIREMENTS:
+1.  A multi-page website with a consistent header and footer.
+2.  Experience Pages: Self-Defense, Visual Storytelling, and Language Practice.
+3.  Destination Pages: Casablanca, Marrakech, Agadir.
+4.  Static Pages: About, How It Works, Activities, CGV, Legal, Privacy.
+5.  A multi-step booking form () that captures user information as a lead.
+6.  The entire website must be translated into English, French, Spanish, German, Portuguese, and Italian.
+7.  A language selector must be present on every page.
 
 **User's preferred language**: French
 
 **what currently exists?**
-The application is a full-stack project with a FastAPI backend and a React frontend using  for its multi-page architecture.
+The application is a full-stack project with a FastAPI backend and a React frontend. The backend serves hardcoded JSON data. The frontend is a multi-page application where nearly all pages have been refactored to support internationalization (i18n) across 6 languages (EN, FR, ES, DE, PT, IT).
 
--   **Backend ():** Serves hardcoded JSON data for all travel experiences. The data model has been updated multiple times to reflect changes in pricing, destinations, and experience formats. The latest structure supports the new Weekend Experience format for Self-Defense.
--   **Frontend:** The UI has been significantly refined.
-    -   : Acts as the main router and still contains the logic for the homepage. It has become very large and complex.
-    -   **Experience Pages:** The  has been completely rewritten to feature a recurring monthly weekend calendar, which is the new desired standard for weekend trips.  has been redesigned to look more professional, with a clear weekly pricing table.
-    -   **Responsiveness:** Global CSS changes and component adjustments have been made to ensure the site is fluid and responsive on desktop, tablet, and mobile devices.
-    -   **Booking Form ():** The multi-step form has been updated to dynamically show different options (e.g., course types, cities, durations) based on the selected experience.
+A central  component provides a consistent, translated header (with a language selector) and footer to all sub-pages. The homepage () and the complex booking page () have also been fully internationalized. Redundant files from a previous iteration have been cleaned up. The translation is managed via a React Context () and translation objects, most of which are now co-located within their respective page components.
 
 **Last working item**:
--   **Last item agent was working:** The agent was replicating the successful Weekend Experience format from the Self-Defense page for the Visual Storytelling experience. The agent had just overwritten  with the new calendar-based structure and was about to update the backend data in .
+-   **Last item agent was working:** Fulfilling the user's request to translate all remaining components and enrich content. The agent had started by working on translating the  component and the individual destination pages, beginning with .
 -   **Status:** IN PROGRESS
--   **Agent Testing Done:** N
+-   **Agent Testing Done:** N (for this specific task, though prior translation work was tested)
 -   **Which testing method agent to use?** frontend testing agent
 -   **User Testing Done:** N
 
 **All Pending/In progress Issue list**:
--   **Issue 1 (P0):** Complete the implementation of the Visual Storytelling Weekend format.
+-   **Issue 1 (P0):** The  is not yet translated.
+-   **Issue 2 (P1):** The user stated that the content of the legal pages (, , ) is incomplete. Only the titles are translated, but the body content needs to be added for all languages.
+-   **Issue 3 (P2):** Real-time form validation on  was implemented in a previous session but was never explicitly tested and verified before the focus shifted to internationalization.
 
 **Issues Detail:**
--   **Issue 1: Complete the implementation of the Visual Storytelling Weekend format**
-    -   **Attempted fixes:** The agent successfully overwrote  with the new code structure.
+-   **Issue 1: The  is not yet translated**
+    -   **Attempted fixes:** The agent viewed the file to prepare for translation.
     -   **Next debug checklist:**
-        1.  Edit  to update the  experience data. It should be a weekend-only format with a fixed price, alternating between its designated cities (e.g., Marrakech and Agadir).
-        2.  Update  to correctly display the summary for the new Visual Storytelling weekend format (e.g., showing a Weekend Experience badge).
-        3.  Update  to ensure the booking flow correctly handles the new weekend selection logic for Visual Storytelling.
-        4.  Take screenshots of the new  page to verify the calendar, the  page to check the summary card, and the booking flow to confirm it works.
-    -   **Why fix this issue and what will be achieved with the fix?** This will bring the Visual Storytelling experience in line with the new, user-approved weekend format, creating a consistent user experience.
+        1.  Refactor .
+        2.  Add a  object to the file with text for all 6 languages.
+        3.  Use the  hook to get the current language and the corresponding text.
+        4.  Replace the hardcoded text in the JSX with the dynamic translated text.
+        5.  Take a screenshot on any page to verify the banner appears correctly in a non-default language.
+    -   **Why fix this issue and what will be achieved with the fix?** To ensure every part of the user-facing UI is translated, providing a consistent experience and meeting the user's request for full-site translation.
+    -   **Status:** NOT STARTED
+    -   **Is recurring issue?** N
+    -   **Should Test frontend/backend/both after fix?** frontend
+    -   **Blocked on other issue:** None.
+-   **Issue 2: Incomplete content on legal pages**
+    -   **Attempted fixes:** The agent set up the translation structure for these pages.
+    -   **Next debug checklist:**
+        1.  Review , , and .
+        2.  The user needs to provide the full legal text. For now, the agent can populate the translation objects with more descriptive placeholder text for each language to show the system works.
+        3.  Example for : in the  object, replace the placeholder with a few paragraphs of Lorem Ipsum for each language.
+        4.  Take screenshots of these pages in different languages to confirm the content appears.
+    -   **Why fix this issue and what will be achieved with the fix?** To complete the content of the website as requested.
     -   **Status:** IN PROGRESS
     -   **Is recurring issue?** N
-    -   **Should Test frontend/backend/both after fix?** both
+    -   **Should Test frontend/backend/both after fix?** frontend
+    -   **Blocked on other issue:** Blocked on receiving the final legal text from the user, but can proceed with placeholders.
+-   **Issue 3: Test Real-time form validation**
+    -   **Attempted fixes:** The code was implemented and partially internationalized.
+    -   **Next debug checklist:**
+        1.  Navigate to the  page.
+        2.  Enter invalid data in the email and phone fields and click away to trigger .
+        3.  Verify that translated error messages appear correctly.
+        4.  Correct the data and verify the messages disappear.
+        5.  Call the frontend testing agent to do a regression test on the booking flow.
+    -   **Why fix this issue and what will be achieved with the fix?** This improves user experience on the most critical form of the site.
+    -   **Status:** NOT STARTED
+    -   **Is recurring issue?** N
+    -   **Should Test frontend/backend/both after fix?** frontend
     -   **Blocked on other issue:** None.
 
 **In progress Task List**:
--   **Task 1: Implement Visual Storytelling Weekend (P0)**
-    -   **Where to resume:** Modify the backend data in  for the  experience.
-    -   **What will be achieved with this?** The Visual Storytelling page will feature the same recurring monthly calendar as the Self-Defense page.
+-   **Task 1: Translate and enrich destination pages (P1)**
+    -   **Where to resume:** The agent has viewed . The next step is to refactor it to use the  hook, add a  object with enriched content for all languages, and replace the static content. Then, repeat this process for  and .
+    -   **What will be achieved with this?** The destination pages will be fully translated and have more engaging content, as requested by the user.
     -   **Status:** IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?** both
-    -   **Blocked on something:** None.
+    -   **Should Test frontend/backend/both after fix?** frontend
+    -   **Blocked on something:** Blocked on user providing specific content, but can proceed with generated/placeholder content.
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks:**
-    -   **(P1)** Populate the content for the remaining placeholder pages, such as .
-    -   **(P1)** For the Language Practice course, add a feature to show specific start dates for absolute beginners, as this is a common practice for language schools.
+    -   **(P1) Create Functional Links:** The destination pages (Casablanca, Marrakech, Agadir) exist, but the footer links pointing to them may need to be verified or implemented.
 -   **Future Tasks:**
-    -   **(P2)** Integrate Stripe for online payments.
-    -   **(P2)** Add complete English/French translations for all newly created pages and content.
-    -   **(P3)** Refactor all hardcoded data from  into a proper database to improve scalability and maintainability.
-    -   **(P3)** Clean up  by moving the homepage logic into its own component () and potentially abstracting the large translation objects.
+    -   **(P2)** Integrate Stripe for online payments to complete the booking flow.
+    -   **(P3)** Refactor all hardcoded experience data from  into a proper database for scalability.
+    -   **(P3)** Refactor the oversized  file by extracting the homepage logic into its own component ().
 
 **Completed work in this session**
--   **Self-Defense Experience Rework:** Successfully implemented the new Weekend Experience format with a recurring monthly calendar alternating between Marrakech and Agadir.
--   **Language Practice Page Redesign:** Overhauled the page based on a reference site, implementing a linear weekly pricing model (€400/week) and restricting it to Casablanca and Marrakech.
--   **Responsiveness & Fluidity:** Made the entire website responsive and fluid across mobile, tablet, and desktop devices, adding smooth CSS transitions.
--   **Homepage Simplification:** Removed pricing, detailed activity lists (Morning Practice), and entire sections (Optional Activities, Fair Price Catalogue) from the homepage.
--   **Booking Form Enhancement:** The booking form () was significantly improved to be dynamic, showing conditional fields like course types for English classes and updating available cities based on the chosen experience.
--   **Data Model & Content Updates:** Reacted to multiple user requests to change which experiences are available in which cities, renaming Combat to Self-Defense, and re-instating accidentally removed content.
--   **Bug Fixes:** Resolved an error in the main navigation link for the Self-Defense page and fixed a booking flow bug reported by the user.
+-   **Internationalization (i18n) Framework:** Implemented a site-wide translation system for 6 languages (EN, FR, ES, DE, PT, IT) using React Context.
+-   **Global Language Selector:** Added a language selector to the header of every page by integrating it into the  component.
+-   **Full Page Translations:** Successfully translated the homepage (), , all experience pages (, etc.), and all main static pages (, , , , etc.).
+-   **Footer Standardization:** Updated the footer on all pages to a new, consistent, and translated structure.
+-   **Code Cleanup:** Deleted redundant files (, ) and removed all lingering references, fixing compilation errors.
+-   **Bug Fixes:** Resolved a critical bug in the language selector ( vs. ) and fixed several JSX parsing errors that occurred during the refactoring process.
+
+**Earlier issues found/mentioned but not fixed**
+-   None. The issues from the previous handoff were addressed in this session.
+
+**Known issue recurrence from previous fork**
+-   None.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
 -   **Backend:** FastAPI
--   **Frontend:** React, TailwindCSS, 
--   **UI Components:** Shadcn/UI
--   **State Management:** React Hooks (, )
--   **Architecture:** SPA with a multi-page routing structure. Data is hardcoded in the backend.
+-   **Frontend:** React, TailwindCSS, , 
+-   **Internationalization (i18n):** A system built on React's Context API (). The  hook provides components with the current language and a  function. Translation strings are mostly co-located within their respective page components for modularity.
+-   **Data Source:** Hardcoded JSON in the Python backend.
 
 **key DB schema**
--   No database is currently in use. All data is hardcoded in .
+-   No database is currently in use.
 
 **changes in tech stack**
--   None.
+-   No new dependencies were added. The primary change was the implementation of a custom i18n architecture.
 
 **All files of reference**
--    (The single source of truth for all data)
--    (Main router, homepage logic, and translations)
--    (The template for the new weekend format)
--    (The file to be completed)
--    (Defines the language course structure)
--    (Handles the complex booking logic)
--    (Shared navigation)
--    (Contains new global styles for transitions and responsiveness)
+-   : Crucial component that provides the global translated header/footer and language selector to all sub-pages.
+-   : The core of the translation system.
+-   : The main application component, handling routing and the homepage UI/logic.
+-   : The complex, multi-step booking form, now fully translated.
+-   : The next component to be translated.
+-   All files within  were modified to support translations.
 
 **Areas that need refactoring**:
--   The  file is extremely large and brittle. It combines routing, the entire homepage component, and large translation objects. The homepage content should be extracted to its own component (e.g., ).
--   All application data is hardcoded in . This is not scalable and should be migrated to a database.
+-   The translation strings are inconsistently located. Some are in a global , while most are now inside their own component files. This could be standardized into one pattern (e.g., all co-located) for better maintainability.
+-   The  file is still very large and contains all the logic and JSX for the homepage. This should be extracted to a dedicated  component.
+-   Backend data in  is hardcoded and should be migrated to a database.
 
 **key api endpoints**
--   : Serves the list of available experiences.
+-   : Fetches the list of all experiences.
 -   : Handles submissions from the booking form.
 
 **Critical Info for New Agent**
 -   **The user's language is French.** All communication must be in French.
--   The user was very pleased with the new calendar-based Weekend Experience on the Self-Defense page and wants it replicated *exactly* for the Visual Storytelling page. This is the highest priority.
--   The user is very hands-on and provides frequent, specific feedback. Be prepared for rapid changes in direction.
--   The booking flow () is complex and stateful, with logic that changes based on the selected experience. Be careful when modifying it.
+-   The immediate priority is to finish the translation and content enrichment tasks as per the user's latest request: translate , add content to legal pages, and enrich destination pages.
+-   The i18n system relies on the  hook, which returns . Remember to use , not .
+-   When adding translations, follow the established pattern of creating a  object within the component file and using the  hook to select the appropriate text.
 
 **documents and test reports created in this job**
--   
+-    (updated multiple times)
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User:** Update the Self-Defense experience to a new weekend-only format with a recurring monthly calendar. [STATUS: DONE]
-2.  **User:** There's an error when trying to finalize a booking for Self-Defense. [STATUS: RESOLVED, agent confirmed it works]
-3.  **User:** Remove the prices from the  listing page. [STATUS: DONE]
-4.  **User:** The site needs to be responsive and fluid. [STATUS: DONE]
-5.  **User:** The pricing for the English course should be a simple weekly multiplier (€400/week), not degressive. [STATUS: DONE]
-6.  **User:** Update the booking process with a dropdown for English course types and remove Agadir as a city option for this course. [STATUS: DONE]
-7.  **User:** The English course requires a minimum of 7 days and should only be in Marrakech & Casablanca. Redesign the page based on a reference URL provided. [STATUS: DONE]
-8.  **User:** The  page isn't working correctly. [STATUS: RESOLVED]
-9.  **User:** The link for Combat Self Defense in the menu doesn't work. [STATUS: RESOLVED, renamed and link fixed]
-10. **User:** I love the new calendar for Self-Defense! Do the same thing for Visual Storytelling. [STATUS: IN PROGRESS]
+1.  **Agent  message:** Summary of adding language selector to all pages.
+2.  **User:** Translate the remaining pages: , , legal pages (, etc.), experience pages (, etc.), and create the destination pages.
+3.  **Agent:** I will translate all these pages.
+4.  **Agent:** (Starts translating HowItWorksPage, ActivitiesPage, SelfDefensePage).
+5.  **Agent:** (Fixes compilation errors from refactoring).
+6.  **Agent:** (Tests translations with screenshots, confirming they work).
+7.  **Agent  message:** Summary announcing all pages are now translated.
+8.  **User:** Now, translate the , complete the content for the legal pages (currently only titles are translated), and enrich the individual destination pages (Casablanca, etc.). [STATUS: IN PROGRESS]
+9.  **Agent:** I will translate the CookieBanner, complete the legal pages, and enrich the destination pages.
+10. **Agent:** (Starts working on  and ).
 
 **Project Health Check:**
--   **Broken:** No
--   **Mocked:** Yes. All application data is hardcoded in .
+-   **Broken:** No.
+-   **Mocked:** Yes, all application data is hardcoded in the backend.
 
 **3rd Party Integrations**
--   **Resend:** Used for email notifications from the booking form.
+-   **Resend:** Used for email notifications from form submissions.
+-   **react-phone-number-input:** A React component used for capturing and validating international phone numbers on the booking page.
 
 **Testing status**
--   **Testing agent used after significant changes:** NO
+-   **Testing agent used after significant changes:** NO (in this session, but extensive manual screenshot testing was performed for i18n).
 -   **Troubleshoot agent used after agent stuck in loop:** NO
 -   **Test files created:** None.
--   **Known regressions:** None.
+-   **Known regressions:** JSX parsing errors were introduced and fixed during large-scale refactoring. A bug in the language context ( vs. ) was also introduced and fixed. Agent should be cautious with large search-and-replace edits.
+
+**Credentials to test flow:**
+-   N/A
 
 **What agent forgot to execute**
-The agent was in the middle of implementing the user's latest request when the session ended. The immediate next step is to continue that work by updating the backend data for the Visual Storytelling experience.</analysis>
+-   The original task of formally testing the real-time form validation on  was superseded by the user's new, higher-priority requests for internationalization. This remains a pending technical task.</analysis>
