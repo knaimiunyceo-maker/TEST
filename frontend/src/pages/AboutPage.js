@@ -162,10 +162,10 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="font-syne font-black text-4xl sm:text-5xl lg:text-6xl mb-6">
-              About The Bridge
+              {t.heroTitle}
             </h1>
             <p className="font-dm text-xl sm:text-2xl text-sand">
-              A different way to travel
+              {t.heroSubtitle}
             </p>
           </motion.div>
         </div>
@@ -181,13 +181,13 @@ const AboutPage = () => {
             className="text-center"
           >
             <p className="font-dm text-lg text-ocean/80 leading-relaxed mb-6">
-              The Bridge was created for people who love to travel but don't want to spend their days lying on a beach chair.
+              {t.intro1}
             </p>
             <p className="font-dm text-lg text-ocean/80 leading-relaxed mb-6">
-              Our experiences are designed for curious travelers who want to learn something new, stay active, and connect with people while discovering Morocco.
+              {t.intro2}
             </p>
             <p className="font-dm text-lg text-ocean/80 leading-relaxed">
-              Instead of traditional tourism, we offer small group experiences built around <strong className="text-ocean">learning</strong>, <strong className="text-ocean">exploration</strong>, and <strong className="text-ocean">human connection</strong>.
+              {t.intro3} <strong className="text-ocean">{t.learning}</strong>, <strong className="text-ocean">{t.exploration}</strong>, {language === 'fr' ? 'et' : language === 'es' ? 'y' : language === 'it' ? 'e' : language === 'de' ? 'und' : language === 'pt' ? 'e' : 'and'} <strong className="text-ocean">{t.connection}</strong>.
             </p>
           </motion.div>
         </div>
