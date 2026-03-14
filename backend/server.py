@@ -167,6 +167,69 @@ class Trip(BaseModel):
     image: str
 
 
+# Booking and Payment Models
+class BookingCreate(BaseModel):
+    """Model for creating a new booking"""
+    experience_id: str
+    name: str
+    email: EmailStr
+    phone: str
+    dates: str
+    city: str
+    participants: int = 1
+    room_type: str = "shared"
+    message: Optional[str] = None
+    origin_url: str  # Frontend origin for redirect URLs
+
+
+class Booking(BaseModel):
+    """Full booking model with payment info"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    experience_id: str
+    name: str
+    email: EmailStr
+    phone: str
+    dates: str
+    city: str
+    participants: int = 1
+    room_type: str = "shared"
+    message: Optional[str] = None
+    total_price: float
+    deposit_amount: float
+    currency: str = "eur"
+    payment_status: str = "pending"  # pending, paid, failed, refunded
+    checkout_session_id: Optional[str] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class PaymentTransaction(BaseModel):
+    """Model for tracking payment transactions"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    booking_id: str
+    session_id: str
+    amount: float
+    currency: str
+    payment_status: str = "initiated"  # initiated, pending, paid, failed, expired
+    metadata: Optional[Dict[str, str]] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class CheckoutResponse(BaseModel):
+    """Response for checkout session creation"""
+    checkout_url: str
+    session_id: str
+    booking_id: str
+    deposit_amount: float
+    total_price: float
+    currency: str
+
+
 # Static data for Fair Price Catalogue
 CATALOGUE = [
     {
