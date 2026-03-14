@@ -642,6 +642,9 @@ const WeekendCalendarStep = ({ formData, setFormData, selectedExperience, isEarl
 
 const BookPage = () => {
   const [searchParams] = useSearchParams();
+  const { language } = useLanguage();
+  const t = bookPageTranslations[language] || bookPageTranslations.en;
+  
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     experience: "",
@@ -666,7 +669,10 @@ const BookPage = () => {
     { id: "fr", label: "Français", referent: "FR" },
     { id: "en", label: "English", referent: "EN" },
     { id: "es", label: "Español", referent: "ES" },
-    { id: "other", label: "Autre", referent: "INT" }
+    { id: "pt", label: "Português", referent: "PT" },
+    { id: "de", label: "Deutsch", referent: "DE" },
+    { id: "it", label: "Italiano", referent: "IT" },
+    { id: "other", label: language === 'fr' ? 'Autre' : 'Other', referent: "INT" }
   ];
 
   // Pre-select experience from URL params and skip to step 2
