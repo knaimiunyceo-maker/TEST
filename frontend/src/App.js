@@ -465,6 +465,16 @@ const HowItWorksSection = () => {
         { number: "03", title: "Adicione atividades", description: "Personalize sua viagem com excursões ao deserto, aulas de culinária, spa e mais.", icon: <Plus size={28} /> },
         { number: "04", title: "Junte-se à aventura", description: "Conheça seu grupo, pratique sua paixão e crie memórias inesquecíveis.", icon: <Compass size={28} /> }
       ]
+    },
+    it: {
+      title: "Come Funziona",
+      subtitle: "Il tuo viaggio in 4 semplici passi",
+      steps: [
+        { number: "01", title: "Scegli la tua esperienza", description: "Difesa Personale, Lingue o Visual Storytelling — scegli ciò che ti appassiona.", icon: <Target size={28} /> },
+        { number: "02", title: "Seleziona le tue date", description: "Trova un viaggio adatto ai tuoi impegni. Offriamo esperienze tutto l'anno.", icon: <Calendar size={28} /> },
+        { number: "03", title: "Aggiungi attività", description: "Personalizza il tuo viaggio con escursioni nel deserto, corsi di cucina, spa e altro.", icon: <Plus size={28} /> },
+        { number: "04", title: "Unisciti all'avventura", description: "Incontra il tuo gruppo, pratica la tua passione e crea ricordi indimenticabili.", icon: <Compass size={28} /> }
+      ]
     }
   };
 
