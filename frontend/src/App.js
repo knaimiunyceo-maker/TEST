@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { 
   Menu, X, Globe, ChevronDown, Instagram, Linkedin
 } from "lucide-react";
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 // Page imports
 import HomePage from "./pages/HomePage";
