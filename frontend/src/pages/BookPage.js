@@ -488,9 +488,39 @@ ${formData.message || 'Aucun message additionnel'}
           return formData.startDate !== null;
         }
         return formData.duration !== "" && formData.startDate !== null;
-      case 4: return formData.name !== "" && formData.email !== "" && formData.whatsapp !== "" && formData.acceptTerms && formData.acceptData;
+      case 4: 
+        // Validate all fields
+        const emailError = validateEmail(formData.email);
+        const phoneError = validatePhone(formData.whatsapp);
+        return formData.name !== "" && !emailError && !phoneError && formData.acceptTerms && formData.acceptData;
       default: return false;
     }
+  };
+
+  // Validate step 4 before submission
+  const validateStep4 = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Le nom est requis";
+    }
+    
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+    
+    const phoneError = validatePhone(formData.whatsapp);
+    if (phoneError) newErrors.whatsapp = phoneError;
+    
+    if (!formData.acceptTerms) {
+      newErrors.acceptTerms = "Vous devez accepter les CGV";
+    }
+    
+    if (!formData.acceptData) {
+      newErrors.acceptData = "Vous devez accepter le traitement des données";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   return (
