@@ -1099,42 +1099,42 @@ ${formData.message || 'Aucun message additionnel'}
                     <>
                       <div className="flex items-center gap-3 mb-6">
                         <Calendar className="text-sunset" size={24} />
-                        <h2 className="font-syne font-bold text-xl text-ocean">Durée & Date de début</h2>
+                        <h2 className="font-syne font-bold text-xl text-ocean">{t.step3.duration} & {t.step3.startDate}</h2>
                       </div>
                       
                       <div className="mb-6">
-                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">Durée</label>
+                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">{t.step3.duration}</label>
                         <Select value={formData.duration} onValueChange={(v) => setFormData(prev => ({ ...prev, duration: v }))}>
                           <SelectTrigger className="border-border rounded-xl">
-                            <SelectValue placeholder="Sélectionnez la durée" />
+                            <SelectValue placeholder={t.step3.duration} />
                           </SelectTrigger>
                           <SelectContent>
                             {availableDurations.map((d) => (
-                              <SelectItem key={d.id} value={d.id}>{d.label}</SelectItem>
+                              <SelectItem key={d.id} value={d.id}>{t.durations[d.id] || d.label}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div>
-                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">Date de début</label>
+                        <label className="font-dm font-medium text-ocean text-sm mb-2 block">{t.step3.startDate}</label>
                         
                         {/* Info: Mondays only */}
                         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
                           <p className="font-dm text-blue-700 text-sm">
-                            📅 Les cours commencent chaque <strong>lundi</strong>
+                            📅 {language === 'fr' ? 'Les cours commencent chaque' : language === 'es' ? 'Los cursos comienzan cada' : language === 'it' ? 'I corsi iniziano ogni' : language === 'de' ? 'Kurse beginnen jeden' : language === 'pt' ? 'Os cursos começam toda' : 'Courses start every'} <strong>{language === 'fr' ? 'lundi' : language === 'es' ? 'lunes' : language === 'it' ? 'lunedì' : language === 'de' ? 'Montag' : language === 'pt' ? 'segunda-feira' : 'Monday'}</strong>
                           </p>
                         </div>
                         
                         {formData.startDate && (
-                          <p className="font-dm text-sunset mb-2">Sélectionné: <strong>{formatDate(formData.startDate)}</strong></p>
+                          <p className="font-dm text-sunset mb-2">{language === 'fr' ? 'Sélectionné' : language === 'es' ? 'Seleccionado' : language === 'it' ? 'Selezionato' : language === 'de' ? 'Ausgewählt' : language === 'pt' ? 'Selecionado' : 'Selected'}: <strong>{formatDate(formData.startDate)}</strong></p>
                         )}
                         {isEarlyBird && (
                           <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
                             <Gift className="text-green-600" size={20} />
                             <div>
-                              <p className="font-syne font-bold text-green-700 text-sm">Early Bird -8%</p>
-                              <p className="font-dm text-green-600 text-xs">Réservation 30+ jours à l'avance</p>
+                              <p className="font-syne font-bold text-green-700 text-sm">{t.earlyBird.title} -8%</p>
+                              <p className="font-dm text-green-600 text-xs">{t.earlyBird.discount}</p>
                             </div>
                           </div>
                         )}
