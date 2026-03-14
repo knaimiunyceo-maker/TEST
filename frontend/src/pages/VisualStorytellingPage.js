@@ -418,41 +418,20 @@ const VisualStorytellingPage = () => {
 
       {/* Booking Form Section */}
       <section id="booking" className="py-16 px-4 sm:px-6 lg:px-12 bg-warmwhite">
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-lg mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8"
           >
             <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2">Réserver votre weekend</h2>
-            <p className="font-dm text-ocean/70">Visual Storytelling Weekend • €350</p>
+            <p className="font-dm text-ocean/70 mb-6">Visual Storytelling Weekend • €350</p>
+            <Button asChild size="lg" className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-8">
+              <Link to="/book?experience=storytelling">
+                Réserver maintenant <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </Button>
           </motion.div>
-          <SecureBookingForm 
-            onSubmit={async (formData) => {
-              await axios.post(`${API}/contact`, {
-                name: formData.fullName,
-                email: formData.email,
-                message: `📸 RÉSERVATION VISUAL STORYTELLING WEEKEND
-
-👤 PARTICIPANT
-Nom: ${formData.fullName}
-Email: ${formData.email}
-Téléphone: ${formData.phone}
-
-📅 DÉTAILS
-Date: ${formData.date}
-Heure: ${formData.time}
-Nombre de personnes: ${formData.numberOfPeople}
-
-💰 TARIF: €350 / personne
-
-⏰ Soumis le: ${formData.timestamp}`,
-                trip_interest: "Visual Storytelling Weekend"
-              });
-            }}
-            experienceTitle="Visual Storytelling Weekend • €350"
-          />
         </div>
       </section>
 
