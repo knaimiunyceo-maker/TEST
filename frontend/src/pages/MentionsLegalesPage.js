@@ -4,6 +4,16 @@ import {
   ExternalLink, Scale, Bookmark
 } from "lucide-react";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const translations = {
+  en: { title: "Legal Notice", subtitle: "THE BRIDGE — UNYCEO FR" },
+  fr: { title: "Mentions Légales", subtitle: "THE BRIDGE — UNYCEO FR" },
+  es: { title: "Aviso Legal", subtitle: "THE BRIDGE — UNYCEO FR" },
+  pt: { title: "Aviso Legal", subtitle: "THE BRIDGE — UNYCEO FR" },
+  de: { title: "Impressum", subtitle: "THE BRIDGE — UNYCEO FR" },
+  it: { title: "Note Legali", subtitle: "THE BRIDGE — UNYCEO FR" }
+};
 
 const Section = ({ icon: Icon, title, children, index }) => (
   <motion.div
