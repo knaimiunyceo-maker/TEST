@@ -278,10 +278,9 @@ const SelfDefensePage = () => {
             <h1 className="font-syne font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
               Self-Defense Weekend
             </h1>
-            <p className="font-caveat text-sand text-xl mb-4">Vendredi → Dimanche</p>
+            <p className="font-caveat text-sand text-xl mb-4">{t.heroSubtitle}</p>
             <p className="font-dm text-white/80 text-lg max-w-2xl">
-              Un weekend intensif pour apprendre les techniques de self-défense. 
-              Petit groupe de 10 personnes maximum.
+              {t.heroDesc}
             </p>
           </motion.div>
         </div>
@@ -292,10 +291,10 @@ const SelfDefensePage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { icon: <Calendar size={20} />, label: "Durée", value: "3 jours / 2 nuits" },
-              { icon: <Clock size={20} />, label: "Horaires", value: "Vendredi → Dimanche" },
-              { icon: <Users size={20} />, label: "Groupe", value: "Max 10 personnes" },
-              { icon: <MapPin size={20} />, label: "Villes", value: "Marrakech / Agadir" }
+              { icon: <Calendar size={20} />, label: language === 'fr' ? 'Durée' : language === 'es' ? 'Duración' : language === 'it' ? 'Durata' : language === 'de' ? 'Dauer' : language === 'pt' ? 'Duração' : 'Duration', value: t.format2n3d },
+              { icon: <Clock size={20} />, label: language === 'fr' ? 'Horaires' : language === 'es' ? 'Horario' : language === 'it' ? 'Orario' : language === 'de' ? 'Zeiten' : language === 'pt' ? 'Horário' : 'Schedule', value: t.formatDesc },
+              { icon: <Users size={20} />, label: language === 'fr' ? 'Groupe' : language === 'es' ? 'Grupo' : language === 'it' ? 'Gruppo' : language === 'de' ? 'Gruppe' : language === 'pt' ? 'Grupo' : 'Group', value: "Max 10" },
+              { icon: <MapPin size={20} />, label: language === 'fr' ? 'Villes' : language === 'es' ? 'Ciudades' : language === 'it' ? 'Città' : language === 'de' ? 'Städte' : language === 'pt' ? 'Cidades' : 'Cities', value: "Marrakech / Agadir" }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-xl p-4 text-center">
                 <div className="w-10 h-10 bg-sunset/10 rounded-full flex items-center justify-center mx-auto mb-2 text-sunset">
@@ -312,8 +311,8 @@ const SelfDefensePage = () => {
       {/* Calendar */}
       <section id="calendar" className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">Calendrier des Weekends</h2>
-          <p className="font-dm text-ocean/60 text-center mb-8">Choisissez votre weekend</p>
+          <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-2 text-center">{language === 'fr' ? 'Calendrier des Weekends' : language === 'es' ? 'Calendario de Fines de Semana' : language === 'it' ? 'Calendario dei Weekend' : language === 'de' ? 'Wochenend-Kalender' : language === 'pt' ? 'Calendário de Fins de Semana' : 'Weekend Calendar'}</h2>
+          <p className="font-dm text-ocean/60 text-center mb-8">{language === 'fr' ? 'Choisissez votre weekend' : language === 'es' ? 'Elige tu fin de semana' : language === 'it' ? 'Scegli il tuo weekend' : language === 'de' ? 'Wählen Sie Ihr Wochenende' : language === 'pt' ? 'Escolha seu fim de semana' : 'Choose your weekend'}</p>
 
           {/* Month Navigation */}
           <div className="flex items-center justify-between mb-6">
@@ -326,7 +325,7 @@ const SelfDefensePage = () => {
               <ChevronLeft size={18} />
             </Button>
             <h3 className="font-syne font-bold text-xl text-ocean">
-              {monthNames[currentMonth]} {currentYear}
+              {months[currentMonth]} {currentYear}
             </h3>
             <Button 
               variant="outline" 
