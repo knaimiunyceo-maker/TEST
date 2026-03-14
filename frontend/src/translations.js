@@ -1311,6 +1311,38 @@ export const catalogueTranslations = {
       mission: "Nossa missão:",
       missionText: "Dar aos viajantes a melhor experiência possível ao preço mais justo, enquanto apoiamos a economia local marroquina de forma justa e respeitosa."
     }
+  },
+  it: {
+    title: "Il Catalogo dei Prezzi Giusti (2026)",
+    subtitle: "Esperienze autentiche. Prezzi locali reali.",
+    disclaimer: "*I prezzi sono indicativi e possono variare in base alla stagione, disponibilità e condizioni dei partner locali.",
+    columns: {
+      activity: "Attività / Servizio",
+      priceEur: "Il Tuo Prezzo (€)",
+      priceMad: "Prezzo in Dirham (MAD)",
+      reason: "Perché scegliere questa esperienza"
+    },
+    items: {
+      "airport-transfer": { activity: "Transfer Aeroporto", reason: "Prezzo locale diretto. Nessun extra non necessario." },
+      "surf-lesson": { activity: "Lezione di Surf (2h)", reason: "Lezione + attrezzatura inclusa. Direttamente con l'istruttore." },
+      "jet-ski": { activity: "Jet Ski Agadir (30 min)", reason: "Pura adrenalina al prezzo ufficiale della base di sport acquatici." },
+      "hammam-spa": { activity: "Hammam & Spa", reason: "Esperienza di relax completa con scrub e massaggio." },
+      "quad-adventure": { activity: "Avventura in Quad (2h)", reason: "Esplora percorsi off-road al vero prezzo locale." },
+      "cooking-class": { activity: "Corso di Cucina", reason: "Esperienza autentica cucinando con i locali." },
+      "desert-experience": { activity: "Esperienza nel Deserto (3 giorni / 2 notti)", reason: "Viaggio autentico nel deserto con autisti locali rispettati." },
+      "city-tour": { activity: "Tour Guidato della Città", reason: "Scopri la Medina attraverso gli occhi di una guida locale." }
+    },
+    commitment: {
+      title: "Zero Margine, 100% Esperienza",
+      intro: "Non siamo un'agenzia di viaggi tradizionale.",
+      description: "THE BRIDGE agisce come una connessione neutrale tra viaggiatori e fornitori locali di fiducia.",
+      noCommission: "Nessuna commissione:",
+      noCommissionText: "I prezzi visualizzati sono i veri prezzi locali.",
+      transparency: "Totale trasparenza:",
+      transparencyText: "Ogni euro va direttamente alle persone che rendono possibile l'esperienza — l'istruttore, l'autista, la guida o l'artigiano.",
+      mission: "La nostra missione:",
+      missionText: "Offrire ai viaggiatori la migliore esperienza possibile al prezzo più giusto, supportando l'economia locale marocchina in modo equo e rispettoso."
+    }
   }
 };
 
