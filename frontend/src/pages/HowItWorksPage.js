@@ -446,6 +446,73 @@ const HowItWorksPage = () => {
         </div>
       </section>
 
+      {/* The Bridge Experience - Booking Process */}
+      <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-syne font-bold text-2xl sm:text-3xl text-ocean mb-4">{t.experienceTitle}</h2>
+          </div>
+          
+          <div className="space-y-6">
+            {t.experienceSteps.map((step, i) => {
+              const EXPERIENCE_ICONS = [
+                <Phone size={24} />,
+                <Lock size={24} />,
+                <UserCheck size={24} />,
+                <CheckCircle size={24} />
+              ];
+              
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-sunset/10 rounded-xl flex items-center justify-center text-sunset flex-shrink-0">
+                          {EXPERIENCE_ICONS[i]}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-syne font-bold text-lg text-ocean mb-2">{step.title}</h3>
+                          <p className="font-dm text-ocean/80 mb-3">{step.description}</p>
+                          
+                          {step.goal && (
+                            <p className="font-dm text-sunset font-medium text-sm">{step.goal}</p>
+                          )}
+                          
+                          {step.details && (
+                            <ul className="mt-3 space-y-2">
+                              {step.details.map((detail, j) => (
+                                <li key={j} className="flex items-start gap-2 font-dm text-ocean/70 text-sm">
+                                  <Check size={16} className="text-sunset mt-0.5 flex-shrink-0" />
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          
+                          {step.refund && (
+                            <div className="mt-4 p-4 bg-warmwhite rounded-xl space-y-2">
+                              <p className="font-dm text-ocean/70 text-sm">{step.refund}</p>
+                              <p className="font-syne font-bold text-green-600 text-sm">{step.guarantee}</p>
+                              <p className="font-dm text-ocean/60 text-xs mt-2">{step.method}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-12 bg-sunset text-white text-center">
         <div className="max-w-2xl mx-auto">
