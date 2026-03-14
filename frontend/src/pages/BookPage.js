@@ -371,20 +371,20 @@ const BLOCKED_EMAIL_DOMAINS = [
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 // Validate email
-const validateEmail = (email) => {
-  if (!email) return "L'adresse email est requise";
-  if (!EMAIL_REGEX.test(email)) return "Format d'email invalide";
+const validateEmail = (email, t) => {
+  if (!email) return t.validation.emailRequired;
+  if (!EMAIL_REGEX.test(email)) return t.validation.emailInvalid;
   const domain = email.split("@")[1]?.toLowerCase();
   if (BLOCKED_EMAIL_DOMAINS.includes(domain)) {
-    return "Veuillez utiliser une adresse email valide";
+    return t.validation.emailBlocked;
   }
   return null;
 };
 
 // Validate phone
-const validatePhone = (phone) => {
-  if (!phone) return "Le numéro WhatsApp est requis";
-  if (!isValidPhoneNumber(phone)) return "Numéro de téléphone invalide ou incomplet";
+const validatePhone = (phone, t) => {
+  if (!phone) return t.validation.phoneRequired;
+  if (!isValidPhoneNumber(phone)) return t.validation.phoneInvalid;
   return null;
 };
 
