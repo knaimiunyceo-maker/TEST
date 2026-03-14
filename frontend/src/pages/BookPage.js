@@ -323,12 +323,13 @@ const BookPage = () => {
     name: "",
     email: "",
     whatsapp: "",
-    whatsappCountry: "+33",
     preferredLanguage: "fr",
     message: "",
     acceptTerms: false,
-    acceptData: false
+    acceptData: false,
+    honeypot: "" // Anti-bot field
   });
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Language options for routing
