@@ -229,7 +229,7 @@ const PageLayout = ({ children, showBackButton = true }) => {
                     <button
                       key={lang.code}
                       onClick={() => {
-                        setLanguage(lang.code);
+                        changeLanguage(lang.code);
                         setLangMenuOpen(false);
                       }}
                       className={`w-full px-4 py-2 text-left font-dm text-sm flex items-center gap-3 hover:bg-sand/20 transition-colors ${
