@@ -110,6 +110,9 @@ const PROGRAM = [
 ];
 
 const VisualStorytellingPage = () => {
+  const { language } = useLanguage();
+  const t = pageTranslations[language] || pageTranslations.en;
+  
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedWeekend, setSelectedWeekend] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
@@ -118,8 +121,16 @@ const VisualStorytellingPage = () => {
   const currentMonth = currentDate.getMonth();
   const weekends = generateWeekends(currentYear, currentMonth);
 
-  const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
-                      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  const monthNames = {
+    en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    fr: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    pt: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    de: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    it: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+  };
+
+  const months = monthNames[language] || monthNames.en;
 
   const navigateMonth = (direction) => {
     const newDate = new Date(currentDate);
@@ -131,7 +142,7 @@ const VisualStorytellingPage = () => {
   const formatWeekendDate = (friday) => {
     const sunday = new Date(friday);
     sunday.setDate(sunday.getDate() + 2);
-    return `${friday.getDate()} - ${sunday.getDate()} ${monthNames[friday.getMonth()]}`;
+    return `${friday.getDate()} - ${sunday.getDate()} ${months[friday.getMonth()]}`;
   };
 
   return (
@@ -148,6 +159,20 @@ const VisualStorytellingPage = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-sunset rounded-xl flex items-center justify-center">
+                <Camera className="text-white" size={24} />
+              </div>
+              <p className="font-caveat text-sand text-xl">{t.heroSubtitle}</p>
+            </div>
+            <h1 className="font-syne font-black text-3xl sm:text-4xl md:text-5xl mb-4">
+              {t.heroTitle}
+            </h1>
+            <p className="font-dm text-white/80 text-lg max-w-2xl">
+              {t.heroDesc}
+            </p>
+          </motion.div>
+        </div>
+      </section>
               <div className="w-14 h-14 bg-sunset rounded-full flex items-center justify-center">
                 <Camera size={28} className="text-white" />
               </div>
