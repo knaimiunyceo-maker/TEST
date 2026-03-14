@@ -37,25 +37,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Step 1: The Human Connection 📞",
+        title: "Step 1: The Human Connection",
         description: "Once your request is submitted, a local referent speaking your language (French, English, German...) will contact you for a 15-minute call.",
         goal: "Goal: Answer your questions, validate your expectations and ensure the group spirit matches your desires."
       },
       {
         icon: "lock",
-        title: "Step 2: Priority Booking 🔒",
+        title: "Step 2: Priority Booking",
         description: "After the call, your referent sends you a secure payment link (Stripe).",
         details: ["Deposit: 30% of total amount", "Validity: This link is active for 24 hours. After this period, your spot is automatically released to ensure fairness among participants."]
       },
       {
         icon: "users",
-        title: "Step 3: Group Formation (The Quorum) 🤝",
+        title: "Step 3: Group Formation (The Quorum)",
         description: "The Bridge is a sharing experience. To ensure the dynamics and quality of the adventure, each session requires a group of 10 people.",
         details: ["You join the \"Circle of Explorers\" (private group) to follow registration progress in real-time."]
       },
       {
         icon: "check",
-        title: "Step 4: Confirmation or Full Refund ✅",
+        title: "Step 4: Confirmation or Full Refund",
         description: "If the group is complete: Congratulations! You receive your final confirmation and the balance is due 30 days before departure.",
         refund: "If quorum is not reached: We cancel the session.",
         guarantee: "100% Guarantee: We refund your entire deposit.",
@@ -90,25 +90,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Étape 1 : La Connexion Humaine 📞",
+        title: "Étape 1 : La Connexion Humaine",
         description: "Une fois votre demande déposée, un référent local parlant votre langue (Français, Anglais, Allemand...) vous contacte pour un échange de 15 minutes.",
         goal: "But : Répondre à vos questions, valider vos attentes et s'assurer que l'esprit du groupe correspond à vos envies."
       },
       {
         icon: "lock",
-        title: "Étape 2 : La Réservation Prioritaire 🔒",
+        title: "Étape 2 : La Réservation Prioritaire",
         description: "À l'issue de l'appel, votre référent vous envoie un lien de paiement sécurisé (Stripe).",
         details: ["L'acompte : 30% du montant total.", "Validité : Ce lien est actif pendant 24 heures. Passé ce délai, votre place est automatiquement libérée pour garantir l'équité entre les participants."]
       },
       {
         icon: "users",
-        title: "Étape 3 : La Constitution du Groupe (Le Quorum) 🤝",
+        title: "Étape 3 : La Constitution du Groupe (Le Quorum)",
         description: "The Bridge est une expérience de partage. Pour garantir la dynamique et la qualité de l'aventure, chaque session nécessite un groupe de 10 personnes.",
         details: ["Vous rejoignez alors le \"Cercle des Explorateurs\" (groupe privé) pour suivre l'évolution des inscriptions en temps réel."]
       },
       {
         icon: "check",
-        title: "Étape 4 : Confirmation ou Remboursement Intégral ✅",
+        title: "Étape 4 : Confirmation ou Remboursement Intégral",
         description: "Si le groupe est complet : Félicitations ! Vous recevez votre confirmation finale et le solde est à régler 30 jours avant le départ.",
         refund: "Si le quorum n'est pas atteint : Nous annulons la session.",
         guarantee: "Garantie 100% : Nous vous remboursons l'intégralité de votre acompte.",
@@ -143,25 +143,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Paso 1: La Conexión Humana 📞",
+        title: "Paso 1: La Conexión Humana",
         description: "Una vez enviada tu solicitud, un referente local que habla tu idioma (Francés, Inglés, Alemán...) te contactará para una llamada de 15 minutos.",
         goal: "Objetivo: Responder tus preguntas, validar tus expectativas y asegurar que el espíritu del grupo coincida con tus deseos."
       },
       {
         icon: "lock",
-        title: "Paso 2: Reserva Prioritaria 🔒",
+        title: "Paso 2: Reserva Prioritaria",
         description: "Después de la llamada, tu referente te envía un enlace de pago seguro (Stripe).",
         details: ["Depósito: 30% del monto total.", "Validez: Este enlace está activo durante 24 horas. Pasado este plazo, tu plaza se libera automáticamente para garantizar equidad entre los participantes."]
       },
       {
         icon: "users",
-        title: "Paso 3: Formación del Grupo (El Quórum) 🤝",
+        title: "Paso 3: Formación del Grupo (El Quórum)",
         description: "The Bridge es una experiencia compartida. Para garantizar la dinámica y calidad de la aventura, cada sesión requiere un grupo de 10 personas.",
         details: ["Te unes al \"Círculo de Exploradores\" (grupo privado) para seguir el progreso de inscripciones en tiempo real."]
       },
       {
         icon: "check",
-        title: "Paso 4: Confirmación o Reembolso Total ✅",
+        title: "Paso 4: Confirmación o Reembolso Total",
         description: "Si el grupo está completo: ¡Felicidades! Recibes tu confirmación final y el saldo se paga 30 días antes de la salida.",
         refund: "Si no se alcanza el quórum: Cancelamos la sesión.",
         guarantee: "Garantía 100%: Te reembolsamos la totalidad de tu depósito.",
@@ -196,25 +196,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Passo 1: A Conexão Humana 📞",
+        title: "Passo 1: A Conexão Humana",
         description: "Após sua solicitação, um referente local que fala seu idioma (Francês, Inglês, Alemão...) entrará em contato para uma ligação de 15 minutos.",
         goal: "Objetivo: Responder suas perguntas, validar suas expectativas e garantir que o espírito do grupo corresponda aos seus desejos."
       },
       {
         icon: "lock",
-        title: "Passo 2: Reserva Prioritária 🔒",
+        title: "Passo 2: Reserva Prioritária",
         description: "Após a ligação, seu referente envia um link de pagamento seguro (Stripe).",
         details: ["Depósito: 30% do valor total.", "Validade: Este link fica ativo por 24 horas. Após esse prazo, sua vaga é automaticamente liberada para garantir equidade entre os participantes."]
       },
       {
         icon: "users",
-        title: "Passo 3: Formação do Grupo (O Quórum) 🤝",
+        title: "Passo 3: Formação do Grupo (O Quórum)",
         description: "The Bridge é uma experiência de compartilhamento. Para garantir a dinâmica e qualidade da aventura, cada sessão requer um grupo de 10 pessoas.",
         details: ["Você entra no \"Círculo dos Exploradores\" (grupo privado) para acompanhar o progresso das inscrições em tempo real."]
       },
       {
         icon: "check",
-        title: "Passo 4: Confirmação ou Reembolso Total ✅",
+        title: "Passo 4: Confirmação ou Reembolso Total",
         description: "Se o grupo estiver completo: Parabéns! Você recebe sua confirmação final e o saldo deve ser pago 30 dias antes da partida.",
         refund: "Se o quórum não for atingido: Cancelamos a sessão.",
         guarantee: "Garantia 100%: Reembolsamos integralmente seu depósito.",
@@ -249,25 +249,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Schritt 1: Die menschliche Verbindung 📞",
+        title: "Schritt 1: Die menschliche Verbindung",
         description: "Sobald Ihre Anfrage eingereicht ist, kontaktiert Sie ein lokaler Ansprechpartner, der Ihre Sprache spricht (Französisch, Englisch, Deutsch...), für ein 15-minütiges Gespräch.",
         goal: "Ziel: Ihre Fragen beantworten, Ihre Erwartungen bestätigen und sicherstellen, dass der Gruppengeist Ihren Wünschen entspricht."
       },
       {
         icon: "lock",
-        title: "Schritt 2: Prioritäts-Buchung 🔒",
+        title: "Schritt 2: Prioritäts-Buchung",
         description: "Nach dem Gespräch sendet Ihnen Ihr Ansprechpartner einen sicheren Zahlungslink (Stripe).",
         details: ["Anzahlung: 30% des Gesamtbetrags.", "Gültigkeit: Dieser Link ist 24 Stunden aktiv. Nach Ablauf dieser Frist wird Ihr Platz automatisch freigegeben, um Fairness unter den Teilnehmern zu gewährleisten."]
       },
       {
         icon: "users",
-        title: "Schritt 3: Gruppenbildung (Das Quorum) 🤝",
+        title: "Schritt 3: Gruppenbildung (Das Quorum)",
         description: "The Bridge ist ein gemeinsames Erlebnis. Um Dynamik und Qualität des Abenteuers zu garantieren, benötigt jede Session eine Gruppe von 10 Personen.",
         details: ["Sie treten dem \"Kreis der Entdecker\" (private Gruppe) bei, um den Anmeldefortschritt in Echtzeit zu verfolgen."]
       },
       {
         icon: "check",
-        title: "Schritt 4: Bestätigung oder volle Erstattung ✅",
+        title: "Schritt 4: Bestätigung oder volle Erstattung",
         description: "Wenn die Gruppe vollständig ist: Herzlichen Glückwunsch! Sie erhalten Ihre endgültige Bestätigung und der Restbetrag ist 30 Tage vor Abreise fällig.",
         refund: "Wenn das Quorum nicht erreicht wird: Wir stornieren die Session.",
         guarantee: "100% Garantie: Wir erstatten Ihre gesamte Anzahlung.",
@@ -302,25 +302,25 @@ const translations = {
     experienceSteps: [
       {
         icon: "phone",
-        title: "Passo 1: La Connessione Umana 📞",
+        title: "Passo 1: La Connessione Umana",
         description: "Una volta inviata la tua richiesta, un referente locale che parla la tua lingua (Francese, Inglese, Tedesco...) ti contatterà per una chiamata di 15 minuti.",
         goal: "Obiettivo: Rispondere alle tue domande, validare le tue aspettative e assicurarsi che lo spirito del gruppo corrisponda ai tuoi desideri."
       },
       {
         icon: "lock",
-        title: "Passo 2: Prenotazione Prioritaria 🔒",
+        title: "Passo 2: Prenotazione Prioritaria",
         description: "Dopo la chiamata, il tuo referente ti invia un link di pagamento sicuro (Stripe).",
         details: ["Acconto: 30% dell'importo totale.", "Validità: Questo link è attivo per 24 ore. Trascorso questo termine, il tuo posto viene automaticamente liberato per garantire equità tra i partecipanti."]
       },
       {
         icon: "users",
-        title: "Passo 3: Formazione del Gruppo (Il Quorum) 🤝",
+        title: "Passo 3: Formazione del Gruppo (Il Quorum)",
         description: "The Bridge è un'esperienza di condivisione. Per garantire la dinamica e la qualità dell'avventura, ogni sessione richiede un gruppo di 10 persone.",
         details: ["Ti unisci al \"Circolo degli Esploratori\" (gruppo privato) per seguire l'evoluzione delle iscrizioni in tempo reale."]
       },
       {
         icon: "check",
-        title: "Passo 4: Conferma o Rimborso Totale ✅",
+        title: "Passo 4: Conferma o Rimborso Totale",
         description: "Se il gruppo è completo: Congratulazioni! Ricevi la tua conferma finale e il saldo è dovuto 30 giorni prima della partenza.",
         refund: "Se il quorum non viene raggiunto: Annulliamo la sessione.",
         guarantee: "Garanzia 100%: Ti rimborsiamo l'intero acconto.",
