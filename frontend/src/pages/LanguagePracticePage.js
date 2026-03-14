@@ -9,6 +9,94 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PageLayout from "./components/PageLayout";
+import { useLanguage } from "../LanguageContext";
+
+const pageTranslations = {
+  en: {
+    heroTitle: "English Language Practice",
+    heroSubtitle: "Learn English in Morocco",
+    heroDesc: "Intensive English courses with afternoon cultural experiences. Perfect for exam preparation and professional development.",
+    coursesTitle: "Available Courses",
+    pricingTitle: "Pricing",
+    pricePerWeek: "per week",
+    registrationFee: "Registration fee",
+    includedTitle: "What's Included",
+    included: ["Accommodation", "All meals", "20h English classes/week", "Afternoon activities", "Study materials", "Certificate"],
+    bookNow: "Book now",
+    week: "week",
+    weeks: "weeks"
+  },
+  fr: {
+    heroTitle: "Pratique de l'Anglais",
+    heroSubtitle: "Apprenez l'anglais au Maroc",
+    heroDesc: "Cours d'anglais intensifs avec des expériences culturelles l'après-midi. Parfait pour la préparation aux examens et le développement professionnel.",
+    coursesTitle: "Cours Disponibles",
+    pricingTitle: "Tarifs",
+    pricePerWeek: "par semaine",
+    registrationFee: "Frais d'inscription",
+    includedTitle: "Ce Qui Est Inclus",
+    included: ["Hébergement", "Tous les repas", "20h de cours d'anglais/semaine", "Activités de l'après-midi", "Matériel d'étude", "Certificat"],
+    bookNow: "Réserver",
+    week: "semaine",
+    weeks: "semaines"
+  },
+  es: {
+    heroTitle: "Práctica de Inglés",
+    heroSubtitle: "Aprende inglés en Marruecos",
+    heroDesc: "Cursos intensivos de inglés con experiencias culturales por la tarde. Perfecto para preparación de exámenes y desarrollo profesional.",
+    coursesTitle: "Cursos Disponibles",
+    pricingTitle: "Precios",
+    pricePerWeek: "por semana",
+    registrationFee: "Cuota de inscripción",
+    includedTitle: "Qué Está Incluido",
+    included: ["Alojamiento", "Todas las comidas", "20h clases de inglés/semana", "Actividades de la tarde", "Material de estudio", "Certificado"],
+    bookNow: "Reservar",
+    week: "semana",
+    weeks: "semanas"
+  },
+  pt: {
+    heroTitle: "Prática de Inglês",
+    heroSubtitle: "Aprenda inglês no Marrocos",
+    heroDesc: "Cursos intensivos de inglês com experiências culturais à tarde. Perfeito para preparação de exames e desenvolvimento profissional.",
+    coursesTitle: "Cursos Disponíveis",
+    pricingTitle: "Preços",
+    pricePerWeek: "por semana",
+    registrationFee: "Taxa de inscrição",
+    includedTitle: "O Que Está Incluído",
+    included: ["Hospedagem", "Todas as refeições", "20h aulas de inglês/semana", "Atividades à tarde", "Material de estudo", "Certificado"],
+    bookNow: "Reservar",
+    week: "semana",
+    weeks: "semanas"
+  },
+  de: {
+    heroTitle: "Englisch Sprachpraxis",
+    heroSubtitle: "Lernen Sie Englisch in Marokko",
+    heroDesc: "Intensive Englischkurse mit nachmittäglichen kulturellen Erfahrungen. Perfekt für Prüfungsvorbereitung und berufliche Entwicklung.",
+    coursesTitle: "Verfügbare Kurse",
+    pricingTitle: "Preise",
+    pricePerWeek: "pro Woche",
+    registrationFee: "Anmeldegebühr",
+    includedTitle: "Was Enthalten Ist",
+    included: ["Unterkunft", "Alle Mahlzeiten", "20h Englischunterricht/Woche", "Nachmittagsaktivitäten", "Studienmaterial", "Zertifikat"],
+    bookNow: "Jetzt buchen",
+    week: "Woche",
+    weeks: "Wochen"
+  },
+  it: {
+    heroTitle: "Pratica della Lingua Inglese",
+    heroSubtitle: "Impara l'inglese in Marocco",
+    heroDesc: "Corsi intensivi di inglese con esperienze culturali pomeridiane. Perfetto per la preparazione agli esami e lo sviluppo professionale.",
+    coursesTitle: "Corsi Disponibili",
+    pricingTitle: "Prezzi",
+    pricePerWeek: "a settimana",
+    registrationFee: "Quota di iscrizione",
+    includedTitle: "Cosa È Incluso",
+    included: ["Alloggio", "Tutti i pasti", "20h lezioni inglese/settimana", "Attività pomeridiane", "Materiale di studio", "Certificato"],
+    bookNow: "Prenota ora",
+    week: "settimana",
+    weeks: "settimane"
+  }
+};
 
 const PRICING = [
   { weeks: 1, price: 400, label: "1 semaine" },
