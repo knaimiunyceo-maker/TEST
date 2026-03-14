@@ -7,12 +7,42 @@ import PageLayout from "./components/PageLayout";
 import { useLanguage } from "../LanguageContext";
 
 const translations = {
-  en: { title: "Privacy Policy", subtitle: "Protection of your personal data" },
-  fr: { title: "Politique de Confidentialité", subtitle: "Protection de vos données personnelles" },
-  es: { title: "Política de Privacidad", subtitle: "Protección de sus datos personales" },
-  pt: { title: "Política de Privacidade", subtitle: "Proteção dos seus dados pessoais" },
-  de: { title: "Datenschutzrichtlinie", subtitle: "Schutz Ihrer persönlichen Daten" },
-  it: { title: "Informativa sulla Privacy", subtitle: "Protezione dei tuoi dati personali" }
+  en: { 
+    title: "Privacy Policy", 
+    subtitle: "Protection of your personal data",
+    legalNotice: "The official legal text is in French. This document governs the processing of your personal data.",
+    lastUpdate: "Last update: December 2025"
+  },
+  fr: { 
+    title: "Politique de Confidentialité", 
+    subtitle: "Protection de vos données personnelles",
+    legalNotice: null,
+    lastUpdate: "Dernière mise à jour : Décembre 2025"
+  },
+  es: { 
+    title: "Política de Privacidad", 
+    subtitle: "Protección de sus datos personales",
+    legalNotice: "El texto legal oficial está en francés. Este documento rige el tratamiento de sus datos personales.",
+    lastUpdate: "Última actualización: Diciembre 2025"
+  },
+  pt: { 
+    title: "Política de Privacidade", 
+    subtitle: "Proteção dos seus dados pessoais",
+    legalNotice: "O texto legal oficial está em francês. Este documento rege o tratamento dos seus dados pessoais.",
+    lastUpdate: "Última atualização: Dezembro 2025"
+  },
+  de: { 
+    title: "Datenschutzrichtlinie", 
+    subtitle: "Schutz Ihrer persönlichen Daten",
+    legalNotice: "Der offizielle Rechtstext ist auf Französisch. Dieses Dokument regelt die Verarbeitung Ihrer persönlichen Daten.",
+    lastUpdate: "Letzte Aktualisierung: Dezember 2025"
+  },
+  it: { 
+    title: "Informativa sulla Privacy", 
+    subtitle: "Protezione dei tuoi dati personali",
+    legalNotice: "Il testo legale ufficiale è in francese. Questo documento regola il trattamento dei vostri dati personali.",
+    lastUpdate: "Ultimo aggiornamento: Dicembre 2025"
+  }
 };
 
 const Section = ({ icon: Icon, title, children, index }) => (
@@ -63,6 +93,15 @@ const ConfidentialitePage = () => {
       {/* Content */}
       <section className="py-12 sm:py-16 bg-warmwhite">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12">
+          
+          {/* Legal notice for non-French users */}
+          {t.legalNotice && (
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <p className="font-dm text-blue-700 text-sm">
+                ℹ️ {t.legalNotice}
+              </p>
+            </div>
+          )}
           
           {/* 1. Introduction */}
           <Section icon={Shield} title="1. Introduction" index={0}>
@@ -241,7 +280,7 @@ const ConfidentialitePage = () => {
           {/* Footer note */}
           <div className="mt-12 pt-8 border-t border-border text-center">
             <p className="font-dm text-ocean/60 text-sm">
-              Dernière mise à jour : Décembre 2025
+              {t.lastUpdate}
             </p>
           </div>
 
