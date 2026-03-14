@@ -224,7 +224,8 @@ const translations = {
       "atlas-trek": { title: "Atlas-Gebirge Trek", description: "Entdecken Sie die atemberaubenden Landschaften des Atlas-Gebirges und authentische Berberdörfer bei einem geführten Bergabenteuer." },
       "desert-dinner": { title: "Wüstenabendessen in Agafay", description: "Genießen Sie einen magischen Abend unter den Sternen in der Agafay-Wüste mit traditioneller marokkanischer Küche und Live-Musik." },
       "cooking-class": { title: "Marokkanischer Kochkurs", description: "Lernen Sie, traditionelle marokkanische Gerichte wie Tajine und Couscous mit lokalen Köchen zuzubereiten." },
-      "paradise-valley": { title: "Paradies-Tal Abenteuer", description: "Erkunden Sie natürliche Pools, Palmen und spektakuläre Landschaften bei einem einzigartigen Ausflug zu einem der versteckten Juwelen Marokkos." }
+      "paradise-valley": { title: "Paradies-Tal Abenteuer", description: "Erkunden Sie natürliche Pools, Palmen und spektakuläre Landschaften bei einem einzigartigen Ausflug zu einem der versteckten Juwelen Marokkos." },
+      "hammam": { title: "Traditionelles Marokkanisches Hammam", description: "Erleben Sie das authentische marokkanische Spa-Ritual. Entspannen Sie im Dampfbad, genießen Sie ein traditionelles Peeling mit schwarzer Seife und kommen Sie völlig verjüngt heraus." }
     },
     activityNames: {
       "surf": "Surfen", "kitesurf": "Kitesurfen", "sup": "Stand Up Paddle", "yoga": "Yoga", "pilates": "Pilates",
