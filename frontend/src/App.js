@@ -286,6 +286,13 @@ const HeroSection = () => {
       tagline: "Mais que uma viagem. Uma transformação.",
       cta: "Descobrir Experiências",
       secondary: "Como Funciona"
+    },
+    it: {
+      headline: "Viaggia • Pratica • Vivi",
+      subtitle: "Scegli la tua esperienza. Impara qualcosa di nuovo. Scopri il Marocco.",
+      tagline: "Più di un viaggio. Un'esperienza.",
+      cta: "Scopri le Esperienze",
+      secondary: "Come Funziona"
     }
   };
 
