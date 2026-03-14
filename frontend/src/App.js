@@ -48,7 +48,6 @@ import BookPage from "./pages/BookPage";
 import CGVPage from "./pages/CGVPage";
 import MentionsLegalesPage from "./pages/MentionsLegalesPage";
 import ConfidentialitePage from "./pages/ConfidentialitePage";
-import SecureBookingPage from "./pages/SecureBookingPage";
 import CookieBanner from "./components/CookieBanner";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
