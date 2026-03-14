@@ -23,9 +23,338 @@ import PageLayout from "./components/PageLayout";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import axios from "axios";
+import { useLanguage } from "../LanguageContext";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
+
+// ===== TRANSLATIONS =====
+const bookPageTranslations = {
+  en: {
+    hero: { title: "Book Your Experience", subtitle: "Complete the steps below to send your request." },
+    step1: { title: "Choose Your Experience" },
+    step2: { title: "Choose City", courseType: "Course Type" },
+    step3: { title: "Select Dates", duration: "Duration", startDate: "Start Date", selectWeekend: "Select a Weekend" },
+    step4: { 
+      title: "Your Information",
+      fullName: "Full Name", fullNamePlaceholder: "Enter your full name",
+      email: "Email Address", emailPlaceholder: "your@email.com",
+      whatsapp: "WhatsApp Number",
+      message: "Additional Message (optional)", messagePlaceholder: "Dietary requirements, questions...",
+      acceptTerms: "I accept the", termsLink: "Terms and Conditions",
+      acceptData: "I agree to the processing of my personal data according to the", privacyLink: "Privacy Policy"
+    },
+    summary: {
+      title: "Summary", experience: "Experience", city: "City", course: "Course", 
+      dates: "Dates", duration: "Duration", price: "Price", from: "From"
+    },
+    buttons: { next: "Next", previous: "Previous", submit: "Send Request", submitting: "Sending..." },
+    validation: {
+      nameRequired: "Name is required",
+      emailRequired: "Email address is required",
+      emailInvalid: "Invalid email format",
+      emailBlocked: "Please use a valid email address",
+      phoneRequired: "WhatsApp number is required",
+      phoneInvalid: "Invalid or incomplete phone number",
+      acceptTerms: "You must accept the Terms and Conditions",
+      acceptData: "You must accept data processing"
+    },
+    toast: {
+      successTitle: "Request sent successfully!",
+      successDesc: "We will contact you shortly.",
+      errorTitle: "Sending failed",
+      errorDesc: "Please try again later."
+    },
+    experiences: {
+      "self-defense": "Self-Defense Weekend",
+      "language": "Intensive English Course",
+      "storytelling": "Visual Storytelling Weekend"
+    },
+    courseTypes: {
+      "general": "General English", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Weekend (2 nights / 3 days)", "5days": "5 Days", "7days": "7 Days / 6 Nights",
+      "1week": "1 Week", "2weeks": "2 Weeks", "3weeks": "3 Weeks", "4weeks": "4 Weeks",
+      "5weeks": "5 Weeks", "6weeks": "6 Weeks", "7weeks": "7 Weeks", "8weeks": "8 Weeks"
+    },
+    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    monthsFull: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    weekendCalendar: { available: "Available", unavailable: "Unavailable", selectBtn: "Select" },
+    earlyBird: { title: "Early Bird", discount: "discount applied!" }
+  },
+  fr: {
+    hero: { title: "Réserver votre expérience", subtitle: "Complétez les étapes ci-dessous pour envoyer votre demande." },
+    step1: { title: "Choisissez votre expérience" },
+    step2: { title: "Choisissez la ville", courseType: "Type de cours" },
+    step3: { title: "Sélectionnez les dates", duration: "Durée", startDate: "Date de début", selectWeekend: "Sélectionnez un weekend" },
+    step4: { 
+      title: "Vos informations",
+      fullName: "Nom complet", fullNamePlaceholder: "Entrez votre nom complet",
+      email: "Adresse email", emailPlaceholder: "votre@email.com",
+      whatsapp: "Numéro WhatsApp",
+      message: "Message supplémentaire (optionnel)", messagePlaceholder: "Régime alimentaire, questions...",
+      acceptTerms: "J'accepte les", termsLink: "Conditions Générales de Vente",
+      acceptData: "J'accepte le traitement de mes données selon la", privacyLink: "Politique de confidentialité"
+    },
+    summary: {
+      title: "Récapitulatif", experience: "Expérience", city: "Ville", course: "Cours", 
+      dates: "Dates", duration: "Durée", price: "Prix", from: "À partir de"
+    },
+    buttons: { next: "Suivant", previous: "Précédent", submit: "Envoyer la demande", submitting: "Envoi en cours..." },
+    validation: {
+      nameRequired: "Le nom est requis",
+      emailRequired: "L'adresse email est requise",
+      emailInvalid: "Format d'email invalide",
+      emailBlocked: "Veuillez utiliser une adresse email valide",
+      phoneRequired: "Le numéro WhatsApp est requis",
+      phoneInvalid: "Numéro de téléphone invalide ou incomplet",
+      acceptTerms: "Vous devez accepter les CGV",
+      acceptData: "Vous devez accepter le traitement des données"
+    },
+    toast: {
+      successTitle: "Demande envoyée avec succès !",
+      successDesc: "Nous vous contacterons très prochainement.",
+      errorTitle: "Échec de l'envoi",
+      errorDesc: "Veuillez réessayer plus tard."
+    },
+    experiences: {
+      "self-defense": "Self-Defense Weekend",
+      "language": "Cours d'Anglais Intensif",
+      "storytelling": "Visual Storytelling Weekend"
+    },
+    courseTypes: {
+      "general": "Anglais Général", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Weekend (2 nuits / 3 jours)", "5days": "5 Jours", "7days": "7 Jours / 6 Nuits",
+      "1week": "1 Semaine", "2weeks": "2 Semaines", "3weeks": "3 Semaines", "4weeks": "4 Semaines",
+      "5weeks": "5 Semaines", "6weeks": "6 Semaines", "7weeks": "7 Semaines", "8weeks": "8 Semaines"
+    },
+    months: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"],
+    monthsFull: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    weekendCalendar: { available: "Disponible", unavailable: "Indisponible", selectBtn: "Sélectionner" },
+    earlyBird: { title: "Early Bird", discount: "de réduction appliquée !" }
+  },
+  es: {
+    hero: { title: "Reserva tu experiencia", subtitle: "Completa los pasos a continuación para enviar tu solicitud." },
+    step1: { title: "Elige tu experiencia" },
+    step2: { title: "Elige la ciudad", courseType: "Tipo de curso" },
+    step3: { title: "Selecciona fechas", duration: "Duración", startDate: "Fecha de inicio", selectWeekend: "Selecciona un fin de semana" },
+    step4: { 
+      title: "Tu información",
+      fullName: "Nombre completo", fullNamePlaceholder: "Introduce tu nombre completo",
+      email: "Correo electrónico", emailPlaceholder: "tu@email.com",
+      whatsapp: "Número de WhatsApp",
+      message: "Mensaje adicional (opcional)", messagePlaceholder: "Requisitos dietéticos, preguntas...",
+      acceptTerms: "Acepto los", termsLink: "Términos y Condiciones",
+      acceptData: "Acepto el tratamiento de mis datos según la", privacyLink: "Política de Privacidad"
+    },
+    summary: {
+      title: "Resumen", experience: "Experiencia", city: "Ciudad", course: "Curso", 
+      dates: "Fechas", duration: "Duración", price: "Precio", from: "Desde"
+    },
+    buttons: { next: "Siguiente", previous: "Anterior", submit: "Enviar solicitud", submitting: "Enviando..." },
+    validation: {
+      nameRequired: "El nombre es obligatorio",
+      emailRequired: "El correo electrónico es obligatorio",
+      emailInvalid: "Formato de correo inválido",
+      emailBlocked: "Por favor usa una dirección de correo válida",
+      phoneRequired: "El número de WhatsApp es obligatorio",
+      phoneInvalid: "Número de teléfono inválido o incompleto",
+      acceptTerms: "Debes aceptar los términos y condiciones",
+      acceptData: "Debes aceptar el tratamiento de datos"
+    },
+    toast: {
+      successTitle: "¡Solicitud enviada con éxito!",
+      successDesc: "Te contactaremos pronto.",
+      errorTitle: "Error al enviar",
+      errorDesc: "Por favor, inténtalo de nuevo más tarde."
+    },
+    experiences: {
+      "self-defense": "Fin de Semana de Defensa Personal",
+      "language": "Curso Intensivo de Inglés",
+      "storytelling": "Fin de Semana de Storytelling Visual"
+    },
+    courseTypes: {
+      "general": "Inglés General", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Fin de semana (2 noches / 3 días)", "5days": "5 Días", "7days": "7 Días / 6 Noches",
+      "1week": "1 Semana", "2weeks": "2 Semanas", "3weeks": "3 Semanas", "4weeks": "4 Semanas",
+      "5weeks": "5 Semanas", "6weeks": "6 Semanas", "7weeks": "7 Semanas", "8weeks": "8 Semanas"
+    },
+    months: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    monthsFull: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    weekendCalendar: { available: "Disponible", unavailable: "No disponible", selectBtn: "Seleccionar" },
+    earlyBird: { title: "Early Bird", discount: "¡descuento aplicado!" }
+  },
+  pt: {
+    hero: { title: "Reserve sua experiência", subtitle: "Complete os passos abaixo para enviar sua solicitação." },
+    step1: { title: "Escolha sua experiência" },
+    step2: { title: "Escolha a cidade", courseType: "Tipo de curso" },
+    step3: { title: "Selecione as datas", duration: "Duração", startDate: "Data de início", selectWeekend: "Selecione um fim de semana" },
+    step4: { 
+      title: "Suas informações",
+      fullName: "Nome completo", fullNamePlaceholder: "Digite seu nome completo",
+      email: "Endereço de email", emailPlaceholder: "seu@email.com",
+      whatsapp: "Número do WhatsApp",
+      message: "Mensagem adicional (opcional)", messagePlaceholder: "Requisitos alimentares, perguntas...",
+      acceptTerms: "Aceito os", termsLink: "Termos e Condições",
+      acceptData: "Aceito o processamento dos meus dados de acordo com a", privacyLink: "Política de Privacidade"
+    },
+    summary: {
+      title: "Resumo", experience: "Experiência", city: "Cidade", course: "Curso", 
+      dates: "Datas", duration: "Duração", price: "Preço", from: "A partir de"
+    },
+    buttons: { next: "Próximo", previous: "Anterior", submit: "Enviar solicitação", submitting: "Enviando..." },
+    validation: {
+      nameRequired: "O nome é obrigatório",
+      emailRequired: "O endereço de email é obrigatório",
+      emailInvalid: "Formato de email inválido",
+      emailBlocked: "Por favor, use um endereço de email válido",
+      phoneRequired: "O número de WhatsApp é obrigatório",
+      phoneInvalid: "Número de telefone inválido ou incompleto",
+      acceptTerms: "Você deve aceitar os termos e condições",
+      acceptData: "Você deve aceitar o processamento de dados"
+    },
+    toast: {
+      successTitle: "Solicitação enviada com sucesso!",
+      successDesc: "Entraremos em contato em breve.",
+      errorTitle: "Falha ao enviar",
+      errorDesc: "Por favor, tente novamente mais tarde."
+    },
+    experiences: {
+      "self-defense": "Fim de Semana de Defesa Pessoal",
+      "language": "Curso Intensivo de Inglês",
+      "storytelling": "Fim de Semana de Visual Storytelling"
+    },
+    courseTypes: {
+      "general": "Inglês Geral", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Fim de semana (2 noites / 3 dias)", "5days": "5 Dias", "7days": "7 Dias / 6 Noites",
+      "1week": "1 Semana", "2weeks": "2 Semanas", "3weeks": "3 Semanas", "4weeks": "4 Semanas",
+      "5weeks": "5 Semanas", "6weeks": "6 Semanas", "7weeks": "7 Semanas", "8weeks": "8 Semanas"
+    },
+    months: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    monthsFull: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    weekendCalendar: { available: "Disponível", unavailable: "Indisponível", selectBtn: "Selecionar" },
+    earlyBird: { title: "Early Bird", discount: "de desconto aplicado!" }
+  },
+  de: {
+    hero: { title: "Buchen Sie Ihr Erlebnis", subtitle: "Füllen Sie die folgenden Schritte aus, um Ihre Anfrage zu senden." },
+    step1: { title: "Wählen Sie Ihr Erlebnis" },
+    step2: { title: "Wählen Sie die Stadt", courseType: "Kurstyp" },
+    step3: { title: "Datum auswählen", duration: "Dauer", startDate: "Startdatum", selectWeekend: "Wählen Sie ein Wochenende" },
+    step4: { 
+      title: "Ihre Informationen",
+      fullName: "Vollständiger Name", fullNamePlaceholder: "Geben Sie Ihren vollständigen Namen ein",
+      email: "E-Mail-Adresse", emailPlaceholder: "ihre@email.com",
+      whatsapp: "WhatsApp-Nummer",
+      message: "Zusätzliche Nachricht (optional)", messagePlaceholder: "Ernährungsbedürfnisse, Fragen...",
+      acceptTerms: "Ich akzeptiere die", termsLink: "Allgemeinen Geschäftsbedingungen",
+      acceptData: "Ich stimme der Verarbeitung meiner Daten gemäß der", privacyLink: "Datenschutzrichtlinie"
+    },
+    summary: {
+      title: "Zusammenfassung", experience: "Erlebnis", city: "Stadt", course: "Kurs", 
+      dates: "Daten", duration: "Dauer", price: "Preis", from: "Ab"
+    },
+    buttons: { next: "Weiter", previous: "Zurück", submit: "Anfrage senden", submitting: "Wird gesendet..." },
+    validation: {
+      nameRequired: "Name ist erforderlich",
+      emailRequired: "E-Mail-Adresse ist erforderlich",
+      emailInvalid: "Ungültiges E-Mail-Format",
+      emailBlocked: "Bitte verwenden Sie eine gültige E-Mail-Adresse",
+      phoneRequired: "WhatsApp-Nummer ist erforderlich",
+      phoneInvalid: "Ungültige oder unvollständige Telefonnummer",
+      acceptTerms: "Sie müssen die AGB akzeptieren",
+      acceptData: "Sie müssen der Datenverarbeitung zustimmen"
+    },
+    toast: {
+      successTitle: "Anfrage erfolgreich gesendet!",
+      successDesc: "Wir werden Sie in Kürze kontaktieren.",
+      errorTitle: "Senden fehlgeschlagen",
+      errorDesc: "Bitte versuchen Sie es später erneut."
+    },
+    experiences: {
+      "self-defense": "Selbstverteidigung Wochenende",
+      "language": "Intensiv Englischkurs",
+      "storytelling": "Visual Storytelling Wochenende"
+    },
+    courseTypes: {
+      "general": "Allgemeines Englisch", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Wochenende (2 Nächte / 3 Tage)", "5days": "5 Tage", "7days": "7 Tage / 6 Nächte",
+      "1week": "1 Woche", "2weeks": "2 Wochen", "3weeks": "3 Wochen", "4weeks": "4 Wochen",
+      "5weeks": "5 Wochen", "6weeks": "6 Wochen", "7weeks": "7 Wochen", "8weeks": "8 Wochen"
+    },
+    months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    monthsFull: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    weekendCalendar: { available: "Verfügbar", unavailable: "Nicht verfügbar", selectBtn: "Auswählen" },
+    earlyBird: { title: "Frühbucher", discount: "Rabatt angewendet!" }
+  },
+  it: {
+    hero: { title: "Prenota la tua esperienza", subtitle: "Completa i passaggi qui sotto per inviare la tua richiesta." },
+    step1: { title: "Scegli la tua esperienza" },
+    step2: { title: "Scegli la città", courseType: "Tipo di corso" },
+    step3: { title: "Seleziona le date", duration: "Durata", startDate: "Data di inizio", selectWeekend: "Seleziona un weekend" },
+    step4: { 
+      title: "Le tue informazioni",
+      fullName: "Nome completo", fullNamePlaceholder: "Inserisci il tuo nome completo",
+      email: "Indirizzo email", emailPlaceholder: "tua@email.com",
+      whatsapp: "Numero WhatsApp",
+      message: "Messaggio aggiuntivo (opzionale)", messagePlaceholder: "Esigenze alimentari, domande...",
+      acceptTerms: "Accetto i", termsLink: "Termini e Condizioni",
+      acceptData: "Accetto il trattamento dei miei dati secondo la", privacyLink: "Privacy Policy"
+    },
+    summary: {
+      title: "Riepilogo", experience: "Esperienza", city: "Città", course: "Corso", 
+      dates: "Date", duration: "Durata", price: "Prezzo", from: "Da"
+    },
+    buttons: { next: "Avanti", previous: "Indietro", submit: "Invia richiesta", submitting: "Invio in corso..." },
+    validation: {
+      nameRequired: "Il nome è obbligatorio",
+      emailRequired: "L'indirizzo email è obbligatorio",
+      emailInvalid: "Formato email non valido",
+      emailBlocked: "Per favore usa un indirizzo email valido",
+      phoneRequired: "Il numero WhatsApp è obbligatorio",
+      phoneInvalid: "Numero di telefono non valido o incompleto",
+      acceptTerms: "Devi accettare i termini e condizioni",
+      acceptData: "Devi accettare il trattamento dei dati"
+    },
+    toast: {
+      successTitle: "Richiesta inviata con successo!",
+      successDesc: "Ti contatteremo a breve.",
+      errorTitle: "Invio fallito",
+      errorDesc: "Per favore riprova più tardi."
+    },
+    experiences: {
+      "self-defense": "Weekend di Autodifesa",
+      "language": "Corso Intensivo di Inglese",
+      "storytelling": "Weekend di Visual Storytelling"
+    },
+    courseTypes: {
+      "general": "Inglese Generale", "toefl-ibt": "TOEFL iBT", "toefl-itp": "TOEFL ITP",
+      "ielts-academic": "IELTS Academic", "ielts-general": "IELTS General", "business": "Business English"
+    },
+    durations: {
+      "weekend": "Weekend (2 notti / 3 giorni)", "5days": "5 Giorni", "7days": "7 Giorni / 6 Notti",
+      "1week": "1 Settimana", "2weeks": "2 Settimane", "3weeks": "3 Settimane", "4weeks": "4 Settimane",
+      "5weeks": "5 Settimane", "6weeks": "6 Settimane", "7weeks": "7 Settimane", "8weeks": "8 Settimane"
+    },
+    months: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+    monthsFull: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+    weekendCalendar: { available: "Disponibile", unavailable: "Non disponibile", selectBtn: "Seleziona" },
+    earlyBird: { title: "Early Bird", discount: "di sconto applicato!" }
+  }
+};
 
 // Minimum days before booking (2 weeks)
 const MIN_BOOKING_DAYS = 14;
