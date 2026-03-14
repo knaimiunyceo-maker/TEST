@@ -4,12 +4,42 @@ import PageLayout from "./components/PageLayout";
 import { useLanguage } from "../LanguageContext";
 
 const translations = {
-  en: { title: "Terms and Conditions", subtitle: "THE BRIDGE — UNYCEO France" },
-  fr: { title: "Conditions Générales de Vente", subtitle: "THE BRIDGE — UNYCEO France" },
-  es: { title: "Términos y Condiciones", subtitle: "THE BRIDGE — UNYCEO France" },
-  pt: { title: "Termos e Condições", subtitle: "THE BRIDGE — UNYCEO France" },
-  de: { title: "Allgemeine Geschäftsbedingungen", subtitle: "THE BRIDGE — UNYCEO France" },
-  it: { title: "Termini e Condizioni", subtitle: "THE BRIDGE — UNYCEO France" }
+  en: { 
+    title: "Terms and Conditions", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: "The official legal text is in French. This document governs your relationship with UNYCEO France.",
+    lastUpdate: "Last update: December 2025"
+  },
+  fr: { 
+    title: "Conditions Générales de Vente", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: null,
+    lastUpdate: "Dernière mise à jour : Décembre 2025"
+  },
+  es: { 
+    title: "Términos y Condiciones", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: "El texto legal oficial está en francés. Este documento rige su relación con UNYCEO France.",
+    lastUpdate: "Última actualización: Diciembre 2025"
+  },
+  pt: { 
+    title: "Termos e Condições", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: "O texto legal oficial está em francês. Este documento rege sua relação com a UNYCEO France.",
+    lastUpdate: "Última atualização: Dezembro 2025"
+  },
+  de: { 
+    title: "Allgemeine Geschäftsbedingungen", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: "Der offizielle Rechtstext ist auf Französisch. Dieses Dokument regelt Ihre Beziehung zu UNYCEO France.",
+    lastUpdate: "Letzte Aktualisierung: Dezember 2025"
+  },
+  it: { 
+    title: "Termini e Condizioni", 
+    subtitle: "THE BRIDGE — UNYCEO France",
+    legalNotice: "Il testo legale ufficiale è in francese. Questo documento regola il vostro rapporto con UNYCEO France.",
+    lastUpdate: "Ultimo aggiornamento: Dicembre 2025"
+  }
 };
 
 const Section = ({ icon: Icon, title, children, index }) => (
@@ -60,6 +90,15 @@ const CGVPage = () => {
       {/* Content */}
       <section className="py-12 sm:py-16 bg-warmwhite">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-12">
+          
+          {/* Legal notice for non-French users */}
+          {t.legalNotice && (
+            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <p className="font-dm text-blue-700 text-sm">
+                ℹ️ {t.legalNotice}
+              </p>
+            </div>
+          )}
           
           <Section icon={FileText} title="1. Objet et Champ d'Application" index={0}>
             <p>
@@ -195,7 +234,7 @@ const CGVPage = () => {
           {/* Footer note */}
           <div className="mt-12 pt-8 border-t border-border text-center">
             <p className="font-dm text-ocean/60 text-sm">
-              Dernière mise à jour : Décembre 2025
+              {t.lastUpdate}
             </p>
           </div>
 
