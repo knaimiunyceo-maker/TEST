@@ -996,9 +996,9 @@ ${formData.message || 'Aucun message additionnel'}
                             {selectedExperience.icon}
                           </div>
                           <div>
-                            <p className="font-syne font-bold text-ocean">{selectedExperience.label}</p>
+                            <p className="font-syne font-bold text-ocean">{t.experiences[selectedExperience.id] || selectedExperience.label}</p>
                             <p className="font-dm text-ocean/60 text-sm">
-                              {selectedExperience.price ? `€${selectedExperience.price}` : `€${selectedExperience.pricePerWeek}/semaine`}
+                              {selectedExperience.price ? `€${selectedExperience.price}` : `€${selectedExperience.pricePerWeek}/${language === 'fr' ? 'semaine' : language === 'es' ? 'semana' : language === 'it' ? 'settimana' : language === 'de' ? 'Woche' : 'week'}`}
                             </p>
                           </div>
                         </div>
@@ -1008,7 +1008,7 @@ ${formData.message || 'Aucun message additionnel'}
                           onClick={() => setStep(1)}
                           className="text-ocean/60 hover:text-ocean"
                         >
-                          Changer
+                          {language === 'fr' ? 'Changer' : language === 'es' ? 'Cambiar' : language === 'it' ? 'Cambia' : language === 'de' ? 'Ändern' : language === 'pt' ? 'Mudar' : 'Change'}
                         </Button>
                       </div>
                     </div>
@@ -1019,17 +1019,16 @@ ${formData.message || 'Aucun message additionnel'}
                     <div className="text-center py-4">
                       <div className="flex items-center justify-center gap-3 mb-4">
                         <Calendar className="text-sunset" size={24} />
-                        <h2 className="font-syne font-bold text-xl text-ocean">Prochaine étape</h2>
+                        <h2 className="font-syne font-bold text-xl text-ocean">{t.buttons.next}</h2>
                       </div>
                       <p className="font-dm text-ocean/70 mb-6">
-                        Choisissez votre weekend parmi les dates disponibles.<br/>
-                        La ville (Marrakech ou Agadir) alterne chaque semaine.
+                        {t.step3.selectWeekend}
                       </p>
                       <Button 
                         onClick={() => setStep(3)}
                         className="bg-sunset hover:bg-sunset/90 text-white rounded-full px-8"
                       >
-                        Voir le calendrier des weekends <ArrowRight size={16} className="ml-2" />
+                        {t.step3.selectWeekend} <ArrowRight size={16} className="ml-2" />
                       </Button>
                     </div>
                   ) : (
@@ -1039,15 +1038,15 @@ ${formData.message || 'Aucun message additionnel'}
                         <div className="mb-8">
                           <div className="flex items-center gap-3 mb-4">
                             <Languages className="text-sunset" size={24} />
-                            <h2 className="font-syne font-bold text-xl text-ocean">Type de Cours</h2>
+                            <h2 className="font-syne font-bold text-xl text-ocean">{t.step2.courseType}</h2>
                           </div>
                           <Select value={formData.courseType} onValueChange={(v) => setFormData(prev => ({ ...prev, courseType: v }))}>
                             <SelectTrigger className="border-border rounded-xl">
-                              <SelectValue placeholder="Sélectionnez le type de cours" />
+                              <SelectValue placeholder={t.step2.courseType} />
                             </SelectTrigger>
                             <SelectContent>
                               {selectedExperience?.courseTypes?.map((c) => (
-                                <SelectItem key={c.id} value={c.id}>{c.label}</SelectItem>
+                                <SelectItem key={c.id} value={c.id}>{t.courseTypes[c.id] || c.label}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -1056,7 +1055,7 @@ ${formData.message || 'Aucun message additionnel'}
 
                       <div className="flex items-center gap-3 mb-6">
                         <MapPin className="text-sunset" size={24} />
-                        <h2 className="font-syne font-bold text-xl text-ocean">Choisissez votre ville</h2>
+                        <h2 className="font-syne font-bold text-xl text-ocean">{t.step2.title}</h2>
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         {availableCities.map((city) => (
