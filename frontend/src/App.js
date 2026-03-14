@@ -1848,7 +1848,6 @@ function App() {
             <Route path="/cgv" element={<CGVPage />} />
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             <Route path="/confidentialite" element={<ConfidentialitePage />} />
-            <Route path="/reservation" element={<SecureBookingPage />} />
           </Routes>
           <CookieBanner />
         </LanguageProvider>
